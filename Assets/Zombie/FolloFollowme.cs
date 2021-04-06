@@ -14,18 +14,23 @@ public class FolloFollowme : MonoBehaviour
 
     public GameObject ZBC;
 
+    public GameObject Gobj;
+
     public Vector3 fl1, fl2, fl3;
 
     public int test555;
     int Chp = 100;
+    int ZomA = 10;
 
     float delay = 0f;
+    float DMdelay = 0f;
 
 
     private void Start()
     {
         avatar = GetComponent<Animator>();
         test555 = 1;
+        Gobj = GameObject.Find("Gunner");
     }
 
     void Update()
@@ -39,7 +44,7 @@ public class FolloFollowme : MonoBehaviour
             Chp -= 10;
         }
 
-        if(avatar.GetBool("Die")==true)
+        if (avatar.GetBool("Die") == true)
         {
             delay += Time.deltaTime;
 
@@ -75,10 +80,19 @@ public class FolloFollowme : MonoBehaviour
             if (avatar.GetBool("Att") == true)
             {
                 nav.speed = 0;
-
+                if (DMdelay <= 1f)
+                {
+                    DMdelay = DMdelay + Time.deltaTime;
+                }
+                else if (DMdelay > 1f)
+                {
+                    Gobj.GetComponent<Gunner>().GunnerHitFunc(ZomA);
+                    DMdelay = 0f;
+                }
             }
-            else if(avatar.GetBool("Att") == false)
+            else if (avatar.GetBool("Att") == false)
             {
+                DMdelay = 0f;
                 if (InsideC.inside == true)
                 {
                     nav.speed = 4;
@@ -107,7 +121,7 @@ public class FolloFollowme : MonoBehaviour
                         avatar.SetBool("BackP", true);
                     }
                 }
-            }       
+            }
         }
     }
 
@@ -120,7 +134,7 @@ public class FolloFollowme : MonoBehaviour
     }
     private void OnTriggerExit(Collider other)
     {
-        if(other.tag == "Player")
+        if (other.tag == "Player")
         {
             avatar.SetBool("Att", false);
         }

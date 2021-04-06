@@ -28,9 +28,9 @@ public class ZombieSpawn : MonoBehaviour
         delay = 0;
 
         Vector3 pos;
-        pos.x = Random.Range(spawnRange.x+5, spawnRange.x-5);
+        pos.x = Random.Range(spawnRange.x + 5, spawnRange.x - 5);
         pos.y = Random.Range(-spawnRange.y, spawnRange.y) + 1;
-        pos.z = Random.Range(spawnRange.z+5, spawnRange.z-5);
+        pos.z = Random.Range(spawnRange.z + 5, spawnRange.z - 5);
 
         int type = Random.Range(0, prefab0bject.Length);
 

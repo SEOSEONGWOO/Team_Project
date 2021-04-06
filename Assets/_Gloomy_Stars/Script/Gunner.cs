@@ -9,7 +9,12 @@ public class Gunner : MonoBehaviour
     public Animator avatar;
 
     float GunnerHP = 100f;
+    int GunnerA = 10; //공격력
+    int GunnerD = 5; //방어력
+    int HitD; //받는 데미지
 
+
+    public static Transform target;
 
     public Transform clcl;
 
@@ -24,7 +29,7 @@ public class Gunner : MonoBehaviour
 
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -36,17 +41,21 @@ public class Gunner : MonoBehaviour
         GunnerMoneyText.GetComponent<Text>().text = GunnerMoneyT;
 
         GunnerHPBar.value = GunnerHP / 100f;
-
-        if (Input.GetButtonDown("Fire1"))
-        {
-            GunnerHP -= 10;
-        }
-
-        if (GunnerHP == 0)
-        {
-
-        }
-
-
     }
+
+    public void GunnerHitFunc(int damage)
+    {
+        HitD = damage - GunnerD;
+        if (HitD >= 1)
+        {
+            GunnerHP = GunnerHP - (float)HitD;
+            Debug.Log(HitD);
+        }
+        else if (HitD < 1)
+        {
+            GunnerHP = GunnerHP - 1f;
+            Debug.Log(HitD);
+        }
+    }
+
 }

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.2257134, b: 0.30692226, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -502,7 +502,7 @@ PrefabInstance:
     - target: {fileID: 5845694721903855251, guid: 4c990bae49065c64fb73c883adebad39,
         type: 3}
       propertyPath: m_Name
-      value: Charter
+      value: Gunner
       objectReference: {fileID: 0}
     - target: {fileID: 5845694721903855251, guid: 4c990bae49065c64fb73c883adebad39,
         type: 3}
@@ -575,7 +575,7 @@ MonoBehaviour:
   prefab0bject:
   - {fileID: 1627156170895755495, guid: 3fb98a05dc2891146bb777855353991a, type: 3}
   spawnRange: {x: 2, y: 0, z: 2}
-  spawninterval: 1
+  spawninterval: 5
 --- !u!64 &985264822
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -929,7 +929,7 @@ MonoBehaviour:
   - {fileID: 4493914613880827488, guid: 6dc4cf4496348884d8ee27743ae38562, type: 3}
   - {fileID: 7097048160072032697, guid: 87b9fc169db9bc147a6b3a466e1af600, type: 3}
   spawnRange: {x: 10, y: 0, z: 10}
-  spawninterval: 1
+  spawninterval: 5
 --- !u!1001 &1497472054
 PrefabInstance:
   m_ObjectHideFlags: 0
