@@ -77,6 +77,9 @@ public class Player_Scr : MonoBehaviour
 		Health ();
 		UI ();
 
+		
+		
+
 	}
 
 	void Locomotion()
@@ -88,10 +91,35 @@ public class Player_Scr : MonoBehaviour
 		strafe = Input.GetAxis("Horizontal"); 
 
 		anim.SetFloat("Strafe", strafe); 
-		anim.SetFloat("Run", run); 
-			
+		anim.SetFloat("Run", run);
 
-			if (run !=0 || isfight == true)
+		//float forwardrun = 5 * Time.deltaTime;
+		if (run > 0)
+        {
+			transform.Translate(Vector3.forward * (5 * Time.deltaTime) * run);
+        }
+		else if(run < 0)
+        {
+			{
+				transform.Translate(Vector3.forward * (3 * Time.deltaTime) * run);
+			}
+		}
+
+		if (strafe > 0)
+		{
+			transform.Translate(Vector3.right * (3 * Time.deltaTime) * strafe);
+		}
+		else if (strafe < 0)
+		{
+			{
+				transform.Translate(Vector3.right * (3 * Time.deltaTime) * strafe);
+			}
+		}
+
+
+
+
+		if (run !=0 || isfight == true)
 			{
 				Vector3 rot = transform.eulerAngles; 
 				transform.LookAt(targetPosVec);

@@ -241,8 +241,7 @@ BlendTree:
   m_Name: Blend Tree
   m_Childs:
   - serializedVersion: 2
-    m_Motion: {fileID: -203655887218126122, guid: dc67c5a4308dfac419d0bea550ab5a50,
-      type: 3}
+    m_Motion: {fileID: 7400000, guid: 1d4365e1541bb6949a273318862b72d3, type: 3}
     m_Threshold: 0
     m_Position: {x: 0, y: 0}
     m_TimeScale: 1
@@ -546,8 +545,7 @@ BlendTree:
   m_Name: Blend Tree
   m_Childs:
   - serializedVersion: 2
-    m_Motion: {fileID: -203655887218126122, guid: 09f898421094e5644a23c40555516e1a,
-      type: 3}
+    m_Motion: {fileID: 7400000, guid: 21a805ef27ad7ef42904fff42be01ba6, type: 3}
     m_Threshold: 0
     m_Position: {x: 0, y: 0}
     m_TimeScale: 1
@@ -555,8 +553,7 @@ BlendTree:
     m_DirectBlendParameter: Strafe
     m_Mirror: 0
   - serializedVersion: 2
-    m_Motion: {fileID: -203655887218126122, guid: a833b762223bc9f449dce2d6e6a83c01,
-      type: 3}
+    m_Motion: {fileID: 7400000, guid: 043a0882d93547c4da0104443de76efb, type: 3}
     m_Threshold: 0.125
     m_Position: {x: 0, y: 1}
     m_TimeScale: 1
@@ -564,8 +561,7 @@ BlendTree:
     m_DirectBlendParameter: Strafe
     m_Mirror: 0
   - serializedVersion: 2
-    m_Motion: {fileID: -203655887218126122, guid: b38f68be5481291448785dbcfcaad290,
-      type: 3}
+    m_Motion: {fileID: 7400000, guid: 669b29b2139d8de4ca5447dd50e201af, type: 3}
     m_Threshold: 0.25
     m_Position: {x: 0, y: -1}
     m_TimeScale: 1
@@ -573,8 +569,7 @@ BlendTree:
     m_DirectBlendParameter: Strafe
     m_Mirror: 0
   - serializedVersion: 2
-    m_Motion: {fileID: -203655887218126122, guid: 7242e649ed76e834ba9249227b26ab62,
-      type: 3}
+    m_Motion: {fileID: 7400000, guid: e6a236f5b06f9cb44ae1ca8b50fcd8ca, type: 3}
     m_Threshold: 0.375
     m_Position: {x: -1, y: 0}
     m_TimeScale: 1
@@ -582,8 +577,7 @@ BlendTree:
     m_DirectBlendParameter: Strafe
     m_Mirror: 0
   - serializedVersion: 2
-    m_Motion: {fileID: -203655887218126122, guid: 31427e6857ff51648a7d21f472454ea1,
-      type: 3}
+    m_Motion: {fileID: 7400000, guid: 34d1b8e01a0412f449dcefc77b05e27b, type: 3}
     m_Threshold: 0.5
     m_Position: {x: 1, y: 0}
     m_TimeScale: 1
