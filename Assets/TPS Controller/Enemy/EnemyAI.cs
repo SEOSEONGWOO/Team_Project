@@ -117,7 +117,7 @@ public class EnemyAI : MonoBehaviour {
 		distToTarget = Vector3.Distance (target.transform.position, transform.position); 
 		if (distToTarget < attackDist)
 		{
-			if (Player_Scr.dead = true)
+			if (Player_Scr.dead == true)
 			{
 				StartCoroutine (TimeDown ());
 			}

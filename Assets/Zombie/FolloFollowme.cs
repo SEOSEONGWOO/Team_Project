@@ -30,7 +30,7 @@ public class FolloFollowme : MonoBehaviour
     {
         avatar = GetComponent<Animator>();
         test555 = 1;
-        Gobj = GameObject.Find("Gunner");
+        Gobj = GameObject.Find("HPCharacter");
     }
 
     void Update()
