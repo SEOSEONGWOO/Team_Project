@@ -27,6 +27,7 @@ public class Player_Scr : MonoBehaviour
 
 	private Transform groundCheck;
 	public bool grounded = false;
+	public GameObject ch;
 	Rigidbody rigdbody;
 	bool isJumping = false;
 	public float jumpPower = 3.5f;
@@ -59,6 +60,7 @@ public class Player_Scr : MonoBehaviour
 
 	Player_Autotarget pa;
 
+	bool back_roll =false;
 	
 
 	void CmdClientState(Vector3 targetPosVec,  float newRunWeight, float run, float strafe)
@@ -70,7 +72,8 @@ public class Player_Scr : MonoBehaviour
 	}
 
 	void Start()
-	{ 
+	{
+		
 		dead = false;
 		anim = GetComponent<Animator>();
 		pa = GetComponent<Player_Autotarget> ();
@@ -92,6 +95,7 @@ public class Player_Scr : MonoBehaviour
 		Health ();
 		UI ();
 		Jump();
+		roll();
 
 	}
 
@@ -125,6 +129,9 @@ public class Player_Scr : MonoBehaviour
 		{
 			anim.SetBool("Jump", false);
 		}
+
+
+
 	}
 
 		void Locomotion()
@@ -133,7 +140,9 @@ public class Player_Scr : MonoBehaviour
 
 
 		run = Input.GetAxis("Vertical");
-		strafe = Input.GetAxis("Horizontal"); 
+		strafe = Input.GetAxis("Horizontal");
+
+
 
 		anim.SetFloat("Strafe", strafe); 
 		anim.SetFloat("Run", run);
@@ -199,6 +208,43 @@ public class Player_Scr : MonoBehaviour
 				}
 			}
 			transform.eulerAngles = new Vector3(0f, transform.eulerAngles.y, 0f);
+	}
+
+
+	void roll()
+    {
+
+		//roll 제어 코드
+		if (Input.GetKeyDown(KeyCode.LeftShift) && isfight == false && run >= 0)
+		{
+			anim.SetBool("forward_roll", true);
+			weapon1.SetActive(false);
+			StartCoroutine("forward_roll_colltime");
+			
+		}
+
+        else if(Input.GetKeyDown(KeyCode.LeftShift) && isfight == false && run < 0)
+		{
+			Debug.Log("시발");
+			anim.SetBool("back_roll", true);
+			weapon1.SetActive(false);
+			ch.GetComponent<Rigidbody>().AddForce(Vector3.back * 500,ForceMode.Impulse);
+			StartCoroutine("back_roll_colltime");
+		}
+
+	}
+	IEnumerator forward_roll_colltime()
+    {
+		
+		yield return new WaitForSeconds(1.21f);
+		weapon1.SetActive(true);
+		anim.SetBool("forward_roll", false);
+	}
+	IEnumerator back_roll_colltime()
+    {
+		yield return new WaitForSeconds(1.21f);
+		weapon1.SetActive(true);
+		anim.SetBool("back_roll", false);
 	}
 
 	void Fight()
