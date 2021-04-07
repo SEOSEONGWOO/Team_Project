@@ -25,6 +25,16 @@ public class Player_Scr : MonoBehaviour
 	bool isPlayerRot; 
 	public float luft;
 
+	private Transform groundCheck;
+	public bool grounded = false;
+	Rigidbody rigdbody;
+	bool isJumping = false;
+	public float jumpPower = 3.5f;
+
+
+
+
+
 	[Header("The fight")]
 	public int damage;
 
@@ -49,6 +59,8 @@ public class Player_Scr : MonoBehaviour
 
 	Player_Autotarget pa;
 
+	
+
 	void CmdClientState(Vector3 targetPosVec,  float newRunWeight, float run, float strafe)
 	{
 		this.targetPosVec = targetPosVec;
@@ -66,6 +78,9 @@ public class Player_Scr : MonoBehaviour
 		weapon2.SetActive(false);
 		crosshair.SetActive(false);
 
+		rigdbody = GetComponent<Rigidbody>();
+		groundCheck = transform.Find("GroundCheck");
+
 		Cursor.lockState = CursorLockMode.Locked;
 		Cursor.visible = false;
     }
@@ -76,13 +91,43 @@ public class Player_Scr : MonoBehaviour
 		Fight ();
 		Health ();
 		UI ();
-
-		
-		
+		Jump();
 
 	}
 
-	void Locomotion()
+	void Jump()
+    {
+		grounded = Physics.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Blocking"));
+		if (Input.GetKey(KeyCode.Space))
+		{
+			Debug.Log("스페이스바");
+			if (grounded == true)
+			{
+				Debug.Log("aaaaa");
+				isJumping = true;
+				anim.SetBool("Jump", Input.GetKey(KeyCode.Space));
+			}
+
+		}
+	}
+
+	void FixedUpdate() // 리지드바디 이용할 경우 update 대신 FixedUpdate 사용
+	{
+		if (isJumping == true)
+		{
+			Debug.Log("bbbb");
+			rigdbody.AddForce(Vector3.up * jumpPower, ForceMode.Impulse);
+			anim.SetBool("Jump", true);
+			isJumping = false;
+
+		}
+		if (isJumping == false) //점프 한번만 가능하게 공중에서 false줌
+		{
+			anim.SetBool("Jump", false);
+		}
+	}
+
+		void Locomotion()
 	{
 		targetPosVec = targetPos.position;
 
@@ -164,14 +209,14 @@ public class Player_Scr : MonoBehaviour
 			isfight = true;
 			anim.SetBool ("isFight", true);
 			weapon2.SetActive(true);
-			weapon1.SetActive(false);
+			//weapon1.SetActive(false);
 			crosshair.SetActive(true);
 		} 
 		else if (Input.GetMouseButtonUp(1) && isfight == true) 
 		{
 			isfight = false;
 			anim.SetBool ("isFight", false);
-			weapon1.SetActive(true);
+			//weapon1.SetActive(true);
 			weapon2.SetActive(false);
 			crosshair.SetActive(false);
 			isshoot = false;

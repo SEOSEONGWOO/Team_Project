@@ -9,6 +9,7 @@ TagManager:
   - Death
   - Enemy
   - DamageAI
+  - Bullet
   layers:
   - Default
   - TransparentFX
@@ -21,7 +22,7 @@ TagManager:
   - Lighting
   - Ground
   - Postprocessing
-  - 
+  - Blocking
   - 
   - 
   - 
