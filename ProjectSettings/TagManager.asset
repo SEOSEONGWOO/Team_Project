@@ -10,6 +10,7 @@ TagManager:
   - Enemy
   - DamageAI
   - Bullet
+  - User
   layers:
   - Default
   - TransparentFX
@@ -23,7 +24,7 @@ TagManager:
   - Ground
   - Postprocessing
   - Blocking
-  - 
+  - MainC
   - 
   - 
   - 
