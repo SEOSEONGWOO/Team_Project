@@ -171,6 +171,8 @@ public class Enemy : LivingEntity
     //유니티 애니메이션 이벤트로 휘두를 때 데미지 적용시키기
     public void OnDamageEvent()
     {
+        Player_Scr.MainCharHP = Player_Scr.MainCharHP - damage;
+
         //공격 대상을 지정할 추적 대상의 LivingEntity 컴포넌트 가져오기
         LivingEntity attackTarget = targetEntity.GetComponent<LivingEntity>();
 
