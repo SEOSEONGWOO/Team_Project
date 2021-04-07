@@ -82,7 +82,21 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     {
         // 접속 상태 표시
         connectionInfoText.text = "방 참가 성공";
+<<<<<<< Updated upstream
         // 모든 룸 참가자들이 Main 씬을 로드하게 함
-        PhotonNetwork.LoadLevel("Main");
+        PhotonNetwork.LoadLevel("MainGame");
+=======
+        //플레이어가 2명 이상이면 실행
+        if(PhotonNetwork.CurrentRoom.PlayerCount >= 2)
+        {
+            //룸 참가자들이 Main 씬을 로드하게 함
+            PhotonNetwork.LoadLevel("Dungeon_Map_Demo");
+        }
+        else
+        {
+            connectionInfoText.text = "2명 이상이 될 때까지 대기" +
+                                    " \n현재 방 인원"+ PhotonNetwork.CurrentRoom.PlayerCount;
+        }
+>>>>>>> Stashed changes
     }
 }
