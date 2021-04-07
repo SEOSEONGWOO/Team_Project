@@ -83,6 +83,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         // 접속 상태 표시
         connectionInfoText.text = "방 참가 성공";
         // 모든 룸 참가자들이 Main 씬을 로드하게 함
-        PhotonNetwork.LoadLevel("Main");
+        PhotonNetwork.LoadLevel("MainGame");
+        //플레이어가 2명 이상이면 실행
     }
 }

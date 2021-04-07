@@ -10,6 +10,8 @@ public class Player_Scr : MonoBehaviour
 	public float maxHP;
 	public float HP = 100;
 
+    public static float MainCharHP = 100f;
+
 	public float lookIKWeight;
 	public float bodyWeight;
 
@@ -90,6 +92,7 @@ public class Player_Scr : MonoBehaviour
 
 	void Update() 
 	{
+        Debug.Log(MainCharHP);
 		Locomotion ();
 		Fight ();
 		Health ();
@@ -293,10 +296,10 @@ public class Player_Scr : MonoBehaviour
 	void Health()
 	{
 		sliderHP.maxValue = maxHP;
-		sliderHP.value = HP;
-		healthText.text = "Health: " + HP.ToString ("0");
+		sliderHP.value = MainCharHP;
+		healthText.text = "Health: " + MainCharHP.ToString ("0");
 
-		if (HP <= 0)
+		if (MainCharHP <= 0)
 			Death();
 
         //-----------HP recovery--------------//
