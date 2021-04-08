@@ -297,7 +297,7 @@ public class Player_Scr : MonoBehaviour
 	{
 		sliderHP.maxValue = maxHP;
 		sliderHP.value = MainCharHP;
-		healthText.text = "Health: " + MainCharHP.ToString ("0");
+		//healthText.text = "Health: " + MainCharHP.ToString ("0");
 
 		if (MainCharHP <= 0)
 			Death();
