@@ -1,9 +1,22 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: d6d3a169ad794942a21da6a552d62f6f
 folderAsset: yes
 timeCreated: 1436068007
 licenseType: Pro
 DefaultImporter:
+=======
+<<<<<<< HEAD:Assets/UI_FOLDER/TextMesh Pro/Examples & Extras/Resources.meta
+guid: d6d3a169ad794942a21da6a552d62f6f
+folderAsset: yes
+=======
+guid: 31ab98b99654f794389114f006d5347b
+timeCreated: 1520267729
+licenseType: Store
+>>>>>>> d33d81af3ead0d8b1f2d4eed9c467838cb82f4bc:Assets/AKH/Scenes/MainGame_.unity.meta
+DefaultImporter:
+  externalObjects: {}
+>>>>>>> 523297c6cc3625d53aa0d46fd1fffb499b52b63a
   userData: 
   assetBundleName: 
   assetBundleVariant: 

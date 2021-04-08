@@ -32,8 +32,8 @@ public class LivingEntity : MonoBehaviour//, IDamageable 적용 예정
     public virtual void OnDamage(float damage)
     {
         //데미지만큼 체력 감소
-        health -= damage; // health = health - damage;
-
+        //health -= damage; // health = health - damage;
+        Player_Scr.MainCharHP = Player_Scr.MainCharHP - damage;
         //체력이 0 이하 && 아직 죽지 않았다면 사망 처리 실행
         if (health <= 0 && !dead)
         {
