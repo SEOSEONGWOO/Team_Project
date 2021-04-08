@@ -8,6 +8,11 @@ public class LobbyManager : MonoBehaviourPunCallbacks
 {
     private string gameVersion = "1"; // 게임 버전
 
+    public InputField NicknameInput;    //유저 닉
+    public GameObject LoginPenel;  //LoginPenel
+    public GameObject LobbyPenel;  //LobbyPenel
+
+
     public Text connectionInfoText; // 네트워크 정보를 표시할 텍스트
     public Button joinButton; // 룸 접속 버튼
 
@@ -16,11 +21,13 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     {
         // 접속에 필요한 정보(게임 버전) 설정
         PhotonNetwork.GameVersion = gameVersion;
+
         // 설정한 정보를 가지고 마스터 서버 접속 시도
         PhotonNetwork.ConnectUsingSettings();
 
         // 룸 접속 버튼을 잠시 비활성화
         joinButton.interactable = false;
+
         // 접속을 시도 중임을 텍스트로 표시
         connectionInfoText.text = "마스터 서버에 접속중...";
     }
@@ -30,6 +37,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     {
         // 룸 접속 버튼을 활성화
         joinButton.interactable = true;
+
         // 접속 정보 표시
         connectionInfoText.text = "온라인 : 마스터 서버와 연결됨";
     }
@@ -51,6 +59,9 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     {
         // 중복 접속 시도를 막기 위해, 접속 버튼 잠시 비활성화
         joinButton.interactable = false;
+
+        //유저 닉 가져오기
+        PhotonNetwork.LocalPlayer.NickName = NicknameInput.text;
 
         // 마스터 서버에 접속중이라면
         if (PhotonNetwork.IsConnected)
@@ -82,8 +93,16 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     {
         // 접속 상태 표시
         connectionInfoText.text = "방 참가 성공";
+        Debug.Log(PhotonNetwork.LocalPlayer.NickName);
         // 모든 룸 참가자들이 Main 씬을 로드하게 함
-        PhotonNetwork.LoadLevel("MainGame");
+        PhotonNetwork.LoadLevel("MainGame_");
         //플레이어가 2명 이상이면 실행
     }
+
+    public void OnLogin()
+    {
+        LobbyPenel.SetActive(true);
+        LoginPenel.SetActive(false);
+    }
+
 }
