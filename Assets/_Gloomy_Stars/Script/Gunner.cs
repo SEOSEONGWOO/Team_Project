@@ -18,6 +18,7 @@ public class Gunner : MonoBehaviour
 
     public Transform clcl;
 
+    public Text GunnerHPText;
     public Slider GunnerHPBar;
 
     public static int GunnerMoney;
@@ -41,6 +42,8 @@ public class Gunner : MonoBehaviour
         GunnerMoneyText.GetComponent<Text>().text = GunnerMoneyT;
 
         GunnerHPBar.value = GunnerHP / 100f;
+
+        GunnerHPText.text = "Health: " + GunnerHP.ToString("0");
     }
 
     public void GunnerHitFunc(int damage)

@@ -19,13 +19,15 @@ public class Enemy : LivingEntity
     //private AudioSource enemyAudioPlayer; //오디오 소스 컴포넌트
 
     public float damage = 20f; //공격력
-    public float attackDelay = 1f; //공격 딜레이
+    public float attackDelay = 2f; //공격 딜레이
     private float lastAttackTime; //마지막 공격 시점
     private float dist; //추적대상과의 거리
 
     public Transform tr;
 
     private float attackRange = 2.3f;
+
+    public GameObject PlayerOJ;
 
     //추적 대상이 존재하는지 알려주는 프로퍼티
     private bool hasTarget
@@ -142,12 +144,13 @@ public class Enemy : LivingEntity
             canMove = false;
 
             //추적 대상 바라보기
-            this.transform.LookAt(targetEntity.transform);
+            //this.transform.LookAt(targetEntity.transform);
 
             //최근 공격 시점에서 attackDelay 이상 시간이 지나면 공격 가능
             if (lastAttackTime + attackDelay <= Time.time)
             {
                 canAttack = true;
+                OnDamageEvent();
             }
 
             //공격 반경 안에 있지만, 딜레이가 남아있을 경우
@@ -171,8 +174,8 @@ public class Enemy : LivingEntity
     //유니티 애니메이션 이벤트로 휘두를 때 데미지 적용시키기
     public void OnDamageEvent()
     {
-        Player_Scr.MainCharHP = Player_Scr.MainCharHP - damage;
-
+        //Player_Scr.MainCharHP = Player_Scr.MainCharHP - damage;
+        //PlayerOJ.GetComponent<Player_Scr>().PlayerD(damage);
         //공격 대상을 지정할 추적 대상의 LivingEntity 컴포넌트 가져오기
         LivingEntity attackTarget = targetEntity.GetComponent<LivingEntity>();
 

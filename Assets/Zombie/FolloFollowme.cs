@@ -18,6 +18,8 @@ public class FolloFollowme : MonoBehaviour
 
     public Vector3 fl1, fl2, fl3;
 
+    private float attackRange = 2.3f;
+
     public int test555;
     int Chp = 100;
     int ZomA = 10;
@@ -39,10 +41,10 @@ public class FolloFollowme : MonoBehaviour
         Quaternion rot;
         rot = Quaternion.Euler(Random.Range(0, 0), Random.Range(0, 0), Random.Range(0, 0));
 
-        if (Input.GetButtonDown("Fire1"))
+        /*if (Input.GetButtonDown("Fire1"))
         {
             Chp -= 10;
-        }
+        }*/
 
         if (avatar.GetBool("Die") == true)
         {
@@ -138,5 +140,10 @@ public class FolloFollowme : MonoBehaviour
         {
             avatar.SetBool("Att", false);
         }
+    }
+
+    public void SetDamageAI()
+    {
+        Chp -= Bullet.bulletDamage;
     }
 }
