@@ -297,7 +297,7 @@ public class Player_Scr : MonoBehaviour
 	{
 		sliderHP.maxValue = maxHP;
 		sliderHP.value = MainCharHP;
-		healthText.text = "Health: " + MainCharHP.ToString ("0");
+		//healthText.text = "Health: " + MainCharHP.ToString ("0");
 
 		if (MainCharHP <= 0)
 			Death();
@@ -346,4 +346,16 @@ public class Player_Scr : MonoBehaviour
 		Instantiate (ragdoll, transform.position, transform.rotation);
 		dead = true;
 	}
+
+    public void PlayerD(float damage)
+    {
+        //데미지만큼 체력 감소
+        MainCharHP -= damage; // health = health - damage;
+
+        //체력이 0 이하 && 아직 죽지 않았다면 사망 처리 실행
+        if (MainCharHP <= 0 && !dead)
+        {
+            Death();
+        }
+    }
 } 

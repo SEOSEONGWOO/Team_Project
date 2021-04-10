@@ -4,5 +4,19 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
+<<<<<<< HEAD
   m_Scenes: []
+=======
+<<<<<<< HEAD
+  m_Scenes: []
+=======
+  m_Scenes:
+  - enabled: 1
+    path: Assets/AKH/Scenes/Login.unity
+    guid: 34d151c301a51df45a30958f00ad5125
+  - enabled: 1
+    path: Assets/AKH/Scenes/MainGame.unity
+    guid: bb7e9362175a5cf43a3a4ce583c69591
+>>>>>>> d33d81af3ead0d8b1f2d4eed9c467838cb82f4bc
+>>>>>>> 50daa597cd1256176cbb398a8b9003eacac42a6c
   m_configObjects: {}
