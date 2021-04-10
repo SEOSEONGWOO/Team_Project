@@ -6121,6 +6121,11 @@ PrefabInstance:
       propertyPath: m_Center.y
       value: 0.9247365
       objectReference: {fileID: 0}
+    - target: {fileID: 92618144994889692, guid: 9d3462825fdaad249a4a6e3c62bd873d,
+        type: 3}
+      propertyPath: m_Mass
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 92618144994889694, guid: 9d3462825fdaad249a4a6e3c62bd873d,
         type: 3}
       propertyPath: ch

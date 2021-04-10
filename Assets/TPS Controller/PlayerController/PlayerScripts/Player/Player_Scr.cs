@@ -29,7 +29,7 @@ public class Player_Scr : MonoBehaviour
 
 	private Transform groundCheck;
 	public bool grounded = false;
-	public GameObject ch;
+	
 	Rigidbody rigdbody;
 	bool isJumping = false;
 	public float jumpPower = 3.5f;
@@ -231,7 +231,7 @@ public class Player_Scr : MonoBehaviour
 			Debug.Log("시발");
 			anim.SetBool("back_roll", true);
 			weapon1.SetActive(false);
-			ch.GetComponent<Rigidbody>().AddForce(Vector3.back * 500,ForceMode.Impulse);
+			rigdbody.AddForce(-transform.forward * 10000,ForceMode.Force);
 			StartCoroutine("back_roll_colltime");
 		}
 
