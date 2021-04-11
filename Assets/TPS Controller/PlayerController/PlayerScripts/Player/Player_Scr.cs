@@ -33,9 +33,7 @@ public class Player_Scr : MonoBehaviour
 	Rigidbody rigdbody;
 	bool isJumping = false;
 	public float jumpPower = 3.5f;
-
-
-
+	public float rollPower = 3.5f;
 
 
 	[Header("The fight")]
@@ -62,7 +60,7 @@ public class Player_Scr : MonoBehaviour
 
 	Player_Autotarget pa;
 
-	bool back_roll =false;
+	bool roll_check = false;
 	
 
 	void CmdClientState(Vector3 targetPosVec,  float newRunWeight, float run, float strafe)
@@ -92,7 +90,7 @@ public class Player_Scr : MonoBehaviour
 
 	void Update() 
 	{
-        Debug.Log(MainCharHP);
+       // Debug.Log(MainCharHP);
 		Locomotion ();
 		Fight ();
 		Health ();
@@ -150,67 +148,72 @@ public class Player_Scr : MonoBehaviour
 		anim.SetFloat("Strafe", strafe); 
 		anim.SetFloat("Run", run);
 
-		//float forwardrun = 5 * Time.deltaTime;
-		if (run > 0)
-        {
-			transform.Translate(Vector3.forward * (5 * Time.deltaTime) * run);
-        }
-		else if(run < 0)
-        {
-			{
-				transform.Translate(Vector3.forward * (3 * Time.deltaTime) * run);
-			}
-		}
+		if (roll_check == false)
+		{
 
-		if (strafe > 0)
-		{
-			transform.Translate(Vector3.right * (3 * Time.deltaTime) * strafe);
-		}
-		else if (strafe < 0)
-		{
+			//float forwardrun = 5 * Time.deltaTime;
+			if (run > 0)
+			{
+				transform.Translate(Vector3.forward * (5 * Time.deltaTime) * run);
+			}
+			else if (run < 0)
+			{
+				{
+					transform.Translate(Vector3.forward * (3 * Time.deltaTime) * run);
+				}
+			}
+
+			if (strafe > 0)
 			{
 				transform.Translate(Vector3.right * (3 * Time.deltaTime) * strafe);
 			}
-		}
-
-
-
-
-		if (run !=0 || isfight == true)
+			else if (strafe < 0)
 			{
-				Vector3 rot = transform.eulerAngles; 
-				transform.LookAt(targetPosVec);
-				float angleBetween = Mathf.DeltaAngle(transform.eulerAngles.y, rot.y); 
-				if ((Mathf.Abs(angleBetween) > luft) || strafe != 0) 
 				{
-					isPlayerRot = true; 
+					transform.Translate(Vector3.right * (3 * Time.deltaTime) * strafe);
 				}
-				if (isPlayerRot == true) 
+			}
+
+
+
+
+			if (run != 0 || isfight == true)
+			{
+				Vector3 rot = transform.eulerAngles;
+				transform.LookAt(targetPosVec);
+				float angleBetween = Mathf.DeltaAngle(transform.eulerAngles.y, rot.y);
+				if ((Mathf.Abs(angleBetween) > luft) || strafe != 0)
+				{
+					isPlayerRot = true;
+				}
+				if (isPlayerRot == true)
 				{
 					float bodyY = Mathf.LerpAngle(rot.y, transform.eulerAngles.y, Time.deltaTime * angularSpeed);
-					transform.eulerAngles = new Vector3(0, bodyY, 0); 
+					transform.eulerAngles = new Vector3(0, bodyY, 0);
 
-					if (strafe == 0) 
+					if (strafe == 0)
 					{
-						anim.SetBool("Turn", false); 
+						anim.SetBool("Turn", false);
 					}
 					else
 					{
-						anim.SetBool("Turn", false); 
+						anim.SetBool("Turn", false);
 					}
 
-					if (Mathf.Abs(angleBetween) * Mathf.Deg2Rad <= Time.deltaTime * angularSpeed) 
+					if (Mathf.Abs(angleBetween) * Mathf.Deg2Rad <= Time.deltaTime * angularSpeed)
 					{
-						isPlayerRot = false; 
-						anim.SetBool("Turn", false); 
+						isPlayerRot = false;
+						anim.SetBool("Turn", false);
 					}
 				}
 				else
 				{
-					transform.eulerAngles = new Vector3(0f, rot.y, 0f);  
+					transform.eulerAngles = new Vector3(0f, rot.y, 0f);
 				}
 			}
 			transform.eulerAngles = new Vector3(0f, transform.eulerAngles.y, 0f);
+
+		}
 	}
 
 
@@ -220,7 +223,8 @@ public class Player_Scr : MonoBehaviour
 		//roll 제어 코드
 		if (Input.GetKeyDown(KeyCode.LeftShift) && isfight == false && run >= 0)
 		{
-			anim.SetBool("forward_roll", true);
+			roll_check = true;
+			anim.SetFloat("forward_roll", 1.0f);
 			weapon1.SetActive(false);
 			StartCoroutine("forward_roll_colltime");
 			
@@ -228,10 +232,11 @@ public class Player_Scr : MonoBehaviour
 
         else if(Input.GetKeyDown(KeyCode.LeftShift) && isfight == false && run < 0)
 		{
+			roll_check = true;
 			Debug.Log("시발");
-			anim.SetBool("back_roll", true);
+			anim.SetFloat("back_roll", 1.0f);
 			weapon1.SetActive(false);
-			rigdbody.AddForce(-transform.forward * 10000,ForceMode.Force);
+			
 			StartCoroutine("back_roll_colltime");
 		}
 
@@ -240,20 +245,22 @@ public class Player_Scr : MonoBehaviour
     {
 		
 		yield return new WaitForSeconds(1.21f);
-		weapon1.SetActive(true);
-		anim.SetBool("forward_roll", false);
+		weapon1.SetActive(true);	
+		anim.SetFloat("forward_roll", 0.0f);
+		roll_check = false;
 	}
 	IEnumerator back_roll_colltime()
     {
 		yield return new WaitForSeconds(1.21f);
-		weapon1.SetActive(true);
-		anim.SetBool("back_roll", false);
+		weapon1.SetActive(true);	
+		anim.SetFloat("back_roll", 0.0f);
+		roll_check = false;
 	}
 
 	void Fight()
 	{
 		//AIMING
-		if (Input.GetMouseButton(1) && isfight == false) 
+		if (Input.GetMouseButton(1) && isfight == false && roll_check == false) 
 		{
 			isfight = true;
 			anim.SetBool ("isFight", true);
@@ -261,7 +268,7 @@ public class Player_Scr : MonoBehaviour
 			//weapon1.SetActive(false);
 			crosshair.SetActive(true);
 		} 
-		else if (Input.GetMouseButtonUp(1) && isfight == true) 
+		else if (Input.GetMouseButtonUp(1) && isfight == true && roll_check == false) 
 		{
 			isfight = false;
 			anim.SetBool ("isFight", false);

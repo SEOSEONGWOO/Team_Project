@@ -6143,6 +6143,11 @@ PrefabInstance:
       objectReference: {fileID: 2964340703642901312}
     - target: {fileID: 92618144994889694, guid: 9d3462825fdaad249a4a6e3c62bd873d,
         type: 3}
+      propertyPath: rollPower
+      value: 3500
+      objectReference: {fileID: 0}
+    - target: {fileID: 92618144994889694, guid: 9d3462825fdaad249a4a6e3c62bd873d,
+        type: 3}
       propertyPath: targetPos
       value: 
       objectReference: {fileID: 167876243}
