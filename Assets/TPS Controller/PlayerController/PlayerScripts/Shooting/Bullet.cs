@@ -9,9 +9,10 @@ public class Bullet : MonoBehaviour {
 	[Header("Target collision effect")]
 	Vector3 lastPos;
 	public GameObject hitEffect;
+	public GameObject hitBlood;
 
 	[Header("Bullet damage")]
-	public static int bulletDamage = 50;
+	public static int bulletDamage = 5;
 
 	void Start ()
 	{
@@ -33,6 +34,7 @@ public class Bullet : MonoBehaviour {
 				hit.transform.SendMessage("SetDamageAI");
 				print(hit.transform.name);
 				GameObject h = Instantiate<GameObject>(hitEffect);
+				Instantiate(hitBlood,transform.position,transform.rotation);
 				Destroy(h, 2);
 				Destroy(gameObject);
 			}
@@ -47,4 +49,13 @@ public class Bullet : MonoBehaviour {
 		}
 		lastPos = transform.position;
 		}
+
+	 void OnTriggerEnter(Collider other)
+	{
+		Debug.Log("맞음");
 	}
+}
+
+
+
+
