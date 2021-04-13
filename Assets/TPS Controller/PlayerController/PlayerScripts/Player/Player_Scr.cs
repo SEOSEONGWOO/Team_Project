@@ -244,14 +244,14 @@ public class Player_Scr : MonoBehaviour
 	IEnumerator forward_roll_colltime()
     {
 		
-		yield return new WaitForSeconds(1.21f);
+		yield return new WaitForSeconds(0.8f);
 		weapon1.SetActive(true);	
 		anim.SetFloat("forward_roll", 0.0f);
 		roll_check = false;
 	}
 	IEnumerator back_roll_colltime()
     {
-		yield return new WaitForSeconds(1.21f);
+		yield return new WaitForSeconds(0.6f);
 		weapon1.SetActive(true);	
 		anim.SetFloat("back_roll", 0.0f);
 		roll_check = false;
