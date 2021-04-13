@@ -97,12 +97,21 @@ public class Player_Scr : MonoBehaviour
 		UI ();
 		Jump();
 		roll();
+		skill1();
+		//땅체크
+		grounded = Physics.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Blocking")); 
 
 	}
-
+	void skill1()
+    {
+		if (Input.GetKey(KeyCode.Space) && grounded == true)
+		{
+			
+		}
+	}
 	void Jump()
     {
-		grounded = Physics.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Blocking"));
+		
 		if (Input.GetKey(KeyCode.Space))
 		{
 			Debug.Log("스페이스바");
@@ -221,7 +230,7 @@ public class Player_Scr : MonoBehaviour
     {
 
 		//roll 제어 코드
-		if (Input.GetKeyDown(KeyCode.LeftShift) && isfight == false && run >= 0)
+		if (Input.GetKeyDown(KeyCode.LeftShift) && isfight == false && run >= 0 && grounded == true)
 		{
 			roll_check = true;
 			anim.SetFloat("forward_roll", 1.0f);
@@ -230,7 +239,7 @@ public class Player_Scr : MonoBehaviour
 			
 		}
 
-        else if(Input.GetKeyDown(KeyCode.LeftShift) && isfight == false && run < 0)
+        else if(Input.GetKeyDown(KeyCode.LeftShift) && isfight == false && run < 0 && grounded == true)
 		{
 			roll_check = true;
 			Debug.Log("시발");
