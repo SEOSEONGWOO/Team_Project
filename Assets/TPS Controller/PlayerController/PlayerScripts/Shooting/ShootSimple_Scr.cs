@@ -6,7 +6,13 @@ public class ShootSimple_Scr : MonoBehaviour
 
     [Header("Weapon position")]
     public Transform weaponPoint;
-    public Transform aimPoint;
+
+    /*-----AKH 수정-----*/
+    //public Transform aimPoint;
+    GameObject CanvasAim; 
+    Transform aimPoint;
+    /*-----AKH 수정-----*/
+
     [Header("Bullet start position")]
     public Transform shootPoint;
 	[Header("The target followed by the camera")]
@@ -42,6 +48,12 @@ public class ShootSimple_Scr : MonoBehaviour
 
     void Start () 
     {
+
+        /*-----AKH 수정-----*/
+        CanvasAim = GameObject.Find("CanvasAim");
+        aimPoint = CanvasAim.GetComponent<Transform>();
+        /*-----AKH 수정-----*/
+
         audioSource = GetComponent<AudioSource>();
     }
 	

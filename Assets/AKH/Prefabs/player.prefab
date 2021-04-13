@@ -2292,7 +2292,7 @@ GameObject:
   - component: {fileID: 4134686748984279486}
   - component: {fileID: 4134686748984279485}
   m_Layer: 0
-  m_Name: Player
+  m_Name: player
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2472,7 +2472,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5988917028766655856}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 839c6009a7d723149a4cff1bccf5f6ba, type: 3}
   m_Name: 
@@ -2492,8 +2492,8 @@ MonoBehaviour:
   angularSpeed: 20
   luft: 1
   grounded: 1
-  ch: {fileID: 5988917028766655856}
   jumpPower: 3.5
+  rollPower: 3.5
   damage: 50
   weapon1: {fileID: 5988917028766655806}
   weapon2: {fileID: 6729861786889851919}
