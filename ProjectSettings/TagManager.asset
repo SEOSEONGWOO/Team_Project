@@ -11,6 +11,7 @@ TagManager:
   - DamageAI
   - Bullet
   - User
+  - Skill1
   layers:
   - Default
   - TransparentFX

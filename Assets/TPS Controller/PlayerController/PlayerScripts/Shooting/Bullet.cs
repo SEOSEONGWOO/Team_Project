@@ -47,6 +47,7 @@ public class Bullet : MonoBehaviour {
 				Destroy(gameObject);
 			}
 		}
+
 		lastPos = transform.position;
 		}
 
@@ -55,7 +56,3 @@ public class Bullet : MonoBehaviour {
 		Debug.Log("맞음");
 	}
 }
-
-
-
-

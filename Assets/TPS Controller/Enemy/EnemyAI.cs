@@ -159,7 +159,19 @@ public class EnemyAI : MonoBehaviour {
 		}
 	}
 
-	public void DeathAI()
+
+
+    private void OnTriggerEnter(Collider other)
+    {
+		if (other.tag == "Bullet")
+		{
+			Debug.Log("wow");
+		}
+	}
+
+
+
+    public void DeathAI()
 	{
 		gameObject.SetActive (false);
 		Instantiate (ragdoll, transform.position, transform.rotation);
