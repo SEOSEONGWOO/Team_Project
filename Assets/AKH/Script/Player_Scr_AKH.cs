@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine.UI;
 
 
-public class Player_Scr : MonoBehaviour
+public class Player_Scr_AKH : MonoBehaviour
 {
 	Animator anim; 
 	[Header("Player Health")]
@@ -41,11 +41,7 @@ public class Player_Scr : MonoBehaviour
 
 	public GameObject weapon1;
 	public GameObject weapon2;
-
-	/*-----AKH 수정-----*/
-	//public GameObject crosshair;
-	GameObject crosshair;
-	/*-----AKH 수정-----*/
+	public GameObject crosshair;
 
 	[Header("Battle mode")]
 	[HideInInspector]
@@ -77,10 +73,7 @@ public class Player_Scr : MonoBehaviour
 
 	void Start()
 	{
-		/*-----AKH 수정-----*/
-		crosshair = GameObject.Find("Crosshair");
-		/*-----AKH 수정-----*/
-
+		
 		dead = false;
 		anim = GetComponent<Animator>();
 		pa = GetComponent<Player_Autotarget> ();
@@ -104,21 +97,12 @@ public class Player_Scr : MonoBehaviour
 		UI ();
 		Jump();
 		roll();
-		skill1();
-		//땅체크
-		grounded = Physics.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Blocking")); 
 
 	}
-	void skill1()
-    {
-		if (Input.GetKey(KeyCode.Space) && grounded == true)
-		{
-			
-		}
-	}
+
 	void Jump()
     {
-		
+		grounded = Physics.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Blocking"));
 		if (Input.GetKey(KeyCode.Space))
 		{
 			Debug.Log("스페이스바");
@@ -237,7 +221,7 @@ public class Player_Scr : MonoBehaviour
     {
 
 		//roll 제어 코드
-		if (Input.GetKeyDown(KeyCode.LeftShift) && isfight == false && run >= 0 && grounded == true)
+		if (Input.GetKeyDown(KeyCode.LeftShift) && isfight == false && run >= 0)
 		{
 			roll_check = true;
 			anim.SetFloat("forward_roll", 1.0f);
@@ -246,7 +230,7 @@ public class Player_Scr : MonoBehaviour
 			
 		}
 
-        else if(Input.GetKeyDown(KeyCode.LeftShift) && isfight == false && run < 0 && grounded == true)
+        else if(Input.GetKeyDown(KeyCode.LeftShift) && isfight == false && run < 0)
 		{
 			roll_check = true;
 			Debug.Log("시발");
@@ -283,7 +267,6 @@ public class Player_Scr : MonoBehaviour
 			weapon2.SetActive(true);
 			//weapon1.SetActive(false);
 			crosshair.SetActive(true);
-			Debug.Log("조준 활성화");
 		} 
 		else if (Input.GetMouseButtonUp(1) && isfight == true && roll_check == false) 
 		{

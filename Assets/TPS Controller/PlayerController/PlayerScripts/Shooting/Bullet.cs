@@ -12,7 +12,7 @@ public class Bullet : MonoBehaviour {
 	public GameObject hitBlood;
 
 	[Header("Bullet damage")]
-	public static int bulletDamage = 5;
+	public static int bulletDamage = 50;
 
 	void Start ()
 	{
