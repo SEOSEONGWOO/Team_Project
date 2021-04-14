@@ -59,6 +59,7 @@ public class UsurperSkill : MonoBehaviour
                 }*/
         Debug.Log(SkillC);
         Debug.Log(DrgAtIng);
+        Debug.Log(DrgAtIngEnd);
         if (DrgHP <= 0)
         {
             SkillC = 6;
@@ -67,7 +68,7 @@ public class UsurperSkill : MonoBehaviour
         if(SkillC == 4)
         {
             StunT += Time.deltaTime;
-            if (StunT == 2.0f)
+            if (StunT >= 2.0f)
             {
                 SkillC = 5;
                 StunT = 0.0f;
@@ -76,7 +77,8 @@ public class UsurperSkill : MonoBehaviour
 
         if(SkillC == 8)
         {
-            if(DrgAtIng == DrgAtIngEnd)
+            DrgAtIng += Time.deltaTime;
+            if (DrgAtIng >= DrgAtIngEnd)
             {
                 SkillC = 5;
                 DrgAtIng = 0.0f;
@@ -84,65 +86,55 @@ public class UsurperSkill : MonoBehaviour
             }
         }
 
-        if(SkillC == 5)
+        if (SkillC == 5)
         {
             SkillC = Random.Range(0, 3);
-
-            if(SkillC == 0 && Sk0C == 0.0f)     // 쿨설정 . 쿨상태로 애니메이션상태(8)로 돌리고 쿨되면 다시 5 괜찮은데?
+            if (SkillC == 0 && Sk0C == 0.0f)     // 쿨설정 . 쿨상태로 애니메이션상태(8)로 돌리고 쿨되면 다시 5 괜찮은데?
             {
-                    avatar.SetTrigger("Sk0");
-                    DrgAtIng += Time.deltaTime;
-                    DrgAtIngEnd = 1.1f;
-                    Sk0C += Time.deltaTime;
-                    SkillC = 8;
+                avatar.SetTrigger("Sk0");
+                DrgAtIngEnd = 5.1f;
+                Sk0C += Time.deltaTime;
+                SkillC = 8;
             }
-            else if(SkillC == 1 && Sk1C == 0.0f)
+            else if (SkillC == 1 && Sk1C == 0.0f)
             {
                 avatar.SetTrigger("Sk1");
-                DrgAtIng += Time.deltaTime;
-                if (DrgAtIng == 3.1f)
-                {
-                    SkillC = 5;
-                    Sk1C += Time.deltaTime;
-                    DrgAtIng = 0.0f;
-                }
+                DrgAtIngEnd = 7.1f;
+                Sk1C += Time.deltaTime;
+                SkillC = 8;
             }
-            else if(SkillC == 2 && Sk2C == 0.0f)
+            else if (SkillC == 2 && Sk2C == 0.0f)
             {
                 avatar.SetTrigger("Sk2");
-                DrgAtIng += Time.deltaTime;
-                if (DrgAtIng == 2.3f)
-                {
-                    SkillC = 5;
-                    Sk2C += Time.deltaTime;
-                    DrgAtIng = 0.0f;
-                }
+                DrgAtIngEnd = 6.3f;
+                Sk2C += Time.deltaTime;
+                SkillC = 8;
             }
-            else if(SkillC == 3 && Sk3C == 0.0f)
+            else if (SkillC == 3 && Sk3C == 0.0f)
             {
                 avatar.SetTrigger("Sk3");
-                DrgAtIng += Time.deltaTime;
-                if (DrgAtIng == 14.1f)
-                {
-                    SkillC = 5;
-                    Sk3C += Time.deltaTime;
-                    DrgAtIng = 0.0f;
-                }
+                DrgAtIngEnd = 17.1f;
+                Sk3C += Time.deltaTime;
+                SkillC = 8;
+            }
+            else
+            {
+                SkillC = 5;
             }
 
-            if(Sk0C == Sk0De)
+            if (Sk0C >= Sk0De)
             {
                 Sk0C = 0.0f;
             }
-            if (Sk1C == Sk1De)
+            if (Sk1C >= Sk1De)
             {
                 Sk1C = 0.0f;
             }
-            if (Sk2C == Sk2De)
+            if (Sk2C >= Sk2De)
             {
                 Sk2C = 0.0f;
             }
-            if (Sk3C == Sk3De)
+            if (Sk3C >= Sk3De)
             {
                 Sk3C = 0.0f;
             }
