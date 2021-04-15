@@ -86,7 +86,7 @@ public class Player_Scr : MonoBehaviour
 		pa = GetComponent<Player_Autotarget> ();
 		weapon1.SetActive(true);
 		weapon2.SetActive(false);
-		crosshair.SetActive(false);
+		//crosshair.SetActive(false);
 
 		rigdbody = GetComponent<Rigidbody>();
 		groundCheck = transform.Find("GroundCheck");
