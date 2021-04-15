@@ -7,25 +7,30 @@ public class UsurperSkill : MonoBehaviour
     public Animator avatar;
 
     int DrgHP = 100000; // HP
-    int Sk0Da = 30;        // Sk0 데미지
-    int Sk1Da = 15;        // Sk1 데미지
-    int Sk2Da = 10;        // Sk2 데미지
-    int Sk3Da = 5;          // Sk3 데미지
+    int Sk1Da = 30;        // Sk0 데미지
+    int Sk2Da = 15;        // Sk1 데미지
+    int Sk3Da = 10;        // Sk2 데미지
+    int Sk4Da = 5;          // Sk3 데미지
 
     float DrgAtIng = 0.0f;  // 공격 모션 시간주기용.
     float DrgAtIngEnd = 0.0f;   // 공격 모션 끝나는 시간 체크용
 
-    float Sk0De = 3f;        // Sk0 쿨타임
-    float Sk1De = 10f;      // Sk1 쿨타임
-    float Sk2De = 30f;      // Sk2 쿨타임
-    float Sk3De = 60f;      // Sk3 쿨타임
+    float Sk1De = 3f;        // Sk1 쿨타임
+    float Sk2De = 10f;      // Sk2 쿨타임
+    float Sk3De = 30f;      // Sk3 쿨타임
+    float Sk4De = 60f;      // Sk4 쿨타임
 
-    float Sk0C = 0.0f;       // Sk0 쿨타임 돌리는 용도
+    int Sk1Del = 0;
+    int Sk2Del = 0;
+    int Sk3Del = 0;
+    int Sk4Del = 0;
+
     float Sk1C = 0.0f;       // Sk1 쿨타임 돌리는 용도
     float Sk2C = 0.0f;       // Sk2 쿨타임 돌리는 용도
     float Sk3C = 0.0f;       // Sk3 쿨타임 돌리는 용도
+    float Sk4C = 0.0f;       // Sk4 쿨타임 돌리는 용도
 
-    int SkillC = 7; // 0 ~ 3 스킬 4 스턴 5 Idle 6 죽음 7 자는 모습 8 쿨타임 돌리는 중
+    int SkillC = 7; // 1 ~ 4 스킬 5 Idle 6 죽음 7 자는 모습 8 쿨타임 돌리는 중 9 스턴
 
     float StunT = 0.0f;
     float AwakeT = 0.0f;
@@ -58,14 +63,49 @@ public class UsurperSkill : MonoBehaviour
                     SkillC = 5;
                 }*/
         Debug.Log(SkillC);
-        Debug.Log(DrgAtIng);
-        Debug.Log(DrgAtIngEnd);
         if (DrgHP <= 0)
         {
             SkillC = 6;
         }
 
-        if(SkillC == 4)
+        if(Sk1Del == 1)
+        {
+            Sk1C += Time.deltaTime;
+            if (Sk1C >= Sk1De)
+            {
+                Sk1C = 0.0f;
+                Sk1Del = 0;
+            }
+        }
+        if (Sk2Del == 1)
+        {
+            Sk2C += Time.deltaTime;
+            if (Sk2C >= Sk2De)
+            {
+                Sk2C = 0.0f;
+                Sk2Del = 0;
+            }
+        }
+        if (Sk3Del == 1)
+        {
+            Sk3C += Time.deltaTime;
+            if (Sk3C >= Sk3De)
+            {
+                Sk3C = 0.0f;
+                Sk3Del = 0;
+            }
+        }
+        if (Sk4Del == 1)
+        {
+            Sk4C += Time.deltaTime;
+            if (Sk4C >= Sk4De)
+            {
+                Sk4C = 0.0f;
+                Sk4Del = 0;
+            }
+        }
+
+        if (SkillC == 9)
         {
             StunT += Time.deltaTime;
             if (StunT >= 2.0f)
@@ -80,70 +120,82 @@ public class UsurperSkill : MonoBehaviour
             DrgAtIng += Time.deltaTime;
             if (DrgAtIng >= DrgAtIngEnd)
             {
-                SkillC = 5;
                 DrgAtIng = 0.0f;
                 DrgAtIngEnd = 0.0f;
+                SkillC = 5;
             }
         }
 
-        if (SkillC == 5)
+        if(SkillC == 1)
         {
-            SkillC = Random.Range(0, 3);
-            if (SkillC == 0 && Sk0C == 0.0f)     // 쿨설정 . 쿨상태로 애니메이션상태(8)로 돌리고 쿨되면 다시 5 괜찮은데?
-            {
-                avatar.SetTrigger("Sk0");
-                DrgAtIngEnd = 5.1f;
-                Sk0C += Time.deltaTime;
-                SkillC = 8;
-            }
-            else if (SkillC == 1 && Sk1C == 0.0f)
+            if(Sk1Del == 0)
             {
                 avatar.SetTrigger("Sk1");
-                DrgAtIngEnd = 7.1f;
-                Sk1C += Time.deltaTime;
-                SkillC = 8;
-            }
-            else if (SkillC == 2 && Sk2C == 0.0f)
-            {
-                avatar.SetTrigger("Sk2");
-                DrgAtIngEnd = 6.3f;
-                Sk2C += Time.deltaTime;
-                SkillC = 8;
-            }
-            else if (SkillC == 3 && Sk3C == 0.0f)
-            {
-                avatar.SetTrigger("Sk3");
-                DrgAtIngEnd = 17.1f;
-                Sk3C += Time.deltaTime;
+                DrgAtIngEnd = 5.1f;
+                Sk1Del = 1;
                 SkillC = 8;
             }
             else
             {
                 SkillC = 5;
             }
+        }
 
-            if (Sk0C >= Sk0De)
+        if (SkillC == 2)
+        {
+            if (Sk2Del == 0)
             {
-                Sk0C = 0.0f;
+                avatar.SetTrigger("Sk2");
+                DrgAtIngEnd = 7.1f;
+                Sk2Del = 1;
+                SkillC = 8;
             }
-            if (Sk1C >= Sk1De)
+            else
             {
-                Sk1C = 0.0f;
+                SkillC = 5;
             }
-            if (Sk2C >= Sk2De)
+        }
+
+        if (SkillC == 3)
+        {
+            if (Sk3Del == 0)
             {
-                Sk2C = 0.0f;
+                avatar.SetTrigger("Sk3");
+                DrgAtIngEnd = 6.3f;
+                Sk3Del = 1;
+                SkillC = 8;
             }
-            if (Sk3C >= Sk3De)
+            else
             {
-                Sk3C = 0.0f;
+                SkillC = 5;
             }
+        }
+        if (SkillC == 4)
+        {
+            if (Sk4Del == 0)
+            {
+                avatar.SetTrigger("Sk4");
+                DrgAtIngEnd = 17.1f;
+                Sk4Del = 1;
+                SkillC = 8;
+            }
+            else
+            {
+                SkillC = 5;
+            }
+        }
+
+        if (SkillC == 5)
+        {
+            SkillC = Random.Range(1, 5);
+
+            Debug.Log(SkillC);
         }
     }
 
     private void OnTriggerEnter(Collider Stun)
     {
         avatar.SetTrigger("Stun");
-        SkillC = 4;
+        SkillC = 9;
     }
 }
