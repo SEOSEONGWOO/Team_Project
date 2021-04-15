@@ -162,12 +162,13 @@ public class EnemyAI : MonoBehaviour {
 
 
     private void OnTriggerEnter(Collider other)
-    {
+	{
+		Debug.Log("wow1");
 		if (other.tag == "Skill1")
 		{
-			Debug.Log("wow");
+			Debug.Log("wow2");
 		}
-		Debug.Log("wow");
+		Debug.Log("wow3");
 	}
 
 
