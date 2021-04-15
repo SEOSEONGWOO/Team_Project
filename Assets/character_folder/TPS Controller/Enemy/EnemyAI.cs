@@ -163,10 +163,11 @@ public class EnemyAI : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
-		if (other.tag == "Bullet")
+		if (other.tag == "Skill1")
 		{
 			Debug.Log("wow");
 		}
+		Debug.Log("wow");
 	}
 
 
