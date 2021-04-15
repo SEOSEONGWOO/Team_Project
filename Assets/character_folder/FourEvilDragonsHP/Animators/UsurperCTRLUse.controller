@@ -181,7 +181,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: Sk1
+    m_ConditionEvent: Sk2
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 2036718706642050592}
@@ -253,7 +253,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: Sk2
+    m_ConditionEvent: Sk3
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 961449865592123121}
@@ -371,12 +371,6 @@ AnimatorController:
   m_Name: UsurperCTRLUse
   serializedVersion: 5
   m_AnimatorParameters:
-  - m_Name: Sk0
-    m_Type: 9
-    m_DefaultFloat: 0
-    m_DefaultInt: 0
-    m_DefaultBool: 0
-    m_Controller: {fileID: 0}
   - m_Name: Sk1
     m_Type: 9
     m_DefaultFloat: 0
@@ -390,6 +384,12 @@ AnimatorController:
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
   - m_Name: Sk3
+    m_Type: 9
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 0}
+  - m_Name: Sk4
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
@@ -577,7 +577,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: Sk3
+    m_ConditionEvent: Sk4
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 8914579448733463076}
@@ -678,7 +678,7 @@ AnimatorStateMachine:
     m_Position: {x: -220, y: 370, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 5413163547597036249}
-    m_Position: {x: -60, y: 240, z: 0}
+    m_Position: {x: -50, y: 240, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -7977056453866675472}
     m_Position: {x: 170, y: 440, z: 0}
@@ -826,7 +826,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: Sk0
+    m_ConditionEvent: Sk1
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -7977056453866675472}
