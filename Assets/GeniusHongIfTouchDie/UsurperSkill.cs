@@ -30,17 +30,18 @@ public class UsurperSkill : MonoBehaviour
     float Sk3C = 0.0f;       // Sk3 쿨타임 돌리는 용도
     float Sk4C = 0.0f;       // Sk4 쿨타임 돌리는 용도
 
-    int SkillC = 7; // 1 ~ 4 스킬 5 Idle 6 죽음 7 자는 모습 8 쿨타임 돌리는 중 9 스턴
+    int SkillC = 7; // 1 ~ 4 스킬 5 Idle 6 죽음 7 자는 모습 8 쿨타임 돌리는 중 9 스턴 10 시작체크
 
     float StunT = 0.0f;
     float AwakeT = 0.0f;
+    float AwakeD = 6.0f;
 
     int[] Skills = new int[3];
 
     void Start()
     {
         avatar.SetTrigger("Awake");
-        SkillC = 5;
+        SkillC = 10;
         //AwakeT += Time.deltaTime;
     }
 
@@ -62,6 +63,16 @@ public class UsurperSkill : MonoBehaviour
                 {
                     SkillC = 5;
                 }*/
+
+        if(SkillC == 10)
+        {
+            AwakeT += Time.deltaTime;
+            if(AwakeT >= AwakeD)
+            {
+                AwakeT = 0.0f;
+                SkillC = 5;
+            }
+        }
         Debug.Log(SkillC);
         if (DrgHP <= 0)
         {
@@ -197,5 +208,11 @@ public class UsurperSkill : MonoBehaviour
     {
         avatar.SetTrigger("Stun");
         SkillC = 9;
+    }
+
+    public void SetDamageAI()
+    {
+        DrgHP -= Bullet.bulletDamage; // 총에 맞으면 총알데미지 만큼 체력 까임
+        Debug.Log(DrgHP);
     }
 }
