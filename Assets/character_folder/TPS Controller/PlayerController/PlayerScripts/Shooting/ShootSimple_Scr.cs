@@ -66,11 +66,7 @@ public class ShootSimple_Scr : MonoBehaviour
         aimPoint.LookAt(targetLook);
         Attack();
         skill1();
-
-
-
     }
-
 
      void Attack()
         {
@@ -107,7 +103,10 @@ public class ShootSimple_Scr : MonoBehaviour
             audioSource.PlayOneShot(fireSound);
             muzzleFlash.Play();
             Shell.Play();
-            Invoke("Skill1_True", 10.0f);
+
+            isshoot = false;
+            Invoke("ShootTrue", reloadTime);
+            Invoke("Skill1_True", 10.0f);          
             RaycastHit hit;
             if (Physics.Raycast(shootPoint.position, shootPoint.forward, out hit, distance))
             {
@@ -121,10 +120,16 @@ public class ShootSimple_Scr : MonoBehaviour
             sk_bullet.transform.rotation = shootPoint.rotation;
             Destroy(sk_bullet, shootFireLifeTime);
 
+            Player_Scr.anim.SetBool("isShoot", true);
+            isSkill1 = true;
+        }
+
+        else if (Input.GetKeyUp("q") && isSkill1 == true)
+        {
+            isSkill1 = false;
+            Player_Scr.anim.SetBool("isShoot", false);
         }
     }
-
-
     void ShootTrue() 
     {
         isshoot = true;

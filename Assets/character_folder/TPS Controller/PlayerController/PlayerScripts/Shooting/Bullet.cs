@@ -32,7 +32,6 @@ public class Bullet : MonoBehaviour {
 			if ((hit.collider.tag == "Enemy") || (hit.collider.tag == "Damage"))
 			{
 				hit.transform.SendMessage("SetDamageAI");
-				print(hit.transform.name);
 				GameObject h = Instantiate<GameObject>(hitEffect);
 				Instantiate(hitBlood,transform.position,transform.rotation);
 				Destroy(h, 2);
@@ -43,6 +42,7 @@ public class Bullet : MonoBehaviour {
 				GameObject h = Instantiate<GameObject>(hitEffect);
 				h.transform.position = hit.point + hit.normal * 0.001f;
 				h.transform.rotation = Quaternion.LookRotation(-hit.normal);
+				//Instantiate(hitBlood, transform.position, transform.rotation);
 				Destroy(h, 2);
 				Destroy(gameObject);
 			}
@@ -51,8 +51,5 @@ public class Bullet : MonoBehaviour {
 		lastPos = transform.position;
 		}
 
-	 void OnTriggerEnter(Collider other)
-	{
-		Debug.Log("맞음");
-	}
+	 
 }

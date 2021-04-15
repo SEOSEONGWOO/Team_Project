@@ -163,12 +163,16 @@ public class EnemyAI : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
 	{
-		Debug.Log("wow1");
+		
 		if (other.tag == "Skill1")
 		{
-			Debug.Log("wow2");
+			AI_health -= 500;
+			if (AI_health <= 0)
+			{
+				DeathAI();
+			}
 		}
-		Debug.Log("wow3");
+		
 	}
 
 
