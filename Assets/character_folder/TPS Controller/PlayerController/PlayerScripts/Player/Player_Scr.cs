@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class Player_Scr : MonoBehaviour
 {
-	Animator anim; 
+	public static Animator anim; 
 	[Header("Player Health")]
 	public float maxHP;
 	public float HP = 100;
@@ -86,7 +86,7 @@ public class Player_Scr : MonoBehaviour
 		pa = GetComponent<Player_Autotarget> ();
 		weapon1.SetActive(true);
 		weapon2.SetActive(false);
-		//crosshair.SetActive(false);
+		crosshair.SetActive(false);
 
 		rigdbody = GetComponent<Rigidbody>();
 		groundCheck = transform.Find("GroundCheck");
@@ -104,18 +104,27 @@ public class Player_Scr : MonoBehaviour
 		UI ();
 		Jump();
 		roll();
-		skill1();
+		//skill1();
 		//땅체크
 		grounded = Physics.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Blocking")); 
 
 	}
-	void skill1()
+	/*void skill1()
     {
-		if (Input.GetKey(KeyCode.Space) && grounded == true)
+
+
+
+		if (Input.GetKeyDown("q") && isfight == true)
 		{
-			
+			isshoot = true;
+			anim.SetBool("isShoot", true);
 		}
-	}
+		else if (Input.GetKeyUp("q") && isfight == true)
+		{
+			isshoot = false;
+			anim.SetBool("isShoot", false);
+		}
+	}*/
 	void Jump()
     {
 		

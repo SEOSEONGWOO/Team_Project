@@ -162,12 +162,17 @@ public class EnemyAI : MonoBehaviour {
 
 
     private void OnTriggerEnter(Collider other)
-    {
+	{
+		
 		if (other.tag == "Skill1")
 		{
-			Debug.Log("wow");
+			AI_health -= 500;
+			if (AI_health <= 0)
+			{
+				DeathAI();
+			}
 		}
-		Debug.Log("wow");
+		
 	}
 
 
