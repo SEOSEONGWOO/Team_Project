@@ -287,6 +287,7 @@ public class Player_Scr : MonoBehaviour
 		//AIMING
 		if (Input.GetMouseButton(1) && isfight == false && roll_check == false) 
 		{
+			ShootSimple_Scr.SkillMode = true; //에임 조준 시 스킬 사용 가능
 			isfight = true;
 			anim.SetBool ("isFight", true);
 			weapon2.SetActive(true);
@@ -296,6 +297,7 @@ public class Player_Scr : MonoBehaviour
 		} 
 		else if (Input.GetMouseButtonUp(1) && isfight == true && roll_check == false) 
 		{
+			ShootSimple_Scr.SkillMode = false;
 			isfight = false;
 			anim.SetBool ("isFight", false);
 			//weapon1.SetActive(true);
