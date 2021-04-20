@@ -668,7 +668,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &795632773
 RectTransform:
   m_ObjectHideFlags: 0
@@ -758,6 +758,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NicknameInput: {fileID: 1034078864}
+  PasswordInput: {fileID: 1324509987}
   LoginPenel: {fileID: 296500975}
   LobbyPenel: {fileID: 795632772}
   connectionInfoText: {fileID: 1885830043}
