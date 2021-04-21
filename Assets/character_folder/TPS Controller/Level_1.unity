@@ -6223,6 +6223,21 @@ PrefabInstance:
       propertyPath: targetPosOld
       value: 
       objectReference: {fileID: 218439698}
+    - target: {fileID: 255569119897256440, guid: 9d3462825fdaad249a4a6e3c62bd873d,
+        type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 255569122742815806, guid: 9d3462825fdaad249a4a6e3c62bd873d,
+        type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7299514368538942060, guid: 9d3462825fdaad249a4a6e3c62bd873d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7605590713097386486, guid: 9d3462825fdaad249a4a6e3c62bd873d,
         type: 3}
       propertyPath: aimPoint
@@ -6249,6 +6264,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 3394156683711464617, guid: dc40a289461bf9e4193282e6ad66df8a,
         type: 3}
+    - target: {fileID: 7605590713097386486, guid: 9d3462825fdaad249a4a6e3c62bd873d,
+        type: 3}
+      propertyPath: skill2_bullet
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 7725001888184707859, guid: 9d3462825fdaad249a4a6e3c62bd873d,
         type: 3}
       propertyPath: m_Name
@@ -6267,7 +6287,7 @@ PrefabInstance:
     - target: {fileID: 7725001888185136947, guid: 9d3462825fdaad249a4a6e3c62bd873d,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.7731681
+      value: -1.53
       objectReference: {fileID: 0}
     - target: {fileID: 7725001888185136947, guid: 9d3462825fdaad249a4a6e3c62bd873d,
         type: 3}
