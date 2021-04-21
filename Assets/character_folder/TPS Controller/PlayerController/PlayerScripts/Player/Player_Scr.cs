@@ -5,7 +5,12 @@ using UnityEngine.UI;
 
 public class Player_Scr : MonoBehaviour
 {
-	public static Animator anim; 
+    private void Awake()
+    {
+		Screen.sleepTimeout = SleepTimeout.NeverSleep;
+		Screen.SetResolution(1920, 1080, true);
+    }
+    public static Animator anim; 
 	[Header("Player Health")]
 	public float maxHP;
 	public float HP = 100;
@@ -374,7 +379,7 @@ public class Player_Scr : MonoBehaviour
 			}
 		}
 	}
-
+	
 	public void Death()
 	{
 		Destroy(gameObject);
