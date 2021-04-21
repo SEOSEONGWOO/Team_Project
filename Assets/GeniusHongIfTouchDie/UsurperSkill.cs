@@ -33,7 +33,7 @@ public class UsurperSkill : MonoBehaviour
     float Sk3C = 0.0f;       // Sk3 쿨타임 돌리는 용도
     float Sk4C = 0.0f;       // Sk4 쿨타임 돌리는 용도
 
-    int SkillC = 7; // 1 ~ 4 스킬 5 Idle 6 죽음 7 자는 모습 8 쿨타임 돌리는 중 9 스턴 10 시작체크 11 플레이어 쫓아감.
+    int SkillC = 7; // 1 ~ 4 스킬 5 Idle 6 죽음 7 자는 모습 8 쿨타임 돌리는 중 9 스턴 10 시작체크
 
     float StunT = 0.0f;
     float AwakeT = 0.0f;
@@ -42,6 +42,8 @@ public class UsurperSkill : MonoBehaviour
     int[] Skills = new int[3];
 
     bool DragonDie = false;
+
+    bool DragonAR = false;
 
     public Transform DrgL; // 드래곤 위치
 
@@ -72,6 +74,25 @@ public class UsurperSkill : MonoBehaviour
         if (SkillC != 6) // 죽음 상태 아닐 때
         {
             Debug.Log(SkillC); // 지속 적으로 드래곤 상태 체크
+
+            if (SkillC == 7)
+            {
+                gameObject.GetComponent<SphereCollider>().enabled = true;
+                nav.speed = 0;
+            }
+            else if (SkillC != 7)
+            {
+                gameObject.GetComponent<SphereCollider>().enabled = false;
+                transform.LookAt(Gunner.CLC);
+                if (distance <= 15.0f) // 만약 거리가 15이하이면 스킬 돌림
+                {
+                    DragonAR = true;
+                }
+                else if (distance > 15.0f)
+                {
+                    DragonAR = false;
+                }
+            }
 
             if (SkillC == 10) // 10 = 시작 ( 거리이내로 플레이어가 들어오면)
             {
@@ -120,10 +141,9 @@ public class UsurperSkill : MonoBehaviour
                 }
             }
 
-
-            if (distance <= 30.0f) // 만약 거리가 30이하이면 스킬 돌림
+            if (DragonAR == true)
             {
-
+                nav.speed = 0;
                 if (SkillC == 1) // 스킬 1 상태일 때 
                 {
                     if (Sk1Del == 0) // 스킬 1 쿨타임이 아니면 
@@ -187,66 +207,66 @@ public class UsurperSkill : MonoBehaviour
                 {
                     SkillC = Random.Range(1, 5); // 1~4 스킬 사용
                 }
+            }
+            else if(DragonAR == false && SkillC != 7)
+            {
+                avatar.SetBool("FollowFollowME", true);
+                nav.speed = 4;
+                nav.SetDestination(Gunner.CLC);
+            }
+
+            // Sk6 이 아닐 때(죽음상태 아닐 때) {}
+
+            // 랜덤으로 SkillC 에 Skills[0.1.2.3]중 하나 줌.
+
+            // SkillC(숫자) = Sk(숫자) Trigger 실행 ( 쿨타임일 시 다른 번호 실행 )
+
+            // 실행되는 애니메이션 시간만큼 일시정지.
+
+            // 끝나면 Sk5(Idle) 대기 및 쿨타임 시작.
+
+            // 스턴스킬 맞으면 무조건 Sk5 실행.
+
+            /*        if (AwakeT == 3.333f)
+                    {
+                        SkillC = 5;
+                    }*/
 
 
+
+
+            if (SkillC == 9) // 스턴 스킬 맞으면
+            {
+                StunT += Time.deltaTime;
+                if (StunT >= 2.0f) // 2초간 스턴
+                {
+                    SkillC = 5;
+                    StunT = 0.0f;
+                }
+            }
+
+            if (SkillC == 8) // 스킬 돌아가는 중이면
+            {
+                nav.speed = 0;
+                DrgAtIng += Time.deltaTime; // 스킬대기시간
+                if (DrgAtIng >= DrgAtIngEnd)
+                {
+                    DrgAtIng = 0.0f;
+                    DrgAtIngEnd = 0.0f;
+                    SkillC = 5;
+                }
             }
         }
         else if(SkillC == 6)
         {
 
         }
-
-        // Sk6 이 아닐 때(죽음상태 아닐 때) {}
-
-        // 랜덤으로 SkillC 에 Skills[0.1.2.3]중 하나 줌.
-
-        // SkillC(숫자) = Sk(숫자) Trigger 실행 ( 쿨타임일 시 다른 번호 실행 )
-
-        // 실행되는 애니메이션 시간만큼 일시정지.
-
-        // 끝나면 Sk5(Idle) 대기 및 쿨타임 시작.
-
-        // 스턴스킬 맞으면 무조건 Sk5 실행.
-
-        /*        if (AwakeT == 3.333f)
-                {
-                    SkillC = 5;
-                }*/
-
-
-
-
-        if (SkillC == 9) // 스턴 스킬 맞으면
-        {
-            StunT += Time.deltaTime;
-            if (StunT >= 2.0f) // 2초간 스턴
-            {
-                SkillC = 5;
-                StunT = 0.0f;
-            }
-        }
-
-        if(SkillC == 8) // 스킬 돌아가는 중이면
-        {
-            DrgAtIng += Time.deltaTime; // 스킬대기시간
-            if (DrgAtIng >= DrgAtIngEnd)
-            {
-                DrgAtIng = 0.0f;
-                DrgAtIngEnd = 0.0f;
-                SkillC = 5;
-            }
-        }
-
-
-
-
     }
 
     private void OnCollisionEnter(Collision Player)
     {
         avatar.SetTrigger("Awake");
         SkillC = 10;
-        gameObject.GetComponent<SphereCollider>().enabled = false;
     }
 
 /*    private void OnTriggerEnter(Collider Stun)
@@ -257,6 +277,11 @@ public class UsurperSkill : MonoBehaviour
 
     public void SetDamageAI()
     {
+        if(SkillC == 7)
+        {
+            avatar.SetTrigger("Awake");
+            SkillC = 10;
+        }
         DrgHP -= Bullet.bulletDamage; // 총에 맞으면 총알데미지 만큼 체력 까임
         Debug.Log(DrgHP);
     }
