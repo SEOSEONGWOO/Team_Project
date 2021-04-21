@@ -12,6 +12,7 @@ TagManager:
   - Bullet
   - User
   - Skill1
+  - ActionZone
   layers:
   - Default
   - TransparentFX
