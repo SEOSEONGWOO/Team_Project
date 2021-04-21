@@ -20,10 +20,13 @@ public class ShootSimple_Scr : MonoBehaviour
 	[Header("Bullet")]
     public GameObject bullet;
     public GameObject skill1_bullet;
+    public GameObject skill2_bullet;
 
     [Header("If true, then you can shoot")]
     public bool isshoot = false;  //기본 공격 제어
     public bool isSkill1 = false;  //스킬1 제어
+    public bool isSkill2 = false;  //스킬1 제어
+    public static bool SkillMode = false;
 
 
     [Header("Bullet flight distance")]
@@ -66,6 +69,7 @@ public class ShootSimple_Scr : MonoBehaviour
         aimPoint.LookAt(targetLook);
         Attack();
         skill1();
+        skill25();
     }
 
      void Attack()
@@ -93,6 +97,42 @@ public class ShootSimple_Scr : MonoBehaviour
             }
         }
 
+    void skill25()
+    {
+        if (Input.GetKeyDown("e"))
+        {
+            Debug.Log("DASD");
+            isSkill2 = false;
+            audioSource.PlayOneShot(fireSound);
+            muzzleFlash.Play();
+            Shell.Play();
+
+            isshoot = false;
+            Invoke("ShootTrue", 3.0f);
+            Invoke("Skill2_True", 10.0f);
+            RaycastHit hit;
+            if (Physics.Raycast(shootPoint.position, shootPoint.forward, out hit, distance))
+            {
+                if (hit.transform.GetComponent<Rigidbody>())
+                {
+                    hit.transform.GetComponent<Rigidbody>().AddForceAtPosition(shootPoint.forward * force, hit.point);
+                }
+            }     
+            Player_Scr.anim.SetBool("isShoot", true);
+            skill2_bullet.SetActive(true);
+            isSkill2 = true;
+            StartCoroutine("Skill2");
+        }
+        
+
+    }
+
+    IEnumerator Skill2()
+    {
+        yield return new WaitForSeconds(3.0f);
+        Player_Scr.anim.SetBool("isShoot", false);
+        skill2_bullet.SetActive(false);
+    }
 
     void skill1()
     {
@@ -138,5 +178,10 @@ public class ShootSimple_Scr : MonoBehaviour
     void Skill1_True()
     {
         isSkill1 = true;
+    }
+
+    void Skill2_True()
+    {
+        isSkill2 = true;
     }
 }

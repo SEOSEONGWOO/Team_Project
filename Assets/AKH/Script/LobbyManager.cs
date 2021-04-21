@@ -9,6 +9,10 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     private string gameVersion = "1"; // 게임 버전
 
     public InputField NicknameInput;    //유저 닉
+    public InputField PasswordInput;    //유저 password
+    private static string nicknameText;           //nickname 저장
+    private static string passowrdText;           //password 저장
+
     public GameObject LoginPenel;  //LoginPenel
     public GameObject LobbyPenel;  //LobbyPenel
 
@@ -19,6 +23,9 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     // 게임 실행과 동시에 마스터 서버 접속 시도
     private void Start()
     {
+        //password 초기화
+        passowrdText = "";
+
         // 접속에 필요한 정보(게임 버전) 설정
         PhotonNetwork.GameVersion = gameVersion;
 
@@ -63,6 +70,14 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         //유저 닉 가져오기
         PhotonNetwork.LocalPlayer.NickName = NicknameInput.text;
 
+        /*----------DB저장----------*/
+        //nickname 저장
+        nicknameText = NicknameInput.text;
+        //password 저장
+        passowrdText = PasswordInput.text;
+        Debug.Log("nick : " + nicknameText + ", pass : " + passowrdText);
+        /*----------DB저장----------*/
+
         // 마스터 서버에 접속중이라면
         if (PhotonNetwork.IsConnected)
         {
@@ -96,9 +111,9 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         Debug.Log(PhotonNetwork.LocalPlayer.NickName);
         // 모든 룸 참가자들이 Main 씬을 로드하게 함
         PhotonNetwork.LoadLevel("MainGame_");
-        //플레이어가 2명 이상이면 실행
     }
 
+    //로그인 패널 비활성화, 로비 패널 활성화
     public void OnLogin()
     {
         LobbyPenel.SetActive(true);
