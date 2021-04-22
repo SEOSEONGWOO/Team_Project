@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
-public class CameraHandler : MonoBehaviour {
+public class CameraHandler : MonoBehaviour{
 
 	public Transform camTrans;
 	public Transform pivot;
@@ -32,6 +33,7 @@ public class CameraHandler : MonoBehaviour {
 
 	void Update()
 	{
+
 		Tick();
 
 	}
