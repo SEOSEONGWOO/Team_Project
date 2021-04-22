@@ -5,11 +5,11 @@ using UnityEngine.UI;
 
 public class Player_Scr : MonoBehaviour
 {
-<<<<<<< HEAD
-    private void Awake() // 해상도설정
-=======
+    //<<<<<<< HEAD
+    //    private void Awake() // 해상도설정
+    //=======
+    //>>>>>>> be2f6ad4a120f0cd288e9f22869cd0cf51b17b91
     private void Awake() //해상도 설정
->>>>>>> be2f6ad4a120f0cd288e9f22869cd0cf51b17b91
     {
 		Screen.sleepTimeout = SleepTimeout.NeverSleep;
 		Screen.SetResolution(1920, 1080, true);
@@ -20,6 +20,10 @@ public class Player_Scr : MonoBehaviour
 	public float maxHP;
 	public float HP = 100;
 	public float MP = 100; //구르기 게이지 ,구르면 20씩 줄어들게 만들어둠
+
+    public int Depense = 5; // 방어력
+
+    public int HitD = 0; // 맞는 데미지
 
 	public static float MainCharHP = 100f;
 
@@ -77,9 +81,22 @@ public class Player_Scr : MonoBehaviour
 	Player_Autotarget pa;
 
 	bool roll_check = false;
-	
 
-	void CmdClientState(Vector3 targetPosVec,  float newRunWeight, float run, float strafe)
+
+    // 플레이어 따라오게 하는 코드
+    public Transform clcl;
+
+    public static Vector3 CLC;
+
+    // 돈 관련 코드
+
+    public static int PlayerMoney;
+    public GameObject PlayerMoneyText;
+
+
+
+
+    void CmdClientState(Vector3 targetPosVec,  float newRunWeight, float run, float strafe)
 	{
 		this.targetPosVec = targetPosVec;
 		this.newRunWeight = newRunWeight;
@@ -109,8 +126,16 @@ public class Player_Scr : MonoBehaviour
 
 	void Update() 
 	{
-       // Debug.Log(MainCharHP);
-		Locomotion ();
+        CLC = clcl.transform.position;
+
+        // 돈 텍스트
+
+        string PlayerMoneyT = "보유 금액 : " + PlayerMoney;
+        PlayerMoneyText.GetComponent<Text>().text = PlayerMoneyT;
+
+
+        // Debug.Log(MainCharHP);
+        Locomotion ();
 		Fight ();
 		Health ();
 		UI ();
@@ -409,4 +434,21 @@ public class Player_Scr : MonoBehaviour
             Death();
         }
     }
+
+    public void GunnerHitFunc(int damage)   // 
+    {
+        HitD = damage - Depense;
+        if (HitD >= 1)
+        {
+            HP = HP - (float)HitD;
+            Debug.Log(HitD);
+        }
+        else if (HitD < 1)
+        {
+            HP = HP - 1f;
+            Debug.Log(HitD);
+        }
+    }
+
+
 } 

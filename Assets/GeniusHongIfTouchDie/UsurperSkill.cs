@@ -62,7 +62,7 @@ public class UsurperSkill : MonoBehaviour
 
         DrgLN = DrgL.transform.position; // DrgLN 에 드래곤 위치값 넣어줌
 
-        distance = Vector3.Distance(DrgLN, Gunner.CLC); // distance에 드래곤 , 플레이어 거리 비교
+        distance = Vector3.Distance(DrgLN, Player_Scr.CLC); // distance에 드래곤 , 플레이어 거리 비교
 
         if (DrgHP <= 0 && DragonDie == false) // 만약 피가 0이하고 죽음 체크 안되면
         {
@@ -83,7 +83,7 @@ public class UsurperSkill : MonoBehaviour
             else if (SkillC != 7)
             {
                 gameObject.GetComponent<SphereCollider>().enabled = false;
-                transform.LookAt(Gunner.CLC);
+                transform.LookAt(Player_Scr.CLC);
                 if (distance <= 15.0f) // 만약 거리가 15이하이면 스킬 돌림
                 {
                     DragonAR = true;
@@ -143,6 +143,7 @@ public class UsurperSkill : MonoBehaviour
 
             if (DragonAR == true)
             {
+                avatar.SetBool("FollowFollowME", false);
                 nav.speed = 0;
                 if (SkillC == 1) // 스킬 1 상태일 때 
                 {
@@ -212,7 +213,7 @@ public class UsurperSkill : MonoBehaviour
             {
                 avatar.SetBool("FollowFollowME", true);
                 nav.speed = 4;
-                nav.SetDestination(Gunner.CLC);
+                nav.SetDestination(Player_Scr.CLC);
             }
 
             // Sk6 이 아닐 때(죽음상태 아닐 때) {}

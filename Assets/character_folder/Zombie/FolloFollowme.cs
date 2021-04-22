@@ -88,7 +88,7 @@ public class FolloFollowme : MonoBehaviour
                 }
                 else if (DMdelay > 1f)
                 {
-                    Gobj.GetComponent<Gunner>().GunnerHitFunc(ZomA); // 공격
+                    Gobj.GetComponent<Player_Scr>().GunnerHitFunc(ZomA); // 공격
                     DMdelay = 0f;
                 }
             }
@@ -98,7 +98,7 @@ public class FolloFollowme : MonoBehaviour
                 if (InsideC.inside == true) // 인식범위에 들어오면
                 {
                     nav.speed = 4;  // 4의 속도로
-                    nav.SetDestination(Gunner.CLC); // Gunner.CLC = 현재 캐릭터 위치 로 네비설정(쫓아가도록 설정)
+                    nav.SetDestination(Player_Scr.CLC); // Gunner.CLC = 현재 캐릭터 위치 로 네비설정(쫓아가도록 설정)
                     avatar.SetBool("LookC", true); // LookCharacter .. 캐릭터 쪽으로 달람
                 }
                 if (InsideC.inside == false) // 인식범위 밖이면
