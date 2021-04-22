@@ -28,6 +28,7 @@ public class ShootSimple_Scr : MonoBehaviour
     public bool isSkill2 = false;  //스킬1 제어
     public static bool SkillMode = false;
 
+    public GameObject weapon; //
 
     [Header("Bullet flight distance")]
     public float distance;
@@ -99,9 +100,9 @@ public class ShootSimple_Scr : MonoBehaviour
 
     void skill25()
     {
-        if (Input.GetKeyDown("e"))
+        if (Input.GetKeyDown("e") && isSkill2 == true)
         {
-            Debug.Log("DASD");
+            Debug.Log("스킬25 실행");
             isSkill2 = false;
             audioSource.PlayOneShot(fireSound);
             muzzleFlash.Play();
@@ -120,8 +121,13 @@ public class ShootSimple_Scr : MonoBehaviour
             }     
             Player_Scr.anim.SetBool("isShoot", true);
             skill2_bullet.SetActive(true);
-            isSkill2 = true;
+           // isSkill2 = true;
             StartCoroutine("Skill2");
+        }
+
+        if (SkillMode == false)
+        {
+            skill2_bullet.SetActive(false);
         }
         
 
@@ -129,7 +135,7 @@ public class ShootSimple_Scr : MonoBehaviour
 
     IEnumerator Skill2()
     {
-        yield return new WaitForSeconds(3.0f);
+        yield return new WaitForSeconds(5.0f);
         Player_Scr.anim.SetBool("isShoot", false);
         skill2_bullet.SetActive(false);
     }

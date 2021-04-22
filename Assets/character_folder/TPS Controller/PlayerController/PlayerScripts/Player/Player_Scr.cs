@@ -5,17 +5,23 @@ using UnityEngine.UI;
 
 public class Player_Scr : MonoBehaviour
 {
+<<<<<<< HEAD
     private void Awake() // 해상도설정
+=======
+    private void Awake() //해상도 설정
+>>>>>>> be2f6ad4a120f0cd288e9f22869cd0cf51b17b91
     {
 		Screen.sleepTimeout = SleepTimeout.NeverSleep;
 		Screen.SetResolution(1920, 1080, true);
     }
+
     public static Animator anim; 
 	[Header("Player Health")]
 	public float maxHP;
 	public float HP = 100;
+	public float MP = 100; //구르기 게이지 ,구르면 20씩 줄어들게 만들어둠
 
-    public static float MainCharHP = 100f;
+	public static float MainCharHP = 100f;
 
 	public float lookIKWeight;
 	public float bodyWeight;
@@ -46,6 +52,7 @@ public class Player_Scr : MonoBehaviour
 
 	public GameObject weapon1;
 	public GameObject weapon2;
+	public GameObject weapon3;
 
 	/*-----AKH 수정-----*/
 	//public GameObject crosshair;
@@ -253,6 +260,7 @@ public class Player_Scr : MonoBehaviour
 		//roll 제어 코드
 		if (Input.GetKeyDown(KeyCode.LeftShift) && isfight == false && run >= 0 && grounded == true)
 		{
+			MP -= 20;
 			roll_check = true;
 			anim.SetFloat("forward_roll", 1.0f);
 			weapon1.SetActive(false);
@@ -262,6 +270,7 @@ public class Player_Scr : MonoBehaviour
 
         else if(Input.GetKeyDown(KeyCode.LeftShift) && isfight == false && run < 0 && grounded == true)
 		{
+			MP -= 20;
 			roll_check = true;
 			Debug.Log("시발");
 			anim.SetFloat("back_roll", 1.0f);
@@ -302,7 +311,9 @@ public class Player_Scr : MonoBehaviour
 		} 
 		else if (Input.GetMouseButtonUp(1) && isfight == true && roll_check == false) 
 		{
-			ShootSimple_Scr.SkillMode = false;
+			Debug.Log("조준 끝");
+			weapon3.SetActive(false);
+			//ShootSimple_Scr.SkillMode = false;
 			isfight = false;
 			anim.SetBool ("isFight", false);
 			//weapon1.SetActive(true);
