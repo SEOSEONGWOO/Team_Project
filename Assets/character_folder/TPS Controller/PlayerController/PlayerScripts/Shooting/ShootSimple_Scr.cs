@@ -81,10 +81,17 @@ public class ShootSimple_Scr : MonoBehaviour
         if(WeaponNumber == 1)
         {
             skill1_1();
+            
+            
+        }
+
+        if (WeaponNumber == 2)
+        {
+            
             skill2_1fire();
         }
-        
-        
+
+
     }
 
      void Attack()
@@ -147,7 +154,41 @@ public class ShootSimple_Scr : MonoBehaviour
             Player_Scr.anim.SetBool("isShoot", false);
         }
     }
+    void skill2_2()
+    {
+        if (Input.GetKeyDown(KeyCode.Alpha2) && isSkill1 == true)
+        {
+            Debug.Log("DASD");
+            isSkill1 = false;
+            audioSource.PlayOneShot(fireSound);
+            muzzleFlash.Play();
+            Shell.Play();
+            isshoot = false;
+            Invoke("ShootTrue", reloadTime);
+            Invoke("Skill1_True", 5.0f);
+            RaycastHit hit;
+            if (Physics.Raycast(shootPoint.position, shootPoint.forward, out hit, distance))
+            {
+                if (hit.transform.GetComponent<Rigidbody>())
+                {
+                    hit.transform.GetComponent<Rigidbody>().AddForceAtPosition(shootPoint.forward * force, hit.point);
+                }
+            }
+            GameObject sk_bullet = Instantiate(skill1_2bullet);
+            sk_bullet.transform.position = shootPoint.position;
+            sk_bullet.transform.rotation = shootPoint.rotation;
+            Destroy(sk_bullet, shootFireLifeTime);
 
+            Player_Scr.anim.SetBool("isShoot", true);
+            isSkill1 = true;
+        }
+
+        else if (Input.GetKeyUp(KeyCode.Alpha1) && isSkill1 == true)
+        {
+            isSkill1 = false;
+            Player_Scr.anim.SetBool("isShoot", false);
+        }
+    }
     void skill2_1fire()
     {
         if (Input.GetKeyDown(KeyCode.Alpha2) && isSkill2 == true)

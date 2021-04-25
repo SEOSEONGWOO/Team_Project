@@ -49,7 +49,11 @@ public class Player_Scr : MonoBehaviour
 	bool isJumping = false;
 	public float jumpPower = 3.5f;
 	public float rollPower = 3.5f;
+
+	[Header("무기스킬1 제어")]
+	public bool isSkill2 = true;
 	public bool isSkill3 = true;
+	public GameObject skill2_Effect;
 	public GameObject skill3_Buff_Effect;
 
 
@@ -147,7 +151,8 @@ public class Player_Scr : MonoBehaviour
 
         if (ShootSimple_Scr.WeaponNumber == 1)
         {
-			skill3_SpeedBuff();
+			skill1_2();
+			skill1_3SpeedBuff();
 		}
 		
 		//skill1();
@@ -156,22 +161,56 @@ public class Player_Scr : MonoBehaviour
 		
 
 	}
-	/*void skill1()
+	public void skill1_2()
     {
-
-
-
-		if (Input.GetKeyDown("q") && isfight == true)
+		if(Input.GetKeyDown(KeyCode.Alpha2) && isSkill2 == true && ShootSimple_Scr.SkillMode == false)
+			//에임 조준 안했을시 2번 누르면 실행
 		{
-			isshoot = true;
-			anim.SetBool("isShoot", true);
+			anim.SetBool("Skill_1_Magic",true);
+			isSkill2 = false;
+			//skill2_Effect.SetActive(true);
+			isfight = true;
+			StartCoroutine("Skill1_2");
+			
+
 		}
-		else if (Input.GetKeyUp("q") && isfight == true)
+	}
+
+	IEnumerator Skill1_2()
+	{
+		
+		yield return new WaitForSeconds(2.0f);
+		anim.SetBool("Skill_1_Magic", false);
+		Instantiate(skill2_Effect, transform.position + this.transform.forward * 5, Quaternion.Euler(-90, 0, 0));
+		isfight = false;
+		isSkill2 = true;
+
+	}
+	public void skill1_3SpeedBuff()
+	{
+		if (Input.GetKeyDown(KeyCode.Alpha3) && isSkill3 == true)
 		{
-			isshoot = false;
-			anim.SetBool("isShoot", false);
+
+			isSkill3 = false;
+			skill3_Buff_Effect.SetActive(true); //버프 이펙트 나오게하기
+			Depense += 5; //캐릭터 방어력 5 상승
+			StartCoroutine("Skill1_3");
+
+
 		}
-	}*/
+	}
+
+
+	IEnumerator Skill1_3()
+	{
+		Debug.Log("코루틴 실행");
+		yield return new WaitForSeconds(5.0f);
+		Debug.Log("코루틴 실행2");
+		Depense -= 5; //캐릭터 방어력 원상태로 돌리기
+		skill3_Buff_Effect.SetActive(false);
+		isSkill3 = true;
+
+	}
 	void Jump()
     {
 		
@@ -307,7 +346,7 @@ public class Player_Scr : MonoBehaviour
 		{
 			MP -= 20;
 			roll_check = true;
-			Debug.Log("시발");
+			
 			anim.SetFloat("back_roll", 1.0f);
 			weapon1.SetActive(false);
 			
@@ -347,6 +386,7 @@ public class Player_Scr : MonoBehaviour
 		else if (Input.GetMouseButtonUp(1) && isfight == true && roll_check == false) 
 		{
 			Debug.Log("조준 끝");
+			ShootSimple_Scr.SkillMode = false;
 			weapon3.SetActive(false);
 			//ShootSimple_Scr.SkillMode = false;
 			isfight = false;
@@ -460,29 +500,7 @@ public class Player_Scr : MonoBehaviour
         }
     }
 
-	public  void skill3_SpeedBuff()
-	{
-		if (Input.GetKeyDown(KeyCode.Alpha3) && isSkill3 == true)
-		{
-
-			isSkill3 = false;
-			skill3_Buff_Effect.SetActive(true); //버프 이펙트 나오게하기
-			Depense += 5; //캐릭터 방어력 5 상승
-			StartCoroutine("Skill3_1");
-
-
-		}
-	}
-	IEnumerator Skill3_1()
-	{
-		Debug.Log("코루틴 실행");
-		yield return new WaitForSeconds(5.0f);
-		Debug.Log("코루틴 실행2");
-		Depense -= 5; //캐릭터 방어력 원상태로 돌리기
-		skill3_Buff_Effect.SetActive(false);
-		isSkill3 = true;
-
-	}
+	
 
 
 } 

@@ -173,6 +173,16 @@ public class EnemyAI : MonoBehaviour {
 			}
 		}
 
+		if (other.tag == "skill1_2")
+		{
+			AI_health -= 500;
+			if (AI_health <= 0)
+			{
+				DeathAI();
+			}
+
+		}
+
 		if (other.tag == "Skill2_1")
 		{
 			AI_health -= 500;
@@ -182,6 +192,8 @@ public class EnemyAI : MonoBehaviour {
 			}
 			
 		}
+
+		
 
 	}
 
