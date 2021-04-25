@@ -103,7 +103,7 @@
                     half alpha = res.a * mask.a * (_ColorStrength*10); //Alpha set using mask
 					res.a = saturate(pow(alpha, 1.25));
 
-					UNITY_APPLY_FOG(i.fogCoord, col);
+					//UNITY_APPLY_FOG(i.fogCoord, col);
 					return res;
 				}
 				ENDCG
