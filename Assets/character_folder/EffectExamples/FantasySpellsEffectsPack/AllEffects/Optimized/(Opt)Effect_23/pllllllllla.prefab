@@ -23679,7 +23679,7 @@ GameObject:
   - component: {fileID: 4160491289133239188}
   - component: {fileID: 1615585328826182338}
   m_Layer: 0
-  m_Name: pllllllllla(Clone)(Clone)
+  m_Name: pllllllllla
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -23733,7 +23733,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_makeObjs:
-  - {fileID: 1823571815354484, guid: 18debdec3524d0e4caef8e05167d10b0, type: 3}
+  - {fileID: 5901107822768030256, guid: a75ac2dd18f74c640816c69f0b8deb92, type: 3}
   - {fileID: 1754105727401418, guid: 1810da36359431144b2ecf95e2a441b3, type: 3}
   m_movePos: {fileID: 0}
   m_randomRotationValue: {x: 0, y: 0, z: 0}

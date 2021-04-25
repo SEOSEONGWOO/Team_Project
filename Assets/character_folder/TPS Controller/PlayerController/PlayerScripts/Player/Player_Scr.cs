@@ -462,7 +462,7 @@ public class Player_Scr : MonoBehaviour
 
 	public  void skill3_SpeedBuff()
 	{
-		if (Input.GetKeyDown("r") && isSkill3 == true)
+		if (Input.GetKeyDown(KeyCode.Alpha3) && isSkill3 == true)
 		{
 
 			isSkill3 = false;

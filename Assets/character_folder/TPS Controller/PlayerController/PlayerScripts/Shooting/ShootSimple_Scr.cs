@@ -23,9 +23,12 @@ public class ShootSimple_Scr : MonoBehaviour
 
     [Header("Bullet")]
     public GameObject bullet;
-    public GameObject skill1_bullet;
-    public GameObject skill2_bullet;
-    
+    public GameObject skill1_1bullet;
+    public GameObject skill1_2bullet;
+    public GameObject skill2_1_bullet;
+    public GameObject skill2_2_bullet;
+    public GameObject skill3_1_bullet;
+
 
     [Header("If true, then you can shoot")]
     public bool isshoot = false;  //기본 공격 제어
@@ -77,8 +80,8 @@ public class ShootSimple_Scr : MonoBehaviour
         Attack();
         if(WeaponNumber == 1)
         {
-            skill1();
-            skill2_fire();
+            skill1_1();
+            skill2_1fire();
         }
         
         
@@ -108,10 +111,46 @@ public class ShootSimple_Scr : MonoBehaviour
 
             }
         }
-   
-    void skill2_fire()
+
+    void skill1_1()
     {
-        if (Input.GetKeyDown("e") && isSkill2 == true)
+        if (Input.GetKeyDown(KeyCode.Alpha1) && isSkill1 == true)
+        {
+            Debug.Log("DASD");
+            isSkill1 = false;
+            audioSource.PlayOneShot(fireSound);
+            muzzleFlash.Play();
+            Shell.Play();
+            isshoot = false;
+            Invoke("ShootTrue", reloadTime);
+            Invoke("Skill1_True", 10.0f);
+            RaycastHit hit;
+            if (Physics.Raycast(shootPoint.position, shootPoint.forward, out hit, distance))
+            {
+                if (hit.transform.GetComponent<Rigidbody>())
+                {
+                    hit.transform.GetComponent<Rigidbody>().AddForceAtPosition(shootPoint.forward * force, hit.point);
+                }
+            }
+            GameObject sk_bullet = Instantiate(skill1_1bullet);
+            sk_bullet.transform.position = shootPoint.position;
+            sk_bullet.transform.rotation = shootPoint.rotation;
+            Destroy(sk_bullet, shootFireLifeTime);
+
+            Player_Scr.anim.SetBool("isShoot", true);
+            isSkill1 = true;
+        }
+
+        else if (Input.GetKeyUp(KeyCode.Alpha1) && isSkill1 == true)
+        {
+            isSkill1 = false;
+            Player_Scr.anim.SetBool("isShoot", false);
+        }
+    }
+
+    void skill2_1fire()
+    {
+        if (Input.GetKeyDown(KeyCode.Alpha2) && isSkill2 == true)
         {
             Debug.Log("스킬25 실행");
             isSkill2 = false;
@@ -131,14 +170,14 @@ public class ShootSimple_Scr : MonoBehaviour
                 }
             }     
             Player_Scr.anim.SetBool("isShoot", true);
-            skill2_bullet.SetActive(true);
+            skill2_2_bullet.SetActive(true);
            // isSkill2 = true;
             StartCoroutine("Skill2");
         }
 
         if (SkillMode == false)  //총 내리면 스킬 멈추기
         {
-            skill2_bullet.SetActive(false);
+            skill2_2_bullet.SetActive(false);
         }
         
 
@@ -148,45 +187,10 @@ public class ShootSimple_Scr : MonoBehaviour
     {
         yield return new WaitForSeconds(5.0f);
         Player_Scr.anim.SetBool("isShoot", false);
-        skill2_bullet.SetActive(false);
+        skill2_2_bullet.SetActive(false);
     }
 
-    void skill1()
-    {
-        if (Input.GetKeyDown("q") && isSkill1 == true )
-        {
-            Debug.Log("DASD");
-            isSkill1 = false;
-            audioSource.PlayOneShot(fireSound);
-            muzzleFlash.Play();
-            Shell.Play();
-
-            isshoot = false;
-            Invoke("ShootTrue", reloadTime);
-            Invoke("Skill1_True", 10.0f);          
-            RaycastHit hit;
-            if (Physics.Raycast(shootPoint.position, shootPoint.forward, out hit, distance))
-            {
-                if (hit.transform.GetComponent<Rigidbody>())
-                {
-                    hit.transform.GetComponent<Rigidbody>().AddForceAtPosition(shootPoint.forward * force, hit.point);
-                }
-            }
-            GameObject sk_bullet = Instantiate(skill1_bullet);
-            sk_bullet.transform.position = shootPoint.position;
-            sk_bullet.transform.rotation = shootPoint.rotation;
-            Destroy(sk_bullet, shootFireLifeTime);
-
-            Player_Scr.anim.SetBool("isShoot", true);
-            isSkill1 = true;
-        }
-
-        else if (Input.GetKeyUp("q") && isSkill1 == true)
-        {
-            isSkill1 = false;
-            Player_Scr.anim.SetBool("isShoot", false);
-        }
-    }
+   
 
    
 
