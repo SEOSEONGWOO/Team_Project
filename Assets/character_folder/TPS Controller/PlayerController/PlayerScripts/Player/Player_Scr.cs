@@ -130,8 +130,8 @@ public class Player_Scr : MonoBehaviour
 
         // 돈 텍스트
 
-        string PlayerMoneyT = "보유 금액 : " + PlayerMoney;
-        PlayerMoneyText.GetComponent<Text>().text = PlayerMoneyT;
+      //  string PlayerMoneyT = "보유 금액 : " + PlayerMoney;
+      //  PlayerMoneyText.GetComponent<Text>().text = PlayerMoneyT;
 
 
         // Debug.Log(MainCharHP);
@@ -143,7 +143,8 @@ public class Player_Scr : MonoBehaviour
 		roll();
 		//skill1();
 		//땅체크
-		grounded = Physics.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Blocking")); 
+		grounded = Physics.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Blocking"));
+		Debug.Log(HP);
 
 	}
 	/*void skill1()

@@ -13,6 +13,7 @@ TagManager:
   - User
   - Skill1
   - ActionZone
+  - Skill2_1
   layers:
   - Default
   - TransparentFX

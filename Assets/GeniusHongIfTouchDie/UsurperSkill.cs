@@ -6,7 +6,7 @@ using UnityEngine.AI;
 public class UsurperSkill : MonoBehaviour
 {
     public Animator avatar;
-
+    public GameObject Gobj;
     private NavMeshAgent nav;
 
     static public int DrgHP = 100000; // HP
@@ -54,10 +54,12 @@ public class UsurperSkill : MonoBehaviour
     void Start()
     {
         //AwakeT += Time.deltaTime;
+        Gobj = GameObject.Find("HPCharacter");
     }
 
     void Update()
     {
+        
         nav = GetComponent<NavMeshAgent>();
 
         DrgLN = DrgL.transform.position; // DrgLN 에 드래곤 위치값 넣어줌
@@ -150,6 +152,8 @@ public class UsurperSkill : MonoBehaviour
                     if (Sk1Del == 0) // 스킬 1 쿨타임이 아니면 
                     {
                         avatar.SetTrigger("Sk1"); // 스킬1 사용
+                        Gobj.GetComponent<Player_Scr>().GunnerHitFunc(Sk1Da); // 공격
+
                         DrgAtIngEnd = 5.1f; // 모션시간
                         Sk1Del = 1; // 스킬 쿨타임
                         SkillC = 8; // 스킬사용중으로 변경
@@ -164,7 +168,10 @@ public class UsurperSkill : MonoBehaviour
                 {
                     if (Sk2Del == 0)
                     {
+
                         avatar.SetTrigger("Sk2");
+                        
+                        Gobj.GetComponent<Player_Scr>().GunnerHitFunc(Sk2Da);
                         DrgAtIngEnd = 7.1f;
                         Sk2Del = 1;
                         SkillC = 8;
