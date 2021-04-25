@@ -17,15 +17,21 @@ public class ShootSimple_Scr : MonoBehaviour
     public Transform shootPoint;
 	[Header("The target followed by the camera")]
 	public Transform targetLook;
-	[Header("Bullet")]
+    [Header("무기에 따른 스킬 제어")]
+    public static int WeaponNumber=1;
+
+
+    [Header("Bullet")]
     public GameObject bullet;
     public GameObject skill1_bullet;
     public GameObject skill2_bullet;
+    
 
     [Header("If true, then you can shoot")]
     public bool isshoot = false;  //기본 공격 제어
     public bool isSkill1 = false;  //스킬1 제어
     public bool isSkill2 = false;  //스킬1 제어
+    
     public static bool SkillMode = false;
 
     public GameObject weapon; //
@@ -69,8 +75,13 @@ public class ShootSimple_Scr : MonoBehaviour
         weaponPoint.LookAt(targetLook);
         aimPoint.LookAt(targetLook);
         Attack();
-        skill1();
-        skill25();
+        if(WeaponNumber == 1)
+        {
+            skill1();
+            skill2_fire();
+        }
+        
+        
     }
 
      void Attack()
@@ -97,8 +108,8 @@ public class ShootSimple_Scr : MonoBehaviour
 
             }
         }
-
-    void skill25()
+   
+    void skill2_fire()
     {
         if (Input.GetKeyDown("e") && isSkill2 == true)
         {
@@ -109,7 +120,7 @@ public class ShootSimple_Scr : MonoBehaviour
             Shell.Play();
 
             isshoot = false;
-            Invoke("ShootTrue", 3.0f);
+            Invoke("ShootTrue", 5.0f);
             Invoke("Skill2_True", 10.0f);
             RaycastHit hit;
             if (Physics.Raycast(shootPoint.position, shootPoint.forward, out hit, distance))
@@ -125,7 +136,7 @@ public class ShootSimple_Scr : MonoBehaviour
             StartCoroutine("Skill2");
         }
 
-        if (SkillMode == false)
+        if (SkillMode == false)  //총 내리면 스킬 멈추기
         {
             skill2_bullet.SetActive(false);
         }
@@ -176,6 +187,10 @@ public class ShootSimple_Scr : MonoBehaviour
             Player_Scr.anim.SetBool("isShoot", false);
         }
     }
+
+   
+
+
     void ShootTrue() 
     {
         isshoot = true;

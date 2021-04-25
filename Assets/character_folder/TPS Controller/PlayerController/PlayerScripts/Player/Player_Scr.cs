@@ -49,6 +49,9 @@ public class Player_Scr : MonoBehaviour
 	bool isJumping = false;
 	public float jumpPower = 3.5f;
 	public float rollPower = 3.5f;
+	public bool isSkill3 = true;
+	public GameObject skill3_Buff_Effect;
+
 
 
 	[Header("The fight")]
@@ -141,10 +144,16 @@ public class Player_Scr : MonoBehaviour
 		UI ();
 		Jump();
 		roll();
+
+        if (ShootSimple_Scr.WeaponNumber == 1)
+        {
+			skill3_SpeedBuff();
+		}
+		
 		//skill1();
 		//땅체크
 		grounded = Physics.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Blocking"));
-		Debug.Log(HP);
+		
 
 	}
 	/*void skill1()
@@ -450,6 +459,30 @@ public class Player_Scr : MonoBehaviour
             Debug.Log(HitD);
         }
     }
+
+	public  void skill3_SpeedBuff()
+	{
+		if (Input.GetKeyDown("r") && isSkill3 == true)
+		{
+
+			isSkill3 = false;
+			skill3_Buff_Effect.SetActive(true); //버프 이펙트 나오게하기
+			Depense += 5; //캐릭터 방어력 5 상승
+			StartCoroutine("Skill3_1");
+
+
+		}
+	}
+	IEnumerator Skill3_1()
+	{
+		Debug.Log("코루틴 실행");
+		yield return new WaitForSeconds(5.0f);
+		Debug.Log("코루틴 실행2");
+		Depense -= 5; //캐릭터 방어력 원상태로 돌리기
+		skill3_Buff_Effect.SetActive(false);
+		isSkill3 = true;
+
+	}
 
 
 } 
