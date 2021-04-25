@@ -5,10 +5,7 @@ using UnityEngine.UI;
 
 public class Player_Scr : MonoBehaviour
 {
-    //<<<<<<< HEAD
-    //    private void Awake() // 해상도설정
-    //=======
-    //>>>>>>> be2f6ad4a120f0cd288e9f22869cd0cf51b17b91
+  
     private void Awake() //해상도 설정
     {
 		Screen.sleepTimeout = SleepTimeout.NeverSleep;
