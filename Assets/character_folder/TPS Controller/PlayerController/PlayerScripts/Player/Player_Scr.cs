@@ -163,12 +163,12 @@ public class Player_Scr : MonoBehaviour
 	}
 	public void skill1_2()
     {
-		if(Input.GetKeyDown(KeyCode.Alpha2) && isSkill2 == true && ShootSimple_Scr.SkillMode == false)
-			//에임 조준 안했을시 2번 누르면 실행
+		if(Input.GetKeyDown(KeyCode.Alpha2) && isSkill2 == true && roll_check == false 
+			&& grounded == true && ShootSimple_Scr.SkillMode == false) //에임 조준 안했을시 2번 누르면 실행
+
 		{
 			anim.SetBool("Skill_1_Magic",true);
 			isSkill2 = false;
-			//skill2_Effect.SetActive(true);
 			isfight = true;
 			StartCoroutine("Skill1_2");
 			
