@@ -18,7 +18,7 @@ public class ShootSimple_Scr : MonoBehaviour
 	[Header("The target followed by the camera")]
 	public Transform targetLook;
     [Header("무기에 따른 스킬 제어")]
-    public static int WeaponNumber=2;
+    public static int WeaponNumber=3;
 
 
     [Header("Bullet")]
@@ -30,6 +30,7 @@ public class ShootSimple_Scr : MonoBehaviour
 
     public GameObject skill2_1bullet;
     public GameObject skill2_2bullet;
+
     public GameObject skill3_1bullet;
 
 
@@ -40,6 +41,8 @@ public class ShootSimple_Scr : MonoBehaviour
 
     public bool isSkill2_1 = false;  //스킬1 제어
     public bool isSkill2_2 = false;  //스킬1 제어
+
+    public bool isSkill3_1 = false;
 
     public static bool SkillMode = false;
 
@@ -99,9 +102,18 @@ public class ShootSimple_Scr : MonoBehaviour
             skill2_2();
         }
 
+        if (WeaponNumber == 3)
+        {
+
+            skill3_1();
+            //skill2_2();
+        }
+        
+        
+
 
     }
-
+    
      void Attack()
         {
             if ((Input.GetMouseButton(0)) && (isshoot == true))
@@ -287,9 +299,43 @@ public class ShootSimple_Scr : MonoBehaviour
         skill2_2bullet.SetActive(false);
     }
 
-   
+    void skill3_1()
+    {
+        if (Input.GetKeyDown(KeyCode.Alpha1) && isSkill3_1 == true)
+        {
+            Debug.Log("DASD");
+            isSkill3_1 = false;
+            audioSource.PlayOneShot(fireSound);
+            muzzleFlash.Play();
+            Shell.Play();
+            isshoot = false;
+            Invoke("ShootTrue", reloadTime);
+            Invoke("Skill3_1_True", 5.0f);
+            RaycastHit hit;
+            if (Physics.Raycast(shootPoint.position, shootPoint.forward, out hit, distance))
+            {
+                if (hit.transform.GetComponent<Rigidbody>())
+                {
+                    hit.transform.GetComponent<Rigidbody>().AddForceAtPosition(shootPoint.forward * force, hit.point);
+                }
+            }
+            GameObject sk_bullet = Instantiate(skill3_1bullet);
+            sk_bullet.transform.position = shootPoint.position;
+            sk_bullet.transform.rotation = shootPoint.rotation;
+            Destroy(sk_bullet, shootFireLifeTime);
 
-   
+            Player_Scr.anim.SetBool("isShoot", true);
+            isSkill3_1 = true;
+        }
+
+        else if (Input.GetKeyUp(KeyCode.Alpha1))
+        {
+            isSkill3_1 = false;
+            Player_Scr.anim.SetBool("isShoot", false);
+        }
+    }
+
+
 
 
     void ShootTrue() 
@@ -313,6 +359,11 @@ public class ShootSimple_Scr : MonoBehaviour
     void Skill2_2_True()
     {
         isSkill2_2 = true;
+    }
+
+    void Skill3_1_True()
+    {
+        isSkill3_1 = true;
     }
 
 }

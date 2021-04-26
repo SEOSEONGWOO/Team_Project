@@ -34,6 +34,17 @@ public class Skill1_Bullet : MonoBehaviour
 			
 		}
 
+		StartCoroutine("a");
+
 		lastPos = transform.position;
+	}
+
+	IEnumerator a()
+	{
+
+		yield return new WaitForSeconds(5.0f);
+		Destroy(gameObject);
+		
+
 	}
 }
