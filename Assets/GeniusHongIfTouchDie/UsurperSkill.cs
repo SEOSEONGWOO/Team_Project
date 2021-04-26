@@ -51,6 +51,10 @@ public class UsurperSkill : MonoBehaviour
 
     float distance; // 드래곤 , 플레이어 거리 넣어 줄 float
 
+    static public bool FireOn = false;
+
+    static public bool AttackOn = false;
+
     void Start()
     {
         //AwakeT += Time.deltaTime;
@@ -151,6 +155,8 @@ public class UsurperSkill : MonoBehaviour
                 {
                     if (Sk1Del == 0) // 스킬 1 쿨타임이 아니면 
                     {
+                        StartCoroutine(AttackDelay(5));
+
                         avatar.SetTrigger("Sk1"); // 스킬1 사용
                         Gobj.GetComponent<Player_Scr>().GunnerHitFunc(Sk1Da); // 공격
 
@@ -168,6 +174,7 @@ public class UsurperSkill : MonoBehaviour
                 {
                     if (Sk2Del == 0)
                     {
+                        StartCoroutine(AttackDelay(7));
 
                         avatar.SetTrigger("Sk2");
                         
@@ -186,6 +193,8 @@ public class UsurperSkill : MonoBehaviour
                 {
                     if (Sk3Del == 0)
                     {
+                        StartCoroutine(FireDelay(3));
+
                         avatar.SetTrigger("Sk3");
                         DrgAtIngEnd = 6.3f;
                         Sk3Del = 1;
@@ -293,4 +302,23 @@ public class UsurperSkill : MonoBehaviour
         DrgHP -= Bullet.bulletDamage; // 총에 맞으면 총알데미지 만큼 체력 까임
         Debug.Log(DrgHP);
     }
+
+    public IEnumerator AttackDelay(float FT)
+    {
+        AttackOn = true;
+
+        yield return new WaitForSeconds(FT);
+
+        AttackOn = false;
+    }
+
+    public IEnumerator FireDelay(float FT)
+    {
+        FireOn = true;
+
+        yield return new WaitForSeconds(FT);
+
+        FireOn = false;
+    }
 }
+
