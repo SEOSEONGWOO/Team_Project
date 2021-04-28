@@ -1,7 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityStandardAssets.Utility;
 using Photon.Pun;
+using Photon.Realtime;
 
 public class CameraHandler : MonoBehaviour{
 
@@ -25,6 +27,7 @@ public class CameraHandler : MonoBehaviour{
 	public float lookAngle;
 	public float titlAngle;
 
+
 	void Start()
 	{
 		transform.position = camTrans.position;
@@ -33,11 +36,9 @@ public class CameraHandler : MonoBehaviour{
 
 	void Update()
 	{
-
-		Tick();
-
+			Tick();
 	}
-
+	
 	void Tick()
 	{
 		delta = Time.deltaTime;
