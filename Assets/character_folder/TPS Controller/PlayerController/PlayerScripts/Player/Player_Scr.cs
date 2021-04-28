@@ -145,14 +145,17 @@ public class Player_Scr : MonoBehaviour
 	{
 		CLC = clcl.transform.position;
 
-		// 돈 텍스트
+        // 돈 텍스트
 
-		//  string PlayerMoneyT = "보유 금액 : " + PlayerMoney;
-		//  PlayerMoneyText.GetComponent<Text>().text = PlayerMoneyT;
+        //  string PlayerMoneyT = "보유 금액 : " + PlayerMoney;
+        //  PlayerMoneyText.GetComponent<Text>().text = PlayerMoneyT;
 
+        sliderHP.value = HP / 100f;
 
-		// Debug.Log(MainCharHP);
-		Locomotion();
+        healthText.text = "Health: " + HP.ToString("0");
+
+        // Debug.Log(MainCharHP);
+        Locomotion();
 		Fight();
 		Health();
 		UI();
