@@ -5,7 +5,7 @@ using UnityStandardAssets.Utility;
 using Photon.Pun;
 using Photon.Realtime;
 
-public class CameraCs : MonoBehaviour
+public class CameraCs : MonoBehaviourPun
 {
 	public float speed = 5.0f;
 	public float rotSpeed = 120.0f;
@@ -27,7 +27,7 @@ public class CameraCs : MonoBehaviour
 
 	void Update()
 	{
-		if (pv.IsMine)
+		if (photonView.IsMine)
         {
 			//자신의 플레이어만 키보드 조작
 			float h = Input.GetAxis("Horizontal");

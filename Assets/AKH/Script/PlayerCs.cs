@@ -135,6 +135,10 @@ public class PlayerCs : MonoBehaviour
 	void Start()
 	{
 		/*-----AKH 수정-----*/
+
+		targetPos = GameObject.Find("TargetLook").GetComponent<Transform>();
+		targetPosOld = GameObject.Find("TargetLookInFight").GetComponent<Transform>();
+
 		crosshair = GameObject.Find("Crosshair");
 
 
