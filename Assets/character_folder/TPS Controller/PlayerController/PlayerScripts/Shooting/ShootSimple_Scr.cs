@@ -77,6 +77,8 @@ public class ShootSimple_Scr : MonoBehaviour
         /*-----AKH 수정-----*/
         CanvasAim = GameObject.Find("CanvasAim");
         aimPoint = CanvasAim.GetComponent<Transform>();
+
+        targetLook = GameObject.Find("TargetLook").GetComponent<Transform>();
         /*-----AKH 수정-----*/
 
         audioSource = GetComponent<AudioSource>();

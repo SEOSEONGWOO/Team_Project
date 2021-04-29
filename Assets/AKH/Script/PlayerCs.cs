@@ -6,7 +6,7 @@ using Photon.Pun;
 using Photon.Realtime;
 
 
-public class PlayerCs : MonoBehaviour
+public class PlayerCs : MonoBehaviourPunCallbacks, IPunObservable
 {
 
 	private void Awake() //해상도 설정
@@ -14,7 +14,21 @@ public class PlayerCs : MonoBehaviour
 		Screen.sleepTimeout = SleepTimeout.NeverSleep;
 		Screen.SetResolution(1920, 1080, true);
 	}
-
+	void IPunObservable.OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+	{
+		if (stream.IsWriting)
+		{
+			//자신의 플레이어 정보는 다른 네트워크 사용자에게 송신
+			stream.SendNext(PlayerCs.tr.position);
+			stream.SendNext(PlayerCs.tr.rotation);
+		}
+		else
+		{
+			//다른 플레이어의 정보는 수신
+			PlayerCs.tr.position = (Vector3)stream.ReceiveNext();
+			PlayerCs.tr.rotation = (Quaternion)stream.ReceiveNext();
+		}
+	}
 	public static Animator anim;
 	[Header("Player Health")]
 	public float maxHP;
@@ -117,13 +131,9 @@ public class PlayerCs : MonoBehaviour
 
 	public float speed = 5.0f;
 	public float rotSpeed = 120.0f;
-	public Transform tr;
-	public PhotonView pv;
-
-	private Quaternion currRot;
-	private Vector3 currPos;
-
-
+	public static Transform tr;
+	public string nick_t;
+	public Text nick_Text;
 	void CmdClientState(Vector3 targetPosVec, float newRunWeight, float run, float strafe)
 	{
 		this.targetPosVec = targetPosVec;
@@ -143,10 +153,9 @@ public class PlayerCs : MonoBehaviour
 
 
 		tr = GetComponent<Transform>();
-		pv = GetComponent<PhotonView>();
 
-		//동기화 콜백함수가 발생하려면 반드시 필요
-		pv.ObservedComponents[0] = this;
+		nick_t = GameManger.Nick_M;
+		Debug.Log("nick_t"+nick_t);
 		/*-----AKH 수정-----*/
 
 		//dead = false;
@@ -175,19 +184,16 @@ public class PlayerCs : MonoBehaviour
 
 		// Debug.Log(MainCharHP);
 
-		if (!pv.IsMine)
+		if (!photonView.IsMine)
 		{
-			//네트워크로 연결된 다른 유저일 경우에 실시간 전송 받는 변수를 이용해서 이동
-			tr.position = Vector3.Lerp(tr.position, currPos, Time.deltaTime * 10.0f);
-			tr.rotation = Quaternion.Lerp(tr.rotation, currRot, Time.deltaTime * 10.0f);
-		}
-
-		Locomotion();
+			return;
+        }
 		Fight();
 		Health();
 		UI();
 		Jump();
 		roll();
+
 
 		/*if (ShootSimple_Scr.WeaponNumber == 1)
 		{
@@ -206,6 +212,7 @@ public class PlayerCs : MonoBehaviour
 			skill3_2();
 			skill3_3();
 		}*/
+
 		w_change(); //무기변경 코드
 					//skill1();
 					//땅체크
@@ -213,21 +220,45 @@ public class PlayerCs : MonoBehaviour
 
 
 	}
-	void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+	void FixedUpdate() // 리지드바디 이용할 경우 update 대신 FixedUpdate 사용
+	{
+		if (!photonView.IsMine)
+		{
+			return;
+		}
+		Locomotion();
+
+		if (isJumping == true)
+		{
+			Debug.Log("bbbb");
+			rigdbody.AddForce(Vector3.up * jumpPower, ForceMode.Impulse);
+			anim.SetBool("Jump", true);
+			isJumping = false;
+		}
+		if (isJumping == false) //점프 한번만 가능하게 공중에서 false줌
+		{
+			anim.SetBool("Jump", false);
+		}
+
+	}
+
+
+	/*void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
 	{
 		if (stream.IsWriting)
 		{
 			//자신의 플레이어 정보는 다른 네트워크 사용자에게 송신
 			stream.SendNext(tr.position);
 			stream.SendNext(tr.rotation);
+			stream.SendNext(isJumping);
 		}
 		else
 		{
 			//다른 플레이어의 정보는 수신
-			currPos = (Vector3)stream.ReceiveNext();
-			currRot = (Quaternion)stream.ReceiveNext();
+			tr.position = (Vector3)stream.ReceiveNext();
+			tr.rotation = (Quaternion)stream.ReceiveNext();
 		}
-	}
+	}*/
 	void w_change()
 	{
 
@@ -413,29 +444,11 @@ public class PlayerCs : MonoBehaviour
 		}
 	}
 
-	void FixedUpdate() // 리지드바디 이용할 경우 update 대신 FixedUpdate 사용
-	{
-		if (isJumping == true)
-		{
-			Debug.Log("bbbb");
-			rigdbody.AddForce(Vector3.up * jumpPower, ForceMode.Impulse);
-			anim.SetBool("Jump", true);
-			isJumping = false;
-
-		}
-		if (isJumping == false) //점프 한번만 가능하게 공중에서 false줌
-		{
-			anim.SetBool("Jump", false);
-		}
-
-
-
-	}
+	
 
 	void Locomotion()
 	{
 		targetPosVec = targetPos.position;
-
 		
 		run = Input.GetAxis("Vertical");
 		strafe = Input.GetAxis("Horizontal");
@@ -443,6 +456,7 @@ public class PlayerCs : MonoBehaviour
 		anim.SetFloat("Strafe", strafe);
 		anim.SetFloat("Run", run);
 
+		
 		if (roll_check == false)
 		{
 
