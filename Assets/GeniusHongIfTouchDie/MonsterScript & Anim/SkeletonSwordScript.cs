@@ -8,6 +8,12 @@ public class SkeletonSwordScript : MonoBehaviour
 
     int Damage = 0;
 
+    bool DelayOn = false;
+
+    float DelayTime = 0.0f;
+
+    float Delay = 0.0f;
+
     void Start()
     {
         Gobj = GameObject.Find("HPCharacter");
@@ -15,15 +21,34 @@ public class SkeletonSwordScript : MonoBehaviour
 
     void Update()
     {
+        if(DelayOn == true)
+        {
+            Delay += Time.deltaTime;
+            if(Delay >= DelayTime)
+            {
+                DelayOn = false;
+                Delay = 0.0f;
+                DelayTime = 0.0f;
+            }
+        }
+
         if(SkeletonScript.SkillOn == 1)
         {
-            gameObject.GetComponent<CapsuleCollider>().enabled = true;
-            Damage = SkeletonScript.SkeletonDamage;
+            if (DelayOn == false)
+            {
+                gameObject.GetComponent<CapsuleCollider>().enabled = true;
+                Damage = SkeletonScript.SkeletonDamage;
+                DelayTime = 0.5f;
+            }
         }
         else if(SkeletonScript.SkillOn == 2)
         {
-            gameObject.GetComponent<CapsuleCollider>().enabled = true;
-            Damage = (int)(SkeletonScript.SkeletonDamage * 1.5);
+            if (DelayOn == false)
+            {
+                gameObject.GetComponent<CapsuleCollider>().enabled = true;
+                Damage = (int)(SkeletonScript.SkeletonDamage * 1.5);
+                DelayTime = 1f;
+            }
         }
         else if(SkeletonScript.SkillOn == 0)
         {
@@ -31,10 +56,10 @@ public class SkeletonSwordScript : MonoBehaviour
             Damage = 0;
         }
     }
-
     private void OnTriggerEnter(Collider other)
     {
         Gobj.GetComponent<Player_Scr>().GunnerHitFunc(Damage);
         gameObject.GetComponent<CapsuleCollider>().enabled = false;
+        DelayOn = true;
     }
 }
