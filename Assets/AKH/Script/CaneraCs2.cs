@@ -5,7 +5,7 @@ using UnityStandardAssets.Utility;
 using Photon.Pun;
 using Photon.Realtime;
 
-public class CaneraCs2 : MonoBehaviourPun //PunCallbacks, IPunObservable
+public class CaneraCs2 : MonoBehaviourPun, IPunObservable
 {
 
 	public Transform camTrans;
@@ -55,7 +55,22 @@ public class CaneraCs2 : MonoBehaviourPun //PunCallbacks, IPunObservable
 		}
 		Tick();
 	}
-	
+	void IPunObservable.OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+	{
+		if (stream.IsWriting)
+		{
+			/*//자신의 플레이어 정보는 다른 네트워크 사용자에게 송신
+			stream.SendNext(tr.position);
+			stream.SendNext(tr.rotation);*/
+		}
+		else
+		{
+			/*//다른 플레이어의 정보는 수신
+			tr.position = (Vector3)stream.ReceiveNext();
+			tr.rotation = (Quaternion)stream.ReceiveNext();*/
+		}
+	}
+
 	void Tick()
 	{
 		delta = Time.deltaTime;
