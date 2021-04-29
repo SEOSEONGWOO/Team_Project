@@ -25,9 +25,17 @@ public class SkeletonScript : MonoBehaviour
 
     bool SkeletonAttack = false; // 골렘 공격 판단용
 
+    float SkeletonSkill1Cool = 0.0f;
+
+    bool SkeletonSkill1CoolOn = false;
+
     float SkeletonSkill2Cool = 0.0f;
 
     bool SkeletonSkill2CoolOn = false;
+
+    float AttackDel = 0f;
+
+    float SkeletonAttackDel = 0f;
 
     int SkeletonHP = 500;
 
@@ -44,6 +52,8 @@ public class SkeletonScript : MonoBehaviour
 
     void Update()
     {
+        Debug.Log(AttackMotion);
+
         nav = GetComponent<NavMeshAgent>();
 
         SkeletonVec = SkeletonLo.transform.position; // 골렘 현재 위치값 
@@ -74,12 +84,12 @@ public class SkeletonScript : MonoBehaviour
                 nav.SetDestination(Player_Scr.CLC);
                 transform.LookAt(Player_Scr.CLC);
 
-                if(distance <= 1.5f)
+                if(distance <= 2.5f)
                 {
                     nav.speed = 0;
                     SkeletonAttack = true;
                 }
-                else if(distance > 1.5f)
+                else if(distance > 2.5f)
                 {
                     SkeletonAttack = false;
                     nav.speed = 4;
@@ -88,9 +98,39 @@ public class SkeletonScript : MonoBehaviour
                 if(SkeletonAttack == true)
                 {
                     avatar.SetBool("FollowFollowMe", false);
-                    AttackMotion = Random.Range(1, 3);
+                    if(AttackMotion == 0)
+                    {
+                        AttackMotion = Random.Range(1, 3);
+                    }
+                    else if(AttackMotion == 1)
+                    {
+                        StartCoroutine(SkeletonSkills(AttackMotion));
+                        SkeletonAttackDel = 0.5f;
+                        AttackMotion = 3;
+                    }
+                    else if(AttackMotion == 2)
+                    {
+                        if(SkeletonSkill2CoolOn == false)
+                        {
+                            StartCoroutine(SkeletonSkills(AttackMotion));
+                            SkeletonAttackDel = 1f;
+                            AttackMotion = 3;
+                        }
+                        else if(SkeletonSkill2CoolOn = true)
+                        {
+                            AttackMotion = 3;
+                        }
+                    }
+                    else if(AttackMotion == 3)
+                    {
+                        AttackDel += Time.deltaTime;
+                        if(AttackDel >= SkeletonAttackDel)
+                        {
+                            AttackMotion = 0;
+                            AttackDel = 0f;
+                        }
+                    }
 
-                    StartCoroutine(SkeletonSkills(AttackMotion));
                 }
                 else if(SkeletonAttack == false)
                 {
@@ -130,32 +170,21 @@ public class SkeletonScript : MonoBehaviour
 
             SkillOn = AttackMotion;
 
-            yield return new WaitForSeconds(0.2f);
-
-            AttackMotion = 0;
+            yield return new WaitForSeconds(0.5f);
 
             SkillOn = 0;
         }
         else if(AttackMotion == 2)
         {
-            if(SkeletonSkill2Cool == 0.0f)
-            {
-                avatar.SetTrigger("Attack2");
+            avatar.SetTrigger("Attack2");
 
-                SkillOn = AttackMotion;
+            SkillOn = AttackMotion;
 
-                yield return new WaitForSeconds(0.54f);
+            yield return new WaitForSeconds(1);
 
-                SkeletonSkill2CoolOn = true;
+            SkeletonSkill2CoolOn = true;
 
-                AttackMotion = 0;
-
-                SkillOn = 0;
-            }
-            else if(SkeletonSkill2Cool > 0.0f)
-            {
-                AttackMotion = 0;
-            }
+            SkillOn = 0;
         }
     }
 
