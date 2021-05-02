@@ -6,7 +6,7 @@ using Photon.Pun;
 using Photon.Realtime;
 
 
-public class PlayerCs : MonoBehaviourPun , IPunObservable
+public class PlayerCs : MonoBehaviour
 {
 
 	private void Awake() //해상도 설정
@@ -14,21 +14,7 @@ public class PlayerCs : MonoBehaviourPun , IPunObservable
 		Screen.sleepTimeout = SleepTimeout.NeverSleep;
 		Screen.SetResolution(1920, 1080, true);
 	}
-	void IPunObservable.OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
-	{
-		if (stream.IsWriting)
-		{
-			//자신의 플레이어 정보는 다른 네트워크 사용자에게 송신
-			/*stream.SendNext(tr.position);
-			stream.SendNext(tr.rotation);*/
-		}
-		else
-		{
-			//다른 플레이어의 정보는 수신
-			/*tr.position = (Vector3)stream.ReceiveNext();
-			tr.rotation = (Quaternion)stream.ReceiveNext();*/
-		}
-	}
+
 	public static Animator anim;
 	[Header("Player Health")]
 	public float maxHP;
@@ -131,9 +117,13 @@ public class PlayerCs : MonoBehaviourPun , IPunObservable
 
 	public float speed = 5.0f;
 	public float rotSpeed = 120.0f;
-	public static Transform tr;
-	public string nick_t;
-	public Text nick_Text;
+	public Transform tr;
+	public PhotonView pv;
+
+	private Quaternion currRot;
+	private Vector3 currPos;
+
+
 	void CmdClientState(Vector3 targetPosVec, float newRunWeight, float run, float strafe)
 	{
 		this.targetPosVec = targetPosVec;
@@ -151,10 +141,12 @@ public class PlayerCs : MonoBehaviourPun , IPunObservable
 
 		crosshair = GameObject.Find("Crosshair");
 
-		tr = GetComponent<Transform>();
 
-		nick_t = GameManger.Nick_M;
-		Debug.Log("nick_t"+nick_t);
+		tr = GetComponent<Transform>();
+		pv = GetComponent<PhotonView>();
+
+		//동기화 콜백함수가 발생하려면 반드시 필요
+		pv.ObservedComponents[0] = this;
 		/*-----AKH 수정-----*/
 
 		//dead = false;
@@ -183,6 +175,19 @@ public class PlayerCs : MonoBehaviourPun , IPunObservable
 
 		// Debug.Log(MainCharHP);
 
+		if (!pv.IsMine)
+		{
+			//네트워크로 연결된 다른 유저일 경우에 실시간 전송 받는 변수를 이용해서 이동
+			tr.position = Vector3.Lerp(tr.position, currPos, Time.deltaTime * 10.0f);
+			tr.rotation = Quaternion.Lerp(tr.rotation, currRot, Time.deltaTime * 10.0f);
+		}
+
+		Locomotion();
+		Fight();
+		Health();
+		UI();
+		Jump();
+		roll();
 
 		/*if (ShootSimple_Scr.WeaponNumber == 1)
 		{
@@ -201,40 +206,28 @@ public class PlayerCs : MonoBehaviourPun , IPunObservable
 			skill3_2();
 			skill3_3();
 		}*/
-
-		
-
-	}
-	void FixedUpdate() // 리지드바디 이용할 경우 update 대신 FixedUpdate 사용
-	{
-		if (!photonView.IsMine)
-		{
-			return;
-		}
-		Locomotion();
-		Fight();
-		Health();
-		UI();
-		Jump();
-		roll();
-		if (isJumping == true)
-		{
-			Debug.Log("bbbb");
-			rigdbody.AddForce(Vector3.up * jumpPower, ForceMode.Impulse);
-			anim.SetBool("Jump", true);
-			isJumping = false;
-		}
-		if (isJumping == false) //점프 한번만 가능하게 공중에서 false줌
-		{
-			anim.SetBool("Jump", false);
-		}
 		w_change(); //무기변경 코드
 					//skill1();
 					//땅체크
 		grounded = Physics.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Blocking"));
 
-	}
 
+	}
+	void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+	{
+		if (stream.IsWriting)
+		{
+			//자신의 플레이어 정보는 다른 네트워크 사용자에게 송신
+			stream.SendNext(tr.position);
+			stream.SendNext(tr.rotation);
+		}
+		else
+		{
+			//다른 플레이어의 정보는 수신
+			currPos = (Vector3)stream.ReceiveNext();
+			currRot = (Quaternion)stream.ReceiveNext();
+		}
+	}
 	void w_change()
 	{
 
@@ -260,6 +253,150 @@ public class PlayerCs : MonoBehaviourPun , IPunObservable
 	}
 
 
+	/*public void skill1_2()
+	{
+		if (Input.GetKeyDown(KeyCode.Alpha2) && isSkill2 == true && roll_check == false
+			&& grounded == true && ShootSimple_Scr.SkillMode == false) //에임 조준 안했을시 2번 누르면 실행
+
+		{
+			anim.SetBool("Skill_1_Magic", true);
+			isSkill2 = false;
+			isfight = true;
+			StartCoroutine("Skill1_2");
+
+
+		}
+	}
+
+	IEnumerator Skill1_2()
+	{
+
+		yield return new WaitForSeconds(2.0f);
+		anim.SetBool("Skill_1_Magic", false);
+		Instantiate(skill2_Effect, transform.position + this.transform.forward * 5, Quaternion.Euler(-90, 0, 0));
+		isfight = false;
+		isSkill2 = true;
+
+	}
+	public void skill1_3SpeedBuff()
+	{
+		if (Input.GetKeyDown(KeyCode.Alpha3) && isSkill3 == true)
+		{
+
+			isSkill3 = false;
+			skill3_Buff_Effect.SetActive(true); //버프 이펙트 나오게하기
+			Depense += 5; //캐릭터 방어력 5 상승
+			StartCoroutine("Skill1_3");
+		}
+	}
+
+
+	IEnumerator Skill1_3()
+	{
+
+		yield return new WaitForSeconds(5.0f);
+		Depense -= 5; //캐릭터 방어력 원상태로 돌리기
+		skill3_Buff_Effect.SetActive(false);
+		isSkill3 = true;
+
+	}
+
+	public void skill2_3()
+	{
+		if (Input.GetKeyDown(KeyCode.Alpha3) && isSkill2_3 == true && roll_check == false
+			&& grounded == true && ShootSimple_Scr.SkillMode == false)
+		{
+
+			isSkill2_3 = false;
+			skill2_fireFiled.SetActive(true); //버프 이펙트 나오게하기			
+			StartCoroutine("Skill2_3");
+		}
+	}
+
+	IEnumerator Skill2_3()
+	{
+
+		yield return new WaitForSeconds(5.0f); //초후 버프 없애기
+		skill2_fireFiled.SetActive(false);
+		yield return new WaitForSeconds(8.0f); //스킬 쿨타임
+		isSkill2_3 = true;
+
+	}
+	public void skill2_4()
+	{
+		if (Input.GetKeyDown(KeyCode.Alpha4) && isSkill2_4 == true && roll_check == false
+			&& grounded == true && ShootSimple_Scr.SkillMode == false) //에임 조준 안했을시 2번 누르면 실행
+
+		{
+			anim.SetBool("Skill_1_Magic", true);
+			isSkill2_4 = false;
+			isfight = true;
+			StartCoroutine("Skill2_4");
+
+
+		}
+	}
+
+	IEnumerator Skill2_4()
+	{
+
+		yield return new WaitForSeconds(2.0f);
+		anim.SetBool("Skill_1_Magic", false);
+		Instantiate(skill2_meteo, transform.position + new Vector3(0, 0, 10), Quaternion.Euler(-90, 0, 0));
+		isfight = false;
+		yield return new WaitForSeconds(10.0f);
+		isSkill2_4 = true;
+
+	}
+
+	public void skill3_2()
+	{
+		if (Input.GetKeyDown(KeyCode.Alpha2) && isSkill3_2 == true && roll_check == false
+			&& grounded == true && ShootSimple_Scr.SkillMode == false) //에임 조준 안했을시 2번 누르면 실행
+
+		{
+			anim.SetBool("Skill_1_Magic", true);
+			isSkill3_2 = false;
+			isfight = true;
+			StartCoroutine("Skill3_2");
+
+
+		}
+	}
+
+	IEnumerator Skill3_2()
+	{
+
+		yield return new WaitForSeconds(2.0f);
+		anim.SetBool("Skill_1_Magic", false);
+		Instantiate(skill3_wall, transform.position + this.transform.forward * 5, Quaternion.Euler(0, 0, 0));
+		isfight = false;
+		yield return new WaitForSeconds(5.0f); //스킬 쿨
+		isSkill3_2 = true;
+
+	}
+
+	public void skill3_3()
+	{
+		if (Input.GetKeyDown(KeyCode.Alpha3) && isSkill3_3 == true && roll_check == false
+			&& grounded == true && ShootSimple_Scr.SkillMode == false)
+		{
+
+			isSkill3_3 = false;
+			skill3_buff.SetActive(true); //버프 이펙트 나오게하기			
+			StartCoroutine("Skill3_3");
+		}
+	}
+
+	IEnumerator Skill3_3()
+	{
+
+		yield return new WaitForSeconds(5.0f); //초후 버프 없애기
+		skill3_buff.SetActive(false);
+		yield return new WaitForSeconds(8.0f); //스킬 쿨타임
+		isSkill3_3 = true;
+	}*/
+
 	void Jump()
 	{
 
@@ -276,11 +413,29 @@ public class PlayerCs : MonoBehaviourPun , IPunObservable
 		}
 	}
 
-	
+	void FixedUpdate() // 리지드바디 이용할 경우 update 대신 FixedUpdate 사용
+	{
+		if (isJumping == true)
+		{
+			Debug.Log("bbbb");
+			rigdbody.AddForce(Vector3.up * jumpPower, ForceMode.Impulse);
+			anim.SetBool("Jump", true);
+			isJumping = false;
+
+		}
+		if (isJumping == false) //점프 한번만 가능하게 공중에서 false줌
+		{
+			anim.SetBool("Jump", false);
+		}
+
+
+
+	}
 
 	void Locomotion()
 	{
 		targetPosVec = targetPos.position;
+
 		
 		run = Input.GetAxis("Vertical");
 		strafe = Input.GetAxis("Horizontal");
@@ -288,7 +443,6 @@ public class PlayerCs : MonoBehaviourPun , IPunObservable
 		anim.SetFloat("Strafe", strafe);
 		anim.SetFloat("Run", run);
 
-		
 		if (roll_check == false)
 		{
 

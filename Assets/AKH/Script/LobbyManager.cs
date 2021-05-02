@@ -2,7 +2,6 @@
 using Photon.Realtime; // 포톤 서비스 관련 라이브러리
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
 // 마스터(매치 메이킹) 서버와 룸 접속을 담당
 public class LobbyManager : MonoBehaviourPunCallbacks
@@ -39,13 +38,6 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         // 접속을 시도 중임을 텍스트로 표시
         connectionInfoText.text = "마스터 서버에 접속중...";
     }
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            Application.Quit();
-        }
-    }
 
     // 마스터 서버 접속 성공시 자동 실행
     public override void OnConnectedToMaster()
@@ -81,7 +73,6 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         /*----------DB저장----------*/
         //nickname 저장
         nicknameText = NicknameInput.text;
-        GameManger.Nick_M = nicknameText;
         //password 저장
         passowrdText = PasswordInput.text;
         Debug.Log("nick : " + nicknameText + ", pass : " + passowrdText);
