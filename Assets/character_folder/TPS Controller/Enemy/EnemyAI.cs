@@ -228,6 +228,15 @@ public class EnemyAI : MonoBehaviour {
 			}
 
 		}
+		if (other.tag == "Skill3_2")
+		{
+			AI_health -= 500;
+			if (AI_health <= 0)
+			{
+				DeathAI();
+			}
+
+		}
 
 
 

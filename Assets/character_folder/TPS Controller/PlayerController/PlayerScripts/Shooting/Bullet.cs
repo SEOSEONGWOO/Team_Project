@@ -29,6 +29,7 @@ public class Bullet : MonoBehaviour {
 		Debug.DrawLine (lastPos, transform.position);
 		if (Physics.Linecast(lastPos, transform.position, out hit))
 		{
+			StartCoroutine("DE");
 			if ((hit.collider.tag == "Enemy") || (hit.collider.tag == "Damage"))
 			{
 				hit.transform.SendMessage("SetDamageAI");
@@ -50,6 +51,13 @@ public class Bullet : MonoBehaviour {
 
 		lastPos = transform.position;
 		}
+
+	IEnumerator DE()
+    {
+		yield return new WaitForSeconds(0.5f);
+
+
+	}
 
 	 
 }
