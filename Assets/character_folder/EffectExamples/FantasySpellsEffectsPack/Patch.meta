@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/character_folder/EffectExamples/FantasySpellsEffectsPack/Patch.meta
+guid: acb11a6eb14ef5242a750ffd7e2d1060
+=======
 guid: 9b4f6d9200569574bb2faf712a2dac6d
+>>>>>>> 49dabb1ab1132063a02189deff0a1f581a8ee3dc:Assets/Map/Multistory Dungeons/LWRP_Multistory_Dungeons_2019.2.unitypackage.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

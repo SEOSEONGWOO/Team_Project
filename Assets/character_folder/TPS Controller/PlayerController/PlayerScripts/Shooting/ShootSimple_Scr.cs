@@ -18,23 +18,32 @@ public class ShootSimple_Scr : MonoBehaviour
 	[Header("The target followed by the camera")]
 	public Transform targetLook;
     [Header("무기에 따른 스킬 제어")]
-    public static int WeaponNumber=1;
+    public static int WeaponNumber=3;
 
 
     [Header("Bullet")]
     public GameObject bullet;
     public GameObject skill1_1bullet;
     public GameObject skill1_2bullet;
-    public GameObject skill2_1_bullet;
-    public GameObject skill2_2_bullet;
-    public GameObject skill3_1_bullet;
+    public GameObject skill1_4bullet;
+    public GameObject skill1_4effect;
+
+    public GameObject skill2_1bullet;
+    public GameObject skill2_2bullet;
+
+    public GameObject skill3_1bullet;
 
 
     [Header("If true, then you can shoot")]
     public bool isshoot = false;  //기본 공격 제어
     public bool isSkill1 = false;  //스킬1 제어
-    public bool isSkill2 = false;  //스킬1 제어
-    
+    public bool isSkill4 = false;  //스킬1 제어
+
+    public bool isSkill2_1 = false;  //스킬1 제어
+    public bool isSkill2_2 = false;  //스킬1 제어
+
+    public bool isSkill3_1 = false;
+
     public static bool SkillMode = false;
 
     public GameObject weapon; //
@@ -81,19 +90,30 @@ public class ShootSimple_Scr : MonoBehaviour
         if(WeaponNumber == 1)
         {
             skill1_1();
-            
-            
+            skill1_4();
+
+
         }
 
         if (WeaponNumber == 2)
         {
             
-            skill2_1fire();
+            skill2_1();
+            skill2_2();
         }
+
+        if (WeaponNumber == 3)
+        {
+
+            skill3_1();
+            //skill2_2();
+        }
+        
+        
 
 
     }
-
+    
      void Attack()
         {
             if ((Input.GetMouseButton(0)) && (isshoot == true))
@@ -154,18 +174,19 @@ public class ShootSimple_Scr : MonoBehaviour
             Player_Scr.anim.SetBool("isShoot", false);
         }
     }
-    void skill2_2()
+
+    void skill1_4()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha2) && isSkill1 == true)
+        if (Input.GetKeyDown(KeyCode.Alpha4) && isSkill4 == true)
         {
-            Debug.Log("DASD");
-            isSkill1 = false;
-            audioSource.PlayOneShot(fireSound);
+            
+            Debug.Log("4");
+            isSkill4 = false;
             muzzleFlash.Play();
             Shell.Play();
             isshoot = false;
             Invoke("ShootTrue", reloadTime);
-            Invoke("Skill1_True", 5.0f);
+            Invoke("Skill4_True", 3);
             RaycastHit hit;
             if (Physics.Raycast(shootPoint.position, shootPoint.forward, out hit, distance))
             {
@@ -174,34 +195,80 @@ public class ShootSimple_Scr : MonoBehaviour
                     hit.transform.GetComponent<Rigidbody>().AddForceAtPosition(shootPoint.forward * force, hit.point);
                 }
             }
-            GameObject sk_bullet = Instantiate(skill1_2bullet);
+            
+
+            Player_Scr.anim.SetBool("isShoot", true);
+            skill1_4effect.SetActive(true);
+            StartCoroutine("Skill1_4");
+            
+
+        }
+    }
+
+
+    IEnumerator Skill1_4()
+    {      
+
+        yield return new WaitForSeconds(1.5f);
+        audioSource.PlayOneShot(fireSound);
+        GameObject sk_bullet = Instantiate(skill1_4bullet);
+        sk_bullet.transform.position = shootPoint.position;
+        sk_bullet.transform.rotation = shootPoint.rotation;
+        Destroy(sk_bullet, shootFireLifeTime);
+        Player_Scr.anim.SetBool("isShoot", false);
+        skill1_4effect.SetActive(false);
+        
+    }
+
+
+    void skill2_1()
+    {
+        if (Input.GetKeyDown(KeyCode.Alpha1) && isSkill2_1 == true)
+        {
+            Debug.Log("DASD");
+            isSkill2_1 = false;
+            audioSource.PlayOneShot(fireSound);
+            muzzleFlash.Play();
+            Shell.Play();
+            isshoot = false;
+            Invoke("ShootTrue", reloadTime);
+            Invoke("Skill2_1_True", 3.0f);
+            RaycastHit hit;
+            if (Physics.Raycast(shootPoint.position, shootPoint.forward, out hit, distance))
+            {
+                if (hit.transform.GetComponent<Rigidbody>())
+                {
+                    hit.transform.GetComponent<Rigidbody>().AddForceAtPosition(shootPoint.forward * force, hit.point);
+                }
+            }
+            GameObject sk_bullet = Instantiate(skill2_1bullet);
             sk_bullet.transform.position = shootPoint.position;
             sk_bullet.transform.rotation = shootPoint.rotation;
             Destroy(sk_bullet, shootFireLifeTime);
-
+            isSkill2_1 = true;
             Player_Scr.anim.SetBool("isShoot", true);
-            isSkill1 = true;
+            
         }
 
-        else if (Input.GetKeyUp(KeyCode.Alpha1) && isSkill1 == true)
+        else if (Input.GetKeyUp(KeyCode.Alpha1) && isSkill2_1 == true)
         {
-            isSkill1 = false;
+            isSkill2_1 = false;
             Player_Scr.anim.SetBool("isShoot", false);
         }
     }
-    void skill2_1fire()
+    void skill2_2()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha2) && isSkill2 == true)
+        if (Input.GetKeyDown(KeyCode.Alpha2) && isSkill2_2 == true)
         {
             Debug.Log("스킬25 실행");
-            isSkill2 = false;
+            isSkill2_2 = false;
             audioSource.PlayOneShot(fireSound);
             muzzleFlash.Play();
             Shell.Play();
 
             isshoot = false;
             Invoke("ShootTrue", 5.0f);
-            Invoke("Skill2_True", 10.0f);
+            Invoke("Skill2_2_True", 10.0f);
             RaycastHit hit;
             if (Physics.Raycast(shootPoint.position, shootPoint.forward, out hit, distance))
             {
@@ -211,14 +278,14 @@ public class ShootSimple_Scr : MonoBehaviour
                 }
             }     
             Player_Scr.anim.SetBool("isShoot", true);
-            skill2_2_bullet.SetActive(true);
+            skill2_2bullet.SetActive(true);
            // isSkill2 = true;
             StartCoroutine("Skill2");
         }
 
         if (SkillMode == false)  //총 내리면 스킬 멈추기
         {
-            skill2_2_bullet.SetActive(false);
+            skill2_2bullet.SetActive(false);
         }
         
 
@@ -226,14 +293,49 @@ public class ShootSimple_Scr : MonoBehaviour
 
     IEnumerator Skill2()
     {
+        
         yield return new WaitForSeconds(5.0f);
         Player_Scr.anim.SetBool("isShoot", false);
-        skill2_2_bullet.SetActive(false);
+        skill2_2bullet.SetActive(false);
     }
 
-   
+    void skill3_1()
+    {
+        if (Input.GetKeyDown(KeyCode.Alpha1) && isSkill3_1 == true)
+        {
+            Debug.Log("DASD");
+            isSkill3_1 = false;
+            audioSource.PlayOneShot(fireSound);
+            muzzleFlash.Play();
+            Shell.Play();
+            isshoot = false;
+            Invoke("ShootTrue", reloadTime);
+            Invoke("Skill3_1_True", 5.0f);
+            RaycastHit hit;
+            if (Physics.Raycast(shootPoint.position, shootPoint.forward, out hit, distance))
+            {
+                if (hit.transform.GetComponent<Rigidbody>())
+                {
+                    hit.transform.GetComponent<Rigidbody>().AddForceAtPosition(shootPoint.forward * force, hit.point);
+                }
+            }
+            GameObject sk_bullet = Instantiate(skill3_1bullet);
+            sk_bullet.transform.position = shootPoint.position;
+            sk_bullet.transform.rotation = shootPoint.rotation;
+            Destroy(sk_bullet, shootFireLifeTime);
 
-   
+            Player_Scr.anim.SetBool("isShoot", true);
+            isSkill3_1 = true;
+        }
+
+        else if (Input.GetKeyUp(KeyCode.Alpha1))
+        {
+            isSkill3_1 = false;
+            Player_Scr.anim.SetBool("isShoot", false);
+        }
+    }
+
+
 
 
     void ShootTrue() 
@@ -245,9 +347,23 @@ public class ShootSimple_Scr : MonoBehaviour
     {
         isSkill1 = true;
     }
-
-    void Skill2_True()
+    void Skill4_True()
     {
-        isSkill2 = true;
+        isSkill4 = true;
     }
+    void Skill2_1_True()
+    {
+        Debug.Log("인보크실행");
+        isSkill2_1 = true;
+    }
+    void Skill2_2_True()
+    {
+        isSkill2_2 = true;
+    }
+
+    void Skill3_1_True()
+    {
+        isSkill3_1 = true;
+    }
+
 }

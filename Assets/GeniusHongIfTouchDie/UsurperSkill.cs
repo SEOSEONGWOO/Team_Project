@@ -51,6 +51,10 @@ public class UsurperSkill : MonoBehaviour
 
     float distance; // 드래곤 , 플레이어 거리 넣어 줄 float
 
+    static public int FireOn = 0;
+
+    static public int AttackOn = 0;
+
     void Start()
     {
         //AwakeT += Time.deltaTime;
@@ -151,6 +155,8 @@ public class UsurperSkill : MonoBehaviour
                 {
                     if (Sk1Del == 0) // 스킬 1 쿨타임이 아니면 
                     {
+                        StartCoroutine(AttackDelay(1));
+
                         avatar.SetTrigger("Sk1"); // 스킬1 사용
                         Gobj.GetComponent<Player_Scr>().GunnerHitFunc(Sk1Da); // 공격
 
@@ -168,6 +174,7 @@ public class UsurperSkill : MonoBehaviour
                 {
                     if (Sk2Del == 0)
                     {
+                        StartCoroutine(AttackDelay(2));
 
                         avatar.SetTrigger("Sk2");
                         
@@ -186,6 +193,8 @@ public class UsurperSkill : MonoBehaviour
                 {
                     if (Sk3Del == 0)
                     {
+                        StartCoroutine(FireDelay(1));
+
                         avatar.SetTrigger("Sk3");
                         DrgAtIngEnd = 6.3f;
                         Sk3Del = 1;
@@ -200,6 +209,8 @@ public class UsurperSkill : MonoBehaviour
                 {
                     if (Sk4Del == 0)
                     {
+                        StartCoroutine(FireDelay(2));
+
                         avatar.SetTrigger("Sk4");
                         DrgAtIngEnd = 17.1f;
                         Sk4Del = 1;
@@ -293,4 +304,37 @@ public class UsurperSkill : MonoBehaviour
         DrgHP -= Bullet.bulletDamage; // 총에 맞으면 총알데미지 만큼 체력 까임
         Debug.Log(DrgHP);
     }
+
+    public IEnumerator AttackDelay(int FT)
+    {
+        AttackOn = FT;
+        
+        if(AttackOn == 1)
+        {
+            yield return new WaitForSeconds(3);
+        }
+        else if (AttackOn == 2)
+        {
+            yield return new WaitForSeconds(5);
+        }
+
+        AttackOn = 0;
+    }
+
+    public IEnumerator FireDelay(int FT)
+    {
+        FireOn = FT;
+
+        if(FireOn == 1)
+        {
+            yield return new WaitForSeconds(3);
+        }
+        if(FireOn == 2)
+        {
+            yield return new WaitForSeconds(10);
+        }
+
+        FireOn = 0;
+    }
 }
+

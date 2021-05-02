@@ -11,7 +11,8 @@ public class Spawn : MonoBehaviour
     public GameObject prefab;
     void Start()
     {
-        PhotonNetwork.Instantiate(prefab.name, new Vector3(1.773168f, 0.05f, 0.215986f), Quaternion.identity);
+        PhotonNetwork.Instantiate(prefab.name, 
+            new Vector3(1.773168f, 0.05f, 0.215986f), Quaternion.identity);
     }
 
 

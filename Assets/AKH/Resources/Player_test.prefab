@@ -5778,6 +5778,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHP: 150
   HP: 150
+  MP: 100
+  Depense: 5
+  HitD: 0
   lookIKWeight: 1
   bodyWeight: 1.5
   healthText: {fileID: 6916162612989849354, guid: 470f1010617705f4a9390efdc72cb8a1,
@@ -5791,14 +5794,29 @@ MonoBehaviour:
   grounded: 1
   jumpPower: 3.5
   rollPower: 3.5
+  isSkill2: 1
+  isSkill3: 1
+  skill2_Effect: {fileID: 0}
+  skill3_Buff_Effect: {fileID: 0}
+  isSkill2_3: 1
+  isSkill2_4: 1
+  skill2_fireFiled: {fileID: 0}
+  skill2_meteo: {fileID: 0}
+  isSkill3_2: 1
+  isSkill3_3: 1
+  skill3_wall: {fileID: 0}
+  skill3_buff: {fileID: 0}
   damage: 50
   weapon1: {fileID: 2149038324675388616}
   weapon2: {fileID: 4767387217030170763}
+  weapon3: {fileID: 0}
   isfight: 0
   isshoot: 1
   fightModUI: {fileID: 2150004387207273119, guid: c27463e172c55824980350685390bd03,
     type: 3}
   ragdoll: {fileID: 5431398466033780921, guid: fc94d387fc606fb4aae480cc5e37a14c, type: 3}
+  clcl: {fileID: 0}
+  PlayerMoneyText: {fileID: 0}
 --- !u!114 &6042983033425828747
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6647,11 +6665,20 @@ MonoBehaviour:
   shootPoint: {fileID: 5463346132517722287}
   targetLook: {fileID: 821121986198608447}
   bullet: {fileID: 648706722154412440, guid: 99148b76a62191c448a87199f78982ab, type: 3}
-  skill1_bullet: {fileID: 0}
-  skill2_bullet: {fileID: 0}
+  skill1_1bullet: {fileID: 0}
+  skill1_2bullet: {fileID: 0}
+  skill1_4bullet: {fileID: 0}
+  skill1_4effect: {fileID: 0}
+  skill2_1bullet: {fileID: 0}
+  skill2_2bullet: {fileID: 0}
+  skill3_1bullet: {fileID: 0}
   isshoot: 1
   isSkill1: 0
-  isSkill2: 0
+  isSkill4: 0
+  isSkill2_1: 0
+  isSkill2_2: 0
+  isSkill3_1: 0
+  weapon: {fileID: 0}
   distance: 100
   force: 100
   reloadTime: 0.6
