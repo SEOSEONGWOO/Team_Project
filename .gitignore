@@ -2999,3 +2999,189 @@ Assets/SSWFOLDER/MonsterFolder/Animations/Dragon/Attack01_Dragon_Anim.fbx.meta
 Assets/SSWFOLDER/MonsterFolder/Animations/Dragon/Attack02_Dragon_Anim.fbx
 Assets/SSWFOLDER/MonsterFolder/Animations/Dragon/Attack02_Dragon_Anim.fbx.meta
 Assets/SSWFOLDER/MonsterFolder/Animations/Dragon/Die_Dragon_Anim.fbx
+Assets/AKH/Resources/Player_test2.prefab
+Assets/AKH/Scenes/Login.unity
+Assets/AKH/Scenes/MainGame_.unity
+Assets/AKH/Script/CaneraCs2.cs
+Assets/AKH/Script/GameManger.cs
+Assets/AKH/Script/LobbyManager.cs
+Assets/AKH/Script/PlayerCs.cs
+Assets/AKH/Script/Spawn.cs
+Assets/character_folder/TPS Controller/PlayerController/PlayerAnimator/PlayerAnimator.controller
+Assets/character_folder/TPS Controller/PlayerController/PlayerScripts/Player/Player_Scr.cs
+Assets/character_folder/TPS Controller/PlayerController/PlayerScripts/Shooting/ShootSimple_Scr.cs
+Assets/character_folder/Zombie/FolloFollowme.cs
+Assets/GeniusHongIfTouchDie/DrgAttSC.cs
+Assets/GeniusHongIfTouchDie/MonsterScript & Anim.meta
+Assets/GeniusHongIfTouchDie/MonsterScript & Anim/SkeletonAnimH.controller
+Assets/GeniusHongIfTouchDie/MonsterScript & Anim/SkeletonAnimH.controller.meta
+Assets/GeniusHongIfTouchDie/MonsterScript & Anim/SkeletonScript.cs
+Assets/GeniusHongIfTouchDie/MonsterScript & Anim/SkeletonScript.cs.meta
+Assets/GeniusHongIfTouchDie/MonsterScript & Anim/SkeletonSwordScript.cs
+Assets/GeniusHongIfTouchDie/MonsterScript & Anim/SkeletonSwordScript.cs.meta
+Assets/GeniusHongIfTouchDie/test.unity
+Assets/GeniusHongIfTouchDie/test/NavMesh.asset
+Assets/Level_1.unity
+Assets/Main_map.unity
+Assets/Photon/PhotonUnityNetworking/Code/Views/PhotonTransformViewClassic.cs.meta
+Assets/RPG Monster Wave Polyart.meta
+Assets/RPG Monster Wave Polyart/Materials.meta
+Assets/RPG Monster Wave Polyart/Materials/PolyartDefault.mat
+Assets/RPG Monster Wave Polyart/Materials/PolyartDefault.mat.meta
+Assets/RPG Monster Wave Polyart/Materials/PolyArtMaskTint01.mat
+Assets/RPG Monster Wave Polyart/Materials/PolyArtMaskTint01.mat.meta
+Assets/RPG Monster Wave Polyart/Materials/PolyArtMaskTint02.mat
+Assets/RPG Monster Wave Polyart/Materials/PolyArtMaskTint02.mat.meta
+Assets/RPG Monster Wave Polyart/Materials/PolyArtMaskTint03.mat
+Assets/RPG Monster Wave Polyart/Materials/PolyArtMaskTint03.mat.meta
+Assets/RPG Monster Wave Polyart/Materials/Skybox_Mat.mat
+Assets/RPG Monster Wave Polyart/Materials/Skybox_Mat.mat.meta
+Assets/RPG Monster Wave Polyart/Materials/Stage.mat
+Assets/RPG Monster Wave Polyart/Materials/Stage.mat.meta
+Assets/RPG Monster Wave Polyart/Meshes.meta
+Assets/RPG Monster Wave Polyart/Meshes/BatMesh.fbx
+Assets/RPG Monster Wave Polyart/Meshes/BatMesh.fbx.meta
+Assets/RPG Monster Wave Polyart/Meshes/DragonMesh.fbx
+Assets/RPG Monster Wave Polyart/Meshes/DragonMesh.fbx.meta
+Assets/RPG Monster Wave Polyart/Meshes/EvilMageMesh.fbx
+Assets/RPG Monster Wave Polyart/Meshes/EvilMageMesh.fbx.meta
+Assets/RPG Monster Wave Polyart/Meshes/GolemMesh.fbx
+Assets/RPG Monster Wave Polyart/Meshes/GolemMesh.fbx.meta
+Assets/RPG Monster Wave Polyart/Meshes/MonsterPlantMesh.fbx
+Assets/RPG Monster Wave Polyart/Meshes/MonsterPlantMesh.fbx.meta
+Assets/RPG Monster Wave Polyart/Meshes/OrcMesh.fbx
+Assets/RPG Monster Wave Polyart/Meshes/OrcMesh.fbx.meta
+Assets/RPG Monster Wave Polyart/Meshes/SkeletonMesh.fbx
+Assets/RPG Monster Wave Polyart/Meshes/SkeletonMesh.fbx.meta
+Assets/RPG Monster Wave Polyart/Meshes/SlimeMesh.fbx
+Assets/RPG Monster Wave Polyart/Meshes/SlimeMesh.fbx.meta
+Assets/RPG Monster Wave Polyart/Meshes/SpiderMesh.fbx
+Assets/RPG Monster Wave Polyart/Meshes/SpiderMesh.fbx.meta
+Assets/RPG Monster Wave Polyart/Meshes/StageMesh.fbx
+Assets/RPG Monster Wave Polyart/Meshes/StageMesh.fbx.meta
+Assets/RPG Monster Wave Polyart/Meshes/TurtleShellMesh.fbx
+Assets/RPG Monster Wave Polyart/Meshes/TurtleShellMesh.fbx.meta
+Assets/RPG Monster Wave Polyart/Prefabs.meta
+Assets/RPG Monster Wave Polyart/Prefabs/PolyartDefault.meta
+Assets/RPG Monster Wave Polyart/Prefabs/PolyartDefault/Bat.prefab
+Assets/RPG Monster Wave Polyart/Prefabs/PolyartDefault/Bat.prefab.meta
+Assets/RPG Monster Wave Polyart/Prefabs/PolyartDefault/Dragon.prefab
+Assets/RPG Monster Wave Polyart/Prefabs/PolyartDefault/Dragon.prefab.meta
+Assets/RPG Monster Wave Polyart/Prefabs/PolyartDefault/EvilMage.prefab
+Assets/RPG Monster Wave Polyart/Prefabs/PolyartDefault/EvilMage.prefab.meta
+Assets/RPG Monster Wave Polyart/Prefabs/PolyartDefault/Golem.prefab
+Assets/RPG Monster Wave Polyart/Prefabs/PolyartDefault/Golem.prefab.meta
+Assets/RPG Monster Wave Polyart/Prefabs/PolyartDefault/MonsterPlant.prefab
+Assets/RPG Monster Wave Polyart/Prefabs/PolyartDefault/MonsterPlant.prefab.meta
+Assets/RPG Monster Wave Polyart/Prefabs/PolyartDefault/Orc.prefab
+Assets/RPG Monster Wave Polyart/Prefabs/PolyartDefault/Orc.prefab.meta
+Assets/RPG Monster Wave Polyart/Prefabs/PolyartDefault/Skeleton.prefab
+Assets/RPG Monster Wave Polyart/Prefabs/PolyartDefault/Skeleton.prefab.meta
+Assets/RPG Monster Wave Polyart/Prefabs/PolyartDefault/Slime.prefab
+Assets/RPG Monster Wave Polyart/Prefabs/PolyartDefault/Slime.prefab.meta
+Assets/RPG Monster Wave Polyart/Prefabs/PolyartDefault/Spider.prefab
+Assets/RPG Monster Wave Polyart/Prefabs/PolyartDefault/Spider.prefab.meta
+Assets/RPG Monster Wave Polyart/Prefabs/PolyartDefault/TurtleShell.prefab
+Assets/RPG Monster Wave Polyart/Prefabs/PolyartDefault/TurtleShell.prefab.meta
+Assets/RPG Monster Wave Polyart/Prefabs/PolyartMaskTint.meta
+Assets/RPG Monster Wave Polyart/Prefabs/PolyartMaskTint/BatMaskTint.prefab
+Assets/RPG Monster Wave Polyart/Prefabs/PolyartMaskTint/BatMaskTint.prefab.meta
+Assets/RPG Monster Wave Polyart/Prefabs/PolyartMaskTint/DragonMaskTint.prefab
+Assets/RPG Monster Wave Polyart/Prefabs/PolyartMaskTint/DragonMaskTint.prefab.meta
+Assets/RPG Monster Wave Polyart/Prefabs/PolyartMaskTint/EvilMageMaskTint.prefab
+Assets/RPG Monster Wave Polyart/Prefabs/PolyartMaskTint/EvilMageMaskTint.prefab.meta
+Assets/RPG Monster Wave Polyart/Prefabs/PolyartMaskTint/GolemMaskTint.prefab
+Assets/RPG Monster Wave Polyart/Prefabs/PolyartMaskTint/GolemMaskTint.prefab.meta
+Assets/RPG Monster Wave Polyart/Prefabs/PolyartMaskTint/MonsterPlantMaskTint.prefab
+Assets/RPG Monster Wave Polyart/Prefabs/PolyartMaskTint/MonsterPlantMaskTint.prefab.meta
+Assets/RPG Monster Wave Polyart/Prefabs/PolyartMaskTint/OrcMaskTint.prefab
+Assets/RPG Monster Wave Polyart/Prefabs/PolyartMaskTint/OrcMaskTint.prefab.meta
+Assets/RPG Monster Wave Polyart/Prefabs/PolyartMaskTint/SkeletonMaskTint.prefab
+Assets/RPG Monster Wave Polyart/Prefabs/PolyartMaskTint/SkeletonMaskTint.prefab.meta
+Assets/RPG Monster Wave Polyart/Prefabs/PolyartMaskTint/SlimeMaskTint.prefab
+Assets/RPG Monster Wave Polyart/Prefabs/PolyartMaskTint/SlimeMaskTint.prefab.meta
+Assets/RPG Monster Wave Polyart/Prefabs/PolyartMaskTint/TurtleShellMaskTint.prefab
+Assets/RPG Monster Wave Polyart/Prefabs/PolyartMaskTint/TurtleShellMaskTint.prefab.meta
+Assets/RPG Monster Wave Polyart/Scenes.meta
+Assets/RPG Monster Wave Polyart/Scenes/PolyartDefault.unity
+Assets/RPG Monster Wave Polyart/Scenes/PolyartDefault.unity.meta
+Assets/RPG Monster Wave Polyart/Scenes/PolyartMaskTint01.unity
+Assets/RPG Monster Wave Polyart/Scenes/PolyartMaskTint01.unity.meta
+Assets/RPG Monster Wave Polyart/Scenes/PolyartMaskTint02.unity
+Assets/RPG Monster Wave Polyart/Scenes/PolyartMaskTint02.unity.meta
+Assets/RPG Monster Wave Polyart/Scenes/PolyartMaskTint03.unity
+Assets/RPG Monster Wave Polyart/Scenes/PolyartMaskTint03.unity.meta
+Assets/RPG Monster Wave Polyart/Shaders.meta
+Assets/RPG Monster Wave Polyart/Shaders/PolyArtMaskTint.shader
+Assets/RPG Monster Wave Polyart/Shaders/PolyArtMaskTint.shader.meta
+Assets/RPG Monster Wave Polyart/SRP.meta
+Assets/RPG Monster Wave Polyart/SRP/HDRP_Polyart.zip
+Assets/RPG Monster Wave Polyart/SRP/HDRP_Polyart.zip.meta
+Assets/RPG Monster Wave Polyart/SRP/HowToTestSRPs.txt
+Assets/RPG Monster Wave Polyart/SRP/HowToTestSRPs.txt.meta
+Assets/RPG Monster Wave Polyart/SRP/URP_Polyart.zip
+Assets/RPG Monster Wave Polyart/SRP/URP_Polyart.zip.meta
+Assets/RPG Monster Wave Polyart/Textures.meta
+Assets/RPG Monster Wave Polyart/Textures/MaskTex.png
+Assets/RPG Monster Wave Polyart/Textures/MaskTex.png.meta
+Assets/RPG Monster Wave Polyart/Textures/PolyartDefaultTex.png
+Assets/RPG Monster Wave Polyart/Textures/PolyartDefaultTex.png.meta
+Assets/RPG Monster Wave Polyart/Textures/PolyartMaskTintTex.png
+Assets/RPG Monster Wave Polyart/Textures/PolyartMaskTintTex.png.meta
+Assets/SSWFOLDER/MonsterFolder/Animations/Bat.meta
+Assets/SSWFOLDER/MonsterFolder/Animations/Bat/Attack01_Bat_Anim.fbx
+Assets/SSWFOLDER/MonsterFolder/Animations/Bat/Attack01_Bat_Anim.fbx.meta
+Assets/SSWFOLDER/MonsterFolder/Animations/Bat/Attack02_Bat_Anim.fbx
+Assets/SSWFOLDER/MonsterFolder/Animations/Bat/Attack02_Bat_Anim.fbx.meta
+Assets/SSWFOLDER/MonsterFolder/Animations/Bat/Die_Bat_Anim.fbx
+Assets/SSWFOLDER/MonsterFolder/Animations/Bat/Die_Bat_Anim.fbx.meta
+Assets/SSWFOLDER/MonsterFolder/Animations/Bat/Dizzy_Bat_Anim.fbx
+Assets/SSWFOLDER/MonsterFolder/Animations/Bat/Dizzy_Bat_Anim.fbx.meta
+Assets/SSWFOLDER/MonsterFolder/Animations/Bat/FlyBWD_Bat_Anim.fbx
+Assets/SSWFOLDER/MonsterFolder/Animations/Bat/FlyBWD_Bat_Anim.fbx.meta
+Assets/SSWFOLDER/MonsterFolder/Animations/Bat/FlyFWD_Bat_Anim.fbx
+Assets/SSWFOLDER/MonsterFolder/Animations/Bat/FlyFWD_Bat_Anim.fbx.meta
+Assets/SSWFOLDER/MonsterFolder/Animations/Bat/FlyLeft_Bat_Anim.fbx
+Assets/SSWFOLDER/MonsterFolder/Animations/Bat/FlyLeft_Bat_Anim.fbx.meta
+Assets/SSWFOLDER/MonsterFolder/Animations/Bat/FlyRight_Bat_Anim.fbx
+Assets/SSWFOLDER/MonsterFolder/Animations/Bat/FlyRight_Bat_Anim.fbx.meta
+Assets/SSWFOLDER/MonsterFolder/Animations/Bat/GetHit_Bat_Anim.fbx
+Assets/SSWFOLDER/MonsterFolder/Animations/Bat/GetHit_Bat_Anim.fbx.meta
+Assets/SSWFOLDER/MonsterFolder/Animations/Bat/IdleBattle_Bat_Anim.fbx
+Assets/SSWFOLDER/MonsterFolder/Animations/Bat/IdleBattle_Bat_Anim.fbx.meta
+Assets/SSWFOLDER/MonsterFolder/Animations/Bat/IdleNormal_Bat_Anim.fbx
+Assets/SSWFOLDER/MonsterFolder/Animations/Bat/IdleNormal_Bat_Anim.fbx.meta
+Assets/SSWFOLDER/MonsterFolder/Animations/Bat/SenseSomethingRPT_Bat_Anim.fbx
+Assets/SSWFOLDER/MonsterFolder/Animations/Bat/SenseSomethingRPT_Bat_Anim.fbx.meta
+Assets/SSWFOLDER/MonsterFolder/Animations/Bat/SenseSomethingST_Bat_Anim.fbx
+Assets/SSWFOLDER/MonsterFolder/Animations/Bat/SenseSomethingST_Bat_Anim.fbx.meta
+Assets/SSWFOLDER/MonsterFolder/Animations/Bat/Taunting_Bat_Anim.fbx
+Assets/SSWFOLDER/MonsterFolder/Animations/Bat/Taunting_Bat_Anim.fbx.meta
+Assets/SSWFOLDER/MonsterFolder/Animations/Bat/Victory_Bat_Anim.fbx
+Assets/SSWFOLDER/MonsterFolder/Animations/Bat/Victory_Bat_Anim.fbx.meta
+Assets/SSWFOLDER/MonsterFolder/Animations/Dragon.meta
+Assets/SSWFOLDER/MonsterFolder/Animations/Dragon/Attack01_Dragon_Anim.fbx
+Assets/SSWFOLDER/MonsterFolder/Animations/Dragon/Attack01_Dragon_Anim.fbx.meta
+Assets/SSWFOLDER/MonsterFolder/Animations/Dragon/Attack02_Dragon_Anim.fbx
+Assets/SSWFOLDER/MonsterFolder/Animations/Dragon/Attack02_Dragon_Anim.fbx.meta
+Assets/SSWFOLDER/MonsterFolder/Animations/Dragon/Die_Dragon_Anim.fbx
+Assets/SSWFOLDER/MonsterFolder/Animations/Dragon/Die_Dragon_Anim.fbx.meta
+Assets/SSWFOLDER/MonsterFolder/Animations/Dragon/Dizzy_Dragon_Anim.fbx
+Assets/SSWFOLDER/MonsterFolder/Animations/Dragon/Dizzy_Dragon_Anim.fbx.meta
+Assets/SSWFOLDER/MonsterFolder/Animations/Dragon/FlyBackward_Dragon_Anim.fbx
+Assets/SSWFOLDER/MonsterFolder/Animations/Dragon/FlyBackward_Dragon_Anim.fbx.meta
+Assets/SSWFOLDER/MonsterFolder/Animations/Dragon/FlyForward_Dragon_Anim.fbx
+Assets/SSWFOLDER/MonsterFolder/Animations/Dragon/FlyForward_Dragon_Anim.fbx.meta
+Assets/SSWFOLDER/MonsterFolder/Animations/Dragon/FlyLeft_Dragon_Anim.fbx
+Assets/SSWFOLDER/MonsterFolder/Animations/Dragon/FlyLeft_Dragon_Anim.fbx.meta
+Assets/SSWFOLDER/MonsterFolder/Animations/Dragon/FlyRight_Dragon_Anim.fbx
+Assets/SSWFOLDER/MonsterFolder/Animations/Dragon/FlyRight_Dragon_Anim.fbx.meta
+Assets/SSWFOLDER/MonsterFolder/Animations/Dragon/GetHit_Dragon_Anim.fbx
+Assets/SSWFOLDER/MonsterFolder/Animations/Dragon/GetHit_Dragon_Anim.fbx.meta
+Assets/SSWFOLDER/MonsterFolder/Animations/Dragon/IdleBattle_Dragon_Anim.fbx
+Assets/SSWFOLDER/MonsterFolder/Animations/Dragon/IdleBattle_Dragon_Anim.fbx.meta
+Assets/SSWFOLDER/MonsterFolder/Animations/Dragon/IdleNormal_Dragon_Anim.fbx
+Assets/SSWFOLDER/MonsterFolder/Animations/Dragon/IdleNormal_Dragon_Anim.fbx.meta
+Assets/SSWFOLDER/MonsterFolder/Animations/Dragon/SenseSomethingRPT_Dragon_Anim.fbx
+Assets/SSWFOLDER/MonsterFolder/Animations/Dragon/SenseSomethingRPT_Dragon_Anim.fbx.meta
+Assets/SSWFOLDER/MonsterFolder/Animations/Dragon/SenseSomethingST_Dragon_Anim.fbx
