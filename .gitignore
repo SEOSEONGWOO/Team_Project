@@ -2571,3 +2571,229 @@ Assets/Multistory Dungeons 2/Prefabs/Stairs/Platform_03.prefab.meta
 Assets/Multistory Dungeons 2/Prefabs/Stairs/Platform_03.prefab
 Assets/Multistory Dungeons 2/Prefabs/Stairs/Platform_02.prefab.meta
 Assets/GeniusHongIfTouchDie/Item.meta
+Assets/AKH/Resources/Player_test2.prefab
+Assets/AKH/Scenes/Login.unity
+Assets/AKH/Scenes/MainGame_.unity
+Assets/AKH/Script/CaneraCs2.cs
+Assets/AKH/Script/GameManger.cs
+Assets/AKH/Script/LobbyManager.cs
+Assets/AKH/Script/PlayerCs.cs
+Assets/AKH/Script/Spawn.cs
+Assets/character_folder/EffectExamples/FantasySpellsEffectsPack/Patch/DistortPatchForHDRP&URP.unitypackage.meta
+Assets/character_folder/EffectExamples/FantasySpellsEffectsPack/Patch/GammaColorSpace.unitypackage.meta
+Assets/character_folder/EffectExamples/FantasySpellsEffectsPack/Patch/LinearColorSpace.unitypackage.meta
+Assets/character_folder/TPS Controller/PlayerController/PlayerAnimator/PlayerAnimator.controller
+Assets/character_folder/TPS Controller/PlayerController/PlayerScripts/Player/Player_Scr.cs
+Assets/character_folder/TPS Controller/PlayerController/PlayerScripts/Shooting/ShootSimple_Scr.cs
+Assets/character_folder/Zombie/FolloFollowme.cs
+Assets/GeniusHongIfTouchDie/DrgAttSC.cs
+Assets/GeniusHongIfTouchDie/MonsterScript & Anim.meta
+Assets/GeniusHongIfTouchDie/MonsterScript & Anim/SkeletonAnimH.controller
+Assets/GeniusHongIfTouchDie/MonsterScript & Anim/SkeletonAnimH.controller.meta
+Assets/GeniusHongIfTouchDie/MonsterScript & Anim/SkeletonScript.cs
+Assets/GeniusHongIfTouchDie/MonsterScript & Anim/SkeletonScript.cs.meta
+Assets/GeniusHongIfTouchDie/MonsterScript & Anim/SkeletonSwordScript.cs
+Assets/GeniusHongIfTouchDie/MonsterScript & Anim/SkeletonSwordScript.cs.meta
+Assets/GeniusHongIfTouchDie/test.unity
+Assets/GeniusHongIfTouchDie/test/NavMesh.asset
+Assets/Level_1.unity
+Assets/LushkinR.meta
+Assets/LushkinR/Demo.meta
+Assets/LushkinR/Demo/OrthographicScene.unity
+Assets/LushkinR/Demo/OrthographicScene.unity.meta
+Assets/LushkinR/Demo/PerspectiveScene.unity
+Assets/LushkinR/Demo/PerspectiveScene.unity.meta
+Assets/LushkinR/Documentation.meta
+Assets/LushkinR/Documentation/ReadMe.pdf
+Assets/LushkinR/Documentation/ReadMe.pdf.meta
+Assets/LushkinR/Materials.meta
+Assets/LushkinR/Materials/OrthographicFogMaterial.mat
+Assets/LushkinR/Materials/OrthographicFogMaterial.mat.meta
+Assets/LushkinR/Materials/PerspectiveFogMaterial.mat
+Assets/LushkinR/Materials/PerspectiveFogMaterial.mat.meta
+Assets/LushkinR/Materials/Skybox_Mat.mat
+Assets/LushkinR/Materials/Skybox_Mat.mat.meta
+Assets/LushkinR/Scripts.meta
+Assets/LushkinR/Scripts/SimpleCameraController.cs
+Assets/LushkinR/Scripts/SimpleCameraController.cs.meta
+Assets/LushkinR/Settings.meta
+Assets/LushkinR/Settings/LWRP-HighQuality.asset
+Assets/LushkinR/Settings/LWRP-HighQuality.asset.meta
+Assets/LushkinR/Settings/LWRP-LowQuality.asset
+Assets/LushkinR/Settings/LWRP-LowQuality.asset.meta
+Assets/LushkinR/Settings/LWRP-MediumQuality.asset
+Assets/LushkinR/Settings/LWRP-MediumQuality.asset.meta
+Assets/LushkinR/Settings/PostProcessProfile.asset
+Assets/LushkinR/Settings/PostProcessProfile.asset.meta
+Assets/LushkinR/Shaders.meta
+Assets/LushkinR/Shaders/FogShader.shadergraph
+Assets/LushkinR/Shaders/FogShader.shadergraph.meta
+Assets/Main_map 1.meta
+Assets/Main_map 1.unity
+Assets/Main_map 1.unity.meta
+Assets/Main_map 1/LightingData.asset
+Assets/Main_map 1/LightingData.asset.meta
+Assets/Main_map 1/Lightmap-0_comp_light.exr
+Assets/Main_map 1/Lightmap-0_comp_light.exr.meta
+Assets/Main_map 1/Lightmap-10_comp_light.exr
+Assets/Main_map 1/Lightmap-10_comp_light.exr.meta
+Assets/Main_map 1/Lightmap-1_comp_light.exr
+Assets/Main_map 1/Lightmap-1_comp_light.exr.meta
+Assets/Main_map 1/Lightmap-2_comp_light.exr
+Assets/Main_map 1/Lightmap-2_comp_light.exr.meta
+Assets/Main_map 1/Lightmap-3_comp_light.exr
+Assets/Main_map 1/Lightmap-3_comp_light.exr.meta
+Assets/Main_map 1/Lightmap-4_comp_light.exr
+Assets/Main_map 1/Lightmap-4_comp_light.exr.meta
+Assets/Main_map 1/Lightmap-5_comp_light.exr
+Assets/Main_map 1/Lightmap-5_comp_light.exr.meta
+Assets/Main_map 1/Lightmap-6_comp_light.exr
+Assets/Main_map 1/Lightmap-6_comp_light.exr.meta
+Assets/Main_map 1/Lightmap-7_comp_light.exr
+Assets/Main_map 1/Lightmap-7_comp_light.exr.meta
+Assets/Main_map 1/Lightmap-8_comp_light.exr
+Assets/Main_map 1/Lightmap-8_comp_light.exr.meta
+Assets/Main_map 1/Lightmap-9_comp_light.exr
+Assets/Main_map 1/Lightmap-9_comp_light.exr.meta
+Assets/Main_map 1/Materials.meta
+Assets/Main_map 1/Materials/Lightmap-2_comp_light.mat
+Assets/Main_map 1/Materials/Lightmap-2_comp_light.mat.meta
+Assets/Main_map 1/ReflectionProbe-0.exr
+Assets/Main_map 1/ReflectionProbe-0.exr.meta
+Assets/Main_map 1/ReflectionProbe-1.exr
+Assets/Main_map 1/ReflectionProbe-1.exr.meta
+Assets/Main_map 1/ReflectionProbe-10.exr
+Assets/Main_map 1/ReflectionProbe-10.exr.meta
+Assets/Main_map 1/ReflectionProbe-2.exr
+Assets/Main_map 1/ReflectionProbe-2.exr.meta
+Assets/Main_map 1/ReflectionProbe-3.exr
+Assets/Main_map 1/ReflectionProbe-3.exr.meta
+Assets/Main_map 1/ReflectionProbe-4.exr
+Assets/Main_map 1/ReflectionProbe-4.exr.meta
+Assets/Main_map 1/ReflectionProbe-5.exr
+Assets/Main_map 1/ReflectionProbe-5.exr.meta
+Assets/Main_map 1/ReflectionProbe-6.exr
+Assets/Main_map 1/ReflectionProbe-6.exr.meta
+Assets/Main_map 1/ReflectionProbe-7.exr
+Assets/Main_map 1/ReflectionProbe-7.exr.meta
+Assets/Main_map 1/ReflectionProbe-8.exr
+Assets/Main_map 1/ReflectionProbe-8.exr.meta
+Assets/Main_map 1/ReflectionProbe-9.exr
+Assets/Main_map 1/ReflectionProbe-9.exr.meta
+Assets/AKH/Resources/Player_test2.prefab
+Assets/AKH/Scenes/Login.unity
+Assets/AKH/Scenes/MainGame_.unity
+Assets/AKH/Script/CaneraCs2.cs
+Assets/AKH/Script/GameManger.cs
+Assets/AKH/Script/LobbyManager.cs
+Assets/AKH/Script/PlayerCs.cs
+Assets/AKH/Script/Spawn.cs
+Assets/character_folder/TPS Controller/PlayerController/PlayerAnimator/PlayerAnimator.controller
+Assets/character_folder/TPS Controller/PlayerController/PlayerScripts/Player/Player_Scr.cs
+Assets/character_folder/TPS Controller/PlayerController/PlayerScripts/Shooting/ShootSimple_Scr.cs
+Assets/character_folder/Zombie/FolloFollowme.cs
+Assets/GeniusHongIfTouchDie/DrgAttSC.cs
+Assets/GeniusHongIfTouchDie/MonsterScript & Anim.meta
+Assets/GeniusHongIfTouchDie/MonsterScript & Anim/SkeletonAnimH.controller
+Assets/GeniusHongIfTouchDie/MonsterScript & Anim/SkeletonAnimH.controller.meta
+Assets/GeniusHongIfTouchDie/MonsterScript & Anim/SkeletonScript.cs
+Assets/GeniusHongIfTouchDie/MonsterScript & Anim/SkeletonScript.cs.meta
+Assets/GeniusHongIfTouchDie/MonsterScript & Anim/SkeletonSwordScript.cs
+Assets/GeniusHongIfTouchDie/MonsterScript & Anim/SkeletonSwordScript.cs.meta
+Assets/GeniusHongIfTouchDie/test.unity
+Assets/GeniusHongIfTouchDie/test/NavMesh.asset
+Assets/Level_1.unity
+Assets/Main_map.unity
+Assets/Map/Multistory Dungeons 2/Prefabs/Base/s-Floor.prefab
+Assets/Map/Multistory Dungeons 2/Prefabs/Base/s-Floor.prefab.meta
+Assets/Map/Multistory Dungeons/HDRP_Multistory_Dungeons_2019.2.unitypackage.meta
+Assets/Map/Multistory Dungeons/LWRP_Multistory_Dungeons_2019.2.unitypackage.meta
+Assets/Map/Multistory Dungeons/Multistory Dungeons Mobile Gamma 2018.4.unitypackage.meta
+Assets/Map/Multistory Dungeons/Multistory Dungeons Mobile Linear 2018.4.unitypackage.meta
+Assets/Map/Multistory Dungeons/Multistory Dungeons PC Gamma 2018.4.unitypackage.meta
+Assets/Map/Multistory Dungeons/Multistory Dungeons PC Linear 2018.4.unitypackage.meta
+Assets/Photon/PhotonUnityNetworking/Code/Views/PhotonTransformViewClassic.cs.meta
+Assets/RPG Monster Wave Polyart.meta
+Assets/RPG Monster Wave Polyart/Materials.meta
+Assets/RPG Monster Wave Polyart/Materials/PolyartDefault.mat
+Assets/RPG Monster Wave Polyart/Materials/PolyartDefault.mat.meta
+Assets/RPG Monster Wave Polyart/Materials/PolyArtMaskTint01.mat
+Assets/RPG Monster Wave Polyart/Materials/PolyArtMaskTint01.mat.meta
+Assets/RPG Monster Wave Polyart/Materials/PolyArtMaskTint02.mat
+Assets/RPG Monster Wave Polyart/Materials/PolyArtMaskTint02.mat.meta
+Assets/RPG Monster Wave Polyart/Materials/PolyArtMaskTint03.mat
+Assets/RPG Monster Wave Polyart/Materials/PolyArtMaskTint03.mat.meta
+Assets/RPG Monster Wave Polyart/Materials/Skybox_Mat.mat
+Assets/RPG Monster Wave Polyart/Materials/Skybox_Mat.mat.meta
+Assets/RPG Monster Wave Polyart/Materials/Stage.mat
+Assets/RPG Monster Wave Polyart/Materials/Stage.mat.meta
+Assets/RPG Monster Wave Polyart/Meshes.meta
+Assets/RPG Monster Wave Polyart/Meshes/BatMesh.fbx
+Assets/RPG Monster Wave Polyart/Meshes/BatMesh.fbx.meta
+Assets/RPG Monster Wave Polyart/Meshes/DragonMesh.fbx
+Assets/RPG Monster Wave Polyart/Meshes/DragonMesh.fbx.meta
+Assets/RPG Monster Wave Polyart/Meshes/EvilMageMesh.fbx
+Assets/RPG Monster Wave Polyart/Meshes/EvilMageMesh.fbx.meta
+Assets/RPG Monster Wave Polyart/Meshes/GolemMesh.fbx
+Assets/RPG Monster Wave Polyart/Meshes/GolemMesh.fbx.meta
+Assets/RPG Monster Wave Polyart/Meshes/MonsterPlantMesh.fbx
+Assets/RPG Monster Wave Polyart/Meshes/MonsterPlantMesh.fbx.meta
+Assets/RPG Monster Wave Polyart/Meshes/OrcMesh.fbx
+Assets/RPG Monster Wave Polyart/Meshes/OrcMesh.fbx.meta
+Assets/RPG Monster Wave Polyart/Meshes/SkeletonMesh.fbx
+Assets/RPG Monster Wave Polyart/Meshes/SkeletonMesh.fbx.meta
+Assets/RPG Monster Wave Polyart/Meshes/SlimeMesh.fbx
+Assets/RPG Monster Wave Polyart/Meshes/SlimeMesh.fbx.meta
+Assets/RPG Monster Wave Polyart/Meshes/SpiderMesh.fbx
+Assets/RPG Monster Wave Polyart/Meshes/SpiderMesh.fbx.meta
+Assets/RPG Monster Wave Polyart/Meshes/StageMesh.fbx
+Assets/RPG Monster Wave Polyart/Meshes/StageMesh.fbx.meta
+Assets/RPG Monster Wave Polyart/Meshes/TurtleShellMesh.fbx
+Assets/RPG Monster Wave Polyart/Meshes/TurtleShellMesh.fbx.meta
+Assets/RPG Monster Wave Polyart/Prefabs.meta
+Assets/RPG Monster Wave Polyart/Prefabs/PolyartDefault.meta
+Assets/RPG Monster Wave Polyart/Prefabs/PolyartDefault/Bat.prefab
+Assets/RPG Monster Wave Polyart/Prefabs/PolyartDefault/Bat.prefab.meta
+Assets/RPG Monster Wave Polyart/Prefabs/PolyartDefault/Dragon.prefab
+Assets/RPG Monster Wave Polyart/Prefabs/PolyartDefault/Dragon.prefab.meta
+Assets/RPG Monster Wave Polyart/Prefabs/PolyartDefault/EvilMage.prefab
+Assets/RPG Monster Wave Polyart/Prefabs/PolyartDefault/EvilMage.prefab.meta
+Assets/RPG Monster Wave Polyart/Prefabs/PolyartDefault/Golem.prefab
+Assets/RPG Monster Wave Polyart/Prefabs/PolyartDefault/Golem.prefab.meta
+Assets/RPG Monster Wave Polyart/Prefabs/PolyartDefault/MonsterPlant.prefab
+Assets/RPG Monster Wave Polyart/Prefabs/PolyartDefault/MonsterPlant.prefab.meta
+Assets/RPG Monster Wave Polyart/Prefabs/PolyartDefault/Orc.prefab
+Assets/RPG Monster Wave Polyart/Prefabs/PolyartDefault/Orc.prefab.meta
+Assets/RPG Monster Wave Polyart/Prefabs/PolyartDefault/Skeleton.prefab
+Assets/RPG Monster Wave Polyart/Prefabs/PolyartDefault/Skeleton.prefab.meta
+Assets/RPG Monster Wave Polyart/Prefabs/PolyartDefault/Slime.prefab
+Assets/RPG Monster Wave Polyart/Prefabs/PolyartDefault/Slime.prefab.meta
+Assets/RPG Monster Wave Polyart/Prefabs/PolyartDefault/Spider.prefab
+Assets/RPG Monster Wave Polyart/Prefabs/PolyartDefault/Spider.prefab.meta
+Assets/RPG Monster Wave Polyart/Prefabs/PolyartDefault/TurtleShell.prefab
+Assets/RPG Monster Wave Polyart/Prefabs/PolyartDefault/TurtleShell.prefab.meta
+Assets/RPG Monster Wave Polyart/Prefabs/PolyartMaskTint.meta
+Assets/RPG Monster Wave Polyart/Prefabs/PolyartMaskTint/BatMaskTint.prefab
+Assets/RPG Monster Wave Polyart/Prefabs/PolyartMaskTint/BatMaskTint.prefab.meta
+Assets/RPG Monster Wave Polyart/Prefabs/PolyartMaskTint/DragonMaskTint.prefab
+Assets/RPG Monster Wave Polyart/Prefabs/PolyartMaskTint/DragonMaskTint.prefab.meta
+Assets/RPG Monster Wave Polyart/Prefabs/PolyartMaskTint/EvilMageMaskTint.prefab
+Assets/RPG Monster Wave Polyart/Prefabs/PolyartMaskTint/EvilMageMaskTint.prefab.meta
+Assets/RPG Monster Wave Polyart/Prefabs/PolyartMaskTint/GolemMaskTint.prefab
+Assets/RPG Monster Wave Polyart/Prefabs/PolyartMaskTint/GolemMaskTint.prefab.meta
+Assets/RPG Monster Wave Polyart/Prefabs/PolyartMaskTint/MonsterPlantMaskTint.prefab
+Assets/RPG Monster Wave Polyart/Prefabs/PolyartMaskTint/MonsterPlantMaskTint.prefab.meta
+Assets/RPG Monster Wave Polyart/Prefabs/PolyartMaskTint/OrcMaskTint.prefab
+Assets/RPG Monster Wave Polyart/Prefabs/PolyartMaskTint/OrcMaskTint.prefab.meta
+Assets/RPG Monster Wave Polyart/Prefabs/PolyartMaskTint/SkeletonMaskTint.prefab
+Assets/RPG Monster Wave Polyart/Prefabs/PolyartMaskTint/SkeletonMaskTint.prefab.meta
+Assets/RPG Monster Wave Polyart/Prefabs/PolyartMaskTint/SlimeMaskTint.prefab
+Assets/RPG Monster Wave Polyart/Prefabs/PolyartMaskTint/SlimeMaskTint.prefab.meta
+Assets/RPG Monster Wave Polyart/Prefabs/PolyartMaskTint/TurtleShellMaskTint.prefab
+Assets/RPG Monster Wave Polyart/Prefabs/PolyartMaskTint/TurtleShellMaskTint.prefab.meta
+Assets/RPG Monster Wave Polyart/Scenes.meta
+Assets/RPG Monster Wave Polyart/Scenes/PolyartDefault.unity
+Assets/RPG Monster Wave Polyart/Scenes/PolyartDefault.unity.meta
+Assets/RPG Monster Wave Polyart/Scenes/PolyartMaskTint01.unity
+Assets/RPG Monster Wave Polyart/Scenes/PolyartMaskTint01.unity.meta
+Assets/RPG Monster Wave Polyart/Scenes/PolyartMaskTint02.unity
