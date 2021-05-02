@@ -55,8 +55,8 @@ public class ShootSimple_Scr : MonoBehaviour
 	[Header("Time between shots (Adjusts to the time of the shot animation)")]
     public float reloadTime;
 
-	[Header("Time to remove the bullet")]
-    public float shootFireLifeTime;
+    [Header("Time to remove the bullet")]
+    public float shootFireLifeTime = 1; 
 
 	[Header("Shot sound")]
 	public AudioClip fireSound;

@@ -62,8 +62,10 @@ public class Player_Scr : MonoBehaviour
 	[Header("무기스킬2 제어")]
 	public bool isSkill3_2 = true;
 	public bool isSkill3_3 = true;
+	public bool isSkill3_4 = true;
 	public GameObject skill3_wall;
 	public GameObject skill3_buff;
+	public GameObject skill3_4_Effect;
 
 
 
@@ -241,7 +243,7 @@ public class Player_Scr : MonoBehaviour
 
 			isSkill3 = false;
 			skill3_Buff_Effect.SetActive(true); //버프 이펙트 나오게하기
-			Depense += 5; //캐릭터 방어력 5 상승
+			Bullet.bulletDamage += 20; //캐릭터 방어력 5 상승
 			StartCoroutine("Skill1_3");
 		}
 	}
@@ -251,7 +253,8 @@ public class Player_Scr : MonoBehaviour
 	{
 
 		yield return new WaitForSeconds(5.0f);
-		Depense -= 5; //캐릭터 방어력 원상태로 돌리기
+		Bullet.bulletDamage -= 20;
+		 //캐릭터 방어력 원상태로 돌리기
 		skill3_Buff_Effect.SetActive(false);
 		isSkill3 = true;
 
@@ -298,7 +301,7 @@ public class Player_Scr : MonoBehaviour
 
 		yield return new WaitForSeconds(2.0f);
 		anim.SetBool("Skill_1_Magic", false);
-		Instantiate(skill2_meteo, transform.position + new Vector3(0,0,10), Quaternion.Euler(-90, 0, 0));
+		Instantiate(skill2_meteo, transform.position + this.transform.forward * 10, Quaternion.Euler(-90, 0, 0));
 		isfight = false;
 		yield return new WaitForSeconds(10.0f);
 		isSkill2_4 = true;
@@ -315,8 +318,6 @@ public class Player_Scr : MonoBehaviour
 			isSkill3_2 = false;
 			isfight = true;
 			StartCoroutine("Skill3_2");
-
-
 		}
 	}
 
@@ -325,9 +326,10 @@ public class Player_Scr : MonoBehaviour
 
 		yield return new WaitForSeconds(2.0f);
 		anim.SetBool("Skill_1_Magic", false);
-		Instantiate(skill3_wall, transform.position + this.transform.forward * 5, Quaternion.Euler(0, 0, 0));
+		Instantiate(skill3_wall, transform.position + this.transform.forward * 5, Quaternion.Euler(-90, 0, 0));
 		isfight = false;
 		yield return new WaitForSeconds(5.0f); //스킬 쿨
+		Destroy(skill3_wall);
 		isSkill3_2 = true;
 
 	}
@@ -339,19 +341,48 @@ public class Player_Scr : MonoBehaviour
 		{
 
 			isSkill3_3 = false;
-			skill3_buff.SetActive(true); //버프 이펙트 나오게하기			
+			skill3_buff.SetActive(true); //버프 이펙트 나오게하기	
+			Depense += 50;
 			StartCoroutine("Skill3_3");
 		}
 	}
 
+	public void skill3_4()
+	{
+		if (Input.GetKeyDown(KeyCode.Alpha3) && isSkill3_4 == true && roll_check == false
+			&& grounded == true && ShootSimple_Scr.SkillMode == false)
+		{
+			isfight = true;
+			isSkill3_4 = false;
+			anim.SetBool("Skill_1_Magic", true);
+			 //버프 이펙트 나오게하기			
+			StartCoroutine("Skill3_4");
+		}
+	}
+
+	IEnumerator Skill3_4()
+	{
+		yield return new WaitForSeconds(2.0f);
+		skill3_4_Effect.SetActive(true);
+		anim.SetBool("Skill_1_Magic", false);
+		isfight = false;
+		yield return new WaitForSeconds(5.0f); //초후 버프 없애기
+		skill3_4_Effect.SetActive(false);
+		yield return new WaitForSeconds(8.0f); //스킬 쿨타임
+		isSkill3_4 = true;
+
+	}
 	IEnumerator Skill3_3()
 	{
 
 		yield return new WaitForSeconds(5.0f); //초후 버프 없애기
 		skill3_buff.SetActive(false);
+		Depense -= 50;
 		yield return new WaitForSeconds(8.0f); //스킬 쿨타임
 		isSkill3_3 = true;
 	}
+
+
 
 		void Jump()
     {
