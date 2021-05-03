@@ -73,7 +73,6 @@ GameObject:
   - component: {fileID: 6065441085265720467}
   - component: {fileID: 4563074193805654229}
   - component: {fileID: 2856210279865090646}
-  - component: {fileID: 8828664257308714952}
   - component: {fileID: 2084520158885557984}
   - component: {fileID: 2264347662325160634}
   - component: {fileID: 8901627604861287226}
@@ -254,59 +253,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &8828664257308714952
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 62664558307640605}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 839c6009a7d723149a4cff1bccf5f6ba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHP: 150
-  HP: 150
-  MP: 100
-  Depense: 5
-  HitD: 0
-  lookIKWeight: 1
-  bodyWeight: 1.5
-  healthText: {fileID: 6916162612989849354, guid: 470f1010617705f4a9390efdc72cb8a1,
-    type: 3}
-  sliderHP: {fileID: 7813571592900520322, guid: 670465ef1482a3f4bacb24d77f8180c1,
-    type: 3}
-  targetPos: {fileID: 0}
-  targetPosOld: {fileID: 0}
-  angularSpeed: 20
-  luft: 1
-  grounded: 1
-  jumpPower: 3.5
-  rollPower: 3.5
-  isSkill2: 1
-  isSkill3: 1
-  skill2_Effect: {fileID: 0}
-  skill3_Buff_Effect: {fileID: 0}
-  isSkill2_3: 1
-  isSkill2_4: 1
-  skill2_fireFiled: {fileID: 0}
-  skill2_meteo: {fileID: 0}
-  isSkill3_2: 1
-  isSkill3_3: 1
-  skill3_wall: {fileID: 0}
-  skill3_buff: {fileID: 0}
-  damage: 50
-  weapon1: {fileID: 7559696614256856719}
-  weapon2: {fileID: 2024887917630524668}
-  weapon3: {fileID: 0}
-  isfight: 0
-  isshoot: 1
-  fightModUI: {fileID: 2150004387207273119, guid: c27463e172c55824980350685390bd03,
-    type: 3}
-  ragdoll: {fileID: 5431398466033780921, guid: fc94d387fc606fb4aae480cc5e37a14c, type: 3}
-  clcl: {fileID: 0}
-  PlayerMoneyText: {fileID: 0}
 --- !u!114 &2084520158885557984
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -362,7 +308,6 @@ MonoBehaviour:
   speed: 5
   rotSpeed: 120
   tr: {fileID: 2107496503084764974}
-  pv: {fileID: 3830210152413973123}
 --- !u!114 &8901627604861287226
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -379,10 +324,10 @@ MonoBehaviour:
   ShowParameterInspector: 1
   m_SynchronizeParameters:
   - Type: 1
-    SynchronizeType: 0
+    SynchronizeType: 1
     Name: Strafe
   - Type: 1
-    SynchronizeType: 0
+    SynchronizeType: 1
     Name: Run
   - Type: 4
     SynchronizeType: 0
@@ -400,10 +345,10 @@ MonoBehaviour:
     SynchronizeType: 0
     Name: Jump
   - Type: 1
-    SynchronizeType: 0
+    SynchronizeType: 1
     Name: forward_roll
   - Type: 1
-    SynchronizeType: 0
+    SynchronizeType: 1
     Name: back_roll
   - Type: 4
     SynchronizeType: 0
@@ -430,7 +375,7 @@ MonoBehaviour:
   prefixField: -1
   Synchronization: 2
   OwnershipTransfer: 0
-  observableSearch: 1
+  observableSearch: 2
   ObservedComponents:
   - {fileID: 8901627604861287226}
   - {fileID: 2447697463490510960}
