@@ -41,39 +41,17 @@ public class CaneraCs2 : MonoBehaviourPun
 
 		tr = GetComponent<Transform>();
 
-		//동기화 콜백함수가 발생하려면 반드시 필요
-		photonView.ObservedComponents[0] = this;
 
 		transform.position = camTrans.position;
 		transform.forward = targetLook.forward;
 	}
-	void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
-	{
-		if (stream.IsWriting)
-		{
-			//자신의 플레이어 정보는 다른 네트워크 사용자에게 송신
-			stream.SendNext(tr.position);
-			stream.SendNext(tr.rotation);
-		}
-		else
-		{
-			//다른 플레이어의 정보는 수신
-			currPos = (Vector3)stream.ReceiveNext();
-			currRot = (Quaternion)stream.ReceiveNext();
-		}
-	}
+	
 
 	void Update()
 	{
 		if (photonView.IsMine)
 		{
 			Tick();
-		}
-		else
-		{
-			//네트워크로 연결된 다른 유저일 경우에 실시간 전송 받는 변수를 이용해서 이동
-			tr.position = Vector3.Lerp(tr.position, currPos, Time.deltaTime * 10.0f);
-			tr.rotation = Quaternion.Lerp(tr.rotation, currRot, Time.deltaTime * 10.0f);
 		}
 	}
 
