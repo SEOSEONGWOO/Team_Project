@@ -3,6 +3,7 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
+<<<<<<< HEAD
   tags:
   - Shootable
   - Damage
@@ -20,6 +21,9 @@ TagManager:
   - Skill2_4
   - Skill3_1
   - Skill3_2
+=======
+  tags: []
+>>>>>>> 4c980218ce8cfba9c79d012159763bd4538c0254
   layers:
   - Default
   - TransparentFX
@@ -29,11 +33,11 @@ TagManager:
   - UI
   - 
   - 
-  - Lighting
-  - Ground
-  - Postprocessing
-  - Blocking
-  - MainC
+  - 
+  - 
+  - 
+  - 
+  - 
   - 
   - 
   - 
@@ -54,9 +58,6 @@ TagManager:
   - 
   - 
   m_SortingLayers:
-  - name: Fire
-    uniqueID: 3804908061
-    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
