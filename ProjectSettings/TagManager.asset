@@ -15,14 +15,11 @@ TagManager:
   - ActionZone
   - Skill2_1
   - skill1_2
-<<<<<<< HEAD
-  - FlameTrap
-=======
   - Skill1_4
   - Skill2_3
   - Skill2_4
   - Skill3_1
->>>>>>> c20b180d96a0b5d6d674e91ffcae62b2ace75799
+  - Skill3_2
   layers:
   - Default
   - TransparentFX

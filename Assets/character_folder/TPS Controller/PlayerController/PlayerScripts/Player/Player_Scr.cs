@@ -177,6 +177,7 @@ public class Player_Scr : MonoBehaviour
 		{
 			skill3_2();
 			skill3_3();
+			skill3_4();
 		}
 		w_change(); //무기변경 코드
 		//skill1();
@@ -329,7 +330,7 @@ public class Player_Scr : MonoBehaviour
 		Instantiate(skill3_wall, transform.position + this.transform.forward * 5, Quaternion.Euler(-90, 0, 0));
 		isfight = false;
 		yield return new WaitForSeconds(5.0f); //스킬 쿨
-		Destroy(skill3_wall);
+		//Destroy(skill3_wall);
 		isSkill3_2 = true;
 
 	}
@@ -346,10 +347,18 @@ public class Player_Scr : MonoBehaviour
 			StartCoroutine("Skill3_3");
 		}
 	}
+	IEnumerator Skill3_3()
+	{
 
+		yield return new WaitForSeconds(5.0f); //초후 버프 없애기
+		skill3_buff.SetActive(false);
+		Depense -= 50;
+		yield return new WaitForSeconds(8.0f); //스킬 쿨타임
+		isSkill3_3 = true;
+	}
 	public void skill3_4()
 	{
-		if (Input.GetKeyDown(KeyCode.Alpha3) && isSkill3_4 == true && roll_check == false
+		if (Input.GetKeyDown(KeyCode.Alpha4) && isSkill3_4 == true && roll_check == false
 			&& grounded == true && ShootSimple_Scr.SkillMode == false)
 		{
 			isfight = true;
@@ -372,15 +381,7 @@ public class Player_Scr : MonoBehaviour
 		isSkill3_4 = true;
 
 	}
-	IEnumerator Skill3_3()
-	{
-
-		yield return new WaitForSeconds(5.0f); //초후 버프 없애기
-		skill3_buff.SetActive(false);
-		Depense -= 50;
-		yield return new WaitForSeconds(8.0f); //스킬 쿨타임
-		isSkill3_3 = true;
-	}
+	
 
 
 
