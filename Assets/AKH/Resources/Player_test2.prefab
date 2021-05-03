@@ -73,11 +73,8 @@ GameObject:
   - component: {fileID: 6065441085265720467}
   - component: {fileID: 4563074193805654229}
   - component: {fileID: 2856210279865090646}
-<<<<<<< Updated upstream
   - component: {fileID: 8828664257308714952}
   - component: {fileID: 2084520158885557984}
-=======
->>>>>>> Stashed changes
   - component: {fileID: 2264347662325160634}
   - component: {fileID: 8901627604861287226}
   - component: {fileID: 3830210152413973123}
@@ -257,7 +254,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-<<<<<<< Updated upstream
 --- !u!114 &8828664257308714952
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -325,8 +321,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 2107496503084764974}
   distance: 10
-=======
->>>>>>> Stashed changes
 --- !u!114 &2264347662325160634
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -440,7 +434,6 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 8901627604861287226}
   - {fileID: 2447697463490510960}
-  - {fileID: -4336198064446562716}
   sceneViewId: 2
   InstantiationId: 0
   isRuntimeInstantiated: 0
