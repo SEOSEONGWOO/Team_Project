@@ -3,27 +3,7 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-<<<<<<< HEAD
-  tags:
-  - Shootable
-  - Damage
-  - Death
-  - Enemy
-  - DamageAI
-  - Bullet
-  - User
-  - Skill1
-  - ActionZone
-  - Skill2_1
-  - skill1_2
-  - Skill1_4
-  - Skill2_3
-  - Skill2_4
-  - Skill3_1
-  - Skill3_2
-=======
   tags: []
->>>>>>> 4c980218ce8cfba9c79d012159763bd4538c0254
   layers:
   - Default
   - TransparentFX
