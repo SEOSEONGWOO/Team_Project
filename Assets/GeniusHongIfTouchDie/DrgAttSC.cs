@@ -51,7 +51,7 @@ public class DrgAttSC : MonoBehaviour
 
     void OnCollisionEnter(Collision Player)
     {
-            Gobj.GetComponent<Player_Scr>().GunnerHitFunc(Damage);
+        Gobj.GetComponent<Player_Scr>().GunnerHitFunc(Damage);
         gameObject.GetComponent<CapsuleCollider>().enabled = false;
     }
 }
