@@ -157,7 +157,7 @@ public class Player_Scr : MonoBehaviour
 		Locomotion();
 		Fight();
 		Health();
-		UI();
+		//UI();
 		Jump();
 		roll();
 
@@ -611,13 +611,13 @@ public class Player_Scr : MonoBehaviour
 		//------------------------------------------//
 	}
 
-	void UI()
+	/*void UI()
 	{
 		if (isfight)
 			fightModUI.SetActive (true);
 		else
 			fightModUI.SetActive (false);
-	}
+	}*/
 
 
 	private void OnTriggerStay(Collider other)
