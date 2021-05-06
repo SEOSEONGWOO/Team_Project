@@ -12,10 +12,10 @@ GameObject:
   - component: {fileID: 166155281017435747}
   - component: {fileID: 8714776347161677143}
   - component: {fileID: 5168730049556668201}
-  - component: {fileID: 6654210529076529408}
   - component: {fileID: 5339618517231748793}
+  - component: {fileID: 8485892155735865941}
   m_Layer: 0
-  m_Name: Bullet
+  m_Name: Bullet_
   m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -91,26 +91,10 @@ SphereCollider:
   m_GameObject: {fileID: 8039606704532324472}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &6654210529076529408
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8039606704532324472}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9fc3118a7adf90c489e55c110304e08e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Speed: 100
-  hitEffect: {fileID: 7798739363496437787, guid: 524c8d42d1fd7ab409836ffd79bcbef4,
-    type: 3}
-  hitBlood: {fileID: 1000012909287652, guid: abb9f519b142e304d9c45b56afa768bc, type: 3}
 --- !u!54 &5339618517231748793
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -126,4 +110,20 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 1
   m_Constraints: 0
-  m_CollisionDetection: 1
+  m_CollisionDetection: 3
+--- !u!114 &8485892155735865941
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8039606704532324472}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d176d7e1a4226b145a670f79a05854b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Speed: 100
+  hitEffect: {fileID: 7798739363496437787, guid: 524c8d42d1fd7ab409836ffd79bcbef4,
+    type: 3}
+  hitBlood: {fileID: 1000012909287652, guid: abb9f519b142e304d9c45b56afa768bc, type: 3}

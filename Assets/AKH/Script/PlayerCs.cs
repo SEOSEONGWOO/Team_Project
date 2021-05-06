@@ -111,6 +111,7 @@ public class PlayerCs : MonoBehaviourPun
 	void Start()
 	{
 		/*-----AKH 수정-----*/
+		DontDestroyOnLoad(gameObject);
 
 		targetPos = GameObject.Find("TargetLook").GetComponent<Transform>();
 		targetPosOld = GameObject.Find("TargetLookInFight").GetComponent<Transform>();
