@@ -8,6 +8,12 @@ public class SkeletonSword : MonoBehaviour
 
     int Damage = 0;
 
+    float Delay = 2f;
+
+    float Cool = 0f;
+
+    int Mode = 0;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -17,14 +23,31 @@ public class SkeletonSword : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Skeleton.AttackMotion == 1)
+        Debug.Log(Mode);
+
+        if (Mode == 1)
         {
             gameObject.GetComponent<BoxCollider>().enabled = true;
+            Cool += Time.deltaTime;
+            if (Cool >= Delay)
+            {
+                Cool = 0f;
+                Mode = 0;
+            }
+        }
+        else if (Mode == 0)
+        {
+            gameObject.GetComponent<BoxCollider>().enabled = false;
+        }
+
+        if (Skeleton.AttackMotion == 1)
+        {
+            Mode = 1;
             Damage = 30;
         }
-        else if(Skeleton.AttackMotion == 2)
+        else if (Skeleton.AttackMotion == 2)
         {
-            gameObject.GetComponent<BoxCollider>().enabled = true;
+            Mode = 1;
             Damage = 50;
         }
     }
@@ -32,6 +55,6 @@ public class SkeletonSword : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         Gobj.GetComponent<Player_Scr>().GunnerHitFunc(Damage);
-        gameObject.GetComponent<BoxCollider>().enabled = false;
+        Mode = 0;
     }
 }
