@@ -21,24 +21,27 @@ public class Skeleton : MonoBehaviour
 
     bool SkeletonAttack = false; // 스켈레톤 공격 판단용
 
-    float SkeletonSkill1Cool = 0.0f;
+    /*    float SkeletonSkill1Cool = 0.0f;
 
-    bool SkeletonSkill1CoolOn = false;
+        bool SkeletonSkill1CoolOn = false;*/
 
-    float SkeletonSkill2Cool = 0.0f;
+    float SkeletonSkill2 = 0.0f;
+
+    float SkeletonSkill2Cool = 5f;
 
     bool SkeletonSkill2CoolOn = false;
 
     float AttackDel = 0f;
 
-    float SkeletonAttackDel = 0f;
+    float SkeletonAttackDel = 2f;
 
     int SkeletonHP = 500;
 
     static public int SkeletonDamage = 20;
 
-    static public int AttackMotion = 0; // 공격 상태 판단
+    static public int AttackMotion = 5; // 공격 상태 판단
 
+    bool PlayerCheck = false;
 
     void Start()
     {
@@ -48,28 +51,36 @@ public class Skeleton : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(AttackMotion);
+        nav = GetComponent<NavMeshAgent>();
+
+        //Debug.Log(AttackMotion);
+
+        //Debug.Log(AttackDel);
 
         SkeletonVec = SkeletonLo.transform.position; // 스켈레톤 현재 위치값 
 
         distance = Vector3.Distance(SkeletonVec, Player_Scr.CLC);
 
-        if(SkeletonHP <= 0)
-        {
-            SkeletonDie = true;
-        }
-
-        if (SkeletonDie == true)
+        if (SkeletonHP <= 0 && SkeletonDie == false)
         {
             SDie();
         }
-        else if(SkeletonDie == false)
+
+        else if (SkeletonDie == false)
         {
-            nav = GetComponent<NavMeshAgent>();
+            if (AttackMotion == 5)
+            {
+                if (distance < 30f)
+                {
+                    AttackMotion = 0;
+                }
+            }
+            else if (AttackMotion != 5)
+            {
+                nav.SetDestination(Player_Scr.CLC);
 
-            nav.SetDestination(Player_Scr.CLC);
-
-            transform.LookAt(Player_Scr.CLC);
+                transform.LookAt(Player_Scr.CLC);
+            }
 
             if (distance <= 2.5f)  // 거리 2.5f 보다 가까울 때
             {
@@ -79,7 +90,18 @@ public class Skeleton : MonoBehaviour
             else if (distance > 2.5f) // 거리 2.5f 보다 멀 면
             {
                 SkeletonAttack = false; // 공격상태 끄고
-                nav.speed = 4; // 속도 4
+                nav.speed = 2; // 속도 4
+            }
+
+            if (SkeletonSkill2CoolOn == true)
+            {
+                SkeletonSkill2 += Time.deltaTime;
+
+                if (SkeletonSkill2 >= SkeletonSkill2Cool)
+                {
+                    SkeletonSkill2 = 0.0f;
+                    SkeletonSkill2CoolOn = false;
+                }
             }
 
             if (SkeletonAttack == true) // 공격 상태일 때
@@ -92,7 +114,6 @@ public class Skeleton : MonoBehaviour
                 else if (AttackMotion == 1) // 공격모드 1이면
                 {
                     avatar.SetTrigger("Attack01"); // Attack01 실행
-                    SkeletonAttackDel = 0.5f; // 딜레이 0.5주고
                     AttackMotion = 3; // 대기상태로 변경
                 }
                 else if (AttackMotion == 2) // 공격모드 2고
@@ -100,8 +121,8 @@ public class Skeleton : MonoBehaviour
                     if (SkeletonSkill2CoolOn == false) // 공격모드2 쿨타임이 없을 때
                     {
                         avatar.SetTrigger("Attack02"); // Attack02 실행
-                        SkeletonAttackDel = 1f; // 딜레이 1주고
                         AttackMotion = 3; // 대기상태로 변경
+                        SkeletonSkill2CoolOn = true; // 스킬 2 쿨타임 돌려줌.
                     }
                     else if (SkeletonSkill2CoolOn == true) // 쿨타임이면
                     {
@@ -118,18 +139,27 @@ public class Skeleton : MonoBehaviour
                     }
                 }
             }
-            else if (SkeletonAttack == false) // 공격모드 꺼지면
+            else if (SkeletonAttack == false && AttackMotion == 0) // 공격모드 꺼지면
             {
                 avatar.SetBool("FollowFollowMe", true);
             }
         }
+    }
 
-        void SDie()
+    void SDie()
+    {
+        avatar.SetBool("DIE", true);
+        SkeletonDie = true;
+    }
+
+    public void SetDamageAI()
+    {
+        if (AttackMotion == 5)
         {
-
+            AttackMotion = 0;
         }
-
-
+        SkeletonHP -= Bullet.bulletDamage; // 총에 맞으면 총알데미지 만큼 체력 까임
+        Debug.Log(SkeletonHP);
     }
 }
 
