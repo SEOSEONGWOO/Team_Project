@@ -3,24 +3,7 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-<<<<<<< HEAD
   tags: []
-=======
-  tags: []
-<<<<<<< HEAD
-=======
-=======
-<<<<<<< HEAD
-  tags: []
-=======
-  tags:
-  - Bullet
-  - Enemy
-  - DamageAI
->>>>>>> b7026f40a56f46668b269a427c16ade42615dbbf
->>>>>>> 5d7f310004da3e46346d16836c8c7d9c40bb17a2
->>>>>>> b9306ce0f6d074cae9e67cdbe32e90545b0e2411
->>>>>>> 4ca7b363bf689cb72a5e1a6c33bcc8bcd7e4fcd1
   layers:
   - Default
   - TransparentFX
