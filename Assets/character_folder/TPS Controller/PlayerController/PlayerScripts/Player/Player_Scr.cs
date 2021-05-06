@@ -561,7 +561,7 @@ public class Player_Scr : MonoBehaviour
 		{
 			Debug.Log("조준 끝");
 			ShootSimple_Scr.SkillMode = false;
-			weapon3.SetActive(false);
+			// weapon3.SetActive(false);
 			//ShootSimple_Scr.SkillMode = false;
 			isfight = false;
 			anim.SetBool ("isFight", false);

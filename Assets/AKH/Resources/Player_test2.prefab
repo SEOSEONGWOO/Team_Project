@@ -144,7 +144,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 1
   m_Constraints: 112
-  m_CollisionDetection: 1
+  m_CollisionDetection: 3
 --- !u!136 &4563074193805654229
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -375,7 +375,7 @@ MonoBehaviour:
   ObservedComponentsFoldoutOpen: 1
   Group: 0
   prefixField: -1
-  Synchronization: 2
+  Synchronization: 3
   OwnershipTransfer: 0
   observableSearch: 2
   ObservedComponents:
@@ -954,7 +954,7 @@ MonoBehaviour:
   weaponPoint: {fileID: 6175115359632721579}
   shootPoint: {fileID: 7049778705070390277}
   targetLook: {fileID: 0}
-  bullet: {fileID: 648706722154412440, guid: 99148b76a62191c448a87199f78982ab, type: 3}
+  bullet: {fileID: 8039606704532324472, guid: 0d7343ea5e671ad439915561554f1455, type: 3}
   skill1_1bullet: {fileID: 0}
   skill1_2bullet: {fileID: 0}
   skill1_4bullet: {fileID: 0}
@@ -11998,7 +11998,7 @@ RectTransform:
   m_GameObject: {fileID: 6880025441075384829}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.005, y: 0.005, z: 1}
   m_Children:
   - {fileID: 2885900280786289748}
   m_Father: {fileID: 2028345743883056631}
@@ -12006,7 +12006,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -239, y: -126.01}
+  m_AnchoredPosition: {x: 0, y: 1.96}
   m_SizeDelta: {x: 160, y: 41.97329}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8956891330637340280
@@ -17633,9 +17633,9 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8212777717360647624}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1.6666666, y: 1.25, z: 1.4285715}
   m_Children:
   - {fileID: 7565654407923867285}
   m_Father: {fileID: 2107496503084764974}
@@ -17644,8 +17644,8 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0, y: 0}
+  m_SizeDelta: {x: 665, y: 374}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &2718155654286849352
 Canvas:
   m_ObjectHideFlags: 0
@@ -17655,7 +17655,7 @@ Canvas:
   m_GameObject: {fileID: 8212777717360647624}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
+  m_RenderMode: 2
   m_Camera: {fileID: 0}
   m_PlaneDistance: 100
   m_PixelPerfect: 0

@@ -5,6 +5,7 @@ using UnityEngine.UI;
 public class StartText : MonoBehaviour
 {
     public GameObject textPanel;
+    public bool textStart = false;
 
     public float TextTime = 0.0f;
     // Start is called before the first frame update
@@ -14,6 +15,7 @@ public class StartText : MonoBehaviour
         if (other.tag == "Player")
         {
             textPanel.SetActive(true);
+            textStart = true;
         }
     }
     void Start()
@@ -24,11 +26,16 @@ public class StartText : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        TextTime += Time.deltaTime;
-        if (TextTime > 4)
+        if(textStart == true)
         {
-            textPanel.SetActive(false);
-            TextTime = 0;
+            TextTime += Time.deltaTime;
+            if (TextTime > 4)
+            {
+                textPanel.SetActive(false);
+                textStart = false;
+                TextTime = 0;
+            }
         }
+        
     }
 }
