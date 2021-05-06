@@ -50,27 +50,6 @@ public class PlayerCs : MonoBehaviourPun
 	public float jumpPower = 3.5f;
 	public float rollPower = 3.5f;
 
-	/*[Header("무기스킬1 제어")]
-	public bool isSkill2 = true;
-	public bool isSkill3 = true;
-	public GameObject skill2_Effect;
-	public GameObject skill3_Buff_Effect;
-
-	[Header("무기스킬2 제어")]
-	public bool isSkill2_3 = true;
-	public bool isSkill2_4 = true;
-	public GameObject skill2_fireFiled;
-	public GameObject skill2_meteo;
-
-	[Header("무기스킬2 제어")]
-	public bool isSkill3_2 = true;
-	public bool isSkill3_3 = true;
-	public GameObject skill3_wall;
-	public GameObject skill3_buff;*/
-
-
-
-
 	[Header("The fight")]
 	public int damage;
 
@@ -79,10 +58,8 @@ public class PlayerCs : MonoBehaviourPun
 	public GameObject weapon3;
 
 	/*-----AKH 수정-----*/
-	//public GameObject crosshair;
 	GameObject crosshair;
 
-	//public static PhotonView pv;
 	/*-----AKH 수정-----*/
 
 	[Header("Battle mode")]
@@ -215,7 +192,7 @@ public class PlayerCs : MonoBehaviourPun
 			{
 				Debug.Log("aaaaa");
 				isJumping = true;
-				//anim.SetBool("Jump", Input.GetKey(KeyCode.Space));
+				anim.SetBool("Jump", Input.GetKey(KeyCode.Space));
 			}
 		}
 	}

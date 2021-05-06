@@ -7,7 +7,10 @@ TagManager:
   - Bullet
   - Enemy
   - DamageAI
+<<<<<<< HEAD
   - FlameTrap
+=======
+>>>>>>> d6d5d080c17f03a7a3f06baf5707b8aabd50ea3a
   layers:
   - Default
   - TransparentFX
