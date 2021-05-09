@@ -139,7 +139,7 @@ public class Skeleton : MonoBehaviour
                     }
                 }
             }
-            else if (SkeletonAttack == false && AttackMotion == 0) // 공격모드 꺼지면
+            else if (SkeletonAttack == false) // 공격모드 꺼지면
             {
                 avatar.SetBool("FollowFollowMe", true);
             }
@@ -148,7 +148,8 @@ public class Skeleton : MonoBehaviour
 
     void SDie()
     {
-        avatar.SetBool("DIE", true);
+        nav.speed = 0;
+        avatar.SetTrigger("DIE");
         SkeletonDie = true;
     }
 
