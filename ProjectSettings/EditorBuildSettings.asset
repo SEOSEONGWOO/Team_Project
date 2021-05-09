@@ -8,4 +8,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/DB_Test.unity
     guid: a11415da4cdac7d41b231c9ddbebf794
+  - enabled: 1
+    path: Assets/AKH/Scenes/MainGame_.unity
+    guid: a83336cda600d6d4693509a836bffd87
   m_configObjects: {}
