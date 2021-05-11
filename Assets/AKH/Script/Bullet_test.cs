@@ -14,12 +14,14 @@ public class Bullet_test : MonoBehaviour
 	[Header("Bullet damage")]
 	public static int bulletDamage = 50;
 
+	public static bool isEnemy = false;
+
 	void Start()
 	{
 		lastPos = transform.position;
 
 	}
-
+	public static string hitname;
 
 	void Update()
 	{
@@ -33,7 +35,10 @@ public class Bullet_test : MonoBehaviour
 
 			if ((hit.collider.tag == "Enemy") || (hit.collider.tag == "Damage"))
 			{
-				hit.transform.SendMessage("SetDamageAI");
+				isEnemy = true;
+				Debug.Log(hit.transform.gameObject.name);
+				hitname = hit.transform.gameObject.name;
+				//hit.transform.SendMessage("SetDamageAI");
 				GameObject h = Instantiate<GameObject>(hitEffect);
 				Instantiate(hitBlood, transform.position, transform.rotation);
 				Destroy(h, 2);

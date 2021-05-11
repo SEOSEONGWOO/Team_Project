@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
-
+using Photon.Pun;
+using Photon.Realtime;
 public class ShootSimple_Scr : MonoBehaviour 
 {
 
@@ -121,7 +122,7 @@ public class ShootSimple_Scr : MonoBehaviour
             if ((Input.GetMouseButton(0)) && (isshoot == true))
             {
                 isshoot = false;
-                audioSource.PlayOneShot(fireSound);
+                //audioSource.PlayOneShot(fireSound);
                 muzzleFlash.Play();
                 Shell.Play();
                 Invoke("ShootTrue", reloadTime);
