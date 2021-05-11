@@ -18,7 +18,6 @@ public class HpCs : MonoBehaviourPun
 
     void OnCollisionEnter(Collision collision)
     {
-        //자신의 플레이어
         if (photonView.IsMine)
         {
             //몬스터랑 충돌 발생시
@@ -31,7 +30,6 @@ public class HpCs : MonoBehaviourPun
                 hpBar.fillAmount = currHp / initHp;
             }
         }
-        
-
+            
     }
 }
