@@ -6,6 +6,7 @@ public class RandomBox : MonoBehaviour
 {
     public GameObject[] prefab0bject;       // 상자 안에 들어갈 아이템 배열
 
+    public Transform Chest;
 
     // Start is called before the first frame update
     void Start()
@@ -18,11 +19,11 @@ public class RandomBox : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.F))
         {
-            Destroy(gameObject);
 
             int type = Random.Range(0, prefab0bject.Length);
-
-            Instantiate(prefab0bject[type]);
+            Debug.Log(type);
+            Instantiate(prefab0bject[type], Chest);
+            Destroy(gameObject);
         }
     }
 }

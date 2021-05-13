@@ -79,7 +79,7 @@ public class UsurperSkill : MonoBehaviour
 
         if (SkillC != 6) // 죽음 상태 아닐 때
         {
-            Debug.Log(SkillC); // 지속 적으로 드래곤 상태 체크
+            //Debug.Log(SkillC); // 지속 적으로 드래곤 상태 체크
 
             if (SkillC == 7)
             {

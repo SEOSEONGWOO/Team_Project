@@ -139,7 +139,7 @@ public class Skeleton : MonoBehaviour
                     }
                 }
             }
-            else if (SkeletonAttack == false) // 공격모드 꺼지면
+            else if (SkeletonAttack == false && AttackMotion != 5) // 공격모드 꺼지면
             {
                 avatar.SetBool("FollowFollowMe", true);
             }

@@ -6,6 +6,9 @@ using UnityEngine.UI;
 public class Player_Scr : MonoBehaviour
 {
 
+    // 죽었을 때 스폰지역으로 다시 돌아가는 거 만드셈ㅇ ㅋ? 『순간이동』
+
+
 	private void Awake() //해상도 설정
 	{
 		Screen.sleepTimeout = SleepTimeout.NeverSleep;
