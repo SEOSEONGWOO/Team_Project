@@ -139,7 +139,7 @@ public class Orc : MonoBehaviour
                     }
                 }
             }
-            else if (OrcAttack == false) // 공격모드 꺼지면
+            else if (OrcAttack == false && AttackMotion != 5) // 공격모드 꺼지면
             {
                 avatar.SetBool("FollowFollowMe", true);
             }

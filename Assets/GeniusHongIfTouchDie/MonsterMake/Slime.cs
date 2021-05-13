@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class Skeleton : MonoBehaviour
+public class Slime : MonoBehaviour
 {
     public Animator avatar;
 
-    public Transform SkeletonLo;   // 스켈레톤 위치
+    public Transform SlimeLo;   // 스켈레톤 위치
 
-    public Vector3 SkeletonVec; // 스켈레톤 위치 vector값
+    public Vector3 SlimeVec; // 스켈레톤 위치 vector값
 
     private NavMeshAgent nav;
 
@@ -17,27 +17,27 @@ public class Skeleton : MonoBehaviour
 
     float distance; // 스켈레톤 , 플레이어 거리 넣어 줄 float
 
-    bool SkeletonDie = false; // 죽음 판단
+    bool SlimeDie = false; // 죽음 판단
 
-    bool SkeletonAttack = false; // 스켈레톤 공격 판단용
+    bool SlimeAttack = false; // 스켈레톤 공격 판단용
 
-    /*    float SkeletonSkill1Cool = 0.0f;
+    /*    float SlimeSkill1Cool = 0.0f;
 
-        bool SkeletonSkill1CoolOn = false;*/
+        bool SlimeSkill1CoolOn = false;*/
 
-    float SkeletonSkill2 = 0.0f;
+    float SlimeSkill2 = 0.0f;
 
-    float SkeletonSkill2Cool = 5f;
+    float SlimeSkill2Cool = 5f;
 
-    bool SkeletonSkill2CoolOn = false;
+    bool SlimeSkill2CoolOn = false;
 
     float AttackDel = 0f;
 
-    float SkeletonAttackDel = 2f;
+    float SlimeAttackDel = 2f;
 
-    int SkeletonHP = 500;
+    int SlimeHP = 200;
 
-    static public int SkeletonDamage = 20;
+    static public int SlimeDamage = 20;
 
     static public int AttackMotion = 5; // 공격 상태 판단
 
@@ -57,16 +57,16 @@ public class Skeleton : MonoBehaviour
 
         //Debug.Log(AttackDel);
 
-        SkeletonVec = SkeletonLo.transform.position; // 스켈레톤 현재 위치값 
+        SlimeVec = SlimeLo.transform.position; // 스켈레톤 현재 위치값 
 
-        distance = Vector3.Distance(SkeletonVec, Player_Scr.CLC);
+        distance = Vector3.Distance(SlimeVec, Player_Scr.CLC);
 
-        if (SkeletonHP <= 0 && SkeletonDie == false)
+        if (SlimeHP <= 0 && SlimeDie == false)
         {
             SDie();
         }
 
-        else if (SkeletonDie == false)
+        else if (SlimeDie == false)
         {
             if (AttackMotion == 5)
             {
@@ -85,26 +85,26 @@ public class Skeleton : MonoBehaviour
             if (distance <= 2.5f)  // 거리 2.5f 보다 가까울 때
             {
                 nav.speed = 0; // 속도 0 
-                SkeletonAttack = true; // 공격상태로 바꿔 줌
+                SlimeAttack = true; // 공격상태로 바꿔 줌
             }
             else if (distance > 2.5f) // 거리 2.5f 보다 멀 면
             {
-                SkeletonAttack = false; // 공격상태 끄고
-                nav.speed = 2; // 속도 4
+                SlimeAttack = false; // 공격상태 끄고
+                nav.speed = 4; // 속도 4
             }
 
-            if (SkeletonSkill2CoolOn == true)
+            if (SlimeSkill2CoolOn == true)
             {
-                SkeletonSkill2 += Time.deltaTime;
+                SlimeSkill2 += Time.deltaTime;
 
-                if (SkeletonSkill2 >= SkeletonSkill2Cool)
+                if (SlimeSkill2 >= SlimeSkill2Cool)
                 {
-                    SkeletonSkill2 = 0.0f;
-                    SkeletonSkill2CoolOn = false;
+                    SlimeSkill2 = 0.0f;
+                    SlimeSkill2CoolOn = false;
                 }
             }
 
-            if (SkeletonAttack == true) // 공격 상태일 때
+            if (SlimeAttack == true) // 공격 상태일 때
             {
                 avatar.SetBool("FollowFollowMe", false); // 이동하는 애니메이션 상태 끄고
                 if (AttackMotion == 0) // 공격 모드 0 일 때
@@ -118,13 +118,13 @@ public class Skeleton : MonoBehaviour
                 }
                 else if (AttackMotion == 2) // 공격모드 2고
                 {
-                    if (SkeletonSkill2CoolOn == false) // 공격모드2 쿨타임이 없을 때
+                    if (SlimeSkill2CoolOn == false) // 공격모드2 쿨타임이 없을 때
                     {
                         avatar.SetTrigger("Attack02"); // Attack02 실행
                         AttackMotion = 3; // 대기상태로 변경
-                        SkeletonSkill2CoolOn = true; // 스킬 2 쿨타임 돌려줌.
+                        SlimeSkill2CoolOn = true; // 스킬 2 쿨타임 돌려줌.
                     }
-                    else if (SkeletonSkill2CoolOn == true) // 쿨타임이면
+                    else if (SlimeSkill2CoolOn == true) // 쿨타임이면
                     {
                         AttackMotion = 3; // 대기상태로 변경
                     }
@@ -132,14 +132,14 @@ public class Skeleton : MonoBehaviour
                 else if (AttackMotion == 3) // 대기상태면 
                 {
                     AttackDel += Time.deltaTime; // 딜레이 시간 될 때 까지 증가
-                    if (AttackDel >= SkeletonAttackDel) // 딜레이 시간 지나면
+                    if (AttackDel >= SlimeAttackDel) // 딜레이 시간 지나면
                     {
                         AttackMotion = 0; // 다시 랜덤모드
                         AttackDel = 0f; // 딜레이 초기화
                     }
                 }
             }
-            else if (SkeletonAttack == false && AttackMotion != 5) // 공격모드 꺼지면
+            else if (SlimeAttack == false) // 공격모드 꺼지면
             {
                 avatar.SetBool("FollowFollowMe", true);
             }
@@ -150,7 +150,7 @@ public class Skeleton : MonoBehaviour
     {
         nav.speed = 0;
         avatar.SetTrigger("DIE");
-        SkeletonDie = true;
+        SlimeDie = true;
     }
 
     public void SetDamageAI()
@@ -159,8 +159,8 @@ public class Skeleton : MonoBehaviour
         {
             AttackMotion = 0;
         }
-        SkeletonHP -= Bullet.bulletDamage; // 총에 맞으면 총알데미지 만큼 체력 까임
-        Debug.Log(SkeletonHP);
+        SlimeHP -= Bullet.bulletDamage; // 총에 맞으면 총알데미지 만큼 체력 까임
+        Debug.Log(SlimeHP);
     }
 }
 
