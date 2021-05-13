@@ -139,22 +139,23 @@ public class PlayerCs : MonoBehaviourPun
 
 	void Update()
 	{
-		
-        if(photonView.IsMine)
-        {
-			Locomotion();
-			Fight();
-			Jump();
-			
-			//Health();
-			//UI();
-			//Jump();
-			//roll();
 
-
-			//w_change(); //무기변경 코드
-			//skill1();
+		if(!photonView.IsMine)
+		{
+			return;
 		}
+		Locomotion();
+		Fight();
+		Jump();
+
+		//Health();
+		//UI();
+		//Jump();
+		//roll();
+
+
+		//w_change(); //무기변경 코드
+		//skill1();
 
 		//땅체크
 		grounded = Physics.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Blocking"));
