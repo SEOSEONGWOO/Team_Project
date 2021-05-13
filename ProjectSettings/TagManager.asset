@@ -6,6 +6,16 @@ TagManager:
   tags:
   - Bullet
   - FlameTrap
+  - Skill2_3
+  - Enemy
+  - Skill2_1
+  - DamageAI
+  - skill1_2
+  - Skill2_4
+  - Skill1
+  - Skill1_4
+  - Skill3_1
+  - deadzone
   layers:
   - Default
   - TransparentFX

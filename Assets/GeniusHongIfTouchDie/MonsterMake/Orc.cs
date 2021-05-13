@@ -46,11 +46,15 @@ public class Orc : MonoBehaviour
     void Start()
     {
         //AwakeT += Time.deltaTime;
-        Gobj = GameObject.Find("HPCharacter");
+        //Gobj = GameObject.FindWithTag("Player");
+        //Gobj2 = GameObject.FindWithTag("Player2");
+        // 두마리일 때 위에 꺼 한번 더쓰고 거리계산해서 짧은거 먼저 쫓게 만들어라 알겠지 ? 
     }
 
     void Update()
     {
+        Gobj = GameObject.FindWithTag("Player");
+
         nav = GetComponent<NavMeshAgent>();
 
         //Debug.Log(AttackMotion);
