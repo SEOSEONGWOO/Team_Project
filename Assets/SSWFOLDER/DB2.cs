@@ -161,6 +161,7 @@ public class DB2 : MonoBehaviourPunCallbacks
     {
         LobbyPenel.SetActive(true);
         LoginPenel.SetActive(false);
+
     }
 
 }
