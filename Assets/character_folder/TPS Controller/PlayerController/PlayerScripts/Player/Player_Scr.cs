@@ -110,6 +110,10 @@ public class Player_Scr : MonoBehaviour
 
 	public static Vector3 CLC;
 
+    // public Transform FirstLocation;
+
+    public Vector3 FirstLocationVector;
+
 	// 돈 관련 코드
 
 	public static int PlayerMoney;
@@ -128,8 +132,10 @@ public class Player_Scr : MonoBehaviour
 
 	void Start()
 	{
-		/*-----AKH 수정-----*/
-		crosshair = GameObject.Find("Crosshair");
+        FirstLocationVector = clcl.transform.position;
+
+        /*-----AKH 수정-----*/
+        crosshair = GameObject.Find("Crosshair");
 		/*-----AKH 수정-----*/
 
 		dead = false;
@@ -148,7 +154,13 @@ public class Player_Scr : MonoBehaviour
 
 	void Update()
 	{
-		CLC = clcl.transform.position;
+        if(HP <= 0)
+        {
+            gameObject.transform.position = FirstLocationVector;
+            HP = 100;
+        }
+
+        CLC = clcl.transform.position;
 
 		// 돈 텍스트
 
