@@ -4,10 +4,14 @@ using UnityEngine;
 using UnityEngine.UI;
 using Firebase.Auth;
 
+
 // 마스터(매치 메이킹) 서버와 룸 접속을 담당
 public class DB2 : MonoBehaviourPunCallbacks
 {
     private string gameVersion = "1"; // 게임 버전
+
+    [SerializeField] string email;
+    [SerializeField] string password;
 
     bool SceanChange = false;
     public InputField NicknameInput;    //유저 닉
@@ -50,6 +54,45 @@ public class DB2 : MonoBehaviourPunCallbacks
             
         }
     }
+    //회원가입 코드 시작
+    public void JoinBtnOnClick()
+    {
+        email = NicknameInput.text;  //입력한 아이디 저장
+        password = PasswordInput.text;
+
+        Debug.Log("email: " + email + ", password: " + password);
+
+        CreateUser();
+    }
+
+
+    void CreateUser()
+    {
+        auth.CreateUserWithEmailAndPasswordAsync(email, password).ContinueWith(task =>
+        { //파이어베이스로 보내기
+            if (task.IsCanceled)
+            {
+                Debug.LogError("CreateUserWithEmailAndPasswordAsync was canceled."); //이메일 형식이 아니면
+                Title.text = "회원가입 실패";
+                return;
+            }
+            if (task.IsFaulted)
+            {
+                Debug.LogError("SignInWithCredentialAsync encountered an error: " + task.Exception); //비밀번호가 짧으면
+                Title.text = "회원가입 실패";
+                return;
+            }
+
+            // Firebase user has been created.
+            Firebase.Auth.FirebaseUser newUser = task.Result;
+            Debug.LogFormat("Firebase user created successfully: {0} ({1})",  //파이어베이스에 정보 저장
+                newUser.DisplayName, newUser.UserId);
+
+            Title.text = "회원가입 굿럭";
+        });
+    }
+    //회원가입 코드 끝
+
     // 마스터 서버 접속 성공시 자동 실행
     public override void OnConnectedToMaster()
     {

@@ -93,7 +93,8 @@ public class Player_Scr : MonoBehaviour
 
 	[Header("Ragdoll Player")]
 	public GameObject ragdoll;
-	public static bool dead = false;
+	public static bool dead = false;  //안씀 
+	//public bool die = false;
 
 	Vector3 targetPosVec;
 	float newRunWeight = 1f;
@@ -154,11 +155,14 @@ public class Player_Scr : MonoBehaviour
 
 	void Update()
 	{
-        if(HP <= 0)
-        {
-            gameObject.transform.position = FirstLocationVector;
-            HP = 100;
-        }
+		if(dead == false) 
+		{
+			if (HP <= 0)
+			{
+				Dead();
+			}
+		}
+		
 
         CLC = clcl.transform.position;
 
@@ -654,15 +658,36 @@ public class Player_Scr : MonoBehaviour
 			}
 		}
 	}
-	
-	public void Death()
-	{
-		Destroy(gameObject);
-		Instantiate (ragdoll, transform.position, transform.rotation);
+	public void Dead()
+    {
+		
+		anim.SetTrigger("Die2"); //죽는 애니메이션 실행
 		dead = true;
+		roll_check = true;  //구르기 상태로 만들어서 움직이는 기능 멈추기
+		StartCoroutine("die");
+			
+	}
+	IEnumerator die()
+	{
+		yield return new WaitForSeconds(5.0f); //캐릭터 삭제시 0.2초후 실행
+		gameObject.transform.position = FirstLocationVector;
+		HP = 100;
+		anim.SetTrigger("Die1");
+		dead = false;
+		roll_check = false;
+
 	}
 
-    public void PlayerD(float damage)
+	public void Death() //사망시 실행
+	{
+		//anim.SetBool("Die", true);  //사망 애니메이션
+		Destroy(gameObject);  //3초후 오브젝트 삭제
+		Instantiate(ragdoll, transform.position, transform.rotation);
+		dead = true;
+
+	}
+
+	public void PlayerD(float damage)
     {
         //데미지만큼 체력 감소
         MainCharHP -= damage; // health = health - damage;
