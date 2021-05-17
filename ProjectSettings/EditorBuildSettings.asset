@@ -14,4 +14,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/AKH/Scenes/MainGame_.unity
     guid: a83336cda600d6d4693509a836bffd87
+  - enabled: 1
+    path: Assets/KcmUI/Scenes/ShopUI.unity
+    guid: 9fac13d1a92e6b74f8c23cdc51877bf0
+  - enabled: 1
+    path: Assets/KcmUI/trap test.unity
+    guid: 66886f8dc90d9a345933745637a34c0b
   m_configObjects: {}
