@@ -372,6 +372,9 @@ MonoBehaviour:
   - {fileID: 7417251939036465599, guid: b5920fb15745d1046814ce815af79dab, type: 3}
   - {fileID: 7417251939036465599, guid: b5920fb15745d1046814ce815af79dab, type: 3}
   - {fileID: 7417251939036465599, guid: b5920fb15745d1046814ce815af79dab, type: 3}
+  Gobj: {fileID: 0}
+  Chest: {fileID: 46808767}
+  ChestVec: {x: 0, y: 0, z: 0}
 --- !u!1 &47926924
 GameObject:
   m_ObjectHideFlags: 0
@@ -4322,7 +4325,7 @@ PrefabInstance:
     - target: {fileID: 7725001888185136947, guid: 9d3462825fdaad249a4a6e3c62bd873d,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 205.9
+      value: -2.1
       objectReference: {fileID: 0}
     - target: {fileID: 7725001888185136947, guid: 9d3462825fdaad249a4a6e3c62bd873d,
         type: 3}
@@ -4332,7 +4335,7 @@ PrefabInstance:
     - target: {fileID: 7725001888185136947, guid: 9d3462825fdaad249a4a6e3c62bd873d,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 49.4
+      value: -0.5
       objectReference: {fileID: 0}
     - target: {fileID: 7725001888185136947, guid: 9d3462825fdaad249a4a6e3c62bd873d,
         type: 3}
@@ -4881,6 +4884,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6515285414754808631, guid: aff7dcada0ef96d49beb7f2acaa2fc8a,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6515285415426824698, guid: aff7dcada0ef96d49beb7f2acaa2fc8a,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7221352783213510110, guid: aff7dcada0ef96d49beb7f2acaa2fc8a,
         type: 3}

@@ -2317,6 +2317,8 @@ MonoBehaviour:
   fl2: {x: 0, y: 0, z: 0}
   fl3: {x: 0, y: 0, z: 0}
   test555: 0
+  ZombieLo: {fileID: 5939192104586497997}
+  ZombieVec: {x: 0, y: 0, z: 0}
 --- !u!195 &6515285415426824696
 NavMeshAgent:
   m_ObjectHideFlags: 0

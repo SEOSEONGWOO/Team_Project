@@ -70,7 +70,7 @@ public class Skeleton : MonoBehaviour
         {
             if (AttackMotion == 5)
             {
-                if (distance < 30f)
+                if (distance < 20f)
                 {
                     AttackMotion = 0;
                 }
@@ -87,10 +87,14 @@ public class Skeleton : MonoBehaviour
                 nav.speed = 0; // 속도 0 
                 SkeletonAttack = true; // 공격상태로 바꿔 줌
             }
-            else if (distance > 2.5f) // 거리 2.5f 보다 멀 면
+            else if (distance > 2.5f && distance < 20.0f) // 거리 2.5f 보다 멀 면
             {
                 SkeletonAttack = false; // 공격상태 끄고
                 nav.speed = 2; // 속도 4
+            }
+            else if(distance > 20.0f)
+            {
+                nav.speed = 0;
             }
 
             if (SkeletonSkill2CoolOn == true)

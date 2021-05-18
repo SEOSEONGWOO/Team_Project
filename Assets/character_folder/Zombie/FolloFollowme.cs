@@ -27,6 +27,12 @@ public class FolloFollowme : MonoBehaviour
     float delay = 0f; // 죽고 몇초뒤에 사라질 지 
     float DMdelay = 0f; // 공격 할 때 딜레이
 
+    public Transform ZombieLo;   // 스켈레톤 위치
+
+    public Vector3 ZombieVec; // 스켈레톤 위치 vector값
+
+    float distance; // 스켈레톤 , 플레이어 거리 넣어 줄 float
+
 
     private void Start()
     {
@@ -40,6 +46,10 @@ public class FolloFollowme : MonoBehaviour
         fl3 = firstlo.transform.position;   // fl3 = 현재 좀비 위치 값
         Quaternion rot; // 회전값
         rot = Quaternion.Euler(Random.Range(0, 0), Random.Range(0, 0), Random.Range(0, 0)); // 랜덤 회전 값
+
+        ZombieVec = ZombieLo.transform.position; // 스켈레톤 현재 위치값 
+
+        distance = Vector3.Distance(ZombieVec, Player_Scr.CLC);
 
         /*if (Input.GetButtonDown("Fire1"))
         {
@@ -79,6 +89,7 @@ public class FolloFollowme : MonoBehaviour
 
             nav = GetComponent<NavMeshAgent>();
 
+
             if (avatar.GetBool("Att") == true) // 공격 중일 때
             {
                 nav.speed = 0;  // 제자리 멈추게 설정
@@ -95,13 +106,13 @@ public class FolloFollowme : MonoBehaviour
             else if (avatar.GetBool("Att") == false) // 공격 중 아닐 때
             {
                 DMdelay = 0f;
-                if (InsideC.inside == true) // 인식범위에 들어오면
+                if (distance < 10.0f) // 인식범위에 들어오면
                 {
                     nav.speed = 4;  // 4의 속도로
                     nav.SetDestination(Player_Scr.CLC); // Gunner.CLC = 현재 캐릭터 위치 로 네비설정(쫓아가도록 설정)
                     avatar.SetBool("LookC", true); // LookCharacter .. 캐릭터 쪽으로 달람
                 }
-                if (InsideC.inside == false) // 인식범위 밖이면
+                if (distance > 20.0f) // 인식범위 밖이면
                 {
                     avatar.SetBool("LookC", false); // LookCharacter 끄고
                     nav.SetDestination(fl1); // 처음 위치로 돌아감

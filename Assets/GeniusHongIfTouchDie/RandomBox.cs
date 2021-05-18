@@ -29,7 +29,7 @@ public class RandomBox : MonoBehaviour
 
         distance = Vector3.Distance(ChestVec, Player_Scr.CLC);
 
-        if(distance < 2f)
+        if(distance < 1.5f)
         {
             if (Input.GetKeyDown(KeyCode.F))
             {
