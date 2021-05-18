@@ -136,7 +136,7 @@ public class Player_Scr : MonoBehaviourPun
 	void Start()
 	{
         FirstLocationVector = clcl.transform.position;
-		DontDestroyOnLoad(gameObject);
+		//DontDestroyOnLoad(gameObject);
 		/*-----AKH 수정-----*/
 		DontDestroyOnLoad(gameObject);
 
@@ -166,10 +166,10 @@ public class Player_Scr : MonoBehaviourPun
 
 	void Update()
 	{
-		if (!photonView.IsMine)
+		/*if (!photonView.IsMine)
 		{
 			return;
-		}
+		}*/
 		if (dead == false) 
 		{
 			if (HP <= 0)
