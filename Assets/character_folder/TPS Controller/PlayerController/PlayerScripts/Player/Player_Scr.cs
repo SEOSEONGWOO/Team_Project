@@ -1,9 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using Photon.Pun;
+using Photon.Realtime;
 
-
-public class Player_Scr : MonoBehaviour
+public class Player_Scr : MonoBehaviourPun
 {
 
     // 죽었을 때 스폰지역으로 다시 돌아가는 거 만드셈ㅇ ㅋ? 『순간이동』
@@ -83,6 +84,8 @@ public class Player_Scr : MonoBehaviour
 	/*-----AKH 수정-----*/
 	//public GameObject crosshair;
 	GameObject crosshair;
+	public Transform tr;
+
 	/*-----AKH 수정-----*/
 
 	[Header("Battle mode")]
@@ -135,7 +138,16 @@ public class Player_Scr : MonoBehaviour
         FirstLocationVector = clcl.transform.position;
 		DontDestroyOnLoad(gameObject);
 		/*-----AKH 수정-----*/
+		DontDestroyOnLoad(gameObject);
+
+		targetPos = GameObject.Find("TargetLook").GetComponent<Transform>();
+		targetPosOld = GameObject.Find("TargetLookInFight").GetComponent<Transform>();
+
 		crosshair = GameObject.Find("Crosshair");
+
+
+		tr = GetComponent<Transform>();
+
 		/*-----AKH 수정-----*/
 
 		dead = false;
@@ -154,7 +166,11 @@ public class Player_Scr : MonoBehaviour
 
 	void Update()
 	{
-		if(dead == false) 
+		if (!photonView.IsMine)
+		{
+			return;
+		}
+		if (dead == false) 
 		{
 			if (HP <= 0)
 			{
@@ -174,7 +190,7 @@ public class Player_Scr : MonoBehaviour
 		// Debug.Log(MainCharHP);
 		Locomotion();
 		Fight();
-		Health();
+		//Health();
 		//UI();
 		Jump();
 		roll();
