@@ -98,6 +98,7 @@ public class Orc : MonoBehaviour
             }
             else if (distance > 20.0f)
             {
+                avatar.SetBool("FollowFollowMe", false);
                 nav.speed = 0;
             }
 
@@ -147,7 +148,7 @@ public class Orc : MonoBehaviour
                     }
                 }
             }
-            else if (OrcAttack == false && AttackMotion != 5) // 공격모드 꺼지면
+            else if (OrcAttack == false && distance < 20.0f) // 공격모드 꺼지면
             {
                 avatar.SetBool("FollowFollowMe", true);
             }

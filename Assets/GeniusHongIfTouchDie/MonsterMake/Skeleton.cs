@@ -46,11 +46,13 @@ public class Skeleton : MonoBehaviour
     void Start()
     {
         //AwakeT += Time.deltaTime;
-        Gobj = GameObject.Find("HPCharacter");
+        //Gobj = GameObject.Find("HPCharacter");
     }
 
     void Update()
     {
+        Gobj = GameObject.Find("HPCharacter");
+
         nav = GetComponent<NavMeshAgent>();
 
         //Debug.Log(AttackMotion);
@@ -75,7 +77,7 @@ public class Skeleton : MonoBehaviour
                     AttackMotion = 0;
                 }
             }
-            else if (AttackMotion != 5)
+            else if (AttackMotion != 5 && distance < 20.0f)
             {
                 nav.SetDestination(Player_Scr.CLC);
 
@@ -94,6 +96,7 @@ public class Skeleton : MonoBehaviour
             }
             else if(distance > 20.0f)
             {
+                avatar.SetBool("FollowFollowMe", false);
                 nav.speed = 0;
             }
 
@@ -143,7 +146,7 @@ public class Skeleton : MonoBehaviour
                     }
                 }
             }
-            else if (SkeletonAttack == false && AttackMotion != 5) // 공격모드 꺼지면
+            else if (SkeletonAttack == false && distance < 20.0f) // 공격모드 꺼지면
             {
                 avatar.SetBool("FollowFollowMe", true);
             }
