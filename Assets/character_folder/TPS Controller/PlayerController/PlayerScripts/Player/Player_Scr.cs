@@ -108,7 +108,6 @@ public class Player_Scr : MonoBehaviour
 
 	// 플레이어 따라오게 하는 코드
 	public Transform clcl;
-
 	public static Vector3 CLC;
 
     // public Transform FirstLocation;
@@ -134,9 +133,9 @@ public class Player_Scr : MonoBehaviour
 	void Start()
 	{
         FirstLocationVector = clcl.transform.position;
-
-        /*-----AKH 수정-----*/
-        crosshair = GameObject.Find("Crosshair");
+		DontDestroyOnLoad(gameObject);
+		/*-----AKH 수정-----*/
+		crosshair = GameObject.Find("Crosshair");
 		/*-----AKH 수정-----*/
 
 		dead = false;
