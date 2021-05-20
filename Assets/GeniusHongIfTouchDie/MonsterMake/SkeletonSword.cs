@@ -23,7 +23,7 @@ public class SkeletonSword : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(Mode);
+        //Debug.Log(Mode);
 
         if (Mode == 1)
         {

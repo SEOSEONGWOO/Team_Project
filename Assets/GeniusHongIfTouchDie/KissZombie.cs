@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class FolloFollowme : MonoBehaviour
+public class KissZombie : MonoBehaviour
 {
     public Animator avatar;
 
     public Transform firstlo;   // 처음 좀비 위치
-    private NavMeshAgent nav;   
+    private NavMeshAgent nav;
 
     public GameObject BRCM; // 죽으면 떨어뜨릴 코인
 
@@ -16,7 +16,7 @@ public class FolloFollowme : MonoBehaviour
 
     public GameObject Gobj; // 따라갈 캐릭터 게임오브젝트 넣어줄 빈 값
 
-    public Vector3 fl1, fl2, fl3;  
+    public Vector3 fl1, fl2, fl3;
 
     private float attackRange = 2.3f;   // 미구현 구현예정 ( 아직안쓰임 )
 
@@ -36,7 +36,7 @@ public class FolloFollowme : MonoBehaviour
 
     private void Start()
     {
-        avatar = GetComponent<Animator>(); 
+        avatar = GetComponent<Animator>();
         test555 = 1; // 이거 안 넣으면 0.16 y 값 올라가는거 못 잡음 왠지 모름 알면 수정좀
         Gobj = GameObject.Find("HPCharacter");  // 시작할 때 이름이 HPCharacter 인 거 Gobj 오브젝트에 넣어 줌
     }
@@ -60,7 +60,7 @@ public class FolloFollowme : MonoBehaviour
         {
             delay += Time.deltaTime;    // 딜레이 높이고
 
-                
+
             if (delay >= 3) // 3초 지나면
             {
                 Destroy(gameObject); // 좀비 사라짐
@@ -72,7 +72,7 @@ public class FolloFollowme : MonoBehaviour
         {
             avatar.SetTrigger("CDie");  // 죽은상태 트리거 on
             avatar.SetBool("Die", true);    // 죽은 상태로 바꿔 줌
-
+            ZombieSpawn.MonsterStack += 1;
             //Instantiate(BRCM, fl3, rot); // 현재 좀비 위치에 돈 소환함
 
         }
@@ -95,7 +95,7 @@ public class FolloFollowme : MonoBehaviour
                 nav.speed = 0;  // 제자리 멈추게 설정
                 if (DMdelay <= 1f)  // 1초마다
                 {
-                    DMdelay = DMdelay + Time.deltaTime; 
+                    DMdelay = DMdelay + Time.deltaTime;
                 }
                 else if (DMdelay > 1f)
                 {
