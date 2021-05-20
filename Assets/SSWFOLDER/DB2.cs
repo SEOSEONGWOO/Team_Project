@@ -46,6 +46,10 @@ public class DB2 : MonoBehaviourPunCallbacks
 
         // 접속을 시도 중임을 텍스트로 표시
         connectionInfoText.text = "마스터 서버에 접속중...";
+
+        //테스트 id,pass
+        NicknameInput.text = "moo@naver.com";
+        PasswordInput.text = "123456789zz";
     }
     private void Update()
     {
