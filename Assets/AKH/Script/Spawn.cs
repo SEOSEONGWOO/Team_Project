@@ -9,6 +9,7 @@ public class Spawn : MonoBehaviour
 {
     public GameObject prefab;
     int i = 0;
+    public Transform spawpoint;
     void Start()
     {
         // 네트워크 상의 모든 클라이언트들에서 생성 실행
@@ -16,8 +17,8 @@ public class Spawn : MonoBehaviour
        /* GameObject name = PhotonNetwork.Instantiate(prefab.name, 
             new Vector3(1.773168f, 0.05f, 0.215986f), Quaternion.identity);*/
         GameObject name = PhotonNetwork.Instantiate(prefab.name,
-            new Vector3(264, -17.5f, 83), Quaternion.identity);
-
+            new Vector3(-59.2f, 3.0f, 25.0f), Quaternion.identity);
+        Debug.Log(spawpoint.position);
         /*name.name = "test_name" + i;
         i++;
         Debug.Log("i : "+i+"/"+ name.name);*/
