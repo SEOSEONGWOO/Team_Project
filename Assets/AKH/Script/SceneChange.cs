@@ -1,0 +1,25 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using Photon.Pun;
+using Photon.Realtime;
+
+public class SceneChange : MonoBehaviour
+{
+
+    void Start()
+    {
+        
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        Debug.Log("Main_map 2 변경");
+        PhotonNetwork.LoadLevel("Main_map 2");
+    }
+}

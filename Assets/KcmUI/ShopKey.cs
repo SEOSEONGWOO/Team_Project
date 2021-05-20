@@ -49,9 +49,9 @@ public class ShopKey : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (panel.activeSelf == true) { CaneraCs2.cc = false; }
+        if (panel.activeSelf == true) { CameraCs2.cc = false; }
 
-        else if(panel.activeSelf == false) { CaneraCs2.cc = true;
+        else if(panel.activeSelf == false) { CameraCs2.cc = true;
             Cursor.lockState = CursorLockMode.Locked; 
             Cursor.visible = false;
         }
