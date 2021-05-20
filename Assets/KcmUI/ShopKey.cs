@@ -18,14 +18,11 @@ public class ShopKey : MonoBehaviour
             {
                 if(Input.GetKeyDown(KeyCode.G))
                 {
+
                     Cursor.lockState = CursorLockMode.None;
                     Cursor.visible = true;
                     panelonoff = !panelonoff;
                     panel.SetActive(panelonoff);
-                }
-                if(panelonoff == false)
-                {
-                    Cursor.visible = false;
                 }
             }
         }
@@ -36,7 +33,6 @@ public class ShopKey : MonoBehaviour
         {
             Question.SetActive(false);
             panel.SetActive(false);
-            Cursor.visible = false;
         }
     }
     // Start is called before the first frame update
