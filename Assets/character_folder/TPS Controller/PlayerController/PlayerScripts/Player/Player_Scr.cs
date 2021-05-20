@@ -123,6 +123,7 @@ public class Player_Scr : MonoBehaviourPun
 	public GameObject PlayerMoneyText;
 
 
+	
 
 
 	void CmdClientState(Vector3 targetPosVec, float newRunWeight, float run, float strafe)
@@ -473,7 +474,7 @@ public class Player_Scr : MonoBehaviourPun
 			//float forwardrun = 5 * Time.deltaTime;
 			if (run > 0)
 			{
-				transform.Translate(Vector3.forward * (5 * Time.deltaTime) * run);
+				transform.Translate(Vector3.forward * (50 * Time.deltaTime) * run);
 			}
 			else if (run < 0)
 			{

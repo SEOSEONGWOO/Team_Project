@@ -32,6 +32,7 @@ public class CaneraCs2 : MonoBehaviourPun
 	private Quaternion currRot;
 	private Vector3 currPos;
 
+	public static bool cc = true; //카메라 스크립트 제어
 	void Start()
 	{
 		camTrans = GameObject.Find("Main Camera").GetComponent<Transform>();
@@ -51,7 +52,8 @@ public class CaneraCs2 : MonoBehaviourPun
 	{
 		if (photonView.IsMine)
 		{
-			Tick();
+			if(cc== true)
+				Tick();
 		}
 	}
 
