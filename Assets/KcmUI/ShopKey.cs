@@ -5,7 +5,7 @@ using UnityEngine;
 public class ShopKey : MonoBehaviour
 {
     public GameObject Question;
-    public GameObject panel;
+    public static GameObject panel;
 
     public bool panelonoff = false;
     private void OnTriggerStay(Collider other)
@@ -18,6 +18,7 @@ public class ShopKey : MonoBehaviour
             {
                 if(Input.GetKeyDown(KeyCode.G))
                 {
+                    Cursor.lockState = CursorLockMode.None;
                     Cursor.visible = true;
                     panelonoff = !panelonoff;
                     panel.SetActive(panelonoff);
