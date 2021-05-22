@@ -162,6 +162,7 @@ public class KissOrc : MonoBehaviour
         nav.speed = 0;
         avatar.SetTrigger("DIE");
         OrcDie = true;
+        Destroy(gameObject, 2.0f);
     }
 
     public void SetDamageAI()
@@ -172,5 +173,50 @@ public class KissOrc : MonoBehaviour
         }
         OrcHP -= Bullet.bulletDamage; // 총에 맞으면 총알데미지 만큼 체력 까임
         Debug.Log(OrcHP);
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+
+        if (other.tag == "Skill1")
+        {
+            OrcHP -= 500;
+            Debug.Log("dsa");
+        }
+
+        if (other.tag == "skill1_2")
+        {
+            OrcHP -= 500;
+            Debug.Log("dsa");
+
+        }
+        if (other.tag == "Skill1_4")
+        {
+            OrcHP -= 500;
+        }
+
+        if (other.tag == "Skill2_1")
+        {
+            OrcHP -= 500;
+        }
+
+        if (other.tag == "Skill2_3")
+        {
+            OrcHP -= 500;
+
+        }
+        if (other.tag == "Skill2_4")
+        {
+            OrcHP -= 500;
+
+        }
+        if (other.tag == "Skill3_1")
+        {
+            OrcHP -= 500;
+
+        }
+        if (other.tag == "Skill3_2")
+        {
+            OrcHP -= 500;
+        }
     }
 }

@@ -158,6 +158,7 @@ public class Skeleton : MonoBehaviour
         nav.speed = 0;
         avatar.SetTrigger("DIE");
         SkeletonDie = true;
+        Destroy(gameObject, 2.0f);
     }
 
     public void SetDamageAI()
@@ -168,6 +169,50 @@ public class Skeleton : MonoBehaviour
         }
         SkeletonHP -= Bullet.bulletDamage; // 총에 맞으면 총알데미지 만큼 체력 까임
         Debug.Log(SkeletonHP);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+
+        if (other.tag == "Skill1")
+        {
+            SkeletonHP -= 500;
+        }
+
+        if (other.tag == "skill1_2")
+        {
+            SkeletonHP -= 500;
+
+        }
+        if (other.tag == "Skill1_4")
+        {
+            SkeletonHP -= 500;
+        }
+
+        if (other.tag == "Skill2_1")
+        {
+            SkeletonHP -= 500;
+        }
+
+        if (other.tag == "Skill2_3")
+        {
+            SkeletonHP -= 500;
+
+        }
+        if (other.tag == "Skill2_4")
+        {
+            SkeletonHP -= 500;
+
+        }
+        if (other.tag == "Skill3_1")
+        {
+            SkeletonHP -= 500;
+
+        }
+        if (other.tag == "Skill3_2")
+        {
+            SkeletonHP -= 500;
+        }
     }
 }
 

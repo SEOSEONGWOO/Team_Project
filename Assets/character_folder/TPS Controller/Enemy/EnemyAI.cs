@@ -163,7 +163,7 @@ public class EnemyAI : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
 	{
-		Debug.Log("맞음");
+		
 		if (other.tag == "Skill1")
 		{
 			AI_health -= 500;

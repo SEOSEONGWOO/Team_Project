@@ -5,6 +5,7 @@ using UnityEngine;
 public class FinishKeyOn : MonoBehaviour
 {
     public float rotaionSpeed = 100.0f;
+    public GameObject Potal;
 
     void Start()
     {
@@ -22,6 +23,7 @@ public class FinishKeyOn : MonoBehaviour
         {
             Debug.Log("열쇠 획득");
             Destroy(gameObject);
+            Potal.SetActive(true);
         }
     }
 }

@@ -261,9 +261,9 @@ public class ShootSimple_Scr : MonoBehaviour
     }
     void skill2_2()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha2) && isSkill2_2 == true)
+        if (Input.GetKeyDown(KeyCode.Alpha2) && isSkill2_2 == true && SkillMode ==true)
         {
-            Debug.Log("스킬25 실행");
+            Debug.Log("화염발사!");
             isSkill2_2 = false;
             audioSource.PlayOneShot(fireSound);
             muzzleFlash.Play();
@@ -286,8 +286,9 @@ public class ShootSimple_Scr : MonoBehaviour
             StartCoroutine("Skill2");
         }
 
-        if (SkillMode == false)  //총 내리면 스킬 멈추기
+         if (SkillMode == false)  //총 내리면 스킬 멈추기
         {
+            Debug.Log("화염취소");
             skill2_2bullet.SetActive(false);
         }
         

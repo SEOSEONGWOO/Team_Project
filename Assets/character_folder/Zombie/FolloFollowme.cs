@@ -63,7 +63,7 @@ public class FolloFollowme : MonoBehaviour
                 
             if (delay >= 3) // 3초 지나면
             {
-                Destroy(gameObject); // 좀비 사라짐
+                Destroy(gameObject,2.0f); // 좀비 사라짐
                 delay = 0; // 딜레이 초기화
             }
         }
@@ -156,5 +156,49 @@ public class FolloFollowme : MonoBehaviour
     public void SetDamageAI()
     {
         Chp -= Bullet.bulletDamage; // 총에 맞으면 총알데미지 만큼 체력 까임
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+
+        if (other.tag == "Skill1")
+        {
+            Chp -= 500;
+        }
+
+        if (other.tag == "skill1_2")
+        {
+            Chp -= 500;
+
+        }
+        if (other.tag == "Skill1_4")
+        {
+            Chp -= 500;
+        }
+
+        if (other.tag == "Skill2_1")
+        {
+            Chp -= 500;
+        }
+
+        if (other.tag == "Skill2_3")
+        {
+            Chp -= 500;
+
+        }
+        if (other.tag == "Skill2_4")
+        {
+            Chp -= 500;
+
+        }
+        if (other.tag == "Skill3_1")
+        {
+            Chp -= 500;
+
+        }
+        if (other.tag == "Skill3_2")
+        {
+            Chp -= 500;
+        }
     }
 }

@@ -457,7 +457,7 @@ public class Player_Scr : MonoBehaviourPun
 
 		void Locomotion()
 	{
-		targetPosVec = targetPos.position;
+		targetPosVec = targetPos.position; 
 
 
 		run = Input.GetAxis("Vertical");
@@ -474,7 +474,7 @@ public class Player_Scr : MonoBehaviourPun
 			//float forwardrun = 5 * Time.deltaTime;
 			if (run > 0)
 			{
-				transform.Translate(Vector3.forward * (50 * Time.deltaTime) * run);
+				transform.Translate(Vector3.forward * (5 * Time.deltaTime) * run);
 			}
 			else if (run < 0)
 			{
@@ -596,7 +596,7 @@ public class Player_Scr : MonoBehaviourPun
 		{
 			Debug.Log("조준 끝");
 			ShootSimple_Scr.SkillMode = false;
-			// weapon3.SetActive(false);
+			 weapon3.SetActive(false);
 			//ShootSimple_Scr.SkillMode = false;
 			isfight = false;
 			anim.SetBool ("isFight", false);
