@@ -31,6 +31,7 @@ public class SpikeTraps : MonoBehaviour
     {
         if(other.tag == "Player")
         {
+            Debug.Log("가시함정 해제");
             anim1.Play("Anim_TrapNeedle_Hide");
             anim2.Play("Anim_TrapNeedle_Hide");
             anim3.Play("Anim_TrapNeedle_Hide");
@@ -49,28 +50,6 @@ public class SpikeTraps : MonoBehaviour
             anim16.Play("Anim_TrapNeedle_Hide");
         }
         
-    }
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.tag == "Player")
-        {
-            anim1.Play("Anim_TrapNeedle_Show");
-            anim2.Play("Anim_TrapNeedle_Show");
-            anim3.Play("Anim_TrapNeedle_Show");
-            anim4.Play("Anim_TrapNeedle_Show");
-            anim5.Play("Anim_TrapNeedle_Show");
-            anim6.Play("Anim_TrapNeedle_Show");
-            anim7.Play("Anim_TrapNeedle_Show");
-            anim8.Play("Anim_TrapNeedle_Show");
-            anim9.Play("Anim_TrapNeedle_Show");
-            anim10.Play("Anim_TrapNeedle_Show");
-            anim11.Play("Anim_TrapNeedle_Show");
-            anim12.Play("Anim_TrapNeedle_Show");
-            anim13.Play("Anim_TrapNeedle_Show");
-            anim14.Play("Anim_TrapNeedle_Show");
-            anim15.Play("Anim_TrapNeedle_Show");
-            anim16.Play("Anim_TrapNeedle_Show");
-        }
     }
     // Update is called once per frame
     void Update()
