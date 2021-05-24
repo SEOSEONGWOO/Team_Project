@@ -10,5 +10,8 @@ public class Main_2_Change : MonoBehaviour
         Debug.Log("Main_map 2 변경");
         PhotonNetwork.LoadLevel("Main_map 2");
         Playerspawn.MainScene_2 = true;
+        Playerspawn.Main = false;
+        Playerspawn.Main_2 = true;
+        Playerspawn.Main_3 = false;
     }
 }
