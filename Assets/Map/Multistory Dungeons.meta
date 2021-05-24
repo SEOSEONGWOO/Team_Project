@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Map/Multistory Dungeons.meta
 guid: 9353f69d025e07f4b8b8ea74bac5a19f
+=======
+guid: 0f98de944d7915448abec7fcbec903d9
+>>>>>>> 4a8bbaa6a98b2651c4353568b043c530ec689816:Assets/Prefabs.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

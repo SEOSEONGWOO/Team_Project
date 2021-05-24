@@ -82,9 +82,10 @@ public class Player_Scr : MonoBehaviourPun
 	public GameObject weapon3;
 
 	/*-----AKH 수정-----*/
-	//public GameObject crosshair;
 	GameObject crosshair;
 	public Transform tr;
+
+	public static bool isShop = true;
 
 	/*-----AKH 수정-----*/
 
@@ -189,12 +190,15 @@ public class Player_Scr : MonoBehaviourPun
 
 
 		// Debug.Log(MainCharHP);
-		Locomotion();
-		Fight();
 		//Health();
 		//UI();
-		Jump();
-		roll();
+        if (isShop)
+		{
+			Locomotion();
+			Fight();
+			Jump();
+			roll();
+		}
 
 		if (ShootSimple_Scr.WeaponNumber == 1)
 		{
@@ -420,7 +424,7 @@ public class Player_Scr : MonoBehaviourPun
 
 
 
-		void Jump()
+	void Jump()
     {
 		
 		if (Input.GetKey(KeyCode.Space))
