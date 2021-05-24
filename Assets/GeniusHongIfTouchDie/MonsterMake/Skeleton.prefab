@@ -224,6 +224,7 @@ MonoBehaviour:
   SkeletonLo: {fileID: 8950414121883465110}
   SkeletonVec: {x: 0, y: 0, z: 0}
   Gobj: {fileID: 0}
+  SpCoin: {fileID: 1000011365394840, guid: 5142a683d65bbf84abea6f07db9099c7, type: 3}
 --- !u!195 &8950924977904772894
 NavMeshAgent:
   m_ObjectHideFlags: 0

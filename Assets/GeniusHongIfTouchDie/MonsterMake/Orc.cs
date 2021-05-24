@@ -15,6 +15,8 @@ public class Orc : MonoBehaviour
 
     public GameObject Gobj; // 따라갈 캐릭터 게임오브젝트 넣어줄 빈 값
 
+    public GameObject SpCoin; // 죽으면 떨어뜨릴 코인
+
     float distance; // 스켈레톤 , 플레이어 거리 넣어 줄 float
 
     bool OrcDie = false; // 죽음 판단
@@ -160,6 +162,7 @@ public class Orc : MonoBehaviour
         nav.speed = 0;
         avatar.SetTrigger("DIE");
         OrcDie = true;
+        Instantiate(SpCoin, OrcVec, Quaternion.identity);
         Destroy(gameObject, 2.0f);
     }
 
