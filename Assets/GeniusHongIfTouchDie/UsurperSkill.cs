@@ -9,7 +9,7 @@ public class UsurperSkill : MonoBehaviour
     public GameObject Gobj;
     private NavMeshAgent nav;
 
-    static public int DrgHP = 100000; // HP
+    static public int DrgHP = 1000; // HP
     int Sk1Da = 30;        // Sk0 데미지
     int Sk2Da = 15;        // Sk1 데미지
     int Sk3Da = 10;        // Sk2 데미지

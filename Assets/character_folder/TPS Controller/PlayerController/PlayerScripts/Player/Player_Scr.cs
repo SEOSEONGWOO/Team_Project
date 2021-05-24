@@ -124,7 +124,9 @@ public class Player_Scr : MonoBehaviourPun
 	public GameObject PlayerMoneyText;
 
 
-	
+    public static bool FireM = false;
+    public static float FireTime = 0f;
+    float FireDamage = 0.05f;
 
 
 	void CmdClientState(Vector3 targetPosVec, float newRunWeight, float run, float strafe)
@@ -188,6 +190,10 @@ public class Player_Scr : MonoBehaviourPun
 		//  string PlayerMoneyT = "보유 금액 : " + PlayerMoney;
 		//  PlayerMoneyText.GetComponent<Text>().text = PlayerMoneyT;
 
+        if(FireM == true)
+        {
+            isFireM();
+        }
 
 		// Debug.Log(MainCharHP);
 		//Health();
@@ -658,8 +664,23 @@ public class Player_Scr : MonoBehaviourPun
 			fightModUI.SetActive (false);
 	}*/
 
+    void isFireM()
+    {
+        Debug.Log(HP);
+        Debug.Log(FireTime);
+        if(FireTime < 4.0f)
+        {
+            FireTime += Time.deltaTime;
+            HP -= FireDamage;
+        }
+        else if(FireTime >= 4.0f)
+        {
+            FireM = false;
+        }
+    }
 
-	private void OnTriggerStay(Collider other)
+
+    private void OnTriggerStay(Collider other)
 	{
 		if (other.tag == "Damage")
 		{
