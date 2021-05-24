@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class testeff : MonoBehaviour
 {
@@ -17,10 +18,11 @@ public class testeff : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("test1");
-        if(other.gameObject.tag == "Enemy")
+        if(other.gameObject.tag == "Player")
         {
-            Debug.Log("test2");
+            Debug.Log("Main_map 변경");
+            PhotonNetwork.LoadLevel("Main_map");
+            Playerspawn.MainSceneBack = true;
         }
     }
 }

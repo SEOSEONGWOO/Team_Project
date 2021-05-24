@@ -147,8 +147,8 @@ public class Player_Scr : MonoBehaviourPun
 		targetPos = GameObject.Find("TargetLook").GetComponent<Transform>();
 		targetPosOld = GameObject.Find("TargetLookInFight").GetComponent<Transform>();
 
-		crosshair = GameObject.Find("Crosshair");
-
+		//crosshair = GameObject.Find("Crosshair");
+		crosshair = GameObject.FindGameObjectWithTag("Crosshair");
 
 		tr = GetComponent<Transform>();
 
@@ -228,8 +228,6 @@ public class Player_Scr : MonoBehaviourPun
 		//skill1();
 		//땅체크
 		grounded = Physics.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Blocking"));
-
-
 	}
 
 	void w_change()

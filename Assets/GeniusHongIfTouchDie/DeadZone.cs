@@ -10,7 +10,7 @@ public class DeadZone : MonoBehaviour
 
     void Start()
     {
-        Gobj = GameObject.Find("HPCharacter");
+        Gobj = GameObject.FindGameObjectWithTag("Player");
     }
 
     private void OnTriggerEnter(Collider other)

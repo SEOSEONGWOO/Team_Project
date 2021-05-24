@@ -76,7 +76,7 @@ public class ShootSimple_Scr : MonoBehaviour
     {
 
         /*-----AKH 수정-----*/
-        CanvasAim = GameObject.Find("CanvasAim");
+        CanvasAim = GameObject.FindGameObjectWithTag("CanvasAim");
         aimPoint = CanvasAim.GetComponent<Transform>();
 
         targetLook = GameObject.Find("TargetLook").GetComponent<Transform>();

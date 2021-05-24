@@ -16,6 +16,9 @@ TagManager:
   - Skill1_4
   - Skill3_1
   - deadzone
+  - User
+  - CanvasAim
+  - Crosshair
   layers:
   - Default
   - TransparentFX
