@@ -8,9 +8,9 @@ public class FolloFollowme : MonoBehaviour
     public Animator avatar;
 
     public Transform firstlo;   // 처음 좀비 위치
-    private NavMeshAgent nav;   
+    private NavMeshAgent nav;
 
-    public GameObject BRCM; // 죽으면 떨어뜨릴 코인
+    public GameObject SpCoin; // 죽으면 떨어뜨릴 코인
 
     //public GameObject ZBC;
 
@@ -73,7 +73,7 @@ public class FolloFollowme : MonoBehaviour
             avatar.SetTrigger("CDie");  // 죽은상태 트리거 on
             avatar.SetBool("Die", true);    // 죽은 상태로 바꿔 줌
 
-            //Instantiate(BRCM, fl3, rot); // 현재 좀비 위치에 돈 소환함
+            Instantiate(SpCoin, fl3, rot); // 현재 좀비 위치에 돈 소환함
 
         }
 

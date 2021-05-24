@@ -2311,7 +2311,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   avatar: {fileID: 0}
   firstlo: {fileID: 5939192104586497997}
-  BRCM: {fileID: 1023574520754206322, guid: aaf56c28680cd0e409cb6e6d82318b9f, type: 3}
+  SpCoin: {fileID: 1000011365394840, guid: 5142a683d65bbf84abea6f07db9099c7, type: 3}
   Gobj: {fileID: 0}
   fl1: {x: 0, y: 0, z: 0}
   fl2: {x: 0, y: 0, z: 0}

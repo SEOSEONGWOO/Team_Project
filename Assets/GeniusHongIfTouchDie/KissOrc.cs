@@ -162,6 +162,7 @@ public class KissOrc : MonoBehaviour
         nav.speed = 0;
         avatar.SetTrigger("DIE");
         OrcDie = true;
+
         Destroy(gameObject, 2.0f);
     }
 
