@@ -26,7 +26,4 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Main_map 2.unity
     guid: 070b147d82df36a419d4351ca2c250a4
-  - enabled: 1
-    path: Assets/trapmap2.unity
-    guid: 10443b43a2c351940a015527c08704b8
   m_configObjects: {}
