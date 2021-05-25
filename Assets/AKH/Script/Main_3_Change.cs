@@ -7,6 +7,6 @@ public class Main_3_Change : MonoBehaviour
     // Start is called before the first frame update
     private void OnTriggerEnter(Collider other)
     {
-        Playerspawn.MainSceneBack = true;
+        Playerspawn.MainScene_3 = true;
     }
 }

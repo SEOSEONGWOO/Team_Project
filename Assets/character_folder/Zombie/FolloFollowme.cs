@@ -38,7 +38,7 @@ public class FolloFollowme : MonoBehaviour
     {
         avatar = GetComponent<Animator>(); 
         test555 = 1; // 이거 안 넣으면 0.16 y 값 올라가는거 못 잡음 왠지 모름 알면 수정좀
-        Gobj = GameObject.Find("HPCharacter");  // 시작할 때 이름이 HPCharacter 인 거 Gobj 오브젝트에 넣어 줌
+        Gobj = GameObject.FindGameObjectWithTag("Player");  // 시작할 때 태그 이름이 Player 인 거 Gobj 오브젝트에 넣어 줌
     }
 
     void Update()
