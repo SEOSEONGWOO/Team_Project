@@ -94,10 +94,7 @@ public class ShootSimple_Scr : MonoBehaviour
         {
             skill1_1();
             skill1_4();
-
-
         }
-
         if (WeaponNumber == 2)
         {
             

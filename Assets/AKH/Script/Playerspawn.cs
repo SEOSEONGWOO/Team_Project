@@ -13,7 +13,9 @@ public class Playerspawn : MonoBehaviour
     public static bool Main_2 = false;    //메인2
     public static bool Main_3 = false;    //메인3(트랩)
 
-    private float time = 1.5f;
+    public static bool count = true;  //한번만 실행시키기 위한 변수
+
+    private float time = 2f;
     void Start()
     {
         gameObject.transform.position = new Vector3(-186, 3, 354);
@@ -54,17 +56,20 @@ public class Playerspawn : MonoBehaviour
         }
 
         //죽었을때 처음위치로 이동
-        if (Player_Scr.dead && Main)
+        if (Player_Scr.dead && Main && count)
         {
             Invoke("MainSceneSpawn", time);
+            count = false;
         }
-        else if (Player_Scr.dead && Main_2)
+        else if (Player_Scr.dead && Main_2 && count)
         {
             Invoke("MainScene_2_Spawn", time);
+            count = false;
         }
-        else if (Player_Scr.dead && Main_3)
+        else if (Player_Scr.dead && Main_3 && count)
         {
             Invoke("MainScene_3_Spawn", time);
+            count = false;
         }
     }
     void MainSceneSpawn()

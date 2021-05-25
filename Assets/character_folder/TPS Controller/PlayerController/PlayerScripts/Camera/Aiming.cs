@@ -20,22 +20,26 @@ public class Aiming : MonoBehaviour {
 
 	void Update()
 	{
-		if (Input.GetMouseButton (1)) //Right click on the right mouse button
-		{
-	
-			isZoomed = 1;  //isZoomed becomes active
-		}
-		if (isZoomed == 1) {
-			GetComponent<Camera> ().fieldOfView = Mathf.Lerp (GetComponent<Camera> ().fieldOfView, zoom, Time.deltaTime * smoothZoom); //Ищим камеру на нашем объекте и меняем поле зрения
-		}
-		if (Input.GetMouseButtonUp (1))
-		{
+        if (Player_Scr.isShop)
+        {
+			if (Input.GetMouseButton(1)) //Right click on the right mouse button
+			{
+				isZoomed = 1;  //isZoomed becomes active
+			}
+			if (isZoomed == 1)
+			{
+				GetComponent<Camera>().fieldOfView = Mathf.Lerp(GetComponent<Camera>().fieldOfView, zoom, Time.deltaTime * smoothZoom); //Ищим камеру на нашем объекте и меняем поле зрения
+			}
+			if (Input.GetMouseButtonUp(1))
+			{
 
-			isZoomed = 0;
+				isZoomed = 0;
+			}
+			if (isZoomed == 0)
+			{
+				GetComponent<Camera>().fieldOfView = Mathf.Lerp(GetComponent<Camera>().fieldOfView, normal, Time.deltaTime * smoothZoom); //Если зуум не активен, то возвращаем значение поля зрения по умолчанию
+			}
 		}
-		if(isZoomed == 0)
-		{
-			GetComponent<Camera> ().fieldOfView = Mathf.Lerp (GetComponent<Camera> ().fieldOfView, normal, Time.deltaTime * smoothZoom); //Если зуум не активен, то возвращаем значение поля зрения по умолчанию
-		}
+		
 	}
 }

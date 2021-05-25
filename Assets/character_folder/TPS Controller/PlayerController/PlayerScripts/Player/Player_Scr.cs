@@ -140,18 +140,16 @@ public class Player_Scr : MonoBehaviourPun
 	void Start()
 	{
         FirstLocationVector = clcl.transform.position;
-		//DontDestroyOnLoad(gameObject);
 		/*-----AKH 수정-----*/
 		DontDestroyOnLoad(gameObject);
 
 		targetPos = GameObject.Find("TargetLook").GetComponent<Transform>();
 		targetPosOld = GameObject.Find("TargetLookInFight").GetComponent<Transform>();
 
-		//crosshair = GameObject.Find("Crosshair");
 		crosshair = GameObject.FindGameObjectWithTag("Crosshair");
 
 		tr = GetComponent<Transform>();
-
+		
 		/*-----AKH 수정-----*/
 
 		dead = false;
@@ -174,60 +172,62 @@ public class Player_Scr : MonoBehaviourPun
 		{
 			return;
 		}*/
-		if (dead == false) 
+		if (isShop)
 		{
-			if (HP <= 0)
+			if (dead == false) 
 			{
-				Dead();
+				if (HP <= 0)
+				{
+					Dead();
+				}
 			}
-		}
-		
 
-        CLC = clcl.transform.position;
+			CLC = clcl.transform.position;
 
-		// 돈 텍스트
+			// 돈 텍스트
 
-		//  string PlayerMoneyT = "보유 금액 : " + PlayerMoney;
-		//  PlayerMoneyText.GetComponent<Text>().text = PlayerMoneyT;
+			//  string PlayerMoneyT = "보유 금액 : " + PlayerMoney;
+			//  PlayerMoneyText.GetComponent<Text>().text = PlayerMoneyT;
 
-        if(FireM == true)
-        {
-            isFireM();
-        }
+			if(FireM == true)
+			{
+				isFireM();
+			}
 
-		// Debug.Log(MainCharHP);
-		//Health();
-		//UI();
-        if (isShop)
-		{
+			// Debug.Log(MainCharHP);
+			//Health();
+			//UI();
+        
 			Locomotion();
 			Fight();
 			Jump();
-			roll();
+			roll(); 
+			
+			if (ShootSimple_Scr.WeaponNumber == 1)
+			{
+				skill1_2();
+				skill1_3SpeedBuff();
+			}
+
+			else if (ShootSimple_Scr.WeaponNumber == 2)
+			{
+				skill2_3();
+				skill2_4();
+			}
+
+			else if (ShootSimple_Scr.WeaponNumber == 3)
+			{
+				skill3_2();
+				skill3_3();
+				skill3_4();
+			}
+			w_change(); //무기변경 코드
+						//skill1();
+						//땅체크
+			grounded = Physics.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Blocking"));
 		}
 
-		if (ShootSimple_Scr.WeaponNumber == 1)
-		{
-			skill1_2();
-			skill1_3SpeedBuff();
-		}
-
-		else if (ShootSimple_Scr.WeaponNumber == 2)
-		{
-			skill2_3();
-			skill2_4();
-		}
-
-		else if (ShootSimple_Scr.WeaponNumber == 3)
-		{
-			skill3_2();
-			skill3_3();
-			skill3_4();
-		}
-		w_change(); //무기변경 코드
-		//skill1();
-		//땅체크
-		grounded = Physics.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Blocking"));
+		
 	}
 
 	void w_change()
@@ -629,7 +629,7 @@ public class Player_Scr : MonoBehaviourPun
 
 	void OnAnimatorIK()
 	{
-		if (Input.GetMouseButton(1))
+		if (Input.GetMouseButton(1) && isShop)
 		{
 			anim.SetLookAtWeight(lookIKWeight, bodyWeight);
 		    anim.SetLookAtPosition(targetPosVec);
@@ -704,17 +704,16 @@ public class Player_Scr : MonoBehaviourPun
 		dead = true;
 		roll_check = true;  //구르기 상태로 만들어서 움직이는 기능 멈추기
 		StartCoroutine("die");
-			
+		Playerspawn.count = true;   //죽을때 텔포 한번만
 	}
 	IEnumerator die()
 	{
-		yield return new WaitForSeconds(5.0f); //캐릭터 삭제시 0.2초후 실행
+		yield return new WaitForSeconds(1.5f); //캐릭터 삭제시 ~초후 실행
 		gameObject.transform.position = FirstLocationVector;
 		HP = 100;
 		anim.SetTrigger("Die1");
 		dead = false;
 		roll_check = false;
-
 	}
 
 	public void Death() //사망시 실행
