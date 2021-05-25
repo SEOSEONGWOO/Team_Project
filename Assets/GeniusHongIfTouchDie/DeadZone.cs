@@ -19,10 +19,15 @@ public class DeadZone : MonoBehaviour
         {
             Gobj.GetComponent<Player_Scr>().GunnerHitFunc(Damage);
             Debug.Log("okokokokokokookkokokokoko배고파");
+            Invoke("Gamedead",1f);
         }
         else if (other.tag == "Enemy")
         {
             gameObject.active = false;
         }
+    }
+    void Gamedead()
+    {
+        Player_Scr.dead = true;
     }
 }

@@ -53,7 +53,8 @@ public class CameraCs2 : MonoBehaviourPun
 		if (photonView.IsMine)
 		{
 			if(cc== true)
-				Tick();
+				if (Player_Scr.isShop)
+					Tick();
 		}
 	}
 
