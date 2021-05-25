@@ -138,7 +138,7 @@ public class FolloFollowme : MonoBehaviour
         }
     }
 
-    /*void OnTriggerStay(Collider other)
+    void OnTriggerStay(Collider other)
     {
         if (other.tag == "Player") //Player 태그가진 캐릭터가 공격 범위 들어오면
         { 
@@ -151,7 +151,7 @@ public class FolloFollowme : MonoBehaviour
         {
             avatar.SetBool("Att", false); // 공격 false
         }
-    }*/
+    }
 
     public void SetDamageAI()
     {
