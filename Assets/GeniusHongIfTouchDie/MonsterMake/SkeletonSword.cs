@@ -54,7 +54,10 @@ public class SkeletonSword : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Gobj.GetComponent<Player_Scr>().GunnerHitFunc(Damage);
-        Mode = 0;
+        if(other.tag == "Player")
+        {
+            Gobj.GetComponent<Player_Scr>().GunnerHitFunc(Damage);
+            Mode = 0;
+        }
     }
 }
