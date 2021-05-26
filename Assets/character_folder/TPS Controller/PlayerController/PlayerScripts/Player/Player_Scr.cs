@@ -463,7 +463,7 @@ public class Player_Scr : MonoBehaviourPun
 
 	}
 
-		void Locomotion()
+	void Locomotion()
 	{
 		targetPosVec = targetPos.position; 
 

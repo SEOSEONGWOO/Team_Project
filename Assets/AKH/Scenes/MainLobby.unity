@@ -904,7 +904,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1067483918}
+      - m_Target: {fileID: 1067483921}
         m_MethodName: Connect
         m_Mode: 1
         m_Arguments:
@@ -1256,6 +1256,7 @@ GameObject:
   - component: {fileID: 1067483919}
   - component: {fileID: 1067483918}
   - component: {fileID: 1067483920}
+  - component: {fileID: 1067483921}
   m_Layer: 0
   m_Name: Lobby Manager (1)
   m_TagString: Untagged
@@ -1270,7 +1271,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1067483917}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 18dee179bada9e248ac002c0bef2eec3, type: 3}
   m_Name: 
@@ -1312,6 +1313,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   NicknameInput: {fileID: 1103526008}
   PasswordInput: {fileID: 460172283}
+--- !u!114 &1067483921
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1067483917}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b7bbefea98884c40b47ab25f810db89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  email: 
+  password: 
+  NicknameInput: {fileID: 1103526008}
+  PasswordInput: {fileID: 460172283}
+  Title: {fileID: 372962219}
+  LoginPenel: {fileID: 1505935034}
+  LobbyPenel: {fileID: 351788443}
+  connectionInfoText: {fileID: 2058147679}
+  joinButton: {fileID: 787727772}
 --- !u!1 &1070274465
 GameObject:
   m_ObjectHideFlags: 0

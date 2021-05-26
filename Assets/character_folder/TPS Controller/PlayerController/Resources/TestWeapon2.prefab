@@ -19,7 +19,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8020856777013963372
 Transform:
   m_ObjectHideFlags: 0
@@ -198,16 +198,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponPoint: {fileID: 8020856777013963372}
-  aimPoint: {fileID: 0}
   shootPoint: {fileID: 7549572031831510978}
   targetLook: {fileID: 0}
   bullet: {fileID: 648706722154412440, guid: 99148b76a62191c448a87199f78982ab, type: 3}
+  skill1_1bullet: {fileID: 0}
+  skill1_2bullet: {fileID: 0}
+  skill1_4bullet: {fileID: 0}
+  skill1_4effect: {fileID: 0}
+  skill2_1bullet: {fileID: 0}
+  skill2_2bullet: {fileID: 0}
+  skill3_1bullet: {fileID: 0}
   isshoot: 1
+  isSkill1: 0
+  isSkill4: 0
+  isSkill2_1: 0
+  isSkill2_2: 0
+  isSkill3_1: 0
+  weapon: {fileID: 0}
   distance: 100
   force: 100
   reloadTime: 0.6
   shootFireLifeTime: 15
   fireSound: {fileID: 8300000, guid: 42a8e5ea4eabc2e40a22ea1a7842b43a, type: 3}
+  muzzleFlash: {fileID: 0}
+  Shell: {fileID: 0}
   returnTime: 2
 --- !u!1 &7549572031831510977
 GameObject:

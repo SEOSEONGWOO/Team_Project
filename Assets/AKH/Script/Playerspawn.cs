@@ -29,6 +29,7 @@ public class Playerspawn : MonoBehaviour
             Main = true;
             Main_2 = false;
             Main_3 = false;
+            PhotonNetwork.LoadLevel("Main_map");
             Invoke("MainSceneSpawn", time);
             MainSceneBack = false;
         }
