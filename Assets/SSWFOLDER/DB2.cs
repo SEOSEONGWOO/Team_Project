@@ -29,8 +29,9 @@ public class DB2 : MonoBehaviourPunCallbacks
     public Button LogButton;    //로그인 버튼
     FirebaseAuth auth;
 
+
     // 게임 실행과 동시에 마스터 서버 접속 시도
-    private void Start()
+    private void Awake()
     {
         auth = FirebaseAuth.DefaultInstance;
         //password 초기화
@@ -62,9 +63,9 @@ public class DB2 : MonoBehaviourPunCallbacks
             // 마스터 서버에 접속중이라면
             if (PhotonNetwork.IsConnected)
             {
+                Debug.Log("룸 접속 실행");
                 // 룸 접속 실행
                 connectionInfoText.text = "룸에 접속...";
-
                 PhotonNetwork.JoinRandomRoom();
             }
             else
@@ -74,6 +75,8 @@ public class DB2 : MonoBehaviourPunCallbacks
                 // 마스터 서버로의 재접속 시도
                 PhotonNetwork.ConnectUsingSettings();
             }
+
+            SceanChange = false;
         }
     }
     //회원가입 코드 시작
