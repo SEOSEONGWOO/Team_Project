@@ -53,7 +53,7 @@ public class Skeleton : MonoBehaviour
 
     void Update()
     {
-        Gobj = GameObject.Find("HPCharacter");
+        Gobj = GameObject.FindWithTag("Player");
 
         nav = GetComponent<NavMeshAgent>();
 

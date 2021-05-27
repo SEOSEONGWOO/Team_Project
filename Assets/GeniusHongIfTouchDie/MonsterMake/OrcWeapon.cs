@@ -17,12 +17,14 @@ public class OrcWeapon : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Gobj = GameObject.FindGameObjectWithTag("Player");
+        
     }
 
     // Update is called once per frame
     void Update()
     {
+        Gobj = GameObject.FindGameObjectWithTag("Player");
+
         //Debug.Log(Mode);
 
         if (Mode == 1)
@@ -58,20 +60,30 @@ public class OrcWeapon : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(Mode == 1)
+        if(other.tag == "Player")
         {
-            Gobj.GetComponent<Player_Scr>().GunnerHitFunc(Damage);
-            Mode = 0;
-        }
-        else if(Mode == 2)
-        {
-            Gobj.GetComponent<Player_Scr>().GunnerHitFunc(Damage);
-            Cool += Time.deltaTime;
-            if (Cool >= Delay)
+            if (Mode == 1)
             {
-                Cool = 0f;
+                Gobj.GetComponent<Player_Scr>().GunnerHitFunc(Damage);
                 Mode = 0;
+                Debug.Log("Mode 1 : " + gameObject.name);
+            }
+            else if (Mode == 2)
+            {
+                Gobj.GetComponent<Player_Scr>().GunnerHitFunc(Damage);
+                Cool += Time.deltaTime;
+                if (Cool >= Delay)
+                {
+                    Cool = 0f;
+                    Mode = 0;
+                }
+                Debug.Log("Mode 2: " + gameObject.name);
             }
         }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        
     }
 }

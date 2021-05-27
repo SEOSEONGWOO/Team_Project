@@ -17,12 +17,14 @@ public class SkeletonSword : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Gobj = GameObject.FindGameObjectWithTag("Player");
+        
     }
 
     // Update is called once per frame
     void Update()
     {
+        Gobj = GameObject.FindGameObjectWithTag("Player");
+
         //Debug.Log(Mode);
 
         if (Mode == 1)

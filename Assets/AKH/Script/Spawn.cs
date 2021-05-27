@@ -27,7 +27,7 @@ public class Spawn : MonoBehaviour
             Instantiate(prefabC,
                 new Vector3(-59.2f, 3.0f, 25.0f), Quaternion.identity);
 
-            GameObject name = PhotonNetwork.Instantiate(prefab.name,
+            GameObject name = Instantiate(prefab,
                 new Vector3(-59.2f, 3.0f, 25.0f), Quaternion.identity);
             Debug.Log(spawpoint.position);
             /*name.name = "test_name" + i;

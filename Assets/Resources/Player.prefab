@@ -742,7 +742,6 @@ MonoBehaviour:
   isshoot: 1
   fightModUI: {fileID: 0}
   ragdoll: {fileID: 5431398466033780921, guid: fc94d387fc606fb4aae480cc5e37a14c, type: 3}
-  clcl: {fileID: 7250130997467848381}
   FirstLocationVector: {x: 0, y: 0, z: 0}
   PlayerMoneyText: {fileID: 0}
 --- !u!114 &-1308161118896512836

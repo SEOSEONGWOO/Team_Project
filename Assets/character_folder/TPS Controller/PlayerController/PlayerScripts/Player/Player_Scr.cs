@@ -112,7 +112,7 @@ public class Player_Scr : MonoBehaviourPun
 
 
 	// 플레이어 따라오게 하는 코드
-	public Transform clcl;
+	//public Transform clcl;
 	public static Vector3 CLC;
 
     // public Transform FirstLocation;
@@ -140,7 +140,7 @@ public class Player_Scr : MonoBehaviourPun
 
 	void Start()
 	{
-        FirstLocationVector = clcl.transform.position;
+        FirstLocationVector = gameObject.transform.position;
 		/*-----AKH 수정-----*/
 		DontDestroyOnLoad(gameObject);
 
@@ -184,14 +184,14 @@ public class Player_Scr : MonoBehaviourPun
 				}
 			}
 
-			CLC = clcl.transform.position;
+			CLC = gameObject.transform.position;
+            Debug.Log("CLC : "+CLC);
+            // 돈 텍스트
 
-			// 돈 텍스트
+            //  string PlayerMoneyT = "보유 금액 : " + PlayerMoney;
+            //  PlayerMoneyText.GetComponent<Text>().text = PlayerMoneyT;
 
-			//  string PlayerMoneyT = "보유 금액 : " + PlayerMoney;
-			//  PlayerMoneyText.GetComponent<Text>().text = PlayerMoneyT;
-
-			if(FireM == true)
+            if (FireM == true)
 			{
 				isFireM();
 			}
