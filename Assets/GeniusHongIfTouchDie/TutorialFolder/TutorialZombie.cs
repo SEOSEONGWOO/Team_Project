@@ -15,7 +15,7 @@ public class TutorialZombie : MonoBehaviour
 
     private void Update()
     {
-        if (avatar.GetBool("Die") == false)
+        if (avatar.GetBool("Die") == true)
         {
             TutorialSkeleton.SetActive(true);
         }

@@ -142,7 +142,7 @@ public class PlayerCs : MonoBehaviourPunCallbacks, IPunObservable
 
 	void Start()
 	{
-		DontDestroyOnLoad(gameObject);
+		//DontDestroyOnLoad(gameObject);
 		FirstLocationVector = clcl.transform.position;
 		/*-----AKH 수정-----*/
 

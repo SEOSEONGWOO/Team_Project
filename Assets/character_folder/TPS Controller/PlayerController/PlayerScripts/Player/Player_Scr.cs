@@ -18,9 +18,10 @@ public class Player_Scr : MonoBehaviourPun
 
 	public static Animator anim;
 	[Header("Player Health")]
-	public static float maxHP;
+	public static float maxHP = 100;
 	public static float HP = 100;
-	public float MP = 100; //구르기 게이지 ,구르면 20씩 줄어들게 만들어둠
+    public static float maxMP = 100;
+    public static float MP = 100; //구르기 게이지 ,구르면 20씩 줄어들게 만들어둠
 
 	public int Depense = 5; // 방어력
 
@@ -164,7 +165,8 @@ public class Player_Scr : MonoBehaviourPun
 
 		Cursor.lockState = CursorLockMode.Locked;
 		Cursor.visible = false;
-	}
+
+    }
 
 	void Update()
 	{
