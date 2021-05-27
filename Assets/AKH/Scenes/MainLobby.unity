@@ -1810,7 +1810,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1067483918}
+      - m_Target: {fileID: 1067483921}
         m_MethodName: JoinBtnOnClick
         m_Mode: 1
         m_Arguments:
