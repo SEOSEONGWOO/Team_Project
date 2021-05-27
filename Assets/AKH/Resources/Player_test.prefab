@@ -5776,9 +5776,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 839c6009a7d723149a4cff1bccf5f6ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHP: 150
-  HP: 150
-  MP: 100
   Depense: 5
   HitD: 0
   lookIKWeight: 1
@@ -5804,18 +5801,22 @@ MonoBehaviour:
   skill2_meteo: {fileID: 0}
   isSkill3_2: 1
   isSkill3_3: 1
+  isSkill3_4: 1
   skill3_wall: {fileID: 0}
   skill3_buff: {fileID: 0}
+  skill3_4_Effect: {fileID: 0}
   damage: 50
   weapon1: {fileID: 2149038324675388616}
   weapon2: {fileID: 4767387217030170763}
   weapon3: {fileID: 0}
+  tr: {fileID: 0}
   isfight: 0
   isshoot: 1
   fightModUI: {fileID: 2150004387207273119, guid: c27463e172c55824980350685390bd03,
     type: 3}
   ragdoll: {fileID: 5431398466033780921, guid: fc94d387fc606fb4aae480cc5e37a14c, type: 3}
   clcl: {fileID: 0}
+  FirstLocationVector: {x: 0, y: 0, z: 0}
   PlayerMoneyText: {fileID: 0}
 --- !u!114 &6042983033425828747
 MonoBehaviour:
