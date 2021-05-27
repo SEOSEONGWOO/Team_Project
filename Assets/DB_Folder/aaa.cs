@@ -39,6 +39,10 @@ public class aaa : MonoBehaviour
     {
         readUser("positon");
     }
+    public void delete()
+    {
+        deleteUser("positon", count);
+    }
 
     private void writeNewUser(string userId, string name, string email,int count)
     {
@@ -70,9 +74,10 @@ public class aaa : MonoBehaviour
                 DataSnapshot snapshot = task.Result;
                 // snapshot의 자식 갯수 확인
                 Debug.Log(snapshot.ChildrenCount);
-                
 
-                foreach (DataSnapshot data in snapshot.Children)
+              
+
+              foreach (DataSnapshot data in snapshot.Children)
                 {
                     IDictionary presonInfo = (IDictionary)data.Value;
                     Debug.Log("email:" + presonInfo["email"] + "username:" + presonInfo["username"]
@@ -85,7 +90,11 @@ public class aaa : MonoBehaviour
             }
         });
     }
-    
+    private void deleteUser(string userId , int count)
+    {
+
+        databaseReference.Child(userId).RemoveValueAsync();
+    }
 
 
 

@@ -6,7 +6,7 @@ public class DeadZone : MonoBehaviour
 {
     public GameObject Gobj;
 
-    int Damage = 99999999;
+    int Damage = 150;
 
     void Start()
     {

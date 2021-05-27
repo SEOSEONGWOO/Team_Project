@@ -15,9 +15,9 @@ public class SkillPanelMove : MonoBehaviour
 
     public int SkillPanelChange;
 
-    public bool fire = false;
-    public bool lightning = false;
-    public bool holly = false;
+    public static bool fire = false;
+    public static bool lightning = false;
+    public static bool holly = false;
     // Start is called before the first frame update
     void Start()
     {
