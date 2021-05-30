@@ -34,6 +34,7 @@ public class StartText : MonoBehaviour
                 textPanel.SetActive(false);
                 textStart = false;
                 TextTime = 0;
+                Destroy(gameObject);
             }
         }
         
