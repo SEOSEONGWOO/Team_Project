@@ -9574,11 +9574,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4000010690109084}
+  - component: {fileID: 3513579450857455305}
   - component: {fileID: 2541775292799020621}
-  - component: {fileID: -1287103346065373811}
   m_Layer: 0
   m_Name: Bottle_Health
-  m_TagString: Item
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9592,13 +9592,25 @@ Transform:
   m_GameObject: {fileID: 1000012970591572}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.37, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4000010533823780}
   - {fileID: 4000013521377066}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3513579450857455305
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000012970591572}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11d8dbd27ffa8c543b0103777b3514b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!135 &2541775292799020621
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -9612,16 +9624,3 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.30004156
   m_Center: {x: 0, y: 1.0932077, z: 0}
---- !u!114 &-1287103346065373811
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1000012970591572}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 11d8dbd27ffa8c543b0103777b3514b4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  item: {fileID: 11400000, guid: ce000a29f9761c640a1d008995048157, type: 2}
