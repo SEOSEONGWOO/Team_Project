@@ -4,11 +4,7 @@ using UnityEngine;
 
 public class ItemEat : MonoBehaviour
 {
-    private void OnTriggerEnter(Collider other)
-    {
-        if(other.tag == "Player")
-        {
-            Destroy(gameObject);
-        }
-    }
+    public Item item;
+
+
 }

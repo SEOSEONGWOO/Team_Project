@@ -19,6 +19,7 @@ TagManager:
   - User
   - CanvasAim
   - Crosshair
+  - Item
   layers:
   - Default
   - TransparentFX
