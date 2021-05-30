@@ -15,8 +15,6 @@ public class Player_Scr : MonoBehaviourPun
 		Screen.sleepTimeout = SleepTimeout.NeverSleep;
 		Screen.SetResolution(1920, 1080, true);
 	}
-	private InventoryUI theIn;
-	public GameObject a;
 
 	public static Animator anim;
 	[Header("Player Health")]
@@ -187,7 +185,7 @@ public class Player_Scr : MonoBehaviourPun
 			}
 
 			CLC = gameObject.transform.position;
-           // Debug.Log("CLC : "+CLC);
+            Debug.Log("CLC : "+CLC);
             // 돈 텍스트
 
             //  string PlayerMoneyT = "보유 금액 : " + PlayerMoney;
@@ -692,7 +690,6 @@ public class Player_Scr : MonoBehaviourPun
 		}
 	}
 
-	
 	private void OnTriggerEnter(Collider other)
     {
 		if (other.tag == "DamageAI")
@@ -701,20 +698,7 @@ public class Player_Scr : MonoBehaviourPun
 				HP -= 50;
 			}
 		}
-		else if (other.gameObject.tag == "Item")
-		{
-			//theIn.AcquireItem(a.GetComponent<ItemEat>().item);
-			Debug.Log(other.gameObject.GetComponent<ItemEat>().item + "획득했습니다.");
-			theIn.AcquireItem(other.gameObject.GetComponent<ItemEat>().item);
-			Destroy(other.gameObject);
-
-		}
 	}
-
-	
-	
-
-
 	public void Dead()
     {
 		
@@ -769,6 +753,7 @@ public class Player_Scr : MonoBehaviourPun
             Debug.Log(HitD);
         }
     }
+
 	
 
 
