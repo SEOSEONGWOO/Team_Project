@@ -16,6 +16,8 @@ public class Playerspawn : MonoBehaviour
     public static bool count = true;  //한번만 실행시키기 위한 변수
 
     private float time = 0.5f;
+
+    public static bool BossRoom_test = false;    //BossRoom_test
     void Start()
     {
         gameObject.transform.position = new Vector3(-186, 3, 354);
@@ -24,7 +26,7 @@ public class Playerspawn : MonoBehaviour
     void Update()
     {
         //메인씬으로 이동
-        if (MainSceneBack == true)
+        if (MainSceneBack)
         {
             Main = true;
             Main_2 = false;
@@ -35,7 +37,7 @@ public class Playerspawn : MonoBehaviour
             MainSceneBack = false;
         }
         //메인씬2로 이동
-        else if(MainScene_2 == true)
+        if(MainScene_2)
         {
             Debug.Log("Main_map 2 변경");
             Main = false;
@@ -47,7 +49,7 @@ public class Playerspawn : MonoBehaviour
             MainScene_2 = false;
         }
         //메인씬3(트랩)로 이동
-        else if(MainScene_3 == true)
+        if(MainScene_3)
         {
             Debug.Log("trapmap2 변경");
             Main = false;
@@ -58,7 +60,12 @@ public class Playerspawn : MonoBehaviour
             Invoke("MainScene_3_Spawn", time);
             MainScene_3 = false;
         }
-
+        //bossroom test 
+        if (BossRoom_test)
+        {
+            gameObject.transform.position = new Vector3(-185f, -1.3f, 230f);
+            BossRoom_test = false;
+        }
         //죽었을때 처음위치로 이동
         if (Player_Scr.isdead && Main)
         {
