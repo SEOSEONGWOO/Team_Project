@@ -15,7 +15,7 @@ public class Playerspawn : MonoBehaviour
 
     public static bool count = true;  //한번만 실행시키기 위한 변수
 
-    private float time = 2f;
+    private float time = 0.5f;
     void Start()
     {
         gameObject.transform.position = new Vector3(-186, 3, 354);
@@ -60,25 +60,25 @@ public class Playerspawn : MonoBehaviour
         }
 
         //죽었을때 처음위치로 이동
-        if (Player_Scr.dead && Main && count)
+        if (Player_Scr.isdead && Main)
         {
-            Invoke("MainSceneSpawn", time);
-            count = false;
+            Invoke("MainSceneSpawn", time + 1f);
+            Player_Scr.isdead = false;
         }
-        else if (Player_Scr.dead && Main_2 && count)
+        else if (Player_Scr.isdead && Main_2)
         {
-            Invoke("MainScene_2_Spawn", time);
-            count = false;
+            Invoke("MainScene_2_Spawn", time + 1f);
+            Player_Scr.isdead = false;
         }
-        else if (Player_Scr.dead && Main_3 && count)
+        else if (Player_Scr.isdead && Main_3)
         {
-            Invoke("MainScene_3_Spawn", time);
-            count = false;
+            Invoke("MainScene_3_Spawn", time + 1f);
+            Player_Scr.isdead = false;
         }
     }
     void MainSceneSpawn()
     {
-        gameObject.transform.position = new Vector3(-185f, 2.7f, 255f);
+        gameObject.transform.position = new Vector3(-185f, 5f, 263f);
     }
     void MainScene_2_Spawn()
     {

@@ -88,6 +88,8 @@ public class Player_Scr : MonoBehaviourPun
 
 	public static bool isShop = true;
 
+	public static bool isdead = false;
+
 	/*-----AKH 수정-----*/
 
 	[Header("Battle mode")]
@@ -185,7 +187,7 @@ public class Player_Scr : MonoBehaviourPun
 			}
 
 			CLC = gameObject.transform.position;
-            Debug.Log("CLC : "+CLC);
+            //Debug.Log("CLC : "+CLC);
             // 돈 텍스트
 
             //  string PlayerMoneyT = "보유 금액 : " + PlayerMoney;
@@ -701,12 +703,11 @@ public class Player_Scr : MonoBehaviourPun
 	}
 	public void Dead()
     {
-		
 		anim.SetTrigger("Die2"); //죽는 애니메이션 실행
 		dead = true;
 		roll_check = true;  //구르기 상태로 만들어서 움직이는 기능 멈추기
 		StartCoroutine("die");
-		Playerspawn.count = true;   //죽을때 텔포 한번만
+		//Playerspawn.count = true;   //죽을때 텔포 한번만
 	}
 	IEnumerator die()
 	{
@@ -714,6 +715,7 @@ public class Player_Scr : MonoBehaviourPun
 		gameObject.transform.position = FirstLocationVector;
 		HP = 100;
 		anim.SetTrigger("Die1");
+		isdead = true;	//죽을때 텔포
 		dead = false;
 		roll_check = false;
 	}
