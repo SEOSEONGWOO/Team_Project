@@ -34,6 +34,7 @@ public class Spawn : MonoBehaviour
             i++;
             Debug.Log("i : "+i+"/"+ name.name);*/
             GameM.gameStart = false;
+            UIStart.StartUI1 = true;
         }
 
     }
