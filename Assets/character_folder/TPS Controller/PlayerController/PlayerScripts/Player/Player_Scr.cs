@@ -31,7 +31,7 @@ public class Player_Scr : MonoBehaviourPun
 
 	public float lookIKWeight;
 	public float bodyWeight;
-
+	public GameObject a;
 
 	[Tooltip("Health text")]
 	public Text healthText;
@@ -637,6 +637,7 @@ public class Player_Scr : MonoBehaviourPun
 		{
 			anim.SetLookAtWeight(lookIKWeight, bodyWeight);
 		    anim.SetLookAtPosition(targetPosVec);
+			a.transform.rotation = Quaternion.Euler(targetPosVec);
 		}
 	}
 
