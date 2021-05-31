@@ -66,6 +66,7 @@ public class OrcWeapon : MonoBehaviour
             {
                 Gobj.GetComponent<Player_Scr>().GunnerHitFunc(Damage);
                 Mode = 0;
+                Cool = 0f;
                 Debug.Log("Mode 1 : " + gameObject.name);
             }
             else if (Mode == 2)

@@ -60,6 +60,12 @@ public class SkeletonSword : MonoBehaviour
         {
             Gobj.GetComponent<Player_Scr>().GunnerHitFunc(Damage);
             Mode = 0;
+            Cool = 0f;
         }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        
     }
 }
