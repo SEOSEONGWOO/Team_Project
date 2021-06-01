@@ -13,11 +13,13 @@ public class DrgAttSC : MonoBehaviour
 
     void Start()
     {
-        Gobj = GameObject.Find("HPCharacter");
+        
     }
 
     void Update()
     {
+        Gobj = GameObject.FindWithTag("Player");
+
         if (UsurperSkill.AttackOn == 1)
         {
             gameObject.GetComponent<CapsuleCollider>().enabled = true;
@@ -49,9 +51,13 @@ public class DrgAttSC : MonoBehaviour
         }
     }
 
-    void OnCollisionEnter(Collision Player)
+
+    private void OnTriggerEnter(Collider other)
     {
-        Gobj.GetComponent<Player_Scr>().GunnerHitFunc(Damage);
-        gameObject.GetComponent<CapsuleCollider>().enabled = false;
+        if(other.tag == "Player")
+        {
+            Gobj.GetComponent<Player_Scr>().GunnerHitFunc(Damage);
+            gameObject.GetComponent<CapsuleCollider>().enabled = false;
+        }
     }
 }

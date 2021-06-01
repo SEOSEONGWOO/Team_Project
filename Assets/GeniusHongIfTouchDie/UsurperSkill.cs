@@ -58,12 +58,13 @@ public class UsurperSkill : MonoBehaviour
     void Start()
     {
         //AwakeT += Time.deltaTime;
-        Gobj = GameObject.Find("HPCharacter");
+        
     }
 
     void Update()
     {
-        
+        Gobj = GameObject.FindWithTag("Player");
+
         nav = GetComponent<NavMeshAgent>();
 
         DrgLN = DrgL.transform.position; // DrgLN 에 드래곤 위치값 넣어줌
@@ -158,7 +159,7 @@ public class UsurperSkill : MonoBehaviour
                         StartCoroutine(AttackDelay(1));
 
                         avatar.SetTrigger("Sk1"); // 스킬1 사용
-                        Gobj.GetComponent<Player_Scr>().GunnerHitFunc(Sk1Da); // 공격
+                        //Gobj.GetComponent<Player_Scr>().GunnerHitFunc(Sk1Da); // 공격
 
                         DrgAtIngEnd = 5.1f; // 모션시간
                         Sk1Del = 1; // 스킬 쿨타임
@@ -178,7 +179,7 @@ public class UsurperSkill : MonoBehaviour
 
                         avatar.SetTrigger("Sk2");
                         
-                        Gobj.GetComponent<Player_Scr>().GunnerHitFunc(Sk2Da);
+                        //Gobj.GetComponent<Player_Scr>().GunnerHitFunc(Sk2Da);
                         DrgAtIngEnd = 7.1f;
                         Sk2Del = 1;
                         SkillC = 8;
@@ -303,6 +304,49 @@ public class UsurperSkill : MonoBehaviour
         }
         DrgHP -= Bullet.bulletDamage; // 총에 맞으면 총알데미지 만큼 체력 까임
         Debug.Log(DrgHP);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Skill1")
+        {
+            UsurperSkill.DrgHP -= 500;
+        }
+
+        if (other.tag == "skill1_2")
+        {
+            UsurperSkill.DrgHP -= 500;
+
+        }
+        if (other.tag == "Skill1_4")
+        {
+            UsurperSkill.DrgHP -= 500;
+        }
+
+        if (other.tag == "Skill2_1")
+        {
+            UsurperSkill.DrgHP -= 500;
+        }
+
+        if (other.tag == "Skill2_3")
+        {
+            UsurperSkill.DrgHP -= 500;
+
+        }
+        if (other.tag == "Skill2_4")
+        {
+            UsurperSkill.DrgHP -= 500;
+
+        }
+        if (other.tag == "Skill3_1")
+        {
+            UsurperSkill.DrgHP -= 500;
+
+        }
+        if (other.tag == "Skill3_2")
+        {
+            UsurperSkill.DrgHP -= 500;
+        }
     }
 
     public IEnumerator AttackDelay(int FT)
