@@ -20,7 +20,7 @@ public class Playerspawn : MonoBehaviour
     public static bool BossRoom_test = false;    //BossRoom_test
     void Start()
     {
-        gameObject.transform.position = new Vector3(-186, 3, 354);
+        gameObject.transform.position = new Vector3(-186.0f, 0.01f, 354.0f);
         Main = true;
     }
     void Update()
