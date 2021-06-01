@@ -7322,7 +7322,7 @@ PrefabInstance:
         type: 3}
       propertyPath: skill3_wall
       value: 
-      objectReference: {fileID: 1270699962191098, guid: d91ca714cb993984697f53589554d20b,
+      objectReference: {fileID: 2535943546491744713, guid: c9168c3f4d266034b98aa8e8009c39c9,
         type: 3}
     - target: {fileID: 92618144994889694, guid: 9d3462825fdaad249a4a6e3c62bd873d,
         type: 3}

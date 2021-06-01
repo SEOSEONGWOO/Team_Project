@@ -228,10 +228,38 @@ public class Player_Scr : MonoBehaviourPun
 			w_change(); //무기변경 코드
 						//skill1();
 						//땅체크
+
+			ManaRegen();//마나 초당 회복
+			MaxHp();// 체력 100이상 되면 100으로 고정
 			grounded = Physics.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Blocking"));
 		}
 
 		
+	}
+	void ManaRegen()
+	{
+		if (MP != maxMP)
+		{
+			//마나는 초당 0.5씩 회복
+			MP += Time.deltaTime * 10f;
+
+			//마나를 회복했는데 최대 마나보다 크다면 현재마나를 최대마나량으로 변경
+			if (MP > maxMP)
+			{
+				MP = maxMP;
+			}
+			//회복된 마나량을 Mpbar슬라이더에 업데이트
+		}
+	}
+
+	void MaxHp()
+	{
+
+		if (HP > maxHP)
+		{
+			HP = maxHP;
+		}
+
 	}
 
 	void w_change()
@@ -361,21 +389,18 @@ public class Player_Scr : MonoBehaviourPun
 		if (Input.GetKeyDown(KeyCode.Alpha2) && isSkill3_2 == true && roll_check == false
 			&& grounded == true && ShootSimple_Scr.SkillMode == false) //에임 조준 안했을시 2번 누르면 실행
 
-		{
-			anim.SetBool("Skill_1_Magic", true);
+		{	
 			isSkill3_2 = false;
 			isfight = true;
 			StartCoroutine("Skill3_2");
+			Instantiate(skill3_wall, transform.position + this.transform.forward * 2 + this.transform.up * 1, Quaternion.Euler(-90, 0, 0));
+			isfight = false;
 		}
 	}
 
 	IEnumerator Skill3_2()
 	{
 
-		yield return new WaitForSeconds(2.0f);
-		anim.SetBool("Skill_1_Magic", false);
-		Instantiate(skill3_wall, transform.position + this.transform.forward * 5, Quaternion.Euler(-90, 0, 0));
-		isfight = false;
 		yield return new WaitForSeconds(5.0f); //스킬 쿨
 		//Destroy(skill3_wall);
 		isSkill3_2 = true;
@@ -424,11 +449,15 @@ public class Player_Scr : MonoBehaviourPun
 		isfight = false;
 		yield return new WaitForSeconds(5.0f); //초후 버프 없애기
 		skill3_4_Effect.SetActive(false);
+		hill_buff.a = false; //초당 체력 재생 변수 끄기
 		yield return new WaitForSeconds(8.0f); //스킬 쿨타임
 		isSkill3_4 = true;
 
 	}
+
 	
+
+
 
 
 
