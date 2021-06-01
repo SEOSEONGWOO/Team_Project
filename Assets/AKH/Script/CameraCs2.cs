@@ -50,9 +50,17 @@ public class CameraCs2 : MonoBehaviourPun
 
 	void Update()
 	{
-        if (cc == true)
-            if (Player_Scr.isShop)
-                Tick();
+		if (!photonView.IsMine)
+		{
+			return;
+        }
+        else
+        {
+			if (cc == true)
+				if (Player_Scr.isShop)
+					Tick();
+		}
+		
        
 	}
 

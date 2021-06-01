@@ -73,8 +73,6 @@ public class Player_Scr : MonoBehaviourPun
 	public GameObject skill3_4_Effect;
 
 
-
-
 	[Header("The fight")]
 	public int damage;
 
@@ -90,6 +88,9 @@ public class Player_Scr : MonoBehaviourPun
 
 	public static bool isdead = false;
 
+	//위치 정보를 송수신 할때 사용할 변수 선언 및 초기값 설정
+	float currRun = 0f;
+	float currstrafe = 0f;
 	/*-----AKH 수정-----*/
 
 	[Header("Battle mode")]
@@ -131,7 +132,6 @@ public class Player_Scr : MonoBehaviourPun
     public static float FireTime = 0f;
     float FireDamage = 0.05f;
 
-
 	void CmdClientState(Vector3 targetPosVec, float newRunWeight, float run, float strafe)
 	{
 		this.targetPosVec = targetPosVec;
@@ -152,7 +152,7 @@ public class Player_Scr : MonoBehaviourPun
 		crosshair = GameObject.FindGameObjectWithTag("Crosshair");
 
 		tr = GetComponent<Transform>();
-		
+
 		/*-----AKH 수정-----*/
 
 		dead = false;
@@ -172,68 +172,92 @@ public class Player_Scr : MonoBehaviourPun
 
 	void Update()
 	{
-		/*if (!photonView.IsMine)
+		if (photonView.IsMine)
 		{
-			return;
-		}*/
-		if (isShop)
-		{
-			if (dead == false) 
+			if (isShop)
 			{
-				if (HP <= 0)
+				if (dead == false)
 				{
-					Dead();
+					if (HP <= 0)
+					{
+						Dead();
+					}
+				}
+
+				CLC = gameObject.transform.position;
+				//Debug.Log("CLC : "+CLC);
+				// 돈 텍스트
+
+				//  string PlayerMoneyT = "보유 금액 : " + PlayerMoney;
+				//  PlayerMoneyText.GetComponent<Text>().text = PlayerMoneyT;
+
+				if (FireM == true)
+				{
+					isFireM();
+				}
+
+				// Debug.Log(MainCharHP);
+				//Health();
+				//UI();
+
+				Locomotion();
+				Fight();
+				Jump();
+				roll();
+
+				if (ShootSimple_Scr.WeaponNumber == 1)
+				{
+					skill1_2();
+					skill1_3SpeedBuff();
+				}
+
+				else if (ShootSimple_Scr.WeaponNumber == 2)
+				{
+					skill2_3();
+					skill2_4();
+				}
+
+				else if (ShootSimple_Scr.WeaponNumber == 3)
+				{
+					skill3_2();
+					skill3_3();
+					skill3_4();
+				}
+				w_change(); //무기변경 코드
+							//skill1();
+							//땅체크
+				grounded = Physics.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Blocking"));
+			}
+		}
+		else
+		{
+			//float forwardrun = 5 * Time.deltaTime;
+			if (currRun > 0)
+			{
+				transform.Translate(Vector3.forward * (5 * Time.deltaTime) * currRun);
+			}
+			else if (currRun < 0)
+			{
+				{
+					transform.Translate(Vector3.forward * (3 * Time.deltaTime) * currRun);
 				}
 			}
-
-			CLC = gameObject.transform.position;
-            //Debug.Log("CLC : "+CLC);
-            // 돈 텍스트
-
-            //  string PlayerMoneyT = "보유 금액 : " + PlayerMoney;
-            //  PlayerMoneyText.GetComponent<Text>().text = PlayerMoneyT;
-
-            if (FireM == true)
-			{
-				isFireM();
-			}
-
-			// Debug.Log(MainCharHP);
-			//Health();
-			//UI();
-        
-			Locomotion();
-			Fight();
-			Jump();
-			roll(); 
-			
-			if (ShootSimple_Scr.WeaponNumber == 1)
-			{
-				skill1_2();
-				skill1_3SpeedBuff();
-			}
-
-			else if (ShootSimple_Scr.WeaponNumber == 2)
-			{
-				skill2_3();
-				skill2_4();
-			}
-
-			else if (ShootSimple_Scr.WeaponNumber == 3)
-			{
-				skill3_2();
-				skill3_3();
-				skill3_4();
-			}
-			w_change(); //무기변경 코드
-						//skill1();
-						//땅체크
-			grounded = Physics.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Blocking"));
 		}
 
-		
 	}
-
+	public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+	{
+		if (stream.IsWriting)
+		{
+			stream.SendNext(run);
+			stream.SendNext(strafe);
+		}
+		else
+		{
+			currRun = (float)stream.ReceiveNext();
+			currstrafe = (float)stream.ReceiveNext();
+		}
+	}
 	void w_change()
 	{
 		
@@ -637,7 +661,7 @@ public class Player_Scr : MonoBehaviourPun
 		{
 			anim.SetLookAtWeight(lookIKWeight, bodyWeight);
 		    anim.SetLookAtPosition(targetPosVec);
-			a.transform.rotation = Quaternion.Euler(targetPosVec);
+			//a.transform.rotation = Quaternion.Euler(targetPosVec);
 		}
 	}
 
