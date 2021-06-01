@@ -37,7 +37,7 @@ public class TutorialBox : MonoBehaviour
             {
                 int type = Random.Range(0, prefab0bject.Length);
                 Debug.Log(type);
-                Instantiate(prefab0bject[type], ChestVec, Quaternion.identity);
+                Instantiate(prefab0bject[type], ChestVec + this.transform.up * 1.5f, Quaternion.identity);
                 Destroy(Block);
                 Destroy(gameObject);
             }

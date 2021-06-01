@@ -7487,6 +7487,11 @@ PrefabInstance:
       propertyPath: skill3_Buff_Effect
       value: 
       objectReference: {fileID: 1926306550}
+    - target: {fileID: 7725001887265999030, guid: 9d3462825fdaad249a4a6e3c62bd873d,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 9ae739b4d9656ec40991aeddada31ab7, type: 2}
     - target: {fileID: 7725001888184707859, guid: 9d3462825fdaad249a4a6e3c62bd873d,
         type: 3}
       propertyPath: m_Name
