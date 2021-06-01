@@ -22,10 +22,10 @@ public class Spawn_Start_test : MonoBehaviour
             /* GameObject name = PhotonNetwork.Instantiate(prefab.name, 
                  new Vector3(1.773168f, 0.05f, 0.215986f), Quaternion.identity);*/
             //Instantiate(prefabC);
-            PhotonNetwork.Instantiate(aim.name,
-                new Vector3(0, 0, 0), Quaternion.AngleAxis(180f, Vector3.up));
-            PhotonNetwork.Instantiate(prefabC.name,
-                new Vector3(-59.2f, 3.0f, 25.0f), Quaternion.AngleAxis(180f, Vector3.up));
+            Instantiate(aim,
+                new Vector3(0, 0, 0), Quaternion.identity);
+            Instantiate(prefabC,
+                new Vector3(-59.2f, 3.0f, 25.0f), Quaternion.identity);
 
             GameObject name = PhotonNetwork.Instantiate(prefab.name,
                 new Vector3(-59.2f, 3.0f, 25.0f), Quaternion.identity);
