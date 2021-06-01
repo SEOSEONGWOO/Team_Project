@@ -63,6 +63,9 @@ public class DB2 : MonoBehaviourPunCallbacks
             // 마스터 서버에 접속중이라면
             if (PhotonNetwork.IsConnected)
             {
+                // 로그인 접속 버튼을 잠시 비활성화
+                LogButton.interactable = false;
+
                 Debug.Log("룸 접속 실행");
                 // 룸 접속 실행
                 connectionInfoText.text = "룸에 접속...";
@@ -70,6 +73,8 @@ public class DB2 : MonoBehaviourPunCallbacks
             }
             else
             {
+                // 로그인 접속 버튼을 잠시 비활성화
+                LogButton.interactable = true;
                 // 마스터 서버에 접속중이 아니라면, 마스터 서버에 접속 시도
                 connectionInfoText.text = "오프라인 : 마스터 서버와 연결되지 않음\n접속 재시도 중...";
                 // 마스터 서버로의 재접속 시도
