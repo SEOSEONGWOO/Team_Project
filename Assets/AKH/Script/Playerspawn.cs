@@ -31,8 +31,8 @@ public class Playerspawn : MonoBehaviour
             Main = true;
             Main_2 = false;
             Main_3 = false;
-            PhotonNetwork.LoadLevel("Main_map");
-            //SceneManager.LoadScene("Main_map");
+            //PhotonNetwork.LoadLevel("Main_map");
+            SceneManager.LoadScene("Main_map");
             Invoke("MainSceneSpawn", time);
             MainSceneBack = false;
         }
@@ -43,8 +43,8 @@ public class Playerspawn : MonoBehaviour
             Main = false;
             Main_2 = true;
             Main_3 = false;
-            PhotonNetwork.LoadLevel("Main_map 2");
-            //SceneManager.LoadScene("Main_map 2");
+            //PhotonNetwork.LoadLevel("Main_map 2");
+            SceneManager.LoadScene("Main_map 2");
             Invoke("MainScene_2_Spawn", time);
             MainScene_2 = false;
         }
@@ -55,8 +55,8 @@ public class Playerspawn : MonoBehaviour
             Main = false;
             Main_2 = false;
             Main_3 = true;
-            PhotonNetwork.LoadLevel("trapmap2");
-            //SceneManager.LoadScene("trapmap2");
+            //PhotonNetwork.LoadLevel("trapmap2");
+            SceneManager.LoadScene("trapmap2");
             Invoke("MainScene_3_Spawn", time);
             MainScene_3 = false;
         }
