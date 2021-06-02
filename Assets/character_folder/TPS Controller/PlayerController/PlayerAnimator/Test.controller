@@ -830,7 +830,7 @@ BlendTree:
     m_DirectBlendParameter: Strafe
     m_Mirror: 0
   - serializedVersion: 2
-    m_Motion: {fileID: 7400000, guid: 043a0882d93547c4da0104443de76efb, type: 3}
+    m_Motion: {fileID: 7400000, guid: e398e3aa9cdfcdc4ebd01a06e4c544ae, type: 3}
     m_Threshold: 0.1
     m_Position: {x: 0, y: 1}
     m_TimeScale: 1
