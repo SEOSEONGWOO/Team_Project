@@ -30,7 +30,7 @@ public class DB_test_net : MonoBehaviourPunCallbacks
     FirebaseAuth auth;
 
     // 게임 실행과 동시에 마스터 서버 접속 시도
-    private void Start()
+    private void Awake()
     {
         auth = FirebaseAuth.DefaultInstance;
         //password 초기화

@@ -9,12 +9,6 @@ EditorBuildSettings:
     path: Assets/DB_Test.unity
     guid: a11415da4cdac7d41b231c9ddbebf794
   - enabled: 0
-    path: Assets/AKH/Scenes/Login.unity
-    guid: 34d151c301a51df45a30958f00ad5125
-  - enabled: 0
-    path: Assets/AKH/Scenes/MainGame_.unity
-    guid: a83336cda600d6d4693509a836bffd87
-  - enabled: 0
     path: Assets/KcmUI/Scenes/ShopUI.unity
     guid: 9fac13d1a92e6b74f8c23cdc51877bf0
   - enabled: 0
@@ -38,4 +32,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/AKH/Scenes/MainGame_2.unity
     guid: c847d0e6628a7304d86a78e528b32e61
+  - enabled: 0
+    path: Assets/AKH/Scenes/MainGame_3.unity
+    guid: 63e63ad136805cf46b1bdb7f57287e80
   m_configObjects: {}

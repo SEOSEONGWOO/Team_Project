@@ -14359,7 +14359,7 @@ PrefabInstance:
     - target: {fileID: 7725001888184707859, guid: 9d3462825fdaad249a4a6e3c62bd873d,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7725001888184707933, guid: 9d3462825fdaad249a4a6e3c62bd873d,
         type: 3}
@@ -23951,6 +23951,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotaionSpeed: 100
   Potal: {fileID: 1581280753}
+  Box: {fileID: 0}
 --- !u!136 &772579296
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -29644,7 +29645,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 979024196}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 61c30cea501ffcb4f8233d3d68d09ea5, type: 3}
   m_Name: 
@@ -57566,6 +57567,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotaionSpeed: 100
   Potal: {fileID: 1581280753}
+  Box: {fileID: 0}
 --- !u!136 &1942707122
 CapsuleCollider:
   m_ObjectHideFlags: 0

@@ -1376,7 +1376,7 @@ MonoBehaviour:
   Title: {fileID: 372962219}
   LoginPenel: {fileID: 1505935034}
   LobbyPenel: {fileID: 351788443}
-  connectionInfoText: {fileID: 2058147679}
+  connectionInfoText: {fileID: 434832683}
   joinButton: {fileID: 787727772}
   LogButton: {fileID: 696791353}
 --- !u!4 &1067483919
