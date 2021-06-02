@@ -201,8 +201,9 @@ public class Player_Scr : MonoBehaviourPun
 			// Debug.Log(MainCharHP);
 			//Health();
 			//UI();
-        
-			Locomotion();
+			
+
+				Locomotion();
 			Fight();
 			Jump();
 			roll(); 
@@ -236,6 +237,8 @@ public class Player_Scr : MonoBehaviourPun
 
 		
 	}
+
+	
 	void ManaRegen()
 	{
 		if (MP != maxMP)
@@ -666,7 +669,7 @@ public class Player_Scr : MonoBehaviourPun
 		{
 			anim.SetLookAtWeight(lookIKWeight, bodyWeight);
 		    anim.SetLookAtPosition(targetPosVec);
-			a.transform.rotation = Quaternion.Euler(targetPosVec);
+			//a.transform.rotation = Quaternion.Euler(targetPosVec);
 		}
 	}
 
