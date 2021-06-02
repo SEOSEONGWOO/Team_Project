@@ -596,7 +596,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &361424910
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1665,9 +1665,9 @@ MonoBehaviour:
   NicknameInput: {fileID: 1103526008}
   PasswordInput: {fileID: 460172283}
   LoginPenel: {fileID: 1505935034}
-  LobbyPenel: {fileID: 0}
+  LobbyPenel: {fileID: 361424909}
   connectionInfoText: {fileID: 434832683}
-  joinButton: {fileID: 0}
+  joinButton: {fileID: 1894990632}
 --- !u!4 &992557424
 Transform:
   m_ObjectHideFlags: 0
@@ -2184,7 +2184,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1505935035
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2651,7 +2651,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 992557423}
-        m_MethodName: OnLogin
+        m_MethodName: Connect
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
