@@ -112,7 +112,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         Debug.Log(PhotonNetwork.LocalPlayer.NickName);
         // 모든 룸 참가자들이 Main 씬을 로드하게 함
         //PhotonNetwork.LoadLevel("MainGame_");
-        PhotonNetwork.LoadLevel("Main_map 2");
+        PhotonNetwork.LoadLevel("Main_map");
     }
 
     //로그인 패널 비활성화, 로비 패널 활성화

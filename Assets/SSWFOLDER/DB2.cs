@@ -49,7 +49,7 @@ public class DB2 : MonoBehaviourPunCallbacks
         LogButton.interactable = false;
 
         //서버상태 메세지 컴포넌트
-        //connectionInfoText = GameObject.Find("Connection").GetComponent<Text>();
+        connectionInfoText = GameObject.Find("Connection").GetComponent<Text>();
 
         // 접속을 시도 중임을 텍스트로 표시
         connectionInfoText.text = "마스터 서버에 접속중...";
