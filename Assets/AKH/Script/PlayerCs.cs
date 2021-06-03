@@ -10,11 +10,11 @@ public class PlayerCs : MonoBehaviourPunCallbacks, IPunObservable
     // 죽었을 때 스폰지역으로 다시 돌아가는 거 만드셈ㅇ ㅋ? 『순간이동』
 
 
-/*    private void Awake() //해상도 설정
+    private void Awake() //해상도 설정
     {
         Screen.sleepTimeout = SleepTimeout.NeverSleep;
         Screen.SetResolution(1920, 1080, true);
-    }*/
+    }
 
     public static Animator anim;
     [Header("Player Health")]
@@ -154,30 +154,33 @@ public class PlayerCs : MonoBehaviourPunCallbacks, IPunObservable
     }
     void ReStart()
     {
-        FirstLocationVector = gameObject.transform.position;
-        /*-----AKH 수정-----*/
-        //DontDestroyOnLoad(gameObject);
-        targetPos = GameObject.Find("TargetLook").GetComponent<Transform>();
-        targetPosOld = GameObject.Find("TargetLookInFight").GetComponent<Transform>();
+        if (photonView.IsMine)
+        {
+            FirstLocationVector = gameObject.transform.position;
+            /*-----AKH 수정-----*/
+            //DontDestroyOnLoad(gameObject);
+            targetPos = GameObject.Find("TargetLook").GetComponent<Transform>();
+            targetPosOld = GameObject.Find("TargetLookInFight").GetComponent<Transform>();
 
-        crosshair = GameObject.FindGameObjectWithTag("Crosshair");
+            crosshair = GameObject.FindGameObjectWithTag("Crosshair");
 
-        tr = GetComponent<Transform>();
+            tr = GetComponent<Transform>();
 
-        /*-----AKH 수정-----*/
+            /*-----AKH 수정-----*/
 
-        dead = false;
-        anim = GetComponent<Animator>();
-        pa = GetComponent<Player_Autotarget>();
-        weapon1.SetActive(true);
-        weapon2.SetActive(false);
-        crosshair.SetActive(false);
+            dead = false;
+            anim = GetComponent<Animator>();
+            pa = GetComponent<Player_Autotarget>();
+            weapon1.SetActive(true);
+            weapon2.SetActive(false);
+            crosshair.SetActive(false);
 
-        rigdbody = GetComponent<Rigidbody>();
-        groundCheck = transform.Find("GroundCheck");
+            rigdbody = GetComponent<Rigidbody>();
+            groundCheck = transform.Find("GroundCheck");
 
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
     }
     void Update()
     {
@@ -217,7 +220,8 @@ public class PlayerCs : MonoBehaviourPunCallbacks, IPunObservable
 
                 Locomotion();
                 Fight();
-                Jump();
+                //Jump();
+                photonView.RPC("Jump", RpcTarget.All);
                 roll();
 
                 if (ShootSimple_Scr.WeaponNumber == 1)
@@ -250,86 +254,14 @@ public class PlayerCs : MonoBehaviourPunCallbacks, IPunObservable
         }
         else
         {
-
             transform.position = Vector3.Lerp(transform.position, currPos, Time.deltaTime * 10.0f);
             transform.rotation = Quaternion.Slerp(transform.rotation, currRot, Time.deltaTime * 10.0f);
 
-            //Locomotion_Net();
 
         }
 
     }
-    void Locomotion_Net()
-    {
-        targetPosVec = targetPos.position;
-
-        anim.SetFloat("Run", curRun);
-        anim.SetFloat("Strafe", curStrafe);
-
-        if (roll_check == false)
-        {
-
-            //float forwardrun = 5 * Time.deltaTime;
-            if (curRun > 0)
-            {
-                transform.Translate(Vector3.forward * (5 * Time.deltaTime) * curRun);
-            }
-            else if (curRun < 0)
-            {
-                {
-                    transform.Translate(Vector3.forward * (3 * Time.deltaTime) * curRun);
-                }
-            }
-
-            if (curStrafe > 0)
-            {
-                transform.Translate(Vector3.right * (3 * Time.deltaTime) * curStrafe);
-            }
-            else if (curStrafe < 0)
-            {
-                {
-                    transform.Translate(Vector3.right * (3 * Time.deltaTime) * curStrafe);
-                }
-            }
-
-            if (curRun != 0 || isfight == true)
-            {
-                Vector3 rot = transform.eulerAngles;
-                transform.LookAt(targetPosVec);
-                float angleBetween = Mathf.DeltaAngle(transform.eulerAngles.y, rot.y);
-                if ((Mathf.Abs(angleBetween) > luft) || strafe != 0)
-                {
-                    isPlayerRot = true;
-                }
-                if (isPlayerRot == true)
-                {
-                    float bodyY = Mathf.LerpAngle(rot.y, transform.eulerAngles.y, Time.deltaTime * angularSpeed);
-                    transform.eulerAngles = new Vector3(0, bodyY, 0);
-
-                    if (curStrafe == 0)
-                    {
-                        anim.SetBool("Turn", false);
-                    }
-                    else
-                    {
-                        anim.SetBool("Turn", false);
-                    }
-
-                    if (Mathf.Abs(angleBetween) * Mathf.Deg2Rad <= Time.deltaTime * angularSpeed)
-                    {
-                        isPlayerRot = false;
-                        anim.SetBool("Turn", false);
-                    }
-                }
-                else
-                {
-                    transform.eulerAngles = new Vector3(0f, rot.y, 0f);
-                }
-            }
-            transform.eulerAngles = new Vector3(0f, transform.eulerAngles.y, 0f);
-
-        }
-    }
+    
     //로컬
     void Locomotion()
     {
@@ -373,8 +305,6 @@ public class PlayerCs : MonoBehaviourPunCallbacks, IPunObservable
 
             if (run != 0 || isfight == true)
             {
-                Debug.Log("11111111111111111111111111111111111111111");
-
                 Vector3 rot = transform.eulerAngles;
                 transform.LookAt(targetPosVec);
                 float angleBetween = Mathf.DeltaAngle(transform.eulerAngles.y, rot.y);
@@ -384,7 +314,6 @@ public class PlayerCs : MonoBehaviourPunCallbacks, IPunObservable
                 }
                 if (isPlayerRot == true)
                 {
-                    Debug.Log("3333333333333333333333333333");
                     float bodyY = Mathf.LerpAngle(rot.y, transform.eulerAngles.y, Time.deltaTime * angularSpeed);
                     transform.eulerAngles = new Vector3(0, bodyY, 0);
 
@@ -405,21 +334,18 @@ public class PlayerCs : MonoBehaviourPunCallbacks, IPunObservable
                 }
                 else
                 {
-                    Debug.Log("2222222222222222222222222222222222");
                     transform.eulerAngles = new Vector3(0f, rot.y, 0f);
                 }
             }
-            //transform.LookAt(targetPosVec);
-            transform.LookAt(new Vector3(targetPosVec.x, 0, targetPosVec.z));
-            //transform.LookAt(new Vector3(targetPos.position.x, 0, targetPos.position.z));
-            //Chest.transform.LookAt(targetPos);
-            //transform.eulerAngles = new Vector3(0f, transform.eulerAngles.y, 0f);
+            //transform.LookAt(new Vector3(targetPosVec.x, 0, targetPosVec.z));
+            transform.eulerAngles = new Vector3(0f, transform.eulerAngles.y, 0f);
         }
     }
     void OnAnimatorIK()
     {
         if (Input.GetMouseButton(1) && isShop)
         {
+            //손 관절 
             anim.SetLookAtWeight(lookIKWeight, bodyWeight);
             anim.SetLookAtPosition(targetPosVec);
         }

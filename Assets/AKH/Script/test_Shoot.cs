@@ -2,7 +2,7 @@
 using System.Collections;
 using Photon.Pun;
 using Photon.Realtime;
-public class ShootSimple_Scr : MonoBehaviourPun
+public class test_Shoot : MonoBehaviourPun
 {
 
     [Header("Weapon position")]
@@ -10,16 +10,16 @@ public class ShootSimple_Scr : MonoBehaviourPun
 
     /*-----AKH 수정-----*/
     //public Transform aimPoint;
-    GameObject CanvasAim; 
+    GameObject CanvasAim;
     Transform aimPoint;
     /*-----AKH 수정-----*/
 
     [Header("Bullet start position")]
     public Transform shootPoint;
-	[Header("The target followed by the camera")]
-	public Transform targetLook;
+    [Header("The target followed by the camera")]
+    public Transform targetLook;
     [Header("무기에 따른 스킬 제어")]
-    public static int WeaponNumber=3;
+    public static int WeaponNumber = 3;
 
 
     [Header("Bullet")]
@@ -51,16 +51,16 @@ public class ShootSimple_Scr : MonoBehaviourPun
 
     [Header("Bullet flight distance")]
     public float distance;
-	[Header("Force")]
+    [Header("Force")]
     public float force;
-	[Header("Time between shots (Adjusts to the time of the shot animation)")]
+    [Header("Time between shots (Adjusts to the time of the shot animation)")]
     public float reloadTime;
 
     [Header("Time to remove the bullet")]
-    public float shootFireLifeTime = 1; 
+    public float shootFireLifeTime = 1;
 
-	[Header("Shot sound")]
-	public AudioClip fireSound;
+    [Header("Shot sound")]
+    public AudioClip fireSound;
 
     public ParticleSystem muzzleFlash;
     public ParticleSystem Shell;
@@ -72,69 +72,74 @@ public class ShootSimple_Scr : MonoBehaviourPun
 
     AudioSource audioSource;
 
-    void Start () 
+    void Start()
     {
-        /*-----AKH 수정-----*/
-        CanvasAim = GameObject.FindGameObjectWithTag("CanvasAim");
-        //CanvasAim = GameObject.Find("CanvasAim");
-        aimPoint = CanvasAim.GetComponent<Transform>();
-
-        targetLook = GameObject.Find("TargetLook").GetComponent<Transform>();
-        /*-----AKH 수정-----*/
-
-        audioSource = GetComponent<AudioSource>();
-    }
-	
-	void Update () 
-    {
-
-        weaponPoint.LookAt(targetLook);
-        aimPoint.LookAt(targetLook);
-        Attack();
-        if (WeaponNumber == 1)
+        if (photonView.IsMine)
         {
-            skill1_1();
-            skill1_4();
-        }
-        if (WeaponNumber == 2)
-        {
+            /*-----AKH 수정-----*/
+            CanvasAim = GameObject.FindGameObjectWithTag("CanvasAim");
+            //CanvasAim = GameObject.Find("CanvasAim");
+            aimPoint = CanvasAim.GetComponent<Transform>();
 
-            skill2_1();
-            skill2_2();
-        }
+            targetLook = GameObject.Find("TargetLook").GetComponent<Transform>();
+            /*-----AKH 수정-----*/
 
-        if (WeaponNumber == 3)
-        {
-
-            skill3_1();
-            //skill2_2();
+            audioSource = GetComponent<AudioSource>();
         }
     }
-    
-     void Attack()
+
+    void Update()
+    {
+        if (photonView.IsMine)
         {
-            if ((Input.GetMouseButton(0)) && (isshoot == true))
+            weaponPoint.LookAt(targetLook);
+            aimPoint.LookAt(targetLook);
+            Attack();
+            if (WeaponNumber == 1)
             {
-                isshoot = false;
-                //audioSource.PlayOneShot(fireSound);
-                muzzleFlash.Play();
-                Shell.Play();
-                Invoke("ShootTrue", reloadTime);
-                RaycastHit hit;
-                if (Physics.Raycast(shootPoint.position, shootPoint.forward, out hit, distance))
-                {
-                    if (hit.transform.GetComponent<Rigidbody>())
-                    {
-                        hit.transform.GetComponent<Rigidbody>().AddForceAtPosition(shootPoint.forward * force, hit.point);
-                    }
-                }
-                GameObject myBullet = Instantiate(bullet);
-                myBullet.transform.position = shootPoint.position;
-                myBullet.transform.rotation = shootPoint.rotation;
-                Destroy(myBullet, shootFireLifeTime);
+                skill1_1();
+                skill1_4();
+            }
+            if (WeaponNumber == 2)
+            {
 
+                skill2_1();
+                skill2_2();
+            }
+
+            if (WeaponNumber == 3)
+            {
+
+                skill3_1();
+                //skill2_2();
             }
         }
+    }
+
+    void Attack()
+    {
+        if ((Input.GetMouseButton(0)) && (isshoot == true))
+        {
+            isshoot = false;
+            //audioSource.PlayOneShot(fireSound);
+            muzzleFlash.Play();
+            Shell.Play();
+            Invoke("ShootTrue", reloadTime);
+            RaycastHit hit;
+            if (Physics.Raycast(shootPoint.position, shootPoint.forward, out hit, distance))
+            {
+                if (hit.transform.GetComponent<Rigidbody>())
+                {
+                    hit.transform.GetComponent<Rigidbody>().AddForceAtPosition(shootPoint.forward * force, hit.point);
+                }
+            }
+            GameObject myBullet = Instantiate(bullet);
+            myBullet.transform.position = shootPoint.position;
+            myBullet.transform.rotation = shootPoint.rotation;
+            Destroy(myBullet, shootFireLifeTime);
+
+        }
+    }
 
     void skill1_1()
     {
@@ -176,7 +181,7 @@ public class ShootSimple_Scr : MonoBehaviourPun
     {
         if (Input.GetKeyDown(KeyCode.Alpha4) && isSkill4 == true)
         {
-            
+
             Debug.Log("4");
             isSkill4 = false;
             muzzleFlash.Play();
@@ -192,19 +197,19 @@ public class ShootSimple_Scr : MonoBehaviourPun
                     hit.transform.GetComponent<Rigidbody>().AddForceAtPosition(shootPoint.forward * force, hit.point);
                 }
             }
-            
+
 
             Player_Scr.anim.SetBool("isShoot", true);
             skill1_4effect.SetActive(true);
             StartCoroutine("Skill1_4");
-            
+
 
         }
     }
 
 
     IEnumerator Skill1_4()
-    {      
+    {
 
         yield return new WaitForSeconds(1.5f);
         audioSource.PlayOneShot(fireSound);
@@ -214,7 +219,7 @@ public class ShootSimple_Scr : MonoBehaviourPun
         Destroy(sk_bullet, shootFireLifeTime);
         Player_Scr.anim.SetBool("isShoot", false);
         skill1_4effect.SetActive(false);
-        
+
     }
 
 
@@ -244,7 +249,7 @@ public class ShootSimple_Scr : MonoBehaviourPun
             Destroy(sk_bullet, shootFireLifeTime);
             isSkill2_1 = true;
             Player_Scr.anim.SetBool("isShoot", true);
-            
+
         }
 
         else if (Input.GetKeyUp(KeyCode.Alpha1) && isSkill2_1 == true)
@@ -255,7 +260,7 @@ public class ShootSimple_Scr : MonoBehaviourPun
     }
     void skill2_2()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha2) && isSkill2_2 == true && SkillMode ==true)
+        if (Input.GetKeyDown(KeyCode.Alpha2) && isSkill2_2 == true && SkillMode == true)
         {
             Debug.Log("화염발사!");
             isSkill2_2 = false;
@@ -273,25 +278,25 @@ public class ShootSimple_Scr : MonoBehaviourPun
                 {
                     hit.transform.GetComponent<Rigidbody>().AddForceAtPosition(shootPoint.forward * force, hit.point);
                 }
-            }     
+            }
             Player_Scr.anim.SetBool("isShoot", true);
             skill2_2bullet.SetActive(true);
-           // isSkill2 = true;
+            // isSkill2 = true;
             StartCoroutine("Skill2");
         }
 
-         if (SkillMode == false)  //총 내리면 스킬 멈추기
+        if (SkillMode == false)  //총 내리면 스킬 멈추기
         {
             Debug.Log("화염취소");
             skill2_2bullet.SetActive(false);
         }
-        
+
 
     }
 
     IEnumerator Skill2()
     {
-        
+
         yield return new WaitForSeconds(5.0f);
         Player_Scr.anim.SetBool("isShoot", false);
         skill2_2bullet.SetActive(false);
@@ -336,7 +341,7 @@ public class ShootSimple_Scr : MonoBehaviourPun
 
 
 
-    void ShootTrue() 
+    void ShootTrue()
     {
         isshoot = true;
     }

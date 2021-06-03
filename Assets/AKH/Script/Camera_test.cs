@@ -60,15 +60,18 @@ public class Camera_test : MonoBehaviourPun
 	}
     void ReStart()
     {
-		camTrans = GameObject.Find("Main Camera").GetComponent<Transform>();
-		pivot = GameObject.Find("CameraPivot").GetComponent<Transform>();
-		mainTransform = GameObject.Find("CameraHolder").GetComponent<Transform>();
-		targetLook = GameObject.Find("TargetLook").GetComponent<Transform>();
+		if (photonView.IsMine)
+		{
+			camTrans = GameObject.Find("Main Camera").GetComponent<Transform>();
+			pivot = GameObject.Find("CameraPivot").GetComponent<Transform>();
+			mainTransform = GameObject.Find("CameraHolder").GetComponent<Transform>();
+			targetLook = GameObject.Find("TargetLook").GetComponent<Transform>();
 
-		tr = GetComponent<Transform>();
+			tr = GetComponent<Transform>();
 
-		transform.position = camTrans.position;
-		transform.forward = targetLook.forward;
+			transform.position = camTrans.position;
+			transform.forward = targetLook.forward;
+		}
 	}
 	void Tick()
 	{

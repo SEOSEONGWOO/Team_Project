@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using Photon.Pun;
 
-public class Spawn_test : MonoBehaviour
+public class Spawn_test : MonoBehaviourPun
 {
     public static bool MainSceneBack = false;    //씬>>메인
     public static bool MainScene_2 = false;    //메인>>메인2
@@ -22,62 +22,68 @@ public class Spawn_test : MonoBehaviour
     private Vector3 V3;
     void Start()
     {
-        Spawnobj = GameObject.Find("Spawnobj");
-        V3 = Spawnobj.transform.position;
-        gameObject.transform.position = V3;
-        //gameObject.transform.position = new Vector3(-186, 3, 354);
-        Main = true;
+        if (photonView.IsMine)
+        {
+            Spawnobj = GameObject.Find("Spawnobj");
+            V3 = Spawnobj.transform.position;
+            gameObject.transform.position = V3;
+            //gameObject.transform.position = new Vector3(-186, 3, 354);
+            Main = true;
+        }
     }
     void Update()
     {
-        //메인씬으로 이동
-        if (MainSceneBack == true)
+        if (photonView.IsMine)
         {
-            Main = true;
-            Main_2 = false;
-            Main_3 = false;
-            PhotonNetwork.LoadLevel("MainGame_1");
-            Invoke("MainSceneSpawn", time);
-            MainSceneBack = false;
-        }
-        //메인씬2로 이동
-        else if (MainScene_2 == true)
-        {
-            Debug.Log("Main_map 2 변경");
-            Main = false;
-            Main_2 = true;
-            Main_3 = false;
-            PhotonNetwork.LoadLevel("MainGame_2");
-            Invoke("MainScene_2_Spawn", time);
-            MainScene_2 = false;
-        }
-        //메인씬3(트랩)로 이동
-        else if (MainScene_3 == true)
-        {
-            Debug.Log("trapmap2 변경");
-            Main = false;
-            Main_2 = false;
-            Main_3 = true;
-            PhotonNetwork.LoadLevel("MainGame_3");
-            Invoke("MainScene_3_Spawn", time);
-            MainScene_3 = false;
-        }
+            //메인씬으로 이동
+            if (MainSceneBack == true)
+            {
+                Main = true;
+                Main_2 = false;
+                Main_3 = false;
+                PhotonNetwork.LoadLevel("MainGame_1");
+                Invoke("MainSceneSpawn", time);
+                MainSceneBack = false;
+            }
+            //메인씬2로 이동
+            else if (MainScene_2 == true)
+            {
+                Debug.Log("Main_map 2 변경");
+                Main = false;
+                Main_2 = true;
+                Main_3 = false;
+                PhotonNetwork.LoadLevel("MainGame_2");
+                Invoke("MainScene_2_Spawn", time);
+                MainScene_2 = false;
+            }
+            //메인씬3(트랩)로 이동
+            else if (MainScene_3 == true)
+            {
+                Debug.Log("trapmap2 변경");
+                Main = false;
+                Main_2 = false;
+                Main_3 = true;
+                PhotonNetwork.LoadLevel("MainGame_3");
+                Invoke("MainScene_3_Spawn", time);
+                MainScene_3 = false;
+            }
 
-        //죽었을때 처음위치로 이동
-        if (Player_Scr.dead && Main && count)
-        {
-            Invoke("MainSceneSpawn", time);
-            count = false;
-        }
-        else if (Player_Scr.dead && Main_2 && count)
-        {
-            Invoke("MainScene_2_Spawn", time);
-            count = false;
-        }
-        else if (Player_Scr.dead && Main_3 && count)
-        {
-            Invoke("MainScene_3_Spawn", time);
-            count = false;
+            //죽었을때 처음위치로 이동
+            if (Player_Scr.dead && Main && count)
+            {
+                Invoke("MainSceneSpawn", time);
+                count = false;
+            }
+            else if (Player_Scr.dead && Main_2 && count)
+            {
+                Invoke("MainScene_2_Spawn", time);
+                count = false;
+            }
+            else if (Player_Scr.dead && Main_3 && count)
+            {
+                Invoke("MainScene_3_Spawn", time);
+                count = false;
+            }
         }
     }
     void MainSceneSpawn()
