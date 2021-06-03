@@ -1003,6 +1003,7 @@ MonoBehaviour:
   HitD: 0
   lookIKWeight: 1
   bodyWeight: 1.5
+  a: {fileID: 0}
   healthText: {fileID: 0}
   sliderHP: {fileID: 0}
   targetPos: {fileID: 0}

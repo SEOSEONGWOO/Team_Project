@@ -127,6 +127,7 @@ public class Player_Scr : MonoBehaviourPun
 	public GameObject PlayerMoneyText;
 
 
+    public GameObject Burned;
     public static bool FireM = false;
     public static float FireTime = 0f;
     float FireDamage = 0.05f;
@@ -196,7 +197,8 @@ public class Player_Scr : MonoBehaviourPun
             if (FireM == true)
 			{
 				isFireM();
-			}
+
+            }
 
 			// Debug.Log(MainCharHP);
 			//Health();
@@ -707,10 +709,12 @@ public class Player_Scr : MonoBehaviourPun
         {
             FireTime += Time.deltaTime;
             HP -= FireDamage;
+            Burned.SetActive(true);
         }
         else if(FireTime >= 4.0f)
         {
             FireM = false;
+            Burned.SetActive(false);
         }
     }
 

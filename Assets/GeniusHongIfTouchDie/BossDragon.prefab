@@ -1,5 +1,67 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3542019308771752704
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1023561659974993525}
+  - component: {fileID: 6447842526412393656}
+  - component: {fileID: 3719893629649137290}
+  m_Layer: 0
+  m_Name: Tooth
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1023561659974993525
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3542019308771752704}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0, y: -15.7, z: 3.2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7364003638042969651}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &6447842526412393656
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3542019308771752704}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 29.398355
+  m_Height: 109.84562
+  m_Direction: 0
+  m_Center: {x: -17.64503, y: 0.000012897282, z: -2.1824133}
+--- !u!114 &3719893629649137290
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3542019308771752704}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9234835a5878e4d48b2e05440848411e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Gobj: {fileID: 0}
+  AttC: {fileID: 0}
+  Flame1: {fileID: 4946172375741124369}
+  Flame2: {fileID: 4946172374486340779}
 --- !u!65 &3297287292563404583
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -492,7 +554,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7364003638042995667}
   - component: {fileID: 3297287294017969138}
-  - component: {fileID: 3297287294017969149}
+  - component: {fileID: 7983207179132950960}
   m_Layer: 0
   m_Name: Tongue04
   m_TagString: Untagged
@@ -523,26 +585,25 @@ CapsuleCollider:
   m_GameObject: {fileID: 7364003638042701031}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
-  m_Radius: 32.694138
-  m_Height: 219.12311
+  m_Enabled: 0
+  m_Radius: 32.69413
+  m_Height: 77.64788
   m_Direction: 2
-  m_Center: {x: 68.200455, y: -0.14048398, z: -23.734104}
---- !u!114 &3297287294017969149
+  m_Center: {x: 68.20044, y: -0.14047603, z: 47.003582}
+--- !u!114 &7983207179132950960
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7364003638042701031}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9234835a5878e4d48b2e05440848411e, type: 3}
+  m_Script: {fileID: 11500000, guid: a53969201f3c9184492869221b714139, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Gobj: {fileID: 0}
-  Flame1: {fileID: 4946172375741124369}
-  Flame2: {fileID: 4946172374486340779}
+  Tooth: {fileID: 0}
 --- !u!1 &7364003638042701143
 GameObject:
   m_ObjectHideFlags: 0
@@ -2136,6 +2197,7 @@ Transform:
   - {fileID: 7364003638042995667}
   - {fileID: 4947747265402250171}
   - {fileID: 4947747264556414977}
+  - {fileID: 1023561659974993525}
   m_Father: {fileID: 7364003638043015413}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2214,6 +2276,7 @@ GameObject:
   - component: {fileID: 7364003636907368785}
   - component: {fileID: 3297287293663877244}
   - component: {fileID: 3297287293663877247}
+  - component: {fileID: 502722210572198349}
   m_Layer: 0
   m_Name: BossDragon
   m_TagString: Enemy
@@ -2307,6 +2370,22 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!54 &502722210572198349
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7364003638042735701}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 112
+  m_CollisionDetection: 0
 --- !u!1 &7364003638042735709
 GameObject:
   m_ObjectHideFlags: 0
@@ -4416,15 +4495,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5ea146f3462f0b741b52fd65c50eb6f2, type: 3}
---- !u!1 &4946172374486340779 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7594763058515163628, guid: 5ea146f3462f0b741b52fd65c50eb6f2,
-    type: 3}
-  m_PrefabInstance: {fileID: 3297287293090786631}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4947747264556414977 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7596372724971099462, guid: 5ea146f3462f0b741b52fd65c50eb6f2,
+    type: 3}
+  m_PrefabInstance: {fileID: 3297287293090786631}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &4946172374486340779 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7594763058515163628, guid: 5ea146f3462f0b741b52fd65c50eb6f2,
     type: 3}
   m_PrefabInstance: {fileID: 3297287293090786631}
   m_PrefabAsset: {fileID: 0}

@@ -10551,6 +10551,7 @@ MonoBehaviour:
   ragdoll: {fileID: 5431398466033780921, guid: fc94d387fc606fb4aae480cc5e37a14c, type: 3}
   FirstLocationVector: {x: 0, y: 0, z: 0}
   PlayerMoneyText: {fileID: 0}
+  Burned: {fileID: 7981858405197202290}
 --- !u!114 &-1308161118896512836
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12765,7 +12766,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8499555327855676135
 Transform:
   m_ObjectHideFlags: 0
