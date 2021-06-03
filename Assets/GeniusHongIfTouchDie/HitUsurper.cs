@@ -10,7 +10,7 @@ public class HitUsurper : MonoBehaviour
         Debug.Log(UsurperSkill.DrgHP);
     }
 
-    private void OnTriggerEnter(Collider other)
+    public void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Skill1")
         {
