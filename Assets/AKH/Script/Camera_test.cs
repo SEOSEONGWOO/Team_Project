@@ -33,8 +33,32 @@ public class Camera_test : MonoBehaviourPun
 	private Vector3 currPos;
 
 	public static bool cc = true; //카메라 스크립트 제어
-	void Start()
+	void Awake()
 	{
+		ReStart();
+	}
+
+
+	void Update()
+	{
+        if (GameM.gameStart)
+        {
+			ReStart();
+		}
+		if (!photonView.IsMine)
+		{
+			return;
+        }
+        else
+        {
+			if (cc == true)
+				if (PlayerCs.isShop)
+					Tick();
+		}
+		
+	}
+    void ReStart()
+    {
 		camTrans = GameObject.Find("Main Camera").GetComponent<Transform>();
 		pivot = GameObject.Find("CameraPivot").GetComponent<Transform>();
 		mainTransform = GameObject.Find("CameraHolder").GetComponent<Transform>();
@@ -42,23 +66,9 @@ public class Camera_test : MonoBehaviourPun
 
 		tr = GetComponent<Transform>();
 
-
 		transform.position = camTrans.position;
 		transform.forward = targetLook.forward;
 	}
-
-
-	void Update()
-	{
-		if (!photonView.IsMine)
-		{
-			return;
-		}
-		if (cc == true)
-			if (PlayerCs.isShop)
-				Tick();
-	}
-
 	void Tick()
 	{
 		delta = Time.deltaTime;

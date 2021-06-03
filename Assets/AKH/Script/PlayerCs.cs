@@ -18,9 +18,10 @@ public class PlayerCs : MonoBehaviourPunCallbacks, IPunObservable
 
 	public static Animator anim;
 	[Header("Player Health")]
-	public static float maxHP;
+	public static float maxHP = 100;
 	public static float HP = 100;
-	public float MP = 100; //구르기 게이지 ,구르면 20씩 줄어들게 만들어둠
+	public static float maxMP = 100;
+	public static float MP = 100; //구르기 게이지 ,구르면 20씩 줄어들게 만들어둠
 
 	public int Depense = 5; // 방어력
 
@@ -30,7 +31,7 @@ public class PlayerCs : MonoBehaviourPunCallbacks, IPunObservable
 
 	public float lookIKWeight;
 	public float bodyWeight;
-
+	public GameObject a;
 
 	[Tooltip("Health text")]
 	public Text healthText;
@@ -87,9 +88,10 @@ public class PlayerCs : MonoBehaviourPunCallbacks, IPunObservable
 
 	public static bool isShop = true;
 
-	//위치 정보를 송수신 할때 사용할 변수 선언 및 초기값 설정
-	float currRun = 0f;
-	float currstrafe = 0f;
+	public static bool isdead = false;
+
+	float curRun = 0f;
+	float curStrafe = 0f;
 	/*-----AKH 수정-----*/
 
 	[Header("Battle mode")]
@@ -114,7 +116,7 @@ public class PlayerCs : MonoBehaviourPunCallbacks, IPunObservable
 
 
 	// 플레이어 따라오게 하는 코드
-	public Transform clcl;
+	//public Transform clcl;
 	public static Vector3 CLC;
 
 	// public Transform FirstLocation;
@@ -142,10 +144,13 @@ public class PlayerCs : MonoBehaviourPunCallbacks, IPunObservable
 
 	void Start()
 	{
-		//DontDestroyOnLoad(gameObject);
-		FirstLocationVector = clcl.transform.position;
+		ReStart();
+	}
+	void ReStart()
+	{
+		FirstLocationVector = gameObject.transform.position;
 		/*-----AKH 수정-----*/
-
+		DontDestroyOnLoad(gameObject);
 		targetPos = GameObject.Find("TargetLook").GetComponent<Transform>();
 		targetPosOld = GameObject.Find("TargetLookInFight").GetComponent<Transform>();
 
@@ -153,9 +158,6 @@ public class PlayerCs : MonoBehaviourPunCallbacks, IPunObservable
 
 		tr = GetComponent<Transform>();
 
-		//원격 탱크의 위치 및 회전 값을 처리할 변수의 초깃값 설정
-		currRun = run;
-		currstrafe = strafe;
 		/*-----AKH 수정-----*/
 
 		dead = false;
@@ -170,12 +172,13 @@ public class PlayerCs : MonoBehaviourPunCallbacks, IPunObservable
 
 		Cursor.lockState = CursorLockMode.Locked;
 		Cursor.visible = false;
-
-		
 	}
-
 	void Update()
 	{
+		if (GameM.gameStart)
+		{
+			ReStart();
+		}
 		if (photonView.IsMine)
 		{
 			if (isShop)
@@ -188,8 +191,8 @@ public class PlayerCs : MonoBehaviourPunCallbacks, IPunObservable
 					}
 				}
 
-				CLC = clcl.transform.position;
-
+				CLC = gameObject.transform.position;
+				//Debug.Log("CLC : "+CLC);
 				// 돈 텍스트
 
 				//  string PlayerMoneyT = "보유 금액 : " + PlayerMoney;
@@ -203,6 +206,7 @@ public class PlayerCs : MonoBehaviourPunCallbacks, IPunObservable
 				// Debug.Log(MainCharHP);
 				//Health();
 				//UI();
+
 
 				Locomotion();
 				Fight();
@@ -230,28 +234,173 @@ public class PlayerCs : MonoBehaviourPunCallbacks, IPunObservable
 				w_change(); //무기변경 코드
 							//skill1();
 							//땅체크
+
+				ManaRegen();//마나 초당 회복
+				MaxHp();// 체력 100이상 되면 100으로 고정
 				grounded = Physics.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Blocking"));
+
 			}
 		}
         else
         {
-			//float forwardrun = 5 * Time.deltaTime;
-			if (currRun > 0)
-			{
-				transform.Translate(Vector3.forward * (5 * Time.deltaTime) * currRun);
-			}
-			else if (currRun < 0)
-			{
-				{
-					transform.Translate(Vector3.forward * (3 * Time.deltaTime) * currRun);
-				}
-			}
+			Locomotion_Net();
 		}
-		
 
 	}
-	public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+	void Locomotion_Net()
 	{
+		targetPosVec = targetPos.position;
+
+		anim.SetFloat("Run", curRun);
+		anim.SetFloat("Strafe", curStrafe);
+
+		if (roll_check == false)
+		{
+
+			//float forwardrun = 5 * Time.deltaTime;
+			if (curRun > 0)
+			{
+				transform.Translate(Vector3.forward * (5 * Time.deltaTime) * curRun);
+			}
+			else if (curRun < 0)
+			{
+				{
+					transform.Translate(Vector3.forward * (3 * Time.deltaTime) * curRun);
+				}
+			}
+
+			if (curStrafe > 0)
+			{
+				transform.Translate(Vector3.right * (3 * Time.deltaTime) * curStrafe);
+			}
+			else if (curStrafe < 0)
+			{
+				{
+					transform.Translate(Vector3.right * (3 * Time.deltaTime) * curStrafe);
+				}
+			}
+
+			if (curRun != 0 || isfight == true)
+			{
+				Vector3 rot = transform.eulerAngles;
+				transform.LookAt(targetPosVec);
+				float angleBetween = Mathf.DeltaAngle(transform.eulerAngles.y, rot.y);
+				if ((Mathf.Abs(angleBetween) > luft) || strafe != 0)
+				{
+					isPlayerRot = true;
+				}
+				if (isPlayerRot == true)
+				{
+					float bodyY = Mathf.LerpAngle(rot.y, transform.eulerAngles.y, Time.deltaTime * angularSpeed);
+					transform.eulerAngles = new Vector3(0, bodyY, 0);
+
+					if (curStrafe == 0)
+					{
+						anim.SetBool("Turn", false);
+					}
+					else
+					{
+						anim.SetBool("Turn", false);
+					}
+
+					if (Mathf.Abs(angleBetween) * Mathf.Deg2Rad <= Time.deltaTime * angularSpeed)
+					{
+						isPlayerRot = false;
+						anim.SetBool("Turn", false);
+					}
+				}
+				else
+				{
+					transform.eulerAngles = new Vector3(0f, rot.y, 0f);
+				}
+			}
+			transform.eulerAngles = new Vector3(0f, transform.eulerAngles.y, 0f);
+
+		}
+	}
+	//로컬
+	void Locomotion()
+	{
+		targetPosVec = targetPos.position;
+		//조작
+		run = Input.GetAxis("Vertical");
+		strafe = Input.GetAxis("Horizontal");
+
+		//원격 조작
+		curRun = run;
+		curStrafe = strafe;
+
+		anim.SetFloat("Run", run);
+		anim.SetFloat("Strafe", strafe);
+
+		if (roll_check == false)
+		{
+
+			//float forwardrun = 5 * Time.deltaTime;
+			if (run > 0)
+			{
+				transform.Translate(Vector3.forward * (5 * Time.deltaTime) * run);
+			}
+			else if (run < 0)
+			{
+				{
+					transform.Translate(Vector3.forward * (3 * Time.deltaTime) * run);
+				}
+			}
+
+			if (strafe > 0)
+			{
+				transform.Translate(Vector3.right * (3 * Time.deltaTime) * strafe);
+			}
+			else if (strafe < 0)
+			{
+				{
+					transform.Translate(Vector3.right * (3 * Time.deltaTime) * strafe);
+				}
+			}
+
+			if (run != 0 || isfight == true)
+			{
+				Vector3 rot = transform.eulerAngles;
+				transform.LookAt(targetPosVec);
+				float angleBetween = Mathf.DeltaAngle(transform.eulerAngles.y, rot.y);
+				if ((Mathf.Abs(angleBetween) > luft) || strafe != 0)
+				{
+					isPlayerRot = true;
+				}
+				if (isPlayerRot == true)
+				{
+					float bodyY = Mathf.LerpAngle(rot.y, transform.eulerAngles.y, Time.deltaTime * angularSpeed);
+					transform.eulerAngles = new Vector3(0, bodyY, 0);
+
+					if (strafe == 0)
+					{
+						anim.SetBool("Turn", false);
+					}
+					else
+					{
+						anim.SetBool("Turn", false);
+					}
+
+					if (Mathf.Abs(angleBetween) * Mathf.Deg2Rad <= Time.deltaTime * angularSpeed)
+					{
+						isPlayerRot = false;
+						anim.SetBool("Turn", false);
+					}
+				}
+				else
+				{
+					transform.eulerAngles = new Vector3(0f, rot.y, 0f);
+				}
+			}
+			transform.eulerAngles = new Vector3(0f, transform.eulerAngles.y, 0f);
+
+		}
+	}
+
+	void IPunObservable.OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+	{
+		//로컬 플레이어의 위치 정보 송신
 		if (stream.IsWriting)
 		{
 			stream.SendNext(run);
@@ -259,9 +408,35 @@ public class PlayerCs : MonoBehaviourPunCallbacks, IPunObservable
 		}
 		else
 		{
-			currRun = (float)stream.ReceiveNext();
-			currstrafe = (float)stream.ReceiveNext();
+			curRun = (float)stream.ReceiveNext();
+			curStrafe = (float)stream.ReceiveNext();
 		}
+	}
+
+	void ManaRegen()
+	{
+		if (MP != maxMP)
+		{
+			//마나는 초당 0.5씩 회복
+			MP += Time.deltaTime * 10f;
+
+			//마나를 회복했는데 최대 마나보다 크다면 현재마나를 최대마나량으로 변경
+			if (MP > maxMP)
+			{
+				MP = maxMP;
+			}
+			//회복된 마나량을 Mpbar슬라이더에 업데이트
+		}
+	}
+
+	void MaxHp()
+	{
+
+		if (HP > maxHP)
+		{
+			HP = maxHP;
+		}
+
 	}
 
 	void w_change()
@@ -392,20 +567,17 @@ public class PlayerCs : MonoBehaviourPunCallbacks, IPunObservable
 			&& grounded == true && ShootSimple_Scr.SkillMode == false) //에임 조준 안했을시 2번 누르면 실행
 
 		{
-			anim.SetBool("Skill_1_Magic", true);
 			isSkill3_2 = false;
 			isfight = true;
 			StartCoroutine("Skill3_2");
+			Instantiate(skill3_wall, transform.position + this.transform.forward * 2 + this.transform.up * 1, Quaternion.Euler(-90, 0, 0));
+			isfight = false;
 		}
 	}
 
 	IEnumerator Skill3_2()
 	{
 
-		yield return new WaitForSeconds(2.0f);
-		anim.SetBool("Skill_1_Magic", false);
-		Instantiate(skill3_wall, transform.position + this.transform.forward * 5, Quaternion.Euler(-90, 0, 0));
-		isfight = false;
 		yield return new WaitForSeconds(5.0f); //스킬 쿨
 											   //Destroy(skill3_wall);
 		isSkill3_2 = true;
@@ -454,17 +626,15 @@ public class PlayerCs : MonoBehaviourPunCallbacks, IPunObservable
 		isfight = false;
 		yield return new WaitForSeconds(5.0f); //초후 버프 없애기
 		skill3_4_Effect.SetActive(false);
+		hill_buff.a = false; //초당 체력 재생 변수 끄기
 		yield return new WaitForSeconds(8.0f); //스킬 쿨타임
 		isSkill3_4 = true;
 
 	}
 
-
-
-
+	[PunRPC]
 	void Jump()
 	{
-
 		if (Input.GetKey(KeyCode.Space))
 		{
 			Debug.Log("스페이스바");
@@ -496,85 +666,7 @@ public class PlayerCs : MonoBehaviourPunCallbacks, IPunObservable
 
 
 	}
-
-	void Locomotion()
-	{
-		targetPosVec = targetPos.position;
-
-
-		run = Input.GetAxis("Vertical");
-		strafe = Input.GetAxis("Horizontal");
-
-		anim.SetFloat("Strafe", strafe);
-		anim.SetFloat("Run", run);
-
-		if (roll_check == false)
-		{
-
-			//float forwardrun = 5 * Time.deltaTime;
-			if (run > 0)
-			{
-				transform.Translate(Vector3.forward * (5 * Time.deltaTime) * run);
-			}
-			else if (run < 0)
-			{
-				{
-					transform.Translate(Vector3.forward * (3 * Time.deltaTime) * run);
-				}
-			}
-
-			if (strafe > 0)
-			{
-				transform.Translate(Vector3.right * (3 * Time.deltaTime) * strafe);
-			}
-			else if (strafe < 0)
-			{
-				{
-					transform.Translate(Vector3.right * (3 * Time.deltaTime) * strafe);
-				}
-			}
-
-
-
-
-			if (run != 0 || isfight == true)
-			{
-				Vector3 rot = transform.eulerAngles;
-				transform.LookAt(targetPosVec);
-				float angleBetween = Mathf.DeltaAngle(transform.eulerAngles.y, rot.y);
-				if ((Mathf.Abs(angleBetween) > luft) || strafe != 0)
-				{
-					isPlayerRot = true;
-				}
-				if (isPlayerRot == true)
-				{
-					float bodyY = Mathf.LerpAngle(rot.y, transform.eulerAngles.y, Time.deltaTime * angularSpeed);
-					transform.eulerAngles = new Vector3(0, bodyY, 0);
-
-					if (strafe == 0)
-					{
-						anim.SetBool("Turn", false);
-					}
-					else
-					{
-						anim.SetBool("Turn", false);
-					}
-
-					if (Mathf.Abs(angleBetween) * Mathf.Deg2Rad <= Time.deltaTime * angularSpeed)
-					{
-						isPlayerRot = false;
-						anim.SetBool("Turn", false);
-					}
-				}
-				else
-				{
-					transform.eulerAngles = new Vector3(0f, rot.y, 0f);
-				}
-			}
-			transform.eulerAngles = new Vector3(0f, transform.eulerAngles.y, 0f);
-
-		}
-	}
+	
 
 
 	void roll()
@@ -665,6 +757,7 @@ public class PlayerCs : MonoBehaviourPunCallbacks, IPunObservable
 		{
 			anim.SetLookAtWeight(lookIKWeight, bodyWeight);
 			anim.SetLookAtPosition(targetPosVec);
+			//a.transform.rotation = Quaternion.Euler(targetPosVec);
 		}
 	}
 
@@ -731,12 +824,11 @@ public class PlayerCs : MonoBehaviourPunCallbacks, IPunObservable
 	}
 	public void Dead()
 	{
-
 		anim.SetTrigger("Die2"); //죽는 애니메이션 실행
 		dead = true;
 		roll_check = true;  //구르기 상태로 만들어서 움직이는 기능 멈추기
 		StartCoroutine("die");
-		Playerspawn.count = true;   //죽을때 텔포 한번만
+		//Playerspawn.count = true;   //죽을때 텔포 한번만
 	}
 	IEnumerator die()
 	{
@@ -744,6 +836,7 @@ public class PlayerCs : MonoBehaviourPunCallbacks, IPunObservable
 		gameObject.transform.position = FirstLocationVector;
 		HP = 100;
 		anim.SetTrigger("Die1");
+		isdead = true;  //죽을때 텔포
 		dead = false;
 		roll_check = false;
 	}
@@ -784,7 +877,5 @@ public class PlayerCs : MonoBehaviourPunCallbacks, IPunObservable
 		}
 	}
 
-
-
-
+    
 }

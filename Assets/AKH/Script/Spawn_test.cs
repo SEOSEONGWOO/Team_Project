@@ -16,9 +16,16 @@ public class Spawn_test : MonoBehaviour
     public static bool count = true;  //한번만 실행시키기 위한 변수
 
     private float time = 2f;
+
+    private GameObject Spawnobj;
+
+    private Vector3 V3;
     void Start()
     {
-        gameObject.transform.position = new Vector3(-186, 3, 354);
+        Spawnobj = GameObject.Find("Spawnobj");
+        V3 = Spawnobj.transform.position;
+        gameObject.transform.position = V3;
+        //gameObject.transform.position = new Vector3(-186, 3, 354);
         Main = true;
     }
     void Update()
@@ -51,7 +58,7 @@ public class Spawn_test : MonoBehaviour
             Main = false;
             Main_2 = false;
             Main_3 = true;
-            PhotonNetwork.LoadLevel("trapmap2");
+            PhotonNetwork.LoadLevel("MainGame_3");
             Invoke("MainScene_3_Spawn", time);
             MainScene_3 = false;
         }
@@ -75,14 +82,26 @@ public class Spawn_test : MonoBehaviour
     }
     void MainSceneSpawn()
     {
-        gameObject.transform.position = new Vector3(-185f, 2.7f, 255f);
+        GameM.gameStart = true;
+        Spawnobj = GameObject.Find("Spawnobj");
+        V3 = Spawnobj.transform.position;
+        gameObject.transform.position = V3;
+        //gameObject.transform.position = new Vector3(-185f, 2.7f, 255f);
     }
     void MainScene_2_Spawn()
     {
-        gameObject.transform.position = new Vector3(263.96f, -16f, 83.85f);
+        GameM.gameStart = true;
+        Spawnobj = GameObject.Find("Spawnobj");
+        V3 = Spawnobj.transform.position;
+        gameObject.transform.position = V3;
+        //gameObject.transform.position = new Vector3(263.96f, -16f, 83.85f);
     }
     void MainScene_3_Spawn()
     {
-        gameObject.transform.position = new Vector3(1.7f, 80, -101);
+        GameM.gameStart = true;
+        Spawnobj = GameObject.Find("Spawnobj");
+        V3 = Spawnobj.transform.position;
+        gameObject.transform.position = V3;
+        //gameObject.transform.position = new Vector3(1.7f, 80, -101);
     }
 }
