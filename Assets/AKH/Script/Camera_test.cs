@@ -41,11 +41,11 @@ public class Camera_test : MonoBehaviourPun
 
 	void Update()
 	{
-        if (GameM.gameStart)
+        /*if (GameM.gameStart)
         {
 			ReStart();
 			GameM.gameStart = false;
-		}
+		}*/
 		if (photonView.IsMine)
 		{
 			 if (cc == true)

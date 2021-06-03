@@ -29,8 +29,8 @@ public class PlayerCs : MonoBehaviourPunCallbacks, IPunObservable
 
     public static float MainCharHP = 100f;
 
-    public float lookIKWeight;
-    public float bodyWeight;
+    public float lookIKWeight = 1;
+    public float bodyWeight = 1.5f;
     public GameObject a;
 
     [Tooltip("Health text")]
@@ -184,11 +184,11 @@ public class PlayerCs : MonoBehaviourPunCallbacks, IPunObservable
     }
     void Update()
     {
-        if (GameM.gameStart)
+        /*if (GameM.gameStart)
         {
             ReStart();
             GameM.gameStart = false;
-        }
+        }*/
         if (photonView.IsMine)
         {
             if (isShop)
@@ -217,11 +217,10 @@ public class PlayerCs : MonoBehaviourPunCallbacks, IPunObservable
                 //Health();
                 //UI();
 
-
                 Locomotion();
                 Fight();
-                //Jump();
-                photonView.RPC("Jump", RpcTarget.All);
+                Jump();
+                //photonView.RPC("Jump", RpcTarget.All);
                 roll();
 
                 if (ShootSimple_Scr.WeaponNumber == 1)
@@ -256,8 +255,6 @@ public class PlayerCs : MonoBehaviourPunCallbacks, IPunObservable
         {
             transform.position = Vector3.Lerp(transform.position, currPos, Time.deltaTime * 10.0f);
             transform.rotation = Quaternion.Slerp(transform.rotation, currRot, Time.deltaTime * 10.0f);
-
-
         }
 
     }
@@ -269,10 +266,6 @@ public class PlayerCs : MonoBehaviourPunCallbacks, IPunObservable
         //조작
         run = Input.GetAxis("Vertical");
         strafe = Input.GetAxis("Horizontal");
-
-        //원격 조작
-        /*		curRun = run;
-                curStrafe = strafe;*/
 
         anim.SetFloat("Run", run);
         anim.SetFloat("Strafe", strafe);
@@ -341,13 +334,20 @@ public class PlayerCs : MonoBehaviourPunCallbacks, IPunObservable
             transform.eulerAngles = new Vector3(0f, transform.eulerAngles.y, 0f);
         }
     }
+    [PunRPC]
+    void testAni()
+    {
+        //손 관절 
+        anim.SetLookAtWeight(lookIKWeight, bodyWeight);
+        anim.SetLookAtPosition(targetPosVec);
+    }
     void OnAnimatorIK()
     {
         if (Input.GetMouseButton(1) && isShop)
         {
             //손 관절 
-            anim.SetLookAtWeight(lookIKWeight, bodyWeight);
-            anim.SetLookAtPosition(targetPosVec);
+            //photonView.RPC("testAni", RpcTarget.All);
+            testAni();
         }
     }
 
