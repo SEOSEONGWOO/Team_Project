@@ -10,7 +10,14 @@ public class FlameDamege : MonoBehaviour
     {
         
     }
-
+    private void OnCollisionStay(Collision collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            Debug.Log("OnCollisionStay");
+        }
+    }
+   
     // Update is called once per frame
     void Update()
     {
@@ -18,10 +25,6 @@ public class FlameDamege : MonoBehaviour
     }
     private void OnTriggerStay(Collider other)
     {
-        if(other.tag == "Player")
-        {
-            Debug.Log("구워지는중");
-            Player_Scr.HP = 0;
-        }
+       
     }
 }
