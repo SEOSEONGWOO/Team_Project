@@ -82,6 +82,8 @@ public class PlayerCs : MonoBehaviourPunCallbacks, IPunObservable
 	public GameObject weapon2;
 	public GameObject weapon3;
 
+	public GameObject Chest;
+
 	/*-----AKH 수정-----*/
 	GameObject crosshair;
 	public Transform tr;
@@ -150,7 +152,7 @@ public class PlayerCs : MonoBehaviourPunCallbacks, IPunObservable
 	{
 		FirstLocationVector = gameObject.transform.position;
 		/*-----AKH 수정-----*/
-		DontDestroyOnLoad(gameObject);
+		//DontDestroyOnLoad(gameObject);
 		targetPos = GameObject.Find("TargetLook").GetComponent<Transform>();
 		targetPosOld = GameObject.Find("TargetLookInFight").GetComponent<Transform>();
 
@@ -178,6 +180,7 @@ public class PlayerCs : MonoBehaviourPunCallbacks, IPunObservable
 		if (GameM.gameStart)
 		{
 			ReStart();
+			GameM.gameStart = false;
 		}
 		if (photonView.IsMine)
 		{
@@ -243,7 +246,9 @@ public class PlayerCs : MonoBehaviourPunCallbacks, IPunObservable
 		}
         else
         {
-			Locomotion_Net();
+			return;
+			//Locomotion_Net();
+			
 		}
 
 	}
@@ -361,6 +366,8 @@ public class PlayerCs : MonoBehaviourPunCallbacks, IPunObservable
 
 			if (run != 0 || isfight == true)
 			{
+				Debug.Log("11111111111111111111111111111111111111111");
+
 				Vector3 rot = transform.eulerAngles;
 				transform.LookAt(targetPosVec);
 				float angleBetween = Mathf.DeltaAngle(transform.eulerAngles.y, rot.y);
@@ -370,6 +377,7 @@ public class PlayerCs : MonoBehaviourPunCallbacks, IPunObservable
 				}
 				if (isPlayerRot == true)
 				{
+					Debug.Log("3333333333333333333333333333");
 					float bodyY = Mathf.LerpAngle(rot.y, transform.eulerAngles.y, Time.deltaTime * angularSpeed);
 					transform.eulerAngles = new Vector3(0, bodyY, 0);
 
@@ -390,14 +398,176 @@ public class PlayerCs : MonoBehaviourPunCallbacks, IPunObservable
 				}
 				else
 				{
+					Debug.Log("2222222222222222222222222222222222");
 					transform.eulerAngles = new Vector3(0f, rot.y, 0f);
 				}
 			}
-			transform.eulerAngles = new Vector3(0f, transform.eulerAngles.y, 0f);
+			//transform.LookAt(targetPosVec);
+			transform.LookAt(new Vector3(targetPosVec.x, 0, targetPosVec.z));
+			//transform.LookAt(new Vector3(targetPos.position.x, 0, targetPos.position.z));
+			//Chest.transform.LookAt(targetPos);
+			//transform.eulerAngles = new Vector3(0f, transform.eulerAngles.y, 0f);
+		}
+	}
+	void OnAnimatorIK()
+	{
+		if (Input.GetMouseButton(1) && isShop)
+		{
+			anim.SetLookAtWeight(lookIKWeight, bodyWeight);
+			anim.SetLookAtPosition(targetPosVec);
+		}
+	}
+	[PunRPC]
+	void Jump()
+	{
+		if (Input.GetKey(KeyCode.Space))
+		{
+			Debug.Log("스페이스바");
+			if (grounded == true)
+			{
+				Debug.Log("aaaaa");
+				isJumping = true;
+				anim.SetBool("Jump", Input.GetKey(KeyCode.Space));
+			}
 
 		}
 	}
+	void Fight()
+	{
+		//AIMING
+		if (Input.GetMouseButton(1) && isfight == false && roll_check == false)
+		{
+			ShootSimple_Scr.SkillMode = true; //에임 조준 시 스킬 사용 가능
+			isfight = true;
+			anim.SetBool("isFight", true);
+			weapon2.SetActive(true);
+			//weapon1.SetActive(false);
+			crosshair.SetActive(true);
+			Debug.Log("조준 활성화");
+		}
+		else if (Input.GetMouseButtonUp(1) && isfight == true && roll_check == false)
+		{
+			Debug.Log("조준 끝");
+			ShootSimple_Scr.SkillMode = false;
+			weapon3.SetActive(false);
+			//ShootSimple_Scr.SkillMode = false;
+			isfight = false;
+			anim.SetBool("isFight", false);
+			//weapon1.SetActive(true);
+			weapon2.SetActive(false);
+			crosshair.SetActive(false);
+			isshoot = false;
+			anim.SetBool("isShoot", false);
+		}
+		//SHOOTING
+		if (Input.GetMouseButton(0) && isfight == true)
+		{
+			isshoot = true;
+			anim.SetBool("isShoot", true);
+		}
+		else if (Input.GetMouseButtonUp(0) && isfight == true)
+		{
+			isshoot = false;
+			anim.SetBool("isShoot", false);
+		}
+	}
 
+	
+
+	void Health()
+	{
+		sliderHP.maxValue = maxHP;
+		sliderHP.value = MainCharHP;
+		//healthText.text = "Health: " + MainCharHP.ToString ("0");
+
+		if (MainCharHP <= 0)
+			Death();
+
+		//-----------HP recovery--------------//
+
+		if (HP < maxHP)
+		{
+			HP += Time.deltaTime * 0.5f;
+		}
+		//------------------------------------------//
+	}
+
+	/*void UI()
+	{
+		if (isfight)
+			fightModUI.SetActive (true);
+		else
+			fightModUI.SetActive (false);
+	}*/
+
+	void isFireM()
+	{
+		Debug.Log(HP);
+		Debug.Log(FireTime);
+		if (FireTime < 4.0f)
+		{
+			FireTime += Time.deltaTime;
+			HP -= FireDamage;
+		}
+		else if (FireTime >= 4.0f)
+		{
+			FireM = false;
+		}
+	}
+	public void Dead()
+	{
+		anim.SetTrigger("Die2"); //죽는 애니메이션 실행
+		dead = true;
+		roll_check = true;  //구르기 상태로 만들어서 움직이는 기능 멈추기
+		StartCoroutine("die");
+		//Playerspawn.count = true;   //죽을때 텔포 한번만
+	}
+	IEnumerator die()
+	{
+		yield return new WaitForSeconds(1.5f); //캐릭터 삭제시 ~초후 실행
+		gameObject.transform.position = FirstLocationVector;
+		HP = 100;
+		anim.SetTrigger("Die1");
+		isdead = true;  //죽을때 텔포
+		dead = false;
+		roll_check = false;
+	}
+
+	public void Death() //사망시 실행
+	{
+		//anim.SetBool("Die", true);  //사망 애니메이션
+		Destroy(gameObject);  //3초후 오브젝트 삭제
+		Instantiate(ragdoll, transform.position, transform.rotation);
+		dead = true;
+
+	}
+
+	public void PlayerD(float damage)
+	{
+		//데미지만큼 체력 감소
+		MainCharHP -= damage; // health = health - damage;
+
+		//체력이 0 이하 && 아직 죽지 않았다면 사망 처리 실행
+		if (MainCharHP <= 0 && !dead)
+		{
+			Death();
+		}
+	}
+
+	public void GunnerHitFunc(int damage)   // 
+	{
+		HitD = damage - Depense;
+		if (HitD >= 1)
+		{
+			HP = HP - (float)HitD;
+			Debug.Log(HitD);
+		}
+		else if (HitD < 1)
+		{
+			HP = HP - 1f;
+			Debug.Log(HitD);
+		}
+	}
 	void IPunObservable.OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
 	{
 		//로컬 플레이어의 위치 정보 송신
@@ -632,22 +802,6 @@ public class PlayerCs : MonoBehaviourPunCallbacks, IPunObservable
 
 	}
 
-	[PunRPC]
-	void Jump()
-	{
-		if (Input.GetKey(KeyCode.Space))
-		{
-			Debug.Log("스페이스바");
-			if (grounded == true)
-			{
-				Debug.Log("aaaaa");
-				isJumping = true;
-				anim.SetBool("Jump", Input.GetKey(KeyCode.Space));
-			}
-
-		}
-	}
-
 	void FixedUpdate() // 리지드바디 이용할 경우 update 대신 FixedUpdate 사용
 	{
 		if (isJumping == true)
@@ -711,97 +865,7 @@ public class PlayerCs : MonoBehaviourPunCallbacks, IPunObservable
 		roll_check = false;
 	}
 
-	void Fight()
-	{
-		//AIMING
-		if (Input.GetMouseButton(1) && isfight == false && roll_check == false)
-		{
-			ShootSimple_Scr.SkillMode = true; //에임 조준 시 스킬 사용 가능
-			isfight = true;
-			anim.SetBool("isFight", true);
-			weapon2.SetActive(true);
-			//weapon1.SetActive(false);
-			crosshair.SetActive(true);
-			Debug.Log("조준 활성화");
-		}
-		else if (Input.GetMouseButtonUp(1) && isfight == true && roll_check == false)
-		{
-			Debug.Log("조준 끝");
-			ShootSimple_Scr.SkillMode = false;
-			weapon3.SetActive(false);
-			//ShootSimple_Scr.SkillMode = false;
-			isfight = false;
-			anim.SetBool("isFight", false);
-			//weapon1.SetActive(true);
-			weapon2.SetActive(false);
-			crosshair.SetActive(false);
-			isshoot = false;
-			anim.SetBool("isShoot", false);
-		}
-		//SHOOTING
-		if (Input.GetMouseButton(0) && isfight == true)
-		{
-			isshoot = true;
-			anim.SetBool("isShoot", true);
-		}
-		else if (Input.GetMouseButtonUp(0) && isfight == true)
-		{
-			isshoot = false;
-			anim.SetBool("isShoot", false);
-		}
-	}
-
-	void OnAnimatorIK()
-	{
-		if (Input.GetMouseButton(1) && isShop)
-		{
-			anim.SetLookAtWeight(lookIKWeight, bodyWeight);
-			anim.SetLookAtPosition(targetPosVec);
-			//a.transform.rotation = Quaternion.Euler(targetPosVec);
-		}
-	}
-
-	void Health()
-	{
-		sliderHP.maxValue = maxHP;
-		sliderHP.value = MainCharHP;
-		//healthText.text = "Health: " + MainCharHP.ToString ("0");
-
-		if (MainCharHP <= 0)
-			Death();
-
-		//-----------HP recovery--------------//
-
-		if (HP < maxHP)
-		{
-			HP += Time.deltaTime * 0.5f;
-		}
-		//------------------------------------------//
-	}
-
-	/*void UI()
-	{
-		if (isfight)
-			fightModUI.SetActive (true);
-		else
-			fightModUI.SetActive (false);
-	}*/
-
-	void isFireM()
-	{
-		Debug.Log(HP);
-		Debug.Log(FireTime);
-		if (FireTime < 4.0f)
-		{
-			FireTime += Time.deltaTime;
-			HP -= FireDamage;
-		}
-		else if (FireTime >= 4.0f)
-		{
-			FireM = false;
-		}
-	}
-
+	
 
 	private void OnTriggerStay(Collider other)
 	{
@@ -822,60 +886,7 @@ public class PlayerCs : MonoBehaviourPunCallbacks, IPunObservable
 			}
 		}
 	}
-	public void Dead()
-	{
-		anim.SetTrigger("Die2"); //죽는 애니메이션 실행
-		dead = true;
-		roll_check = true;  //구르기 상태로 만들어서 움직이는 기능 멈추기
-		StartCoroutine("die");
-		//Playerspawn.count = true;   //죽을때 텔포 한번만
-	}
-	IEnumerator die()
-	{
-		yield return new WaitForSeconds(1.5f); //캐릭터 삭제시 ~초후 실행
-		gameObject.transform.position = FirstLocationVector;
-		HP = 100;
-		anim.SetTrigger("Die1");
-		isdead = true;  //죽을때 텔포
-		dead = false;
-		roll_check = false;
-	}
-
-	public void Death() //사망시 실행
-	{
-		//anim.SetBool("Die", true);  //사망 애니메이션
-		Destroy(gameObject);  //3초후 오브젝트 삭제
-		Instantiate(ragdoll, transform.position, transform.rotation);
-		dead = true;
-
-	}
-
-	public void PlayerD(float damage)
-	{
-		//데미지만큼 체력 감소
-		MainCharHP -= damage; // health = health - damage;
-
-		//체력이 0 이하 && 아직 죽지 않았다면 사망 처리 실행
-		if (MainCharHP <= 0 && !dead)
-		{
-			Death();
-		}
-	}
-
-	public void GunnerHitFunc(int damage)   // 
-	{
-		HitD = damage - Depense;
-		if (HitD >= 1)
-		{
-			HP = HP - (float)HitD;
-			Debug.Log(HitD);
-		}
-		else if (HitD < 1)
-		{
-			HP = HP - 1f;
-			Debug.Log(HitD);
-		}
-	}
+	
 
     
 }

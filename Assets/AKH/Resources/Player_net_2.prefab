@@ -1187,12 +1187,12 @@ GameObject:
   - component: {fileID: 4569646928089786383}
   - component: {fileID: 4569646928089786376}
   - component: {fileID: 4569646928089786382}
-  - component: {fileID: 6652607791657758433}
   - component: {fileID: 5220691682440053}
   - component: {fileID: 3661020848645258450}
   - component: {fileID: -5963812995194824509}
   - component: {fileID: 4865693764727515436}
   - component: {fileID: -4639405730968962548}
+  - component: {fileID: -1072478150096205041}
   m_Layer: 0
   m_Name: Player_net_2
   m_TagString: Player
@@ -1368,35 +1368,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &6652607791657758433
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6131393967786986688}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 405319637ae45574aadf7832cc3d585d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  camTrans: {fileID: 0}
-  pivot: {fileID: 0}
-  Character: {fileID: 6131393967787151584}
-  mainTransform: {fileID: 0}
-  cameraSettings: {fileID: 11400000, guid: 09018b37facbe1b48b2d09e2357f9416, type: 2}
-  leftPivot: 0
-  delta: 0
-  targetLook: {fileID: 0}
-  mouseX: 0
-  mouseY: 0
-  smoothX: 0
-  smoothY: 0
-  smoothXVelocity: 0
-  smoothYVelocity: 0
-  lookAngle: 0
-  titlAngle: 0
-  tr: {fileID: 6131393967787151584}
 --- !u!114 &5220691682440053
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1417,6 +1388,7 @@ MonoBehaviour:
   observableSearch: 2
   ObservedComponents:
   - {fileID: 4865693764727515436}
+  - {fileID: -1072478150096205041}
   sceneViewId: 2
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -1479,8 +1451,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Depense: 5
   HitD: 0
-  lookIKWeight: 0
-  bodyWeight: 0
+  lookIKWeight: 1
+  bodyWeight: 1.5
   a: {fileID: 0}
   healthText: {fileID: 0}
   sliderHP: {fileID: 0}
@@ -1512,6 +1484,7 @@ MonoBehaviour:
   weapon1: {fileID: 2972188484477590601}
   weapon2: {fileID: 6588409708402294207}
   weapon3: {fileID: 6200508258482555038}
+  Chest: {fileID: 6997286384135529664}
   tr: {fileID: 6131393967787151584}
   isfight: 0
   isshoot: 0
@@ -1531,6 +1504,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2f4590a1902c62419db88247c1eb598, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-1072478150096205041
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6131393967786986688}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 0
+  m_UseLocal: 1
 --- !u!1 &6131393967786986690
 GameObject:
   m_ObjectHideFlags: 0

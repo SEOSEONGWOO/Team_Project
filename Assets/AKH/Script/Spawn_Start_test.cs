@@ -14,7 +14,7 @@ public class Spawn_Start_test : MonoBehaviour
     public Transform spawpoint;
     void Start()
     {
-        DontDestroyOnLoad(gameObject); 
+        //DontDestroyOnLoad(gameObject);
         if (GameM.gameStart)
         {
             // 네트워크 상의 모든 클라이언트들에서 생성 실행

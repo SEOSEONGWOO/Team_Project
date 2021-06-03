@@ -44,16 +44,17 @@ public class Camera_test : MonoBehaviourPun
         if (GameM.gameStart)
         {
 			ReStart();
+			GameM.gameStart = false;
 		}
-		if (!photonView.IsMine)
+		if (photonView.IsMine)
 		{
-			return;
-        }
-        else
-        {
-			if (cc == true)
+			 if (cc == true)
 				if (PlayerCs.isShop)
 					Tick();
+		}
+        else
+        {
+			return;
 		}
 		
 	}
