@@ -4763,6 +4763,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8034920027960744849}
   - component: {fileID: 801188362787896751}
+  - component: {fileID: -516954447661590813}
+  - component: {fileID: 1019023720047194274}
   m_Layer: 0
   m_Name: wep_Fire
   m_TagString: Untagged
@@ -4799,6 +4801,34 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 6
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!54 &-516954447661590813
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4783698356738810119}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &1019023720047194274
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4783698356738810119}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b1337aa56af64a46bac2e26f1373373, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6012268768456822392
 GameObject:
   m_ObjectHideFlags: 0

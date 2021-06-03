@@ -179,7 +179,6 @@ public class Orc : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-
         if (other.tag == "Skill1")
         {
             OrcHP -= 500;
