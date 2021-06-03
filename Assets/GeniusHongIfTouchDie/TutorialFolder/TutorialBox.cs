@@ -31,7 +31,7 @@ public class TutorialBox : MonoBehaviour
 
         distance = Vector3.Distance(ChestVec, Player_Scr.CLC);
 
-        if (distance < 1.5f)
+        if (distance < 3.0f)
         {
             if (Input.GetKeyDown(KeyCode.F))
             {
