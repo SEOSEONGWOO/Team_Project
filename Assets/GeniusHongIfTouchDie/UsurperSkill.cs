@@ -91,11 +91,11 @@ public class UsurperSkill : MonoBehaviour
             {
                 gameObject.GetComponent<SphereCollider>().enabled = false;
                 transform.LookAt(Player_Scr.CLC);
-                if (distance <= 15.0f) // 만약 거리가 15이하이면 스킬 돌림
+                if (distance <= 8.0f) // 만약 거리가 15이하이면 스킬 돌림
                 {
                     DragonAR = true;
                 }
-                else if (distance > 15.0f)
+                else if (distance > 8.0f)
                 {
                     DragonAR = false;
                 }
@@ -103,6 +103,7 @@ public class UsurperSkill : MonoBehaviour
 
             if (SkillC == 10) // 10 = 시작 ( 거리이내로 플레이어가 들어오면)
             {
+                nav.speed = 0;
                 AwakeT += Time.deltaTime; // 시작모션 대기시간 돌려주고 
                 if (AwakeT >= AwakeD) // 모션 끝나는 시간쯤 되면
                 {
@@ -158,6 +159,8 @@ public class UsurperSkill : MonoBehaviour
                     {
                         StartCoroutine(AttackDelay(1));
 
+                        DrgAttSC.Mode1 = 1;
+
                         avatar.SetTrigger("Sk1"); // 스킬1 사용
                         //Gobj.GetComponent<Player_Scr>().GunnerHitFunc(Sk1Da); // 공격
 
@@ -176,6 +179,8 @@ public class UsurperSkill : MonoBehaviour
                     if (Sk2Del == 0)
                     {
                         StartCoroutine(AttackDelay(2));
+
+                        DrgAttSC.Mode1 = 2;
 
                         avatar.SetTrigger("Sk2");
                         
@@ -228,7 +233,7 @@ public class UsurperSkill : MonoBehaviour
                     SkillC = Random.Range(1, 5); // 1~4 스킬 사용
                 }
             }
-            else if(DragonAR == false && SkillC != 7)
+            else if(DragonAR == false && SkillC != 7 && SkillC != 10)
             {
                 avatar.SetBool("FollowFollowME", true);
                 nav.speed = 4;
@@ -283,11 +288,15 @@ public class UsurperSkill : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter(Collision Player)
+    private void OnTriggerEnter(Collider other)
     {
-        avatar.SetTrigger("Awake");
-        SkillC = 10;
+        if(other.tag == "Player")
+        {
+            avatar.SetTrigger("Awake");
+            SkillC = 10;
+        }
     }
+
 
 /*    private void OnTriggerEnter(Collider Stun)
     {
@@ -306,7 +315,7 @@ public class UsurperSkill : MonoBehaviour
         Debug.Log(DrgHP);
     }
 
-    private void OnTriggerEnter(Collider other)
+    /*private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Skill1")
         {
@@ -347,11 +356,13 @@ public class UsurperSkill : MonoBehaviour
         {
             UsurperSkill.DrgHP -= 500;
         }
-    }
+    }*/
 
     public IEnumerator AttackDelay(int FT)
     {
         AttackOn = FT;
+
+        //DrgAttSC.Mode1 = FT;
         
         if(AttackOn == 1)
         {
@@ -363,6 +374,8 @@ public class UsurperSkill : MonoBehaviour
         }
 
         AttackOn = 0;
+
+        DrgAttSC.Mode1 = 0;
     }
 
     public IEnumerator FireDelay(int FT)
