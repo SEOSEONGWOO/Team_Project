@@ -5,28 +5,28 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
+  - enabled: 1
     path: Assets/DB_Test.unity
     guid: a11415da4cdac7d41b231c9ddbebf794
-  - enabled: 1
+  - enabled: 0
     path: Assets/AKH/Scenes/Login.unity
     guid: 34d151c301a51df45a30958f00ad5125
-  - enabled: 0
+  - enabled: 1
     path: Assets/Main_map.unity
     guid: 094fee2592364db8a5b15e0dfe3f452c
-  - enabled: 0
+  - enabled: 1
     path: Assets/Main_map 2.unity
     guid: 070b147d82df36a419d4351ca2c250a4
-  - enabled: 0
+  - enabled: 1
     path: Assets/trapmap2.unity
     guid: 10443b43a2c351940a015527c08704b8
-  - enabled: 1
+  - enabled: 0
     path: Assets/AKH/Scenes/MainGame_1.unity
     guid: 9ab3879a7a2501649b2c738cdbe8450e
-  - enabled: 1
+  - enabled: 0
     path: Assets/AKH/Scenes/MainGame_2.unity
     guid: c847d0e6628a7304d86a78e528b32e61
-  - enabled: 1
+  - enabled: 0
     path: Assets/AKH/Scenes/MainGame_3.unity
     guid: 63e63ad136805cf46b1bdb7f57287e80
   m_configObjects: {}
