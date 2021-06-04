@@ -9,7 +9,7 @@ public class IceOn : MonoBehaviour
         if (other.tag == "Player")
         {
             SkillPanelMove.lightning = true;
-            Destroy(gameObject);
+            
         }
     }
 }

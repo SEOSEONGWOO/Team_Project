@@ -9,7 +9,7 @@ public class FireOn : MonoBehaviour
         if (other.tag == "Player")
         {
             SkillPanelMove.fire = true;
-            Destroy(gameObject);
+            
         }   
     }
 }
