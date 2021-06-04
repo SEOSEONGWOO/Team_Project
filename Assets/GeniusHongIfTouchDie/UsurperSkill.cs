@@ -67,7 +67,7 @@ public class UsurperSkill : MonoBehaviour
 
         nav = GetComponent<NavMeshAgent>();
 
-        DrgLN = DrgL.transform.position; // DrgLN 에 드래곤 위치값 넣어줌
+        //DrgLN = DrgL.transform.position; // DrgLN 에 드래곤 위치값 넣어줌
 
         distance = Vector3.Distance(DrgLN, Player_Scr.CLC); // distance에 드래곤 , 플레이어 거리 비교
 
