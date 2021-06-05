@@ -16,24 +16,47 @@ public class Shop : MonoBehaviour
 
     public void ATK_scoll_get()
     {
-        theInventory.AcquireItem(atk_scoll.GetComponent<ItemPickUp>().item, 1);
-        Debug.Log("아이템 구매");
+        if (Player_Scr.money >= 300)
+        {
+            theInventory.AcquireItem(atk_scoll.GetComponent<ItemPickUp>().item, 1);
+            Player_Scr.money -= 300;
+            Debug.Log(Player_Scr.money);
+        }
     }
     public void DEF_scoll_get()
     {
-        theInventory.AcquireItem(def_scoll.GetComponent<ItemPickUp>().item, 1);
+        if (Player_Scr.money >= 300)
+        {
+            theInventory.AcquireItem(def_scoll.GetComponent<ItemPickUp>().item, 1);
+            Player_Scr.money -= 300; Debug.Log(Player_Scr.money);
+        }
+        
     }
     public void HP_Potion_get()
     {
-        theInventory.AcquireItem(hp_potion.GetComponent<ItemPickUp>().item, 1);
+        if (Player_Scr.money >= 300)
+        {
+            theInventory.AcquireItem(hp_potion.GetComponent<ItemPickUp>().item, 1);
+            Player_Scr.money -= 300; Debug.Log(Player_Scr.money);
+        }
+        
     }
     public void MP_Potion_get()
     {
-        theInventory.AcquireItem(mp_potion.GetComponent<ItemPickUp>().item, 1);
+        if (Player_Scr.money >= 300)
+        {
+            theInventory.AcquireItem(mp_potion.GetComponent<ItemPickUp>().item, 1);
+            Player_Scr.money -= 300; Debug.Log(Player_Scr.money);
+        }
+        
     }
     public void Holly_ball()
     {
-        theInventory.AcquireItem(holly_Ball.GetComponent<ItemPickUp>().item, 1);
+        if (Player_Scr.money >= 500)
+        {
+            theInventory.AcquireItem(holly_Ball.GetComponent<ItemPickUp>().item, 1);
+            Player_Scr.money -= 500; Debug.Log(Player_Scr.money);
+        }
         SkillPanelMove.holly = true;
     }
     void Start()

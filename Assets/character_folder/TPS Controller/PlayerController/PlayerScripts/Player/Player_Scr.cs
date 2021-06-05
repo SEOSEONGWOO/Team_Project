@@ -36,6 +36,8 @@ public class Player_Scr : MonoBehaviourPun
 	[Tooltip("Health text")]
 	public Text healthText;
 	public Slider sliderHP;
+	[Header("Money")]
+	public static int money = 5000;
 
 	[Header("Character customization")]
 	public Transform targetPos;
@@ -188,11 +190,6 @@ public class Player_Scr : MonoBehaviourPun
 			}
 
 			CLC = gameObject.transform.position;
-            //Debug.Log("CLC : "+CLC);
-            // 돈 텍스트
-
-            //  string PlayerMoneyT = "보유 금액 : " + PlayerMoney;
-            //  PlayerMoneyText.GetComponent<Text>().text = PlayerMoneyT;
 
             if (FireM == true)
 			{
@@ -200,16 +197,13 @@ public class Player_Scr : MonoBehaviourPun
 
             }
 
-			// Debug.Log(MainCharHP);
-			//Health();
-			//UI();
-			
-
-				Locomotion();
+			Locomotion();
 			Fight();
 			Jump();
-			roll(); 
+			roll();
+			w_change();
 			
+
 			if (ShootSimple_Scr.WeaponNumber == 1)
 			{
 				skill1_2();
@@ -228,9 +222,7 @@ public class Player_Scr : MonoBehaviourPun
 				skill3_3();
 				skill3_4();
 			}
-			w_change(); //무기변경 코드
-						//skill1();
-						//땅체크
+			
 
 			ManaRegen();//마나 초당 회복
 			MaxHp();// 체력 100이상 되면 100으로 고정
@@ -267,27 +259,22 @@ public class Player_Scr : MonoBehaviourPun
 
 	}
 
-	void w_change()
+	void w_change() //스킬 체인지
 	{
-		
-		if (Input.GetKeyDown(KeyCode.Alpha5))
+		if (SkillPanelMove.skill_mode == 1) //스킬 ui가 불속성으로 바뀌면 불속성 스킬 사용가능
 		{
-			Debug.Log("무기변경");
-			if (ShootSimple_Scr.WeaponNumber == 1)
-			{
-				Debug.Log("무기변경");
-				ShootSimple_Scr.WeaponNumber = 2;
-			}
-			else if (ShootSimple_Scr.WeaponNumber == 2)
-			{
-				Debug.Log("무기변경");
-				ShootSimple_Scr.WeaponNumber = 3;
-			}
-			else if (ShootSimple_Scr.WeaponNumber == 3)
-			{
-				Debug.Log("무기변경");
-				ShootSimple_Scr.WeaponNumber = 1;
-			}
+			ShootSimple_Scr.WeaponNumber = 2;
+
+		}
+		if (SkillPanelMove.skill_mode == 2) //스킬 ui가 전기속성으로 바뀌면 속성 스킬 사용가능
+		{
+			ShootSimple_Scr.WeaponNumber = 1;
+
+		}
+		if (SkillPanelMove.skill_mode == 3) //스킬 ui가 빛속성으로 바뀌면 빛속성 스킬 사용가능
+		{
+			ShootSimple_Scr.WeaponNumber = 3;
+
 		}
 	}
 

@@ -19,7 +19,7 @@ public class ShootSimple_Scr : MonoBehaviourPun
 	[Header("The target followed by the camera")]
 	public Transform targetLook;
     [Header("무기에 따른 스킬 제어")]
-    public static int WeaponNumber=3;
+    public static int WeaponNumber=0;
 
 
     [Header("Bullet")]

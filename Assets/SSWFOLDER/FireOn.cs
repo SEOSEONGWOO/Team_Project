@@ -9,7 +9,8 @@ public class FireOn : MonoBehaviour
         if (other.tag == "Player")
         {
             SkillPanelMove.fire = true;
-            
+            Debug.Log("불먹음");
+            ShootSimple_Scr.WeaponNumber = 2;
         }   
     }
 }

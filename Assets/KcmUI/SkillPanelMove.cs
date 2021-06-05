@@ -20,6 +20,8 @@ public class SkillPanelMove : MonoBehaviour
     public static bool fire = false;
     public static bool lightning = false;
     public static bool holly = false;
+
+    public static int skill_mode = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -52,13 +54,14 @@ public class SkillPanelMove : MonoBehaviour
             SkillPanelChange += 1;
 
         }
+
             if (fire == true)
             {
                 SkillPanelnone.SetActive(false);
                 SkillPanel1.SetActive(true);
                 SkillPanel2.SetActive(false);
                 SkillPanel3.SetActive(false);
-                             
+                skill_mode = 1;
             }
             if (SkillPanelChange == 1)
             {
@@ -66,8 +69,9 @@ public class SkillPanelMove : MonoBehaviour
                 {
                     SkillPanel1.SetActive(false);
                     SkillPanel2.SetActive(true);
-                    SkillPanel3.SetActive(false);             
-                }
+                    SkillPanel3.SetActive(false);
+                    skill_mode = 2;
+            }
 
             }
             if (SkillPanelChange == 2)
@@ -77,8 +81,8 @@ public class SkillPanelMove : MonoBehaviour
                     SkillPanel1.SetActive(false);
                     SkillPanel2.SetActive(false);
                     SkillPanel3.SetActive(true);
-                    
-                }
+                    skill_mode = 3;
+            }
 
             }
         if (SkillPanelChange >= 3)
