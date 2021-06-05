@@ -15,6 +15,8 @@ public class SkillPanelMove : MonoBehaviour
 
     public int SkillPanelChange;
 
+
+
     public static bool fire = false;
     public static bool lightning = false;
     public static bool holly = false;
@@ -42,11 +44,13 @@ public class SkillPanelMove : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.X))
         {
             SkillPanelChange -= 1;
+  
 
         }
         if (Input.GetKeyDown(KeyCode.Z))
         {
             SkillPanelChange += 1;
+
         }
             if (fire == true)
             {

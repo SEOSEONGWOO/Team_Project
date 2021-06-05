@@ -23,8 +23,5 @@ public class FlameDamege : MonoBehaviour
     {
         
     }
-    private void OnTriggerStay(Collider other)
-    {
-       
-    }
+  
 }
