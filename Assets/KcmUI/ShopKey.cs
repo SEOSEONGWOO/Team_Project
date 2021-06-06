@@ -6,7 +6,7 @@ public class ShopKey : MonoBehaviour
 {
     public GameObject Question;
     public GameObject panel;
-    
+    public AudioClip clip;
 
     public bool panelonoff = false;
     private void OnTriggerStay(Collider other)
@@ -18,12 +18,15 @@ public class ShopKey : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.G))
             {
                 Debug.Log("g버튼");
+                
                 if (Question == true)
                 {
+                    SoundManager.instance.SFXPlay("Shop", clip);
                     Debug.Log("버튼");
                     if (Player_Scr.isShop)
                     {
                         //상점 활성화일때 Locomotion(), Fight(), Jump(), roll() 비활성화
+                        
                         Player_Scr.isShop = false;
                     }else if (!Player_Scr.isShop)
                     {

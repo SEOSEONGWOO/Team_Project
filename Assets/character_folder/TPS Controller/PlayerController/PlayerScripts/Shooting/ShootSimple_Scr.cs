@@ -116,7 +116,7 @@ public class ShootSimple_Scr : MonoBehaviourPun
             if ((Input.GetMouseButton(0)) && (isshoot == true))
             {
                 isshoot = false;
-                //audioSource.PlayOneShot(fireSound);
+                audioSource.PlayOneShot(fireSound);
                 muzzleFlash.Play();
                 Shell.Play();
                 Invoke("ShootTrue", reloadTime);

@@ -15,7 +15,7 @@ public class SkillPanelMove : MonoBehaviour
 
     public int SkillPanelChange;
 
-
+    public AudioClip clip;
 
     public static bool fire = false;
     public static bool lightning = false;
@@ -46,13 +46,13 @@ public class SkillPanelMove : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.X))
         {
             SkillPanelChange -= 1;
-  
+            SoundManager.instance.SFXPlay("change", clip);
 
         }
         if (Input.GetKeyDown(KeyCode.Z))
         {
             SkillPanelChange += 1;
-
+            SoundManager.instance.SFXPlay("change", clip);
         }
 
             if (fire == true)

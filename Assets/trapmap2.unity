@@ -1342,6 +1342,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   traps: []
+  clip: {fileID: 8300000, guid: e78e255c637e22e4db9bac571b2dea20, type: 3}
   anim1: {fileID: 2066559690}
 --- !u!65 &36327255
 BoxCollider:
@@ -1906,6 +1907,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   traps: []
+  clip: {fileID: 8300000, guid: e78e255c637e22e4db9bac571b2dea20, type: 3}
   anim1: {fileID: 1622244033}
 --- !u!65 &46643200
 BoxCollider:
@@ -4794,6 +4796,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   traps: []
+  clip: {fileID: 8300000, guid: e78e255c637e22e4db9bac571b2dea20, type: 3}
   anim1: {fileID: 1032300117}
 --- !u!65 &85247490
 BoxCollider:
@@ -4853,6 +4856,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   traps: []
+  clip: {fileID: 8300000, guid: e78e255c637e22e4db9bac571b2dea20, type: 3}
   anim1: {fileID: 1201535901}
 --- !u!65 &86248543
 BoxCollider:
@@ -5340,6 +5344,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   traps: []
+  clip: {fileID: 8300000, guid: e78e255c637e22e4db9bac571b2dea20, type: 3}
   anim1: {fileID: 1965842814}
 --- !u!65 &110191924
 BoxCollider:
@@ -5981,6 +5986,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   traps: []
+  clip: {fileID: 8300000, guid: e78e255c637e22e4db9bac571b2dea20, type: 3}
   anim1: {fileID: 119768616}
 --- !u!65 &130737203
 BoxCollider:
@@ -6857,6 +6863,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   traps: []
+  clip: {fileID: 8300000, guid: e78e255c637e22e4db9bac571b2dea20, type: 3}
   anim1: {fileID: 1646964560}
 --- !u!65 &175766253
 BoxCollider:
@@ -7941,6 +7948,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   traps: []
+  clip: {fileID: 8300000, guid: e78e255c637e22e4db9bac571b2dea20, type: 3}
   anim1: {fileID: 741007068}
 --- !u!65 &230225972
 BoxCollider:
@@ -10647,7 +10655,7 @@ MonoBehaviour:
   pv: {fileID: 0}
   firetime: 0
   spawntime: 0
-  clip: {fileID: 0}
+  clip: {fileID: 8300000, guid: 0aebc37918cad534388e129278181767, type: 3}
   first: 1
 --- !u!1 &278499595 stripped
 GameObject:
@@ -12261,6 +12269,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   traps: []
+  clip: {fileID: 8300000, guid: e78e255c637e22e4db9bac571b2dea20, type: 3}
   anim1: {fileID: 780729328}
 --- !u!65 &328680542
 BoxCollider:
@@ -13273,6 +13282,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   traps: []
+  clip: {fileID: 8300000, guid: e78e255c637e22e4db9bac571b2dea20, type: 3}
   anim1: {fileID: 741676528}
 --- !u!65 &349185489
 BoxCollider:
@@ -15419,6 +15429,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   traps: []
+  clip: {fileID: 8300000, guid: e78e255c637e22e4db9bac571b2dea20, type: 3}
   anim1: {fileID: 914626119}
 --- !u!65 &373601444
 BoxCollider:
@@ -22952,6 +22963,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   traps: []
+  clip: {fileID: 8300000, guid: e78e255c637e22e4db9bac571b2dea20, type: 3}
   anim1: {fileID: 1342083227}
 --- !u!65 &529783579
 BoxCollider:
@@ -23023,7 +23035,7 @@ MonoBehaviour:
   pv: {fileID: 0}
   firetime: 0
   spawntime: 0
-  clip: {fileID: 0}
+  clip: {fileID: 8300000, guid: 0aebc37918cad534388e129278181767, type: 3}
   first: 1
 --- !u!1 &538282608 stripped
 GameObject:
@@ -23643,7 +23655,7 @@ MonoBehaviour:
   pv: {fileID: 0}
   firetime: 0
   spawntime: 0
-  clip: {fileID: 0}
+  clip: {fileID: 8300000, guid: 0aebc37918cad534388e129278181767, type: 3}
   first: 1
 --- !u!1 &565680504 stripped
 GameObject:
@@ -23666,7 +23678,7 @@ MonoBehaviour:
   pv: {fileID: 0}
   firetime: 0
   spawntime: 0
-  clip: {fileID: 0}
+  clip: {fileID: 8300000, guid: 0aebc37918cad534388e129278181767, type: 3}
   first: 1
 --- !u!1001 &567445103
 PrefabInstance:
@@ -24036,6 +24048,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   traps: []
+  clip: {fileID: 8300000, guid: e78e255c637e22e4db9bac571b2dea20, type: 3}
   anim1: {fileID: 237376022}
 --- !u!65 &580597327
 BoxCollider:
@@ -24095,6 +24108,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   traps: []
+  clip: {fileID: 8300000, guid: e78e255c637e22e4db9bac571b2dea20, type: 3}
   anim1: {fileID: 1476791922}
 --- !u!65 &583546089
 BoxCollider:
@@ -24605,6 +24619,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   traps: []
+  clip: {fileID: 8300000, guid: e78e255c637e22e4db9bac571b2dea20, type: 3}
   anim1: {fileID: 244568636}
 --- !u!65 &605099194
 BoxCollider:
@@ -28066,7 +28081,7 @@ MonoBehaviour:
   pv: {fileID: 0}
   firetime: 0
   spawntime: 0
-  clip: {fileID: 0}
+  clip: {fileID: 8300000, guid: 0aebc37918cad534388e129278181767, type: 3}
   first: 1
 --- !u!1 &654935433
 GameObject:
@@ -28767,6 +28782,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   traps: []
+  clip: {fileID: 8300000, guid: e78e255c637e22e4db9bac571b2dea20, type: 3}
   anim1: {fileID: 524474593}
 --- !u!65 &680655392
 BoxCollider:
@@ -28982,6 +28998,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   traps: []
+  clip: {fileID: 8300000, guid: e78e255c637e22e4db9bac571b2dea20, type: 3}
   anim1: {fileID: 186913737}
 --- !u!65 &688468272
 BoxCollider:
@@ -33265,7 +33282,7 @@ MonoBehaviour:
   pv: {fileID: 0}
   firetime: 0
   spawntime: 0
-  clip: {fileID: 0}
+  clip: {fileID: 8300000, guid: 0aebc37918cad534388e129278181767, type: 3}
   first: 1
 --- !u!1 &793399136 stripped
 GameObject:
@@ -33814,7 +33831,7 @@ MonoBehaviour:
   pv: {fileID: 0}
   firetime: 0
   spawntime: 0
-  clip: {fileID: 0}
+  clip: {fileID: 8300000, guid: 0aebc37918cad534388e129278181767, type: 3}
   first: 1
 --- !u!1 &815714105
 GameObject:
@@ -33861,6 +33878,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   traps: []
+  clip: {fileID: 8300000, guid: e78e255c637e22e4db9bac571b2dea20, type: 3}
   anim1: {fileID: 1021949986}
 --- !u!65 &815714108
 BoxCollider:
@@ -34308,7 +34326,7 @@ MonoBehaviour:
   pv: {fileID: 0}
   firetime: 0
   spawntime: 0
-  clip: {fileID: 0}
+  clip: {fileID: 8300000, guid: 0aebc37918cad534388e129278181767, type: 3}
   first: 1
 --- !u!1001 &843921988
 PrefabInstance:
@@ -34576,6 +34594,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   traps: []
+  clip: {fileID: 8300000, guid: e78e255c637e22e4db9bac571b2dea20, type: 3}
   anim1: {fileID: 2060744963}
 --- !u!65 &847434319
 BoxCollider:
@@ -36234,6 +36253,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   traps: []
+  clip: {fileID: 8300000, guid: e78e255c637e22e4db9bac571b2dea20, type: 3}
   anim1: {fileID: 1640109965}
 --- !u!65 &856574525
 BoxCollider:
@@ -36866,6 +36886,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   traps: []
+  clip: {fileID: 8300000, guid: e78e255c637e22e4db9bac571b2dea20, type: 3}
   anim1: {fileID: 1847256606}
 --- !u!65 &889877102
 BoxCollider:
@@ -41544,6 +41565,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   traps: []
+  clip: {fileID: 8300000, guid: e78e255c637e22e4db9bac571b2dea20, type: 3}
   anim1: {fileID: 1755958904}
 --- !u!65 &996882043
 BoxCollider:
@@ -41622,7 +41644,7 @@ MonoBehaviour:
   pv: {fileID: 0}
   firetime: 0
   spawntime: 0
-  clip: {fileID: 0}
+  clip: {fileID: 8300000, guid: 0aebc37918cad534388e129278181767, type: 3}
   first: 1
 --- !u!1001 &1001636028
 PrefabInstance:
@@ -42038,6 +42060,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textPanel: {fileID: 1354855947}
   textStart: 0
+  clip: {fileID: 0}
   TextTime: 0
 --- !u!65 &1016357922
 BoxCollider:
@@ -42104,7 +42127,7 @@ Transform:
   m_Children:
   - {fileID: 822200357}
   m_Father: {fileID: 0}
-  m_RootOrder: 72
+  m_RootOrder: 71
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1019132412 stripped
 GameObject:
@@ -45367,6 +45390,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   traps: []
+  clip: {fileID: 8300000, guid: e78e255c637e22e4db9bac571b2dea20, type: 3}
   anim1: {fileID: 1115431066}
 --- !u!65 &1107905000
 BoxCollider:
@@ -45644,7 +45668,7 @@ MonoBehaviour:
   pv: {fileID: 0}
   firetime: 0
   spawntime: 0
-  clip: {fileID: 0}
+  clip: {fileID: 8300000, guid: 0aebc37918cad534388e129278181767, type: 3}
   first: 1
 --- !u!1 &1131162235 stripped
 GameObject:
@@ -45829,6 +45853,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   traps: []
+  clip: {fileID: 8300000, guid: e78e255c637e22e4db9bac571b2dea20, type: 3}
   anim1: {fileID: 586614395}
 --- !u!65 &1146910704
 BoxCollider:
@@ -46849,6 +46874,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   traps: []
+  clip: {fileID: 8300000, guid: e78e255c637e22e4db9bac571b2dea20, type: 3}
   anim1: {fileID: 1215449623}
 --- !u!65 &1163543662
 BoxCollider:
@@ -47388,6 +47414,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   traps: []
+  clip: {fileID: 8300000, guid: e78e255c637e22e4db9bac571b2dea20, type: 3}
   anim1: {fileID: 725875111}
 --- !u!65 &1182773313
 BoxCollider:
@@ -48145,6 +48172,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   traps: []
+  clip: {fileID: 8300000, guid: e78e255c637e22e4db9bac571b2dea20, type: 3}
   anim1: {fileID: 572210575}
 --- !u!65 &1212320722
 BoxCollider:
@@ -48437,6 +48465,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   traps: []
+  clip: {fileID: 8300000, guid: e78e255c637e22e4db9bac571b2dea20, type: 3}
   anim1: {fileID: 549844040}
 --- !u!65 &1218606272
 BoxCollider:
@@ -49934,6 +49963,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   traps: []
+  clip: {fileID: 8300000, guid: e78e255c637e22e4db9bac571b2dea20, type: 3}
   anim1: {fileID: 2141860611}
 --- !u!65 &1275682061
 BoxCollider:
@@ -51129,6 +51159,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   traps: []
+  clip: {fileID: 8300000, guid: e78e255c637e22e4db9bac571b2dea20, type: 3}
   anim1: {fileID: 1256504469}
 --- !u!65 &1313831008
 BoxCollider:
@@ -52579,6 +52610,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   traps: []
+  clip: {fileID: 8300000, guid: e78e255c637e22e4db9bac571b2dea20, type: 3}
   anim1: {fileID: 899763472}
 --- !u!65 &1366597936
 BoxCollider:
@@ -52858,6 +52890,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   traps: []
+  clip: {fileID: 8300000, guid: e78e255c637e22e4db9bac571b2dea20, type: 3}
   anim1: {fileID: 1278597379}
 --- !u!65 &1373843708
 BoxCollider:
@@ -52995,6 +53028,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   traps: []
+  clip: {fileID: 8300000, guid: e78e255c637e22e4db9bac571b2dea20, type: 3}
   anim1: {fileID: 608349044}
 --- !u!65 &1374112928
 BoxCollider:
@@ -53180,7 +53214,7 @@ MonoBehaviour:
   pv: {fileID: 0}
   firetime: 0
   spawntime: 0
-  clip: {fileID: 0}
+  clip: {fileID: 8300000, guid: 0aebc37918cad534388e129278181767, type: 3}
   first: 1
 --- !u!1 &1390326341 stripped
 GameObject:
@@ -54017,49 +54051,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf5ecb8b1fbf9f740ab4dece86cec1aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &1412904742
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1412904744}
-  - component: {fileID: 1412904743}
-  m_Layer: 0
-  m_Name: SoundManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1412904743
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1412904742}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 09bca623cb493ad4299820aa2a0df7bb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!4 &1412904744
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1412904742}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.19, y: 78.17, z: 20.1}
-  m_LocalScale: {x: 35, y: 2, z: 5}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 70
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1419005187
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -55002,7 +54993,7 @@ MonoBehaviour:
   pv: {fileID: 0}
   firetime: 0
   spawntime: 0
-  clip: {fileID: 0}
+  clip: {fileID: 8300000, guid: 0aebc37918cad534388e129278181767, type: 3}
   first: 1
 --- !u!1 &1470521621 stripped
 GameObject:
@@ -55366,6 +55357,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   traps: []
+  clip: {fileID: 8300000, guid: e78e255c637e22e4db9bac571b2dea20, type: 3}
   anim1: {fileID: 1687311735}
 --- !u!65 &1482043179
 BoxCollider:
@@ -58339,6 +58331,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   traps: []
+  clip: {fileID: 8300000, guid: e78e255c637e22e4db9bac571b2dea20, type: 3}
   anim1: {fileID: 2102417209}
 --- !u!65 &1510430438
 BoxCollider:
@@ -58528,6 +58521,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   traps: []
+  clip: {fileID: 8300000, guid: e78e255c637e22e4db9bac571b2dea20, type: 3}
   anim1: {fileID: 1988792515}
 --- !u!65 &1517632948
 BoxCollider:
@@ -58661,6 +58655,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   traps: []
+  clip: {fileID: 8300000, guid: e78e255c637e22e4db9bac571b2dea20, type: 3}
   anim1: {fileID: 1030848021}
 --- !u!65 &1520631413
 BoxCollider:
@@ -60102,6 +60097,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   traps: []
+  clip: {fileID: 8300000, guid: e78e255c637e22e4db9bac571b2dea20, type: 3}
   anim1: {fileID: 1895759293}
 --- !u!65 &1564970144
 BoxCollider:
@@ -61319,7 +61315,7 @@ MonoBehaviour:
   pv: {fileID: 0}
   firetime: 0
   spawntime: 0
-  clip: {fileID: 0}
+  clip: {fileID: 8300000, guid: 0aebc37918cad534388e129278181767, type: 3}
   first: 1
 --- !u!1 &1620854580 stripped
 GameObject:
@@ -61522,6 +61518,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   traps: []
+  clip: {fileID: 8300000, guid: e78e255c637e22e4db9bac571b2dea20, type: 3}
   anim1: {fileID: 1960649314}
 --- !u!65 &1628351654
 BoxCollider:
@@ -62493,6 +62490,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   traps: []
+  clip: {fileID: 8300000, guid: e78e255c637e22e4db9bac571b2dea20, type: 3}
   anim1: {fileID: 2020779156}
 --- !u!65 &1672626430
 BoxCollider:
@@ -63029,6 +63027,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   traps: []
+  clip: {fileID: 8300000, guid: e78e255c637e22e4db9bac571b2dea20, type: 3}
   anim1: {fileID: 136618717}
 --- !u!65 &1681160632
 BoxCollider:
@@ -63534,6 +63533,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   traps: []
+  clip: {fileID: 8300000, guid: e78e255c637e22e4db9bac571b2dea20, type: 3}
   anim1: {fileID: 1404268701}
 --- !u!65 &1706738808
 BoxCollider:
@@ -65171,6 +65171,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   traps: []
+  clip: {fileID: 8300000, guid: e78e255c637e22e4db9bac571b2dea20, type: 3}
   anim1: {fileID: 990003049}
 --- !u!65 &1735080378
 BoxCollider:
@@ -65402,6 +65403,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   traps: []
+  clip: {fileID: 8300000, guid: e78e255c637e22e4db9bac571b2dea20, type: 3}
   anim1: {fileID: 801412420}
 --- !u!65 &1743978265
 BoxCollider:
@@ -65821,6 +65823,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   traps: []
+  clip: {fileID: 8300000, guid: e78e255c637e22e4db9bac571b2dea20, type: 3}
   anim1: {fileID: 1038669192}
 --- !u!65 &1752284702
 BoxCollider:
@@ -65904,6 +65907,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   traps: []
+  clip: {fileID: 8300000, guid: e78e255c637e22e4db9bac571b2dea20, type: 3}
   anim1: {fileID: 1112213254}
 --- !u!65 &1760109683
 BoxCollider:
@@ -66226,6 +66230,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textPanel: {fileID: 336913871}
   textStart: 0
+  clip: {fileID: 0}
   TextTime: 0
 --- !u!65 &1776831059
 BoxCollider:
@@ -66292,7 +66297,7 @@ Transform:
   m_Children:
   - {fileID: 2077232959}
   m_Father: {fileID: 0}
-  m_RootOrder: 71
+  m_RootOrder: 70
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1778801074 stripped
 Transform:
@@ -66579,7 +66584,7 @@ MonoBehaviour:
   pv: {fileID: 0}
   firetime: 0
   spawntime: 0
-  clip: {fileID: 0}
+  clip: {fileID: 8300000, guid: 0aebc37918cad534388e129278181767, type: 3}
   first: 1
 --- !u!1 &1795875083 stripped
 GameObject:
@@ -66698,7 +66703,7 @@ MonoBehaviour:
   pv: {fileID: 0}
   firetime: 0
   spawntime: 0
-  clip: {fileID: 0}
+  clip: {fileID: 8300000, guid: 0aebc37918cad534388e129278181767, type: 3}
   first: 1
 --- !u!1 &1798189036 stripped
 GameObject:
@@ -68075,7 +68080,7 @@ MonoBehaviour:
   pv: {fileID: 0}
   firetime: 0
   spawntime: 0
-  clip: {fileID: 0}
+  clip: {fileID: 8300000, guid: 0aebc37918cad534388e129278181767, type: 3}
   first: 1
 --- !u!1 &1832061877 stripped
 GameObject:
@@ -73198,6 +73203,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   traps: []
+  clip: {fileID: 8300000, guid: e78e255c637e22e4db9bac571b2dea20, type: 3}
   anim1: {fileID: 231085436}
 --- !u!65 &1854418616
 BoxCollider:
@@ -73493,6 +73499,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   traps: []
+  clip: {fileID: 8300000, guid: e78e255c637e22e4db9bac571b2dea20, type: 3}
   anim1: {fileID: 1758628845}
 --- !u!65 &1861392929
 BoxCollider:
@@ -73999,7 +74006,7 @@ MonoBehaviour:
   pv: {fileID: 0}
   firetime: 0
   spawntime: 0
-  clip: {fileID: 0}
+  clip: {fileID: 8300000, guid: 0aebc37918cad534388e129278181767, type: 3}
   first: 1
 --- !u!1 &1879547995 stripped
 GameObject:
@@ -74592,7 +74599,7 @@ MonoBehaviour:
   pv: {fileID: 0}
   firetime: 0
   spawntime: 0
-  clip: {fileID: 0}
+  clip: {fileID: 8300000, guid: 0aebc37918cad534388e129278181767, type: 3}
   first: 1
 --- !u!1001 &1890420663
 PrefabInstance:
@@ -76283,6 +76290,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   traps: []
+  clip: {fileID: 8300000, guid: e78e255c637e22e4db9bac571b2dea20, type: 3}
   anim1: {fileID: 757689984}
 --- !u!65 &1982108876
 BoxCollider:
@@ -76348,6 +76356,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   traps: []
+  clip: {fileID: 8300000, guid: e78e255c637e22e4db9bac571b2dea20, type: 3}
   anim1: {fileID: 1330855852}
 --- !u!65 &1986693931
 BoxCollider:
@@ -76868,6 +76877,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   traps: []
+  clip: {fileID: 8300000, guid: e78e255c637e22e4db9bac571b2dea20, type: 3}
   anim1: {fileID: 1319975985}
 --- !u!65 &1997059650
 BoxCollider:
@@ -77612,6 +77622,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   traps: []
+  clip: {fileID: 8300000, guid: e78e255c637e22e4db9bac571b2dea20, type: 3}
   anim1: {fileID: 1207707800}
 --- !u!65 &2022714924
 BoxCollider:
@@ -77677,7 +77688,7 @@ MonoBehaviour:
   pv: {fileID: 0}
   firetime: 0
   spawntime: 0
-  clip: {fileID: 0}
+  clip: {fileID: 8300000, guid: 0aebc37918cad534388e129278181767, type: 3}
   first: 1
 --- !u!1 &2029133722 stripped
 GameObject:
@@ -79985,6 +79996,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   traps: []
+  clip: {fileID: 8300000, guid: e78e255c637e22e4db9bac571b2dea20, type: 3}
   anim1: {fileID: 1841848228}
 --- !u!65 &2077790745
 BoxCollider:
@@ -80522,6 +80534,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   traps: []
+  clip: {fileID: 8300000, guid: e78e255c637e22e4db9bac571b2dea20, type: 3}
   anim1: {fileID: 745397569}
 --- !u!65 &2096712280
 BoxCollider:
@@ -80728,6 +80741,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   traps: []
+  clip: {fileID: 8300000, guid: e78e255c637e22e4db9bac571b2dea20, type: 3}
   anim1: {fileID: 931715411}
 --- !u!65 &2116894946
 BoxCollider:
@@ -80876,6 +80890,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   traps: []
+  clip: {fileID: 8300000, guid: e78e255c637e22e4db9bac571b2dea20, type: 3}
   anim1: {fileID: 18062490}
 --- !u!65 &2126791396
 BoxCollider:

@@ -6,7 +6,7 @@ public class StartText : MonoBehaviour
 {
     public GameObject textPanel;
     public bool textStart = false;
-
+    public AudioClip clip;
     public float TextTime = 0.0f;
     // Start is called before the first frame update
     private void OnTriggerEnter(Collider other)
@@ -14,6 +14,7 @@ public class StartText : MonoBehaviour
         
         if (other.tag == "Player")
         {
+            SoundManager.instance.SFXPlay("Text1", clip);
             textPanel.SetActive(true);
             textStart = true;
         }

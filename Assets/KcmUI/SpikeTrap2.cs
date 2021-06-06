@@ -5,7 +5,7 @@ using UnityEngine;
 public class SpikeTrap2 : MonoBehaviour
 {
     public GameObject[] traps;
-
+    public AudioClip clip;
     public Animation anim1;
 
     private void OnTriggerExit(Collider other)
@@ -22,6 +22,7 @@ public class SpikeTrap2 : MonoBehaviour
     {
         if (other.tag == "Player")
         {
+            SoundManager.instance.SFXPlay("Trap", clip);
             Debug.Log("가시함정 발동");
             anim1.Play("Anim_TrapNeedle_Show");
         }

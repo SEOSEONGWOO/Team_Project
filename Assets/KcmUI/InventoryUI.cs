@@ -9,7 +9,7 @@ public class InventoryUI : MonoBehaviour
 
     public GameObject inventoryPanel;
     bool activeInventory = false;
-
+    public AudioClip clip;
 
     void Start()
     {
@@ -21,6 +21,7 @@ public class InventoryUI : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.I))
         {
+            SoundManager.instance.SFXPlay("Inventory", clip);
             activeInventory = !activeInventory;
             inventoryPanel.SetActive(activeInventory);
         }

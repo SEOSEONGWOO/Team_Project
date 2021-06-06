@@ -17832,6 +17832,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7549572030936486732, guid: 647ab18877e79264394f18ae9918288d,
         type: 3}
+      propertyPath: fireSound
+      value: 
+      objectReference: {fileID: 8300000, guid: a370e04a449935148afed5f8f5040bb4, type: 3}
+    - target: {fileID: 7549572030936486732, guid: 647ab18877e79264394f18ae9918288d,
+        type: 3}
       propertyPath: isSkill2_1
       value: 1
       objectReference: {fileID: 0}
