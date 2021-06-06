@@ -8,7 +8,7 @@ public class MoneyScr : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            Player_Scr.PlayerMoney = Player_Scr.PlayerMoney + Random.Range(50, 200);
+            //Player_Scr.PlayerMoney = Player_Scr.PlayerMoney + Random.Range(50, 200);
             Destroy(gameObject);
         }
     }

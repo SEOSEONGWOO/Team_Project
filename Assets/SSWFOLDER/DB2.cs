@@ -3,7 +3,7 @@ using Photon.Realtime; // 포톤 서비스 관련 라이브러리
 using UnityEngine;
 using UnityEngine.UI;
 using Firebase.Auth;
-
+using Firebase.Database;
 
 // 마스터(매치 메이킹) 서버와 룸 접속을 담당
 public class DB2 : MonoBehaviourPunCallbacks
@@ -12,6 +12,8 @@ public class DB2 : MonoBehaviourPunCallbacks
 
     [SerializeField] string email;
     [SerializeField] string password;
+    private string user_id;
+    
 
     bool SceanChange = false;
     public InputField NicknameInput;    //유저 닉
@@ -28,12 +30,14 @@ public class DB2 : MonoBehaviourPunCallbacks
     public Button joinButton; // 룸 접속 버튼
     public Button LogButton;    //로그인 버튼
     FirebaseAuth auth;
-
+    DatabaseReference reference;
 
     // 게임 실행과 동시에 마스터 서버 접속 시도
     private void Start()
     {
         auth = FirebaseAuth.DefaultInstance;
+        reference = FirebaseDatabase.DefaultInstance.RootReference; //디비 사용 선언
+
         //password 초기화
         passowrdText = "";
 
@@ -184,17 +188,16 @@ public class DB2 : MonoBehaviourPunCallbacks
             //로그인 완료 시 실행 
             Firebase.Auth.FirebaseUser newUser = task.Result;
             SceanChange = true;
+
+            string user_email = NicknameInput.text; //이메일 받아와서 저장
+            char sp = '@';
+            string[] user_id = user_email.Split(sp);  //@ 뒷부분 삭제하여 id로 저장
+            Player_Scr.player_name = user_id[0];  //
             Debug.LogFormat("User signed in successfully: {0} ({1})",
                 newUser.DisplayName, newUser.UserId);
 
         });
 
-
-    }
-
-    void LoginUser()
-    {
-        
 
     }
 
@@ -225,5 +228,6 @@ public class DB2 : MonoBehaviourPunCallbacks
         LoginPenel.SetActive(false);
 
     }
+    
 
 }

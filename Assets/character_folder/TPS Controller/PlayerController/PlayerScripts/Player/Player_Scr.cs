@@ -31,7 +31,11 @@ public class Player_Scr : MonoBehaviourPun
 
 	public float lookIKWeight;
 	public float bodyWeight;
-	public GameObject a;
+	//public GameObject a;
+
+	[Header("clear_time")]
+	public static string player_name;
+	public static float clear_time =1.2f;
 
 	[Tooltip("Health text")]
 	public Text healthText;
@@ -123,11 +127,6 @@ public class Player_Scr : MonoBehaviourPun
 
     public Vector3 FirstLocationVector;
 
-	// 돈 관련 코드
-
-	public static int PlayerMoney;
-	public GameObject PlayerMoneyText;
-
 
     public GameObject Burned;
     public static bool FireM = false;
@@ -202,8 +201,10 @@ public class Player_Scr : MonoBehaviourPun
 			Jump();
 			roll();
 			w_change();
-			
 
+			Debug.Log(player_name);
+			clear_time += Time.deltaTime; //시작 시 시간 측정
+			
 			if (ShootSimple_Scr.WeaponNumber == 1)
 			{
 				skill1_2();

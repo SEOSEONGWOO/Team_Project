@@ -1,34 +1,34 @@
 {
   "project_info": {
-    "project_number": "680050376957",
-    "project_id": "teamgame-b35c2",
-    "storage_bucket": "teamgame-b35c2.appspot.com",
-    "firebase_url" : "https://teamgame-b35c2-default-rtdb.firebaseio.com/"
+    "project_number": "715917328695",
+    "firebase_url": "https://teamproject-38187-default-rtdb.firebaseio.com/",
+    "project_id": "teamproject-38187",
+    "storage_bucket": "teamproject-38187.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:680050376957:android:429269d561e9ecaa4e3e94",
+        "mobilesdk_app_id": "1:715917328695:android:44c2975e873eb5ab24dab2",
         "android_client_info": {
           "package_name": "com.Company.ProductName"
         }
       },
       "oauth_client": [
         {
-          "client_id": "680050376957-tdcmvphjrt1cul2lqfk6q3jjbv1j5i55.apps.googleusercontent.com",
+          "client_id": "715917328695-ebb42ptuu0o0v5ob8pffl4gmb98jpjig.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBZXQp2oJ1_YuOksSO-lk61oLhR2aIuIzo"
+          "current_key": "AIzaSyDcY5QP-bo6KNdoRRAS4D1tWXCrM89S5Vk"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "680050376957-tdcmvphjrt1cul2lqfk6q3jjbv1j5i55.apps.googleusercontent.com",
+              "client_id": "715917328695-ebb42ptuu0o0v5ob8pffl4gmb98jpjig.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
