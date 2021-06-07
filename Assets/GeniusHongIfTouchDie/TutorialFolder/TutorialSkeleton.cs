@@ -250,7 +250,7 @@ public class TutorialSkeleton : MonoBehaviour
                 audioSource.clip = audioAttack1;
                 break;
             case "Attack2":
-                yield return new WaitForSeconds(1f);
+                yield return new WaitForSeconds(0.8f);
                 audioSource.clip = audioAttack2;
                 break;
             case "Hit":

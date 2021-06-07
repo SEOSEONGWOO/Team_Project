@@ -9,6 +9,13 @@ public class Skeleton : MonoBehaviour
 
     public Transform SkeletonLo;   // 스켈레톤 위치
 
+    public AudioClip audioAttack1;
+    public AudioClip audioAttack2;
+    public AudioClip audioHit;
+    public AudioClip audioDie;
+
+    AudioSource audioSource;
+
     public Vector3 SkeletonVec; // 스켈레톤 위치 vector값
 
     private NavMeshAgent nav;
@@ -123,6 +130,7 @@ public class Skeleton : MonoBehaviour
                 else if (AttackMotion == 1) // 공격모드 1이면
                 {
                     avatar.SetTrigger("Attack01"); // Attack01 실행
+                    StartCoroutine(PlaySound("Attack1"));
                     AttackMotion = 3; // 대기상태로 변경
                 }
                 else if (AttackMotion == 2) // 공격모드 2고
@@ -130,6 +138,7 @@ public class Skeleton : MonoBehaviour
                     if (SkeletonSkill2CoolOn == false) // 공격모드2 쿨타임이 없을 때
                     {
                         avatar.SetTrigger("Attack02"); // Attack02 실행
+                        StartCoroutine(PlaySound("Attack2"));
                         AttackMotion = 3; // 대기상태로 변경
                         SkeletonSkill2CoolOn = true; // 스킬 2 쿨타임 돌려줌.
                     }
@@ -159,6 +168,7 @@ public class Skeleton : MonoBehaviour
     {
         nav.speed = 0;
         avatar.SetTrigger("DIE");
+        StartCoroutine(PlaySound("Die"));
         SkeletonDie = true;
         Instantiate(SpCoin, SkeletonVec, Quaternion.identity);
         Destroy(gameObject, 2.0f);
@@ -172,6 +182,7 @@ public class Skeleton : MonoBehaviour
         }
         SkeletonHP -= Bullet.bulletDamage; // 총에 맞으면 총알데미지 만큼 체력 까임
         Debug.Log(SkeletonHP);
+        StartCoroutine(PlaySound("Hit"));
     }
 
     private void OnTriggerEnter(Collider other)
@@ -216,6 +227,28 @@ public class Skeleton : MonoBehaviour
         {
             SkeletonHP -= 500;
         }
+    }
+
+    IEnumerator PlaySound(string action)
+    {
+        switch (action)
+        {
+            case "Attack1":
+                yield return new WaitForSeconds(0.5f);
+                audioSource.clip = audioAttack1;
+                break;
+            case "Attack2":
+                yield return new WaitForSeconds(1f);
+                audioSource.clip = audioAttack2;
+                break;
+            case "Hit":
+                audioSource.clip = audioHit;
+                break;
+            case "Die":
+                audioSource.clip = audioDie;
+                break;
+        }
+        audioSource.Play();
     }
 }
 
