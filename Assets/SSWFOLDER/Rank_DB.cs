@@ -12,7 +12,7 @@ public class Rank_DB : MonoBehaviour
     DatabaseReference reference;
     int count = 1;
 
-    string[] Rank = new string[100];
+     string[] Rank = new string[100];
     float[] Score = new float[5];
 
     int[] Rank1 = new int[5] { 1,1,1,1,1};

@@ -170,7 +170,7 @@ public class Skeleton : MonoBehaviour
         avatar.SetTrigger("DIE");
         StartCoroutine(PlaySound("Die"));
         SkeletonDie = true;
-        Instantiate(SpCoin, SkeletonVec, Quaternion.identity);
+        Instantiate(SpCoin, new Vector3(SkeletonVec.x, SkeletonVec.y - 1, SkeletonVec.z), Quaternion.identity);
         Destroy(gameObject, 2.0f);
     }
 
