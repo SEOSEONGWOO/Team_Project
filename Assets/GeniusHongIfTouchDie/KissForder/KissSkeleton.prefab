@@ -243,6 +243,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   avatar: {fileID: 7055472049706647366}
+  audioAttack1: {fileID: 8300000, guid: 0cc446d6ff271074cb95311f0e4a426a, type: 3}
+  audioAttack2: {fileID: 8300000, guid: e327e4bb63e6b184b809a91588290886, type: 3}
+  audioHit: {fileID: 8300000, guid: fc94f4b0c0d58014884553222d48995b, type: 3}
+  audioDie: {fileID: 8300000, guid: 833b8b152e5433d4a9d4a4928771e18b, type: 3}
   SkeletonLo: {fileID: 6968624055434678562}
   SkeletonVec: {x: 0, y: 0, z: 0}
   Gobj: {fileID: 0}

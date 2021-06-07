@@ -33,6 +33,13 @@ public class FolloFollowme : MonoBehaviour
 
     float distance; // 스켈레톤 , 플레이어 거리 넣어 줄 float
 
+    public AudioClip audioV;
+    public AudioClip audioHit;
+    public AudioClip audioDie;
+
+    AudioSource audioSource;
+
+
 
     private void Start()
     {
@@ -74,7 +81,7 @@ public class FolloFollowme : MonoBehaviour
         {
             avatar.SetTrigger("CDie");  // 죽은상태 트리거 on
             avatar.SetBool("Die", true);    // 죽은 상태로 바꿔 줌
-
+            StartCoroutine(PlaySound("Die"));
             Instantiate(SpCoin, new Vector3(fl3.x, fl3.y - 1, fl3.z), rot); // 현재 좀비 위치에 돈 소환함
 
         }
@@ -102,6 +109,7 @@ public class FolloFollowme : MonoBehaviour
                 else if (DMdelay > 1f)
                 {
                     Gobj.GetComponent<Player_Scr>().GunnerHitFunc(ZomA); // 공격
+                    StartCoroutine(PlaySound("Attack1"));
                     DMdelay = 0f;
                 }
             }
@@ -158,6 +166,7 @@ public class FolloFollowme : MonoBehaviour
     public void SetDamageAI()
     {
         Chp -= Bullet.bulletDamage; // 총에 맞으면 총알데미지 만큼 체력 까임
+        StartCoroutine(PlaySound("Hit"));
     }
 
     private void OnTriggerEnter(Collider other)
@@ -202,5 +211,23 @@ public class FolloFollowme : MonoBehaviour
         {
             Chp -= 500;
         }
+    }
+
+    IEnumerator PlaySound(string action)
+    {
+        switch (action)
+        {
+            case "Attack1":
+                yield return new WaitForSeconds(0.1f);
+                audioSource.clip = audioV;
+                break;
+            case "Hit":
+                audioSource.clip = audioHit;
+                break;
+            case "Die":
+                audioSource.clip = audioDie;
+                break;
+        }
+        audioSource.Play();
     }
 }
