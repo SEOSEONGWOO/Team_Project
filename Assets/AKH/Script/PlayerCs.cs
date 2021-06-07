@@ -341,17 +341,17 @@ public class PlayerCs : MonoBehaviourPunCallbacks, IPunObservable
         anim.SetLookAtWeight(lookIKWeight, bodyWeight);
         anim.SetLookAtPosition(targetPosVec);
     }
+    
     void OnAnimatorIK()
     {
         if (Input.GetMouseButton(1) && isShop)
         {
             if (photonView.IsMine)
             {
-
+                //손 관절 
+                //photonView.RPC("testAni", RpcTarget.All);
+                testAni();
             }
-            //손 관절 
-            //photonView.RPC("testAni", RpcTarget.All);
-            testAni();
         }
     }
 
