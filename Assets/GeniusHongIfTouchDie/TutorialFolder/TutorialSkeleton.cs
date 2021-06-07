@@ -139,7 +139,7 @@ public class TutorialSkeleton : MonoBehaviour
                 else if (AttackMotion == 1) // 공격모드 1이면
                 {
                     avatar.SetTrigger("Attack01"); // Attack01 실행
-                    PlaySound("Attack1");
+                    StartCoroutine(PlaySound("Attack1"));
                     AttackMotion = 3; // 대기상태로 변경
                 }
                 else if (AttackMotion == 2) // 공격모드 2고
@@ -147,7 +147,7 @@ public class TutorialSkeleton : MonoBehaviour
                     if (SkeletonSkill2CoolOn == false) // 공격모드2 쿨타임이 없을 때
                     {
                         avatar.SetTrigger("Attack02"); // Attack02 실행
-                        PlaySound("Attack2");
+                        StartCoroutine(PlaySound("Attack2"));
                         AttackMotion = 3; // 대기상태로 변경
                         SkeletonSkill2CoolOn = true; // 스킬 2 쿨타임 돌려줌.
                     }
@@ -177,7 +177,7 @@ public class TutorialSkeleton : MonoBehaviour
     {
         nav.speed = 0;
         avatar.SetTrigger("DIE");
-        PlaySound("Die");
+        StartCoroutine(PlaySound("Die"));
         SkeletonDie = true;
         Instantiate(SpCoin, SkeletonVec, Quaternion.identity);
         Destroy(gameObject, 2.0f);
@@ -192,7 +192,7 @@ public class TutorialSkeleton : MonoBehaviour
         }
         SkeletonHP -= Bullet.bulletDamage; // 총에 맞으면 총알데미지 만큼 체력 까임
         Debug.Log(SkeletonHP);
-        PlaySound("Hit");
+        StartCoroutine(PlaySound("Hit"));
     }
 
     private void OnTriggerEnter(Collider other)
@@ -239,14 +239,18 @@ public class TutorialSkeleton : MonoBehaviour
         }
     }
 
-    void PlaySound(string action)
+
+
+    IEnumerator PlaySound(string action)
     {
-        switch(action)
+        switch (action)
         {
             case "Attack1":
+                yield return new WaitForSeconds(0.5f);
                 audioSource.clip = audioAttack1;
                 break;
             case "Attack2":
+                yield return new WaitForSeconds(1f);
                 audioSource.clip = audioAttack2;
                 break;
             case "Hit":
