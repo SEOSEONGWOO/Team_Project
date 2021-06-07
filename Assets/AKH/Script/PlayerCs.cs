@@ -345,6 +345,10 @@ public class PlayerCs : MonoBehaviourPunCallbacks, IPunObservable
     {
         if (Input.GetMouseButton(1) && isShop)
         {
+            if (photonView.IsMine)
+            {
+
+            }
             //손 관절 
             //photonView.RPC("testAni", RpcTarget.All);
             testAni();
