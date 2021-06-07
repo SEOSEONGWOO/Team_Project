@@ -21,6 +21,8 @@ TagManager:
   - Crosshair
   - Item
   - Money
+  - fire
+  - Ice
   layers:
   - Default
   - TransparentFX

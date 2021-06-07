@@ -75,7 +75,7 @@ public class FolloFollowme : MonoBehaviour
             avatar.SetTrigger("CDie");  // 죽은상태 트리거 on
             avatar.SetBool("Die", true);    // 죽은 상태로 바꿔 줌
 
-            Instantiate(SpCoin, fl3, rot); // 현재 좀비 위치에 돈 소환함
+            Instantiate(SpCoin, new Vector3(fl3.x, fl3.y - 1, fl3.z), rot); // 현재 좀비 위치에 돈 소환함
 
         }
 

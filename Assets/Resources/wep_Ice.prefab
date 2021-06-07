@@ -11,11 +11,10 @@ GameObject:
   - component: {fileID: 2577192659315915928}
   - component: {fileID: 5141886684403030694}
   - component: {fileID: -8199344247295969248}
-  - component: {fileID: 1697784855574975915}
   - component: {fileID: -3233369085955680988}
   m_Layer: 0
   m_Name: wep_Ice
-  m_TagString: Item
+  m_TagString: Ice
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -66,18 +65,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &1697784855574975915
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1019746934288025102}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0dcb1ad6ec3781247b26a6563f3a1d29, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &-3233369085955680988
 MonoBehaviour:
   m_ObjectHideFlags: 0

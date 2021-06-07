@@ -42,6 +42,8 @@ public class InventoryUI : MonoBehaviour
         }
 
         if (inventoryPanel.activeSelf) { CameraCs2.cc = false; }
+        
+        else if (!inventoryPanel.activeSelf) { CameraCs2.cc = true; }
 
     }
 }

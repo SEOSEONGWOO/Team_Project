@@ -20,10 +20,26 @@ public class Item_Get : MonoBehaviour
             theInventory.AcquireItem(other.GetComponent<ItemPickUp>().item, 1);  
         }
 
+        if (other.tag == "fire")
+        {
+            SkillPanelMove.fire = true;
+            ShootSimple_Scr.WeaponNumber = 2;
+            Destroy(other.gameObject);
+            theInventory.AcquireItem(other.GetComponent<ItemPickUp>().item, 1);
+        }
+
+        if (other.tag == "Ice")
+        {
+            SkillPanelMove.lightning = true; 
+            Destroy(other.gameObject);
+            theInventory.AcquireItem(other.GetComponent<ItemPickUp>().item, 1);
+        }
+
         if (other.tag == "Money")
         {
             Destroy(other.gameObject);
             Player_Scr.money += 100;
         }
+
     }
 }

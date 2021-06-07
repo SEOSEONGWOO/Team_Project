@@ -35,7 +35,7 @@ public class RandomBox : MonoBehaviour
             {
                 int type = Random.Range(0, prefab0bject.Length);
                 Debug.Log(type);
-                Instantiate(prefab0bject[type], ChestVec, Quaternion.identity);
+                Instantiate(prefab0bject[type], new Vector3(ChestVec.x, ChestVec.y - 1, ChestVec.z), Quaternion.identity);
                 Destroy(gameObject);
             }
         }

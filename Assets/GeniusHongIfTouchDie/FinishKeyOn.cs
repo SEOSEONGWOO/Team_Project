@@ -6,7 +6,7 @@ public class FinishKeyOn : MonoBehaviour
 {
     public float rotaionSpeed = 100.0f;
     public GameObject Potal;
-    public GameObject Box;
+   // public GameObject Box;
 
     void Start()
     {
@@ -25,7 +25,7 @@ public class FinishKeyOn : MonoBehaviour
             Debug.Log("열쇠 획득");
             Destroy(gameObject);
             Potal.SetActive(true);
-            Box.SetActive(true);
+            //Box.SetActive(true);
         }
     }
 }

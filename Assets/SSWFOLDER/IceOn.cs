@@ -8,7 +8,7 @@ public class IceOn : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            SkillPanelMove.lightning = true;
+            //SkillPanelMove.lightning = true;
             
         }
     }

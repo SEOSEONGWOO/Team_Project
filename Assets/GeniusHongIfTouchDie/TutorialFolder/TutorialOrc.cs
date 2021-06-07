@@ -164,7 +164,7 @@ public class TutorialOrc : MonoBehaviour
         nav.speed = 0;
         avatar.SetTrigger("DIE");
         OrcDie = true;
-        Instantiate(SpCoin, OrcVec, Quaternion.identity);
+        Instantiate(SpCoin, new Vector3(OrcVec.x, OrcVec.y - 1, OrcVec.z), Quaternion.identity);
         TutorialBox.SetActive(true);
         Destroy(gameObject, 2.0f);
     }

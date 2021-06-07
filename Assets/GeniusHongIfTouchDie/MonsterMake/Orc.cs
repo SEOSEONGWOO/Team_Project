@@ -89,13 +89,13 @@ public class Orc : MonoBehaviour
 
             if (distance <= 2.5f)  // 거리 2.5f 보다 가까울 때
             {
-                Debug.Log("가까울때"+ OrcAttack);
+              
                 nav.speed = 0; // 속도 0 
                 OrcAttack = true; // 공격상태로 바꿔 줌
             }
             else if (distance > 2.5f && distance < 20.0f) // 거리 2.5f 보다 멀 면
             {
-                Debug.Log("멀때" + OrcAttack);
+               
                 OrcAttack = false; // 공격상태 끄고
                 nav.speed = 2; // 속도 4
             }
@@ -163,7 +163,7 @@ public class Orc : MonoBehaviour
         nav.speed = 0;
         avatar.SetTrigger("DIE");
         OrcDie = true;
-        Instantiate(SpCoin, OrcVec, Quaternion.identity);
+        Instantiate(SpCoin, new Vector3(OrcVec.x, OrcVec.y-1, OrcVec.z) , Quaternion.identity);
         Destroy(gameObject, 2.0f);
     }
 

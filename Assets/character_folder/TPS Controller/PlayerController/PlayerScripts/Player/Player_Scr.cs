@@ -202,7 +202,6 @@ public class Player_Scr : MonoBehaviourPun
 			roll();
 			w_change();
 
-			Debug.Log(player_name);
 			clear_time += Time.deltaTime; //시작 시 시간 측정
 			
 			if (ShootSimple_Scr.WeaponNumber == 1)
@@ -343,12 +342,10 @@ public class Player_Scr : MonoBehaviourPun
 
 	IEnumerator Skill2_3()
 	{
-
 		yield return new WaitForSeconds(5.0f); //초후 버프 없애기
 		skill2_fireFiled.SetActive(false);
 		yield return new WaitForSeconds(8.0f); //스킬 쿨타임
 		isSkill2_3 = true;
-
 	}
 	public void skill2_4()
 	{

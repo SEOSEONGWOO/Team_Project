@@ -32306,7 +32306,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotaionSpeed: 100
   Potal: {fileID: 1581280753}
-  Box: {fileID: 0}
 --- !u!136 &772579296
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -39442,13 +39441,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2952604878073289707, guid: c114672d206ddeb46b9cb4fff05ee941,
         type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2952604878073289707, guid: c114672d206ddeb46b9cb4fff05ee941,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2952604878073289707, guid: c114672d206ddeb46b9cb4fff05ee941,
+        type: 3}
       propertyPath: m_LocalPosition.x
       value: 98.67
       objectReference: {fileID: 0}
     - target: {fileID: 2952604878073289707, guid: c114672d206ddeb46b9cb4fff05ee941,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.47
+      value: 4.05
       objectReference: {fileID: 0}
     - target: {fileID: 2952604878073289707, guid: c114672d206ddeb46b9cb4fff05ee941,
         type: 3}
@@ -42055,12 +42064,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1016357920}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 46cbca105f9dc6842ae246da1b11e7a1, type: 3}
+  m_Script: {fileID: 11500000, guid: 67f38fd10df930c42b3773c00d998b79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   textPanel: {fileID: 1354855947}
   textStart: 0
-  clip: {fileID: 0}
   TextTime: 0
 --- !u!65 &1016357922
 BoxCollider:
@@ -57652,13 +57660,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2952604878073289707, guid: c114672d206ddeb46b9cb4fff05ee941,
         type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2952604878073289707, guid: c114672d206ddeb46b9cb4fff05ee941,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2952604878073289707, guid: c114672d206ddeb46b9cb4fff05ee941,
+        type: 3}
       propertyPath: m_LocalPosition.x
       value: 98.67
       objectReference: {fileID: 0}
     - target: {fileID: 2952604878073289707, guid: c114672d206ddeb46b9cb4fff05ee941,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.47
+      value: 4.05
       objectReference: {fileID: 0}
     - target: {fileID: 2952604878073289707, guid: c114672d206ddeb46b9cb4fff05ee941,
         type: 3}
@@ -64696,13 +64714,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2952604878073289707, guid: c114672d206ddeb46b9cb4fff05ee941,
         type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2952604878073289707, guid: c114672d206ddeb46b9cb4fff05ee941,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2952604878073289707, guid: c114672d206ddeb46b9cb4fff05ee941,
+        type: 3}
       propertyPath: m_LocalPosition.x
       value: 98.67
       objectReference: {fileID: 0}
     - target: {fileID: 2952604878073289707, guid: c114672d206ddeb46b9cb4fff05ee941,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.47
+      value: 4.05
       objectReference: {fileID: 0}
     - target: {fileID: 2952604878073289707, guid: c114672d206ddeb46b9cb4fff05ee941,
         type: 3}
@@ -66225,12 +66253,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1776831057}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 46cbca105f9dc6842ae246da1b11e7a1, type: 3}
+  m_Script: {fileID: 11500000, guid: 67f38fd10df930c42b3773c00d998b79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   textPanel: {fileID: 336913871}
   textStart: 0
-  clip: {fileID: 0}
   TextTime: 0
 --- !u!65 &1776831059
 BoxCollider:
@@ -82749,8 +82776,36 @@ PrefabInstance:
       propertyPath: m_Name
       value: "\uBA54\uC2DC\uC9C0"
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3217431743557358634, guid: 19474a8b4d5144841a1ade3142f50205, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 19474a8b4d5144841a1ade3142f50205, type: 3}
+--- !u!1 &3217431742498168799 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3217431743557358639, guid: 19474a8b4d5144841a1ade3142f50205,
+    type: 3}
+  m_PrefabInstance: {fileID: 3217431742498168798}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &3217431742498168800 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3217431743120360117, guid: 19474a8b4d5144841a1ade3142f50205,
+    type: 3}
+  m_PrefabInstance: {fileID: 3217431742498168798}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3217431742498168801
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3217431742498168799}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67f38fd10df930c42b3773c00d998b79, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textPanel: {fileID: 3217431742498168800}
+  textStart: 0
+  TextTime: 0
 --- !u!65 &5113650077725527617
 BoxCollider:
   m_ObjectHideFlags: 0
