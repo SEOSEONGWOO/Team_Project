@@ -1,32 +1,43 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 using Firebase;
 using Firebase.Database;
 using Firebase.Unity;
-
+using TMPro;
 public class Rank_DB : MonoBehaviour
 {
     
     DatabaseReference reference;
     int count = 1;
     int DB_insert= 0;
+
+
      string[] Rank = new string[100];
     float[] Score = new float[0];
+    float[] Score23 = new float[1] { 1.0f};
+    
    // float[] Score;
     int[] Rank1 = new int[0];
+    public GameObject[] score_text = new GameObject[5];
+    public GameObject[] user_text = new GameObject[5];
 
-   // int[] Rank1;
+    public static string[] score_bd = new string[5];
+    public static string[] name_db = new string[5];
 
+    // int[] Rank1;
+   // public TextMeshProUGUI score_test;
 
 
     // Start is called before the first frame update
     void Start()
     {
         reference = FirebaseDatabase.DefaultInstance.RootReference;
+        //score_test = score_text[].GetComponent<TextMeshProUGUI>(); 
+        //score_text[2].GetComponent<TextMeshProUGUI>().text = Score23[0].ToString();
         
-
     }
     public class Test
     {
@@ -116,54 +127,31 @@ public class Rank_DB : MonoBehaviour
                 
                 
                 int[] index = new int[Rank1.Length]; //index 에 배열 10개 지정
-                Debug.Log("왔니111?");
+                
                 for (int i = 0; i < Rank1.Length; i++)
                 {
                     index[Rank1[i] - 1] = i;
-                    Debug.Log("왔니?2222");
+                    
                 }
-                Debug.Log("왔니333");
+                
                 for (int i = 0; i < Rank1.Length; i++)
                 {
                     int t = index[i];
                     Debug.Log(Rank1[t] + "등" + name[t]+ "님" +"클리어 시간: " + Score[t]);
+                    score_bd[i] = Score[t].ToString();
+                    name_db[i] = name[t].ToString();
+                    Debug.Log(score_bd[i]);
+
+                    //score_text[t].GetComponent<TextMeshProUGUI>().text = Score[t].ToString();
+                    // user_text[i].GetComponent<Text>().text = name[t].ToString();
+
                 }
-                Debug.Log("왔니?44442");
+                
             }         
        
         });
         
     }
-    private void Rank_read()
-    {
-       
 
-        for (int i = 0; i < Score.Length; i++)  //랭크 10명 검색
-        {
-            for (int j = 0; j < Score.Length; j++)
-            {
-                if(Score[i] < Score[j])
-                {
-                    Rank1[i]++; //순위 변경
-                }
-            }
-        }
-
-
-        int[] index = new int[Rank1.Length];
-
-        for (int i = 0; i < Rank1.Length; i++)
-        {
-            index[Rank1[i] - 1] = i;
-        }
-        for (int i = 0; i < Rank1.Length; i++)
-        {
-            int t = index[i];
-            Debug.Log(Rank1[i] + "등" +  "클리어 시간: " + Score[t]);
-        }
-        
-        
-        
-    }
 
 }
