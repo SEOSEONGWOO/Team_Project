@@ -451,6 +451,9 @@ MonoBehaviour:
   test555: 0
   ZombieLo: {fileID: 4491277007375845821}
   ZombieVec: {x: 0, y: 0, z: 0}
+  audioV: {fileID: 8300000, guid: 5ce6bb262e363834db2b5cdef8a21155, type: 3}
+  audioHit: {fileID: 8300000, guid: bdb798b20d5ac2f438f3a562f4150019, type: 3}
+  audioDie: {fileID: 8300000, guid: 833b8b152e5433d4a9d4a4928771e18b, type: 3}
 --- !u!1 &735044206099232444
 GameObject:
   m_ObjectHideFlags: 0

@@ -50,6 +50,8 @@ public class FolloFollowme : MonoBehaviour
 
     void Update()
     {
+        this.audioSource = GetComponent<AudioSource>();
+
         Gobj = GameObject.FindGameObjectWithTag("Player");  // 시작할 때 태그 이름이 Player 인 거 Gobj 오브젝트에 넣어 줌
 
         fl3 = firstlo.transform.position;   // fl3 = 현재 좀비 위치 값

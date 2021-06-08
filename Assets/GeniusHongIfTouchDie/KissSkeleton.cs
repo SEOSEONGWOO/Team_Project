@@ -58,6 +58,8 @@ public class KissSkeleton : MonoBehaviour
 
     void Update()
     {
+        this.audioSource = GetComponent<AudioSource>();
+
         Gobj = GameObject.Find("HPCharacter");
 
         nav = GetComponent<NavMeshAgent>();

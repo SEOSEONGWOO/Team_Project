@@ -60,6 +60,8 @@ public class Skeleton : MonoBehaviour
 
     void Update()
     {
+        this.audioSource = GetComponent<AudioSource>();
+
         Gobj = GameObject.FindWithTag("Player");
 
         nav = GetComponent<NavMeshAgent>();
