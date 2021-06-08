@@ -301,6 +301,10 @@ MonoBehaviour:
   OrcVec: {x: 0, y: 0, z: 0}
   Gobj: {fileID: 0}
   SpCoin: {fileID: 1000011365394840, guid: 5142a683d65bbf84abea6f07db9099c7, type: 3}
+  audioAttack1: {fileID: 0}
+  audioAttack2: {fileID: 0}
+  audioHit: {fileID: 0}
+  audioDie: {fileID: 0}
 --- !u!54 &6417908192635530109
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -349,6 +353,10 @@ MonoBehaviour:
   Gobj: {fileID: 0}
   SpCoin: {fileID: 1000011365394840, guid: 5142a683d65bbf84abea6f07db9099c7, type: 3}
   TutorialBox: {fileID: 0}
+  audioAttack1: {fileID: 8300000, guid: 89c973db97ea6df48b783a679bc6c774, type: 3}
+  audioAttack2: {fileID: 8300000, guid: 89c973db97ea6df48b783a679bc6c774, type: 3}
+  audioHit: {fileID: 8300000, guid: fc94f4b0c0d58014884553222d48995b, type: 3}
+  audioDie: {fileID: 8300000, guid: 833b8b152e5433d4a9d4a4928771e18b, type: 3}
 --- !u!82 &3043308358379331705
 AudioSource:
   m_ObjectHideFlags: 0
