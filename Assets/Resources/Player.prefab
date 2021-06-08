@@ -10513,7 +10513,6 @@ MonoBehaviour:
   HitD: 0
   lookIKWeight: 1
   bodyWeight: 1.5
-  a: {fileID: 0}
   healthText: {fileID: 0}
   sliderHP: {fileID: 0}
   targetPos: {fileID: 0}
@@ -10550,7 +10549,6 @@ MonoBehaviour:
   fightModUI: {fileID: 0}
   ragdoll: {fileID: 5431398466033780921, guid: fc94d387fc606fb4aae480cc5e37a14c, type: 3}
   FirstLocationVector: {x: 0, y: 0, z: 0}
-  PlayerMoneyText: {fileID: 0}
   Burned: {fileID: 7981858405197202290}
 --- !u!114 &-1308161118896512836
 MonoBehaviour:
@@ -10610,7 +10608,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7250130997467480733}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e4e23d7e254c23c4881854e5be2112af, type: 3}
   m_Name: 

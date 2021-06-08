@@ -11,13 +11,13 @@ public class Rank_DB : MonoBehaviour
     
     DatabaseReference reference;
     int count = 1;
-    public int DB_insert= 0;
+    int DB_insert= 0;
      string[] Rank = new string[100];
-    //float[] Score = new float[5];
-    float[] Score;
-    //int[] Rank1 = new int[] {1,1,1,1,1};
+    float[] Score = new float[0];
+   // float[] Score;
+    int[] Rank1 = new int[0];
 
-    int[] Rank1;
+   // int[] Rank1;
 
 
 
@@ -25,6 +25,8 @@ public class Rank_DB : MonoBehaviour
     void Start()
     {
         reference = FirebaseDatabase.DefaultInstance.RootReference;
+        
+
     }
     public class Test
     {
@@ -73,14 +75,18 @@ public class Rank_DB : MonoBehaviour
                 string[] num = new string[snapshot.ChildrenCount];
                 string[] name = new string[snapshot.ChildrenCount];
                 int k = 0;
-                Debug.Log("왔니?");
                 foreach (DataSnapshot  data in snapshot.Children)
                 {
-                    IDictionary presonInfo = (IDictionary)data.Value;                    
+                    IDictionary presonInfo = (IDictionary)data.Value;
+
+                    System.Array.Resize(ref Score, Score.Length + 1);
+                    System.Array.Resize(ref Rank1, Rank1.Length + 1);
+
                     num[k] = presonInfo["clear_time"].ToString();
                     name[k] = presonInfo["userid"].ToString();
                     Score[k] = float.Parse(num[k]);
                     k++;
+                    
                     Debug.Log("111111");
                     
                 }
@@ -96,6 +102,7 @@ public class Rank_DB : MonoBehaviour
 
                 for (int i = 0; i < Score.Length; i++)
                 {
+                    
                     Rank1[i] = 1;
                     for (int j = 0; j < Score.Length; j++)
                     {
