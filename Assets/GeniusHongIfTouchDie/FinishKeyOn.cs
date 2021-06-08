@@ -23,6 +23,7 @@ public class FinishKeyOn : MonoBehaviour
         if (other.tag == "Player")
         {
             Debug.Log("열쇠 획득");
+            BossRoomDoor.KeyOn += 1;
             Destroy(gameObject);
             Potal.SetActive(true);
             //Box.SetActive(true);
