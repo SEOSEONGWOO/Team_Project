@@ -3,7 +3,16 @@ guid: 5c729e185ecc38b459c07cea74f4747a
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - avatar: {instanceID: 0}
+  - OrcLo: {instanceID: 0}
+  - Gobj: {instanceID: 0}
+  - SpCoin: {instanceID: 0}
+  - TutorialBox: {instanceID: 0}
+  - audioAttack1: {fileID: 8300000, guid: 89c973db97ea6df48b783a679bc6c774, type: 3}
+  - audioAttack2: {fileID: 8300000, guid: 89c973db97ea6df48b783a679bc6c774, type: 3}
+  - audioHit: {fileID: 8300000, guid: fc94f4b0c0d58014884553222d48995b, type: 3}
+  - audioDie: {fileID: 8300000, guid: 833b8b152e5433d4a9d4a4928771e18b, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

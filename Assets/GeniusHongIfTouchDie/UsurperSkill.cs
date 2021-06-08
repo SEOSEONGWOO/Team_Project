@@ -9,6 +9,13 @@ public class UsurperSkill : MonoBehaviour
     public GameObject Gobj;
     private NavMeshAgent nav;
 
+    public AudioClip audioAttack1;
+    public AudioClip audioAttack2;
+    public AudioClip audioAwake;
+    public AudioClip audioDie;
+
+    AudioSource audioSource;
+
     static public int DrgHP = 1000; // HP
     int Sk1Da = 30;        // Sk0 데미지
     int Sk2Da = 15;        // Sk1 데미지
@@ -63,6 +70,8 @@ public class UsurperSkill : MonoBehaviour
 
     void Update()
     {
+        this.audioSource = GetComponent<AudioSource>();
+
         Gobj = GameObject.FindWithTag("Player");
 
         nav = GetComponent<NavMeshAgent>();
@@ -76,6 +85,7 @@ public class UsurperSkill : MonoBehaviour
             DragonDie = true; // 죽음 체크
             SkillC = 6; // 죽음상태로 변경
             avatar.SetTrigger("Dies"); // Dies 모션 
+            StartCoroutine(PlaySound("Die"));
         }
 
         if (SkillC != 6) // 죽음 상태 아닐 때
@@ -293,6 +303,7 @@ public class UsurperSkill : MonoBehaviour
         if(other.tag == "Player")
         {
             avatar.SetTrigger("Awake");
+            StartCoroutine(PlaySound("Awake"));
             SkillC = 10;
         }
     }
@@ -362,9 +373,11 @@ public class UsurperSkill : MonoBehaviour
     {
         AttackOn = FT;
 
+        StartCoroutine(PlaySound("Attack1"));
+
         //DrgAttSC.Mode1 = FT;
-        
-        if(AttackOn == 1)
+
+        if (AttackOn == 1)
         {
             yield return new WaitForSeconds(3);
         }
@@ -382,7 +395,9 @@ public class UsurperSkill : MonoBehaviour
     {
         FireOn = FT;
 
-        if(FireOn == 1)
+        StartCoroutine(PlaySound("Attack2"));
+
+        if (FireOn == 1)
         {
             yield return new WaitForSeconds(3);
         }
@@ -392,6 +407,28 @@ public class UsurperSkill : MonoBehaviour
         }
 
         FireOn = 0;
+    }
+
+    IEnumerator PlaySound(string action)
+    {
+        switch (action)
+        {
+            case "Attack1":
+                yield return new WaitForSeconds(0.1f);
+                audioSource.clip = audioAttack1;
+                break;
+            case "Attack2":
+                yield return new WaitForSeconds(0.1f);
+                audioSource.clip = audioAttack2;
+                break;
+            case "Awake":
+                audioSource.clip = audioAwake;
+                break;
+            case "Die":
+                audioSource.clip = audioDie;
+                break;
+        }
+        audioSource.Play();
     }
 }
 

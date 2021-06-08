@@ -242,7 +242,7 @@ public class Orc : MonoBehaviour
                 audioSource.clip = audioAttack1;
                 break;
             case "Attack2":
-                yield return new WaitForSeconds(0.8f);
+                yield return new WaitForSeconds(0.1f);
                 audioSource.clip = audioAttack2;
                 break;
             case "Hit":
