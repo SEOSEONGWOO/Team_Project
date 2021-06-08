@@ -54,6 +54,7 @@ public class Rank_DB : MonoBehaviour
 
         Rank_push("Rank",Player_Scr.player_name, Player_Scr.clear_time);
         count++;
+        Debug.Log("데이터저장");
     }
 
     private void Rank_push(string rank, string userId, float email)
@@ -66,6 +67,7 @@ public class Rank_DB : MonoBehaviour
     public void Rank_load()
     {
         readUser("Rank", Player_Scr.player_name);
+        Debug.Log("데이터불러오가");
     }
 
     public void readUser(string rank, string userId)
