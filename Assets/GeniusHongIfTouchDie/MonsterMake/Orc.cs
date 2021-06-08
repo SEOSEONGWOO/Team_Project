@@ -45,6 +45,13 @@ public class Orc : MonoBehaviour
 
     bool PlayerCheck = false;
 
+    public AudioClip audioAttack1;
+    public AudioClip audioAttack2;
+    public AudioClip audioHit;
+    public AudioClip audioDie;
+
+    AudioSource audioSource;
+
     void Start()
     {
         //AwakeT += Time.deltaTime;
@@ -55,6 +62,8 @@ public class Orc : MonoBehaviour
 
     void Update()
     {
+        this.audioSource = GetComponent<AudioSource>();
+
         Gobj = GameObject.FindWithTag("Player");
 
         nav = GetComponent<NavMeshAgent>();
@@ -108,6 +117,7 @@ public class Orc : MonoBehaviour
             if (OrcSkill2CoolOn == true)
             {
                 OrcSkill2 += Time.deltaTime;
+                StartCoroutine(PlaySound("Attack2"));
 
                 if (OrcSkill2 >= OrcSkill2Cool)
                 {
@@ -126,6 +136,7 @@ public class Orc : MonoBehaviour
                 else if (AttackMotion == 1) // 공격모드 1이면
                 {
                     avatar.SetTrigger("Attack01"); // Attack01 실행
+                    StartCoroutine(PlaySound("Attack1"));
                     AttackMotion = 3; // 대기상태로 변경
                 }
                 else if (AttackMotion == 2) // 공격모드 2고
@@ -162,6 +173,7 @@ public class Orc : MonoBehaviour
     {
         nav.speed = 0;
         avatar.SetTrigger("DIE");
+        StartCoroutine(PlaySound("Die"));
         OrcDie = true;
         Instantiate(SpCoin, new Vector3(OrcVec.x, OrcVec.y-1, OrcVec.z) , Quaternion.identity);
         Destroy(gameObject, 2.0f);
@@ -175,6 +187,7 @@ public class Orc : MonoBehaviour
         }
         OrcHP -= Bullet.bulletDamage; // 총에 맞으면 총알데미지 만큼 체력 까임
         Debug.Log(OrcHP);
+        StartCoroutine(PlaySound("Hit"));
     }
 
     private void OnTriggerEnter(Collider other)
@@ -218,5 +231,27 @@ public class Orc : MonoBehaviour
         {
             OrcHP -= 500;
         }
+    }
+
+    IEnumerator PlaySound(string action)
+    {
+        switch (action)
+        {
+            case "Attack1":
+                yield return new WaitForSeconds(0.5f);
+                audioSource.clip = audioAttack1;
+                break;
+            case "Attack2":
+                yield return new WaitForSeconds(0.8f);
+                audioSource.clip = audioAttack2;
+                break;
+            case "Hit":
+                audioSource.clip = audioHit;
+                break;
+            case "Die":
+                audioSource.clip = audioDie;
+                break;
+        }
+        audioSource.Play();
     }
 }
