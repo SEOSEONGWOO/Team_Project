@@ -23,12 +23,12 @@ public class Spawn : MonoBehaviour
                  new Vector3(1.773168f, 0.05f, 0.215986f), Quaternion.identity);*/
             //Instantiate(prefabC);
             Instantiate(aim,
-                new Vector3(0, 0, 0), Quaternion.identity);
+                new Vector3(0, 0, 0), Quaternion.AngleAxis(180f, Vector3.up));
             Instantiate(prefabC,
-                new Vector3(-59.2f, 3.0f, 25.0f), Quaternion.identity);
+                new Vector3(-59.2f, 3.0f, 25.0f), Quaternion.AngleAxis(180f, Vector3.up));
 
             GameObject name = Instantiate(prefab,
-                new Vector3(-59.2f, 3.0f, 25.0f), Quaternion.identity);
+                new Vector3(-59.2f, 3.0f, 25.0f), Quaternion.AngleAxis(180f, Vector3.up));
             Debug.Log(spawpoint.position);
             /*name.name = "test_name" + i;
             i++;

@@ -7,6 +7,6 @@ public class test_Back : MonoBehaviour
     
     private void OnTriggerEnter(Collider other)
     {
-        Playerspawn.MainSceneBack = true;
+        Playerspawn.MainScene_2 = true;
     }
 }

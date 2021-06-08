@@ -37,36 +37,45 @@ public class Playerspawn : MonoBehaviour
         //메인씬으로 이동
         if (MainSceneBack)
         {
+            //PhotonNetwork.LoadLevel("Main_map");
+            SceneManager.LoadScene("Main_map");
+            if (Main_2 || Main_3)
+            {
+                Debug.Log("ShopSpawn");
+                Invoke("ShopSpawn", time);
+            }
+            else
+            {
+                Debug.Log("SceneSpawn");
+                Invoke("SceneSpawn", time);
+            }
             Main = true;
             Main_2 = false;
             Main_3 = false;
-            //PhotonNetwork.LoadLevel("Main_map");
-            SceneManager.LoadScene("Main_map");
-            Invoke("SceneSpawn", time);
             MainSceneBack = false;
         }
         //메인씬2로 이동
         if(MainScene_2)
         {
-            Debug.Log("Main_map 2 변경");
             Main = false;
             Main_2 = true;
             Main_3 = false;
+            Debug.Log("Main_map 2 변경");
             //PhotonNetwork.LoadLevel("Main_map 2");
             SceneManager.LoadScene("Main_map 2");
-            Invoke("ShopSpawn", time);
+            Invoke("SceneSpawn", time);
             MainScene_2 = false;
         }
         //메인씬3(트랩)로 이동
         if(MainScene_3)
         {
-            Debug.Log("trapmap2 변경");
             Main = false;
             Main_2 = false;
             Main_3 = true;
+            Debug.Log("trapmap2 변경");
             //PhotonNetwork.LoadLevel("trapmap2");
             SceneManager.LoadScene("trapmap2");
-            Invoke("ShopSpawn", time);
+            Invoke("SceneSpawn", time);
             MainScene_3 = false;
         }
         //bossroom test 
@@ -106,7 +115,7 @@ public class Playerspawn : MonoBehaviour
         V3 = Shopobj.transform.position;
         gameObject.transform.position = V3;
     }
-    void MainScene_2_Spawn()
+    /*void MainScene_2_Spawn()
     {
         //gameObject.transform.position = new Vector3(263.96f, -16f, 83.85f);
         Spawnobj = GameObject.Find("Spawnobj");
@@ -119,5 +128,5 @@ public class Playerspawn : MonoBehaviour
         Spawnobj = GameObject.Find("Spawnobj");
         V3 = Spawnobj.transform.position;
         gameObject.transform.position = V3;
-    }
+    }*/
 }
