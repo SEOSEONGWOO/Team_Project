@@ -11,12 +11,14 @@ public class Rank_DB : MonoBehaviour
     
     DatabaseReference reference;
     int count = 1;
-
+    public int DB_insert= 0;
      string[] Rank = new string[100];
-    float[] Score = new float[5];
+    //float[] Score = new float[5];
+    float[] Score;
+    //int[] Rank1 = new int[] {1,1,1,1,1};
 
-    int[] Rank1 = new int[5] { 1,1,1,1,1};
-    
+    int[] Rank1;
+
 
 
     // Start is called before the first frame update
@@ -43,7 +45,6 @@ public class Rank_DB : MonoBehaviour
 
     private void Rank_push(string rank, string userId, float email)
     {
-        Debug.Log("22222");
         Test test = new Test(userId, email);
         string json = JsonUtility.ToJson(test);
         reference.Child(rank).Child(userId).SetRawJsonValueAsync(json);
@@ -69,14 +70,10 @@ public class Rank_DB : MonoBehaviour
                 DataSnapshot snapshot = task.Result;
                 Debug.Log(snapshot.ChildrenCount);
 
-                /*for (int i = 0; i < snapshot.ChildrenCount; i++)
-                {
-                    snapshot[0] = 1;
-                }*/
                 string[] num = new string[snapshot.ChildrenCount];
                 string[] name = new string[snapshot.ChildrenCount];
                 int k = 0;
-                
+                Debug.Log("왔니?");
                 foreach (DataSnapshot  data in snapshot.Children)
                 {
                     IDictionary presonInfo = (IDictionary)data.Value;                    
@@ -84,19 +81,22 @@ public class Rank_DB : MonoBehaviour
                     name[k] = presonInfo["userid"].ToString();
                     Score[k] = float.Parse(num[k]);
                     k++;
-                    
+                    Debug.Log("111111");
                     
                 }
-
+                //Debug.Log(Score[].);
+                Debug.Log("2222222");
                 for (int j = 0; j < snapshot.ChildrenCount; j++)
                 {
+                    Debug.Log("333333");
                     Rank[j] = num[j] + " / " + name[j] +"/" + Score[j];
                     Debug.Log(Rank[j]);    
                 }
-
+                Debug.Log("4444444");
 
                 for (int i = 0; i < Score.Length; i++)
                 {
+                    Rank1[i] = 1;
                     for (int j = 0; j < Score.Length; j++)
                     {
                         if (Score[i] > Score[j])
@@ -105,19 +105,23 @@ public class Rank_DB : MonoBehaviour
                         }
                     }
                 }
-
-
-                int[] index = new int[Rank1.Length];
-
+               
+                
+                
+                int[] index = new int[Rank1.Length]; //index 에 배열 10개 지정
+                Debug.Log("왔니111?");
                 for (int i = 0; i < Rank1.Length; i++)
                 {
                     index[Rank1[i] - 1] = i;
+                    Debug.Log("왔니?2222");
                 }
+                Debug.Log("왔니333");
                 for (int i = 0; i < Rank1.Length; i++)
                 {
                     int t = index[i];
                     Debug.Log(Rank1[t] + "등" + name[t]+ "님" +"클리어 시간: " + Score[t]);
                 }
+                Debug.Log("왔니?44442");
             }         
        
         });
@@ -127,13 +131,13 @@ public class Rank_DB : MonoBehaviour
     {
        
 
-        for (int i = 0; i < Score.Length; i++)
+        for (int i = 0; i < Score.Length; i++)  //랭크 10명 검색
         {
             for (int j = 0; j < Score.Length; j++)
             {
                 if(Score[i] < Score[j])
                 {
-                    Rank1[i]++;
+                    Rank1[i]++; //순위 변경
                 }
             }
         }
