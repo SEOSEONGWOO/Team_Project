@@ -133,6 +133,7 @@ public class Player_Scr : MonoBehaviourPun
     public static float FireTime = 0f;
     float FireDamage = 0.05f;
 
+    public static bool ClearC = false;
 
 	void CmdClientState(Vector3 targetPosVec, float newRunWeight, float run, float strafe)
 	{
@@ -202,7 +203,11 @@ public class Player_Scr : MonoBehaviourPun
 			roll();
 			w_change();
 
-			clear_time += Time.deltaTime; //시작 시 시간 측정
+            if(ClearC == false)
+            {
+                clear_time += Time.deltaTime; //시작 시 시간 측정
+            }
+
 			
 			if (ShootSimple_Scr.WeaponNumber == 1)
 			{

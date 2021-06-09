@@ -62,6 +62,8 @@ public class UsurperSkill : MonoBehaviour
 
     static public int AttackOn = 0;
 
+    public GameObject BossClearUI;
+
     void Start()
     {
         //AwakeT += Time.deltaTime;
@@ -86,6 +88,9 @@ public class UsurperSkill : MonoBehaviour
             SkillC = 6; // 죽음상태로 변경
             avatar.SetTrigger("Dies"); // Dies 모션 
             StartCoroutine(PlaySound("Die"));
+            BossClearUI.SetActive(true);
+            FireOn = 0;
+            Player_Scr.ClearC = true;
         }
 
         if (SkillC != 6) // 죽음 상태 아닐 때
