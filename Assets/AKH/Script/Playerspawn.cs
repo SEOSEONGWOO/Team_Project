@@ -13,6 +13,7 @@ public class Playerspawn : MonoBehaviour
     public static bool Main = false;    //메인
     public static bool Main_2 = false;    //메인2
     public static bool Main_3 = false;    //메인3(트랩)
+    public static bool isBossRoom = false;    //보스방
 
     public static bool count = true;  //한번만 실행시키기 위한 변수
 
@@ -100,6 +101,13 @@ public class Playerspawn : MonoBehaviour
         {
             Invoke("SceneSpawn", time + 1f);
             Player_Scr.isdead = false;
+        }
+        //죽었을때 처음위치로 이동
+        else if (Player_Scr.isdead && isBossRoom)  //보스방
+        {
+            Invoke("Shopobj", time + 1f);
+            Player_Scr.isdead = false;
+            isBossRoom = false;
         }
     }
     void SceneSpawn()
