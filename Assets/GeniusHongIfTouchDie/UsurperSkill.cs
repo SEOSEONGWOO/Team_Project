@@ -72,7 +72,8 @@ public class UsurperSkill : MonoBehaviour
     void Start()
     {
         //AwakeT += Time.deltaTime;
-        
+        BossClearUI = GameObject.Find("Boss Clear");
+        HPBar = GameObject.Find("Boss HP Bar UI");
     }
 
     void Update()
@@ -93,7 +94,8 @@ public class UsurperSkill : MonoBehaviour
             SkillC = 6; // 죽음상태로 변경
             avatar.SetTrigger("Dies"); // Dies 모션 
             StartCoroutine(PlaySound("Die"));
-            BossClearUI.SetActive(true);
+            //클리어 화면
+            BossClearUI.GetComponent<Canvas>().enabled = true;
 
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
@@ -127,7 +129,9 @@ public class UsurperSkill : MonoBehaviour
 
             if (SkillC == 10) // 10 = 시작 ( 거리이내로 플레이어가 들어오면)
             {
-                HPBar.SetActive(true);
+                //보스 hp바
+                HPBar.GetComponent<Canvas>().enabled = true;
+
                 nav.speed = 0;
                 AwakeT += Time.deltaTime; // 시작모션 대기시간 돌려주고 
                 if (AwakeT >= AwakeD) // 모션 끝나는 시간쯤 되면
