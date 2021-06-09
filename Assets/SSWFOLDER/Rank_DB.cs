@@ -9,7 +9,8 @@ using Firebase.Unity;
 using TMPro;
 public class Rank_DB : MonoBehaviour
 {
-    
+    public GameObject rank_UI;
+    public GameObject clear_UI;
     DatabaseReference reference;
     int count = 1;
     int DB_insert= 0;
@@ -51,7 +52,8 @@ public class Rank_DB : MonoBehaviour
     }
     public void Rank_save()
     {
-
+        clear_UI.SetActive(false);
+        rank_UI.SetActive(true);
         Rank_push("Rank",Player_Scr.player_name, Player_Scr.clear_time);
         count++;
         Debug.Log("데이터저장");

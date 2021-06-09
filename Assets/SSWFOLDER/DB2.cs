@@ -40,7 +40,7 @@ public class DB2 : MonoBehaviourPunCallbacks
 
         //password 초기화
         passowrdText = "";
-
+        
         // 접속에 필요한 정보(게임 버전) 설정
         PhotonNetwork.GameVersion = gameVersion;
 
@@ -181,7 +181,7 @@ public class DB2 : MonoBehaviourPunCallbacks
             if (task.IsFaulted)  //문제가 있을 시
             {
                 // Debug.LogError("SignInWithEmailAndPasswordAsync encountered an error: " + task.Exception);
-                Title.text = "문제 발생";
+                Title.text = "아이디 없음";
                 return;
             }
 

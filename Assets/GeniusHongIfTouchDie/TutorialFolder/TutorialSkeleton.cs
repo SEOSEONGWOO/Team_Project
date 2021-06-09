@@ -46,7 +46,7 @@ public class TutorialSkeleton : MonoBehaviour
 
     float SkeletonAttackDel = 2f;
 
-    int SkeletonHP = 500;
+    int SkeletonHP = 200;
 
     static public int SkeletonDamage = 20;
 

@@ -26,13 +26,17 @@ public class InventoryUI : MonoBehaviour
             {
                 //인벤 활성화일때 Locomotion(), Fight(), Jump(), roll() 비활성화
                 isInven = true;
-                Player_Scr.isShop = false;
+                Player_Scr.isShop = false; 
+                //Cursor.lockState = CursorLockMode.None;
+                //Cursor.visible = true;
             }
             else if (!Player_Scr.isShop)
             {
                 //인벤 비활성화일때 Locomotion(), Fight(), Jump(), roll() 활성화
                 isInven = false;
-                Player_Scr.isShop = true;
+                Player_Scr.isShop = true; 
+                //Cursor.lockState = CursorLockMode.Locked;
+                //Cursor.visible = false;
             }
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;

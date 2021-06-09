@@ -39,7 +39,7 @@ public class TutorialOrc : MonoBehaviour
 
     float OrcAttackDel = 2f;
 
-    int OrcHP = 500;
+    int OrcHP = 250;
 
     static public int OrcDamage = 20;
 

@@ -55,7 +55,7 @@ public class Player_Scr : MonoBehaviourPun
 
 	Rigidbody rigdbody;
 	bool isJumping = false;
-	public float jumpPower = 3.5f;
+	public float jumpPower = 10.0f;
 	public float rollPower = 3.5f;
 
 	[Header("무기스킬1 제어")]
@@ -477,8 +477,9 @@ public class Player_Scr : MonoBehaviourPun
 		if (isJumping == true)
 		{
 			Debug.Log("bbbb");
-			rigdbody.AddForce(Vector3.up * jumpPower, ForceMode.Impulse);
+			
 			anim.SetBool("Jump", true);
+			rigdbody.AddForce(Vector3.up * jumpPower, ForceMode.Impulse);
 			isJumping = false;
 
 		}
@@ -498,8 +499,6 @@ public class Player_Scr : MonoBehaviourPun
 
 		run = Input.GetAxis("Vertical");
 		strafe = Input.GetAxis("Horizontal");
-
-
 
 		anim.SetFloat("Strafe", strafe); 
 		anim.SetFloat("Run", run);

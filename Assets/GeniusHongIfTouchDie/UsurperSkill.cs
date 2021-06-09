@@ -89,6 +89,10 @@ public class UsurperSkill : MonoBehaviour
             avatar.SetTrigger("Dies"); // Dies 모션 
             StartCoroutine(PlaySound("Die"));
             BossClearUI.SetActive(true);
+
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+
             FireOn = 0;
             Player_Scr.ClearC = true;
         }
