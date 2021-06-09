@@ -10,7 +10,7 @@ public class HitUsurper : MonoBehaviour
         Debug.Log(UsurperSkill.DrgHP);
     }
 
-    public void OnTriggerEnter(Collider other)
+    /*public void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Skill1")
         {
@@ -51,5 +51,5 @@ public class HitUsurper : MonoBehaviour
         {
             UsurperSkill.DrgHP -= 500;
         }
-    }
+    }*/
 }

@@ -131,7 +131,7 @@ public class Player_Scr : MonoBehaviourPun
     public GameObject Burned;
     public static bool FireM = false;
     public static float FireTime = 0f;
-    float FireDamage = 0.05f;
+    float FireDamage = 0.1f;
 
     public static bool ClearC = false;
 

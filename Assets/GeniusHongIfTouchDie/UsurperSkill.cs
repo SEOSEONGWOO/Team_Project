@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class UsurperSkill : MonoBehaviour
 {
@@ -16,7 +17,8 @@ public class UsurperSkill : MonoBehaviour
 
     AudioSource audioSource;
 
-    static public int DrgHP = 1000; // HP
+    static public float MaxDrgHP = 5000;
+    static public float DrgHP = 5000; // HP
     int Sk1Da = 30;        // Sk0 데미지
     int Sk2Da = 15;        // Sk1 데미지
     int Sk3Da = 10;        // Sk2 데미지
@@ -63,6 +65,9 @@ public class UsurperSkill : MonoBehaviour
     static public int AttackOn = 0;
 
     public GameObject BossClearUI;
+
+    [Tooltip("Health text")]
+    public GameObject HPBar;
 
     void Start()
     {
@@ -122,6 +127,7 @@ public class UsurperSkill : MonoBehaviour
 
             if (SkillC == 10) // 10 = 시작 ( 거리이내로 플레이어가 들어오면)
             {
+                HPBar.SetActive(true);
                 nav.speed = 0;
                 AwakeT += Time.deltaTime; // 시작모션 대기시간 돌려주고 
                 if (AwakeT >= AwakeD) // 모션 끝나는 시간쯤 되면
@@ -435,6 +441,7 @@ public class UsurperSkill : MonoBehaviour
                 break;
             case "Die":
                 audioSource.clip = audioDie;
+                Destroy(gameObject, 2.0f);
                 break;
         }
         audioSource.Play();
