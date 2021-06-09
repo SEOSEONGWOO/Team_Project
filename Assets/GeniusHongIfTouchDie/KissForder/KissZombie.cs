@@ -10,7 +10,7 @@ public class KissZombie : MonoBehaviour
     public Transform firstlo;   // 처음 좀비 위치
     private NavMeshAgent nav;
 
-    public GameObject BRCM; // 죽으면 떨어뜨릴 코인
+    //public GameObject SpCoin; // 죽으면 떨어뜨릴 코인
 
     //public GameObject ZBC;
 
@@ -40,16 +40,19 @@ public class KissZombie : MonoBehaviour
     AudioSource audioSource;
 
 
+
     private void Start()
     {
         avatar = GetComponent<Animator>();
         test555 = 1; // 이거 안 넣으면 0.16 y 값 올라가는거 못 잡음 왠지 모름 알면 수정좀
-        Gobj = GameObject.Find("HPCharacter");  // 시작할 때 이름이 HPCharacter 인 거 Gobj 오브젝트에 넣어 줌
+
     }
 
     void Update()
     {
         this.audioSource = GetComponent<AudioSource>();
+
+        Gobj = GameObject.FindGameObjectWithTag("Player");  // 시작할 때 태그 이름이 Player 인 거 Gobj 오브젝트에 넣어 줌
 
         fl3 = firstlo.transform.position;   // fl3 = 현재 좀비 위치 값
         Quaternion rot; // 회전값
@@ -71,7 +74,7 @@ public class KissZombie : MonoBehaviour
 
             if (delay >= 3) // 3초 지나면
             {
-                Destroy(gameObject,2.0f); // 좀비 사라짐
+                Destroy(gameObject, 2.0f); // 좀비 사라짐
                 delay = 0; // 딜레이 초기화
             }
         }
@@ -81,8 +84,7 @@ public class KissZombie : MonoBehaviour
             avatar.SetTrigger("CDie");  // 죽은상태 트리거 on
             avatar.SetBool("Die", true);    // 죽은 상태로 바꿔 줌
             StartCoroutine(PlaySound("Die"));
-            ZombieSpawn.MonsterStack += 1;
-            //Instantiate(BRCM, fl3, rot); // 현재 좀비 위치에 돈 소환함
+            //Instantiate(SpCoin, new Vector3(fl3.x, fl3.y - 1, fl3.z), rot); // 현재 좀비 위치에 돈 소환함
 
         }
 
@@ -148,10 +150,10 @@ public class KissZombie : MonoBehaviour
         }
     }
 
-    /*void OnTriggerStay(Collider other)
+    void OnTriggerStay(Collider other)
     {
         if (other.tag == "Player") //Player 태그가진 캐릭터가 공격 범위 들어오면
-        { 
+        {
             avatar.SetBool("Att", true); // 공격 true
         }
     }
@@ -161,7 +163,7 @@ public class KissZombie : MonoBehaviour
         {
             avatar.SetBool("Att", false); // 공격 false
         }
-    }*/
+    }
 
     public void SetDamageAI()
     {
