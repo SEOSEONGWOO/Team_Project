@@ -81,6 +81,7 @@ public class KissZombie : MonoBehaviour
 
         if (Chp <= 0 && avatar.GetBool("Die") == false) // 체력 0 낮고 죽은 상태 아니면 
         {
+            ZombieSpawn.MonsterStack += 1;
             avatar.SetTrigger("CDie");  // 죽은상태 트리거 on
             avatar.SetBool("Die", true);    // 죽은 상태로 바꿔 줌
             StartCoroutine(PlaySound("Die"));
