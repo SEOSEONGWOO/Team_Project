@@ -16,7 +16,7 @@ public class Spawn : MonoBehaviour
     {
         if (GameM.gameStart)
         {
-            DontDestroyOnLoad(gameObject);
+            //DontDestroyOnLoad(gameObject);
             // 네트워크 상의 모든 클라이언트들에서 생성 실행
             // 단, 해당 게임 오브젝트의 주도권은, 생성 메서드를 직접 실행한 클라이언트에게 있음
             /* GameObject name = PhotonNetwork.Instantiate(prefab.name, 

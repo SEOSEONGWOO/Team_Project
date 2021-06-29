@@ -17,7 +17,7 @@ public class Playerspawn : MonoBehaviour
 
     public static bool count = true;  //한번만 실행시키기 위한 변수
 
-    private float time = 0.5f;
+    private float time = 0.7f;
 
     public static bool BossRoom_test = false;    //BossRoom_test
 
@@ -35,7 +35,7 @@ public class Playerspawn : MonoBehaviour
     }
     void Update()
     {
-        //메인씬으로 이동
+        /*//메인씬으로 이동
         if (MainSceneBack)
         {
             //PhotonNetwork.LoadLevel("Main_map");
@@ -84,28 +84,78 @@ public class Playerspawn : MonoBehaviour
         {
             gameObject.transform.position = new Vector3(-185f, -1.3f, 230f);
             BossRoom_test = false;
+        }*/
+
+        //메인씬으로 이동
+        if (MainSceneBack)
+        {
+            //PhotonNetwork.LoadLevel("Main_map");
+            //SceneManager.LoadScene("Main_map");
+            if (Main_2 || Main_3)
+            {
+                Debug.Log("ShopSpawn");
+                Invoke("ShopSpawn", time);
+            }
+            else
+            {
+                Spawnobj = GameObject.Find("Spawnobj");
+                Debug.Log("SceneSpawn");
+                Invoke("SceneSpawn", time);
+            }
+            Main = true;
+            Main_2 = false;
+            Main_3 = false;
+            MainSceneBack = false;
         }
-        
+        //메인씬2로 이동
+        if (MainScene_2)
+        {
+            Main = false;
+            Main_2 = true;
+            Main_3 = false;
+            Debug.Log("Main_map 2 변경");
+            //PhotonNetwork.LoadLevel("Main_map 2");
+            //SceneManager.LoadScene("Main_map 2");
+            Spawnobj = GameObject.Find("Spawnobj_main_2");
+            Invoke("SceneSpawn", time);
+            MainScene_2 = false;
+        }
+        //메인씬3(트랩)로 이동
+        if (MainScene_3)
+        {
+            Main = false;
+            Main_2 = false;
+            Main_3 = true;
+            Debug.Log("trapmap2 변경");
+            //PhotonNetwork.LoadLevel("trapmap2");
+            //SceneManager.LoadScene("trapmap2");
+            Spawnobj = GameObject.Find("Spawnobj_trapmap_2");
+            Invoke("SceneSpawn", time);
+            MainScene_3 = false;
+        }
         //죽었을때 처음위치로 이동
         if (Player_Scr.isdead && Main)  //튜토리얼
         {
-            Invoke("SceneSpawn", time + 1f);
+            Spawnobj = GameObject.Find("Spawnobj");
+            Invoke("SceneSpawn", time);
             Player_Scr.isdead = false;
         }
         else if (Player_Scr.isdead && Main_2)   //몬스터
         {
-            Invoke("SceneSpawn", time + 1f);
+            Spawnobj = GameObject.Find("Spawnobj_main_2");
+            Invoke("SceneSpawn", time);
             Player_Scr.isdead = false;
         }
         else if (Player_Scr.isdead && Main_3)   //트랩
         {
-            Invoke("SceneSpawn", time + 1f);
+            Spawnobj = GameObject.Find("Spawnobj_trapmap_2");
+            Invoke("SceneSpawn", time);
             Player_Scr.isdead = false;
         }
         //죽었을때 처음위치로 이동
         else if (Player_Scr.isdead && isBossRoom)  //보스방
         {
-            Invoke("Shopobj", time + 1f);
+            Invoke("Shopobj", time);
             Player_Scr.isdead = false;
             isBossRoom = false;
         }
@@ -113,7 +163,6 @@ public class Playerspawn : MonoBehaviour
     void SceneSpawn()
     {
         //gameObject.transform.position = new Vector3(-185f, 5f, 263f);
-        Spawnobj = GameObject.Find("Spawnobj");
         V3 = Spawnobj.transform.position;
         gameObject.transform.position = V3;
     }
@@ -123,18 +172,4 @@ public class Playerspawn : MonoBehaviour
         V3 = Shopobj.transform.position;
         gameObject.transform.position = V3;
     }
-    /*void MainScene_2_Spawn()
-    {
-        //gameObject.transform.position = new Vector3(263.96f, -16f, 83.85f);
-        Spawnobj = GameObject.Find("Spawnobj");
-        V3 = Spawnobj.transform.position;
-        gameObject.transform.position = V3;
-    }
-    void MainScene_3_Spawn()
-    {
-        //gameObject.transform.position = new Vector3(1.7f, 80, -101);
-        Spawnobj = GameObject.Find("Spawnobj");
-        V3 = Spawnobj.transform.position;
-        gameObject.transform.position = V3;
-    }*/
 }

@@ -8,10 +8,10 @@ using UnityEngine.UI;
 public class Spawn_Start_test : MonoBehaviour
 {
     public GameObject prefab;
-    public GameObject prefabC;
-    public GameObject aim;
-    int i = 0;
-    public Transform spawpoint;
+    //public GameObject prefabC;
+    //public GameObject aim;
+    //int i = 0;
+    //public Transform spawpoint;
     void Start()
     {
         //DontDestroyOnLoad(gameObject);

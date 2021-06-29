@@ -37,7 +37,8 @@ public class CameraCs2 : MonoBehaviourPun
 	{
 		camTrans = GameObject.Find("Main Camera").GetComponent<Transform>();
 		pivot = GameObject.Find("CameraPivot").GetComponent<Transform>();
-		mainTransform = GameObject.Find("CameraHolder(Clone)").GetComponent<Transform>();
+		//mainTransform = GameObject.Find("CameraHolder(Clone)").GetComponent<Transform>();
+		mainTransform = GameObject.Find("CameraHolder").GetComponent<Transform>();
 		targetLook = GameObject.Find("TargetLook").GetComponent<Transform>();
 
 		tr = GetComponent<Transform>();

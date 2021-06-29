@@ -4,7 +4,7 @@ using UnityEngine.UI;
 using Photon.Pun;
 using Photon.Realtime;
 
-public class Player_Scr : MonoBehaviourPun
+public class Player_Scr : MonoBehaviourPunCallbacks, IPunObservable
 {
 
     // 죽었을 때 스폰지역으로 다시 돌아가는 거 만드셈ㅇ ㅋ? 『순간이동』
@@ -135,6 +135,9 @@ public class Player_Scr : MonoBehaviourPun
 
     public static bool ClearC = false;
 
+	private Vector3 currPos;
+	private Quaternion currRot;
+
 	void CmdClientState(Vector3 targetPosVec, float newRunWeight, float run, float strafe)
 	{
 		this.targetPosVec = targetPosVec;
@@ -147,7 +150,7 @@ public class Player_Scr : MonoBehaviourPun
 	{
         FirstLocationVector = gameObject.transform.position;
 		/*-----AKH 수정-----*/
-		DontDestroyOnLoad(gameObject);
+		//DontDestroyOnLoad(gameObject);
 
 		targetPos = GameObject.Find("TargetLook").GetComponent<Transform>();
 		targetPosOld = GameObject.Find("TargetLookInFight").GetComponent<Transform>();
@@ -175,68 +178,64 @@ public class Player_Scr : MonoBehaviourPun
 
 	void Update()
 	{
-		/*if (!photonView.IsMine)
+		if (photonView.IsMine)
 		{
-			return;
-		}*/
-		if (isShop)
-		{
-			if (dead == false) 
+			if (isShop)
 			{
-				if (HP <= 0)
+				if (dead == false)
 				{
-					Dead();
+					if (HP <= 0)
+					{
+						Dead();
+					}
 				}
+
+				CLC = gameObject.transform.position;
+
+				if (FireM == true)
+				{
+					isFireM();
+
+				}
+
+				Locomotion();
+				Fight();
+				Jump();
+				roll();
+				w_change();
+
+				if (ClearC == false)
+				{
+					clear_time += Time.deltaTime; //시작 시 시간 측정
+				}
+
+				if (ShootSimple_Scr.WeaponNumber == 1)
+				{
+					skill1_2();
+					skill1_3SpeedBuff();
+				}
+				else if (ShootSimple_Scr.WeaponNumber == 2)
+				{
+					skill2_3();
+					skill2_4();
+				}
+				else if (ShootSimple_Scr.WeaponNumber == 3)
+				{
+					skill3_2();
+					skill3_3();
+					skill3_4();
+				}
+				ManaRegen();//마나 초당 회복
+				MaxHp();// 체력 100이상 되면 100으로 고정
+				grounded = Physics.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Blocking"));
 			}
-
-			CLC = gameObject.transform.position;
-
-            if (FireM == true)
-			{
-				isFireM();
-
-            }
-
-			Locomotion();
-			Fight();
-			Jump();
-			roll();
-			w_change();
-
-            if(ClearC == false)
-            {
-                clear_time += Time.deltaTime; //시작 시 시간 측정
-            }
-
-			
-			if (ShootSimple_Scr.WeaponNumber == 1)
-			{
-				skill1_2();
-				skill1_3SpeedBuff();
-			}
-
-			else if (ShootSimple_Scr.WeaponNumber == 2)
-			{
-				skill2_3();
-				skill2_4();
-			}
-
-			else if (ShootSimple_Scr.WeaponNumber == 3)
-			{
-				skill3_2();
-				skill3_3();
-				skill3_4();
-			}
-			
-
-			ManaRegen();//마나 초당 회복
-			MaxHp();// 체력 100이상 되면 100으로 고정
-			grounded = Physics.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Blocking"));
+        }
+		else
+		{
+			transform.position = Vector3.Lerp(transform.position, currPos, Time.deltaTime * 10.0f);
+			transform.rotation = Quaternion.Slerp(transform.rotation, currRot, Time.deltaTime * 10.0f);
 		}
-
-		
 	}
-
 	
 	void ManaRegen()
 	{
@@ -256,12 +255,10 @@ public class Player_Scr : MonoBehaviourPun
 
 	void MaxHp()
 	{
-
 		if (HP > maxHP)
 		{
 			HP = maxHP;
 		}
-
 	}
 
 	void w_change() //스킬 체인지
@@ -269,39 +266,31 @@ public class Player_Scr : MonoBehaviourPun
 		if (SkillPanelMove.skill_mode == 1) //스킬 ui가 불속성으로 바뀌면 불속성 스킬 사용가능
 		{
 			ShootSimple_Scr.WeaponNumber = 2;
-
 		}
 		if (SkillPanelMove.skill_mode == 2) //스킬 ui가 전기속성으로 바뀌면 속성 스킬 사용가능
 		{
 			ShootSimple_Scr.WeaponNumber = 1;
-
 		}
 		if (SkillPanelMove.skill_mode == 3) //스킬 ui가 빛속성으로 바뀌면 빛속성 스킬 사용가능
 		{
 			ShootSimple_Scr.WeaponNumber = 3;
-
 		}
 	}
-
 
 	public void skill1_2()
 	{
 		if (Input.GetKeyDown(KeyCode.Alpha2) && isSkill2 == true && roll_check == false
 			&& grounded == true && ShootSimple_Scr.SkillMode == false) //에임 조준 안했을시 2번 누르면 실행
-
 		{
 			anim.SetBool("Skill_1_Magic", true);
 			isSkill2 = false;
 			isfight = true;
 			StartCoroutine("Skill1_2");
-
-
 		}
 	}
 
 	IEnumerator Skill1_2()
-	{
-
+	{ 
 		yield return new WaitForSeconds(2.0f);
 		anim.SetBool("Skill_1_Magic", false);
 		Instantiate(skill2_Effect, transform.position + this.transform.forward * 5, Quaternion.Euler(-90, 0, 0));
@@ -313,7 +302,6 @@ public class Player_Scr : MonoBehaviourPun
 	{
 		if (Input.GetKeyDown(KeyCode.Alpha3) && isSkill3 == true)
 		{
-
 			isSkill3 = false;
 			skill3_Buff_Effect.SetActive(true); //버프 이펙트 나오게하기
 			Bullet.bulletDamage += 20; //캐릭터 방어력 5 상승
@@ -321,16 +309,13 @@ public class Player_Scr : MonoBehaviourPun
 		}
 	}
 
-
 	IEnumerator Skill1_3()
 	{
-
 		yield return new WaitForSeconds(5.0f);
 		Bullet.bulletDamage -= 20;
 		 //캐릭터 방어력 원상태로 돌리기
 		skill3_Buff_Effect.SetActive(false);
 		isSkill3 = true;
-
 	}
 	
 	public void skill2_3()
@@ -338,7 +323,6 @@ public class Player_Scr : MonoBehaviourPun
 		if (Input.GetKeyDown(KeyCode.Alpha3) && isSkill2_3 == true && roll_check == false
 			&& grounded == true && ShootSimple_Scr.SkillMode == false)
 		{
-
 			isSkill2_3 = false;
 			skill2_fireFiled.SetActive(true); //버프 이펙트 나오게하기			
 			StartCoroutine("Skill2_3");
@@ -356,20 +340,16 @@ public class Player_Scr : MonoBehaviourPun
 	{
 		if (Input.GetKeyDown(KeyCode.Alpha4) && isSkill2_4 == true && roll_check == false
 			&& grounded == true && ShootSimple_Scr.SkillMode == false) //에임 조준 안했을시 2번 누르면 실행
-
 		{
 			anim.SetBool("Skill_1_Magic", true);
 			isSkill2_4 = false;
 			isfight = true;
 			StartCoroutine("Skill2_4");
-
-
 		}
 	}
 
 	IEnumerator Skill2_4()
 	{
-
 		yield return new WaitForSeconds(2.0f);
 		anim.SetBool("Skill_1_Magic", false);
 		Instantiate(skill2_meteo, transform.position + this.transform.forward * 10, Quaternion.Euler(-90, 0, 0));
@@ -395,7 +375,6 @@ public class Player_Scr : MonoBehaviourPun
 
 	IEnumerator Skill3_2()
 	{
-
 		yield return new WaitForSeconds(5.0f); //스킬 쿨
 		//Destroy(skill3_wall);
 		isSkill3_2 = true;
@@ -450,15 +429,8 @@ public class Player_Scr : MonoBehaviourPun
 
 	}
 
-	
-
-
-
-
-
 	void Jump()
-    {
-		
+    {		
 		if (Input.GetKey(KeyCode.Space))
 		{
 			Debug.Log("스페이스바");
@@ -481,21 +453,17 @@ public class Player_Scr : MonoBehaviourPun
 			anim.SetBool("Jump", true);
 			rigdbody.AddForce(Vector3.up * jumpPower, ForceMode.Impulse);
 			isJumping = false;
-
 		}
 		if (isJumping == false) //점프 한번만 가능하게 공중에서 false줌
 		{
 			anim.SetBool("Jump", false);
 		}
 
-
-
 	}
 
 	void Locomotion()
 	{
 		targetPosVec = targetPos.position; 
-
 
 		run = Input.GetAxis("Vertical");
 		strafe = Input.GetAxis("Horizontal");
@@ -653,14 +621,24 @@ public class Player_Scr : MonoBehaviourPun
 			anim.SetBool("isShoot", false);
 		}
 	}
+	[PunRPC]
+	void testAni()
+	{
+		//손 관절 
+		anim.SetLookAtWeight(lookIKWeight, bodyWeight);
+		anim.SetLookAtPosition(targetPosVec);
+	}
 
 	void OnAnimatorIK()
 	{
 		if (Input.GetMouseButton(1) && isShop)
 		{
-			anim.SetLookAtWeight(lookIKWeight, bodyWeight);
-		    anim.SetLookAtPosition(targetPosVec);
-			//a.transform.rotation = Quaternion.Euler(targetPosVec);
+			if (photonView.IsMine)
+			{
+				//손 관절 
+				//photonView.RPC("testAni", RpcTarget.All);
+				testAni();
+			}
 		}
 	}
 
@@ -781,8 +759,21 @@ public class Player_Scr : MonoBehaviourPun
             Debug.Log(HitD);
         }
     }
+	void IPunObservable.OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+	{
+		//로컬 플레이어의 위치 정보 송신
+		if (stream.IsWriting)
+		{
+			stream.SendNext(transform.position);
+			stream.SendNext(transform.rotation);
+		}
+		else
+		{
+			currPos = (Vector3)stream.ReceiveNext();
+			currRot = (Quaternion)stream.ReceiveNext();
+		}
+	}
 
-	
 
 
 } 
