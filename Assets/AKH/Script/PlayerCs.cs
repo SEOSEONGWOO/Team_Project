@@ -184,11 +184,6 @@ public class PlayerCs : MonoBehaviourPunCallbacks, IPunObservable
     }
     void Update()
     {
-        /*if (GameM.gameStart)
-        {
-            ReStart();
-            GameM.gameStart = false;
-        }*/
         if (photonView.IsMine)
         {
             if (isShop)
@@ -334,7 +329,43 @@ public class PlayerCs : MonoBehaviourPunCallbacks, IPunObservable
             transform.eulerAngles = new Vector3(0f, transform.eulerAngles.y, 0f);
         }
     }
+    public float currlookIKWeight;
+    public float currbodyWeight;
+    public Vector3 currtargetPosVec;
     [PunRPC]
+    void testAni()
+    {
+        //손 관절 
+        anim.SetLookAtWeight(lookIKWeight, bodyWeight);
+        anim.SetLookAtPosition(targetPosVec);
+
+        currlookIKWeight = lookIKWeight;
+        currbodyWeight = bodyWeight;
+        currtargetPosVec = targetPosVec;
+    }
+    void currtestAni()
+    {
+        //손 관절 
+        anim.SetLookAtWeight(currlookIKWeight, currbodyWeight);
+        anim.SetLookAtPosition(currtargetPosVec);
+    }
+    void OnAnimatorIK()
+    {
+        if (Input.GetMouseButton(1) && isShop)
+        {
+            if (photonView.IsMine)
+            {
+                //손 관절 
+                //photonView.RPC("testAni", RpcTarget.All);
+                testAni();
+            }
+            else
+            {
+                currtestAni();
+            }
+        }
+    }
+    /*[PunRPC]
     void testAni()
     {
         //손 관절 
@@ -353,7 +384,7 @@ public class PlayerCs : MonoBehaviourPunCallbacks, IPunObservable
                 testAni();
             }
         }
-    }
+    }*/
 
     [PunRPC]
     void Jump()
@@ -507,8 +538,30 @@ public class PlayerCs : MonoBehaviourPunCallbacks, IPunObservable
         }
     }
     private Vector3 currPos;
-    private Quaternion currRot;
+    private Quaternion currRot; 
     void IPunObservable.OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        //로컬 플레이어의 위치 정보 송신
+        if (stream.IsWriting)
+        {
+            stream.SendNext(transform.position);
+            stream.SendNext(transform.rotation);
+
+            stream.SendNext(lookIKWeight);
+            stream.SendNext(bodyWeight);
+            stream.SendNext(targetPosVec);
+        }
+        else
+        {
+            currPos = (Vector3)stream.ReceiveNext();
+            currRot = (Quaternion)stream.ReceiveNext();
+
+            currlookIKWeight = (float)stream.ReceiveNext();
+            currbodyWeight = (float)stream.ReceiveNext();
+            currtargetPosVec = (Vector3)stream.ReceiveNext();
+        }
+    }
+    /*void IPunObservable.OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
         //로컬 플레이어의 위치 정보 송신
         if (stream.IsWriting)
@@ -521,7 +574,7 @@ public class PlayerCs : MonoBehaviourPunCallbacks, IPunObservable
             currPos = (Vector3)stream.ReceiveNext();
             currRot = (Quaternion)stream.ReceiveNext();
         }
-    }
+    }*/
 
     void ManaRegen()
     {

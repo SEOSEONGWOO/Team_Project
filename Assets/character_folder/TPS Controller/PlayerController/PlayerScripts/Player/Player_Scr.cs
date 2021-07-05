@@ -78,9 +78,6 @@ public class Player_Scr : MonoBehaviourPunCallbacks, IPunObservable
 	public GameObject skill3_buff;
 	public GameObject skill3_4_Effect;
 
-
-
-
 	[Header("The fight")]
 	public int damage;
 
@@ -137,6 +134,11 @@ public class Player_Scr : MonoBehaviourPunCallbacks, IPunObservable
 
 	private Vector3 currPos;
 	private Quaternion currRot;
+
+
+	public float currlookIKWeight;
+	public float currbodyWeight;
+	public Vector3 currtargetPosVec;
 
 	void CmdClientState(Vector3 targetPosVec, float newRunWeight, float run, float strafe)
 	{
@@ -627,8 +629,16 @@ public class Player_Scr : MonoBehaviourPunCallbacks, IPunObservable
 		//손 관절 
 		anim.SetLookAtWeight(lookIKWeight, bodyWeight);
 		anim.SetLookAtPosition(targetPosVec);
+		currlookIKWeight = lookIKWeight;
+		currbodyWeight = bodyWeight;
+		currtargetPosVec = targetPosVec;
 	}
-
+	void currtestAni()
+	{
+		//손 관절 
+		anim.SetLookAtWeight(currlookIKWeight, currbodyWeight);
+		anim.SetLookAtPosition(currtargetPosVec);
+	}
 	void OnAnimatorIK()
 	{
 		if (Input.GetMouseButton(1) && isShop)
@@ -638,6 +648,10 @@ public class Player_Scr : MonoBehaviourPunCallbacks, IPunObservable
 				//손 관절 
 				//photonView.RPC("testAni", RpcTarget.All);
 				testAni();
+            }
+            else
+            {
+				//currtestAni();
 			}
 		}
 	}
@@ -766,11 +780,19 @@ public class Player_Scr : MonoBehaviourPunCallbacks, IPunObservable
 		{
 			stream.SendNext(transform.position);
 			stream.SendNext(transform.rotation);
+
+			stream.SendNext(lookIKWeight);
+			stream.SendNext(bodyWeight);
+			stream.SendNext(targetPosVec);
 		}
 		else
 		{
 			currPos = (Vector3)stream.ReceiveNext();
 			currRot = (Quaternion)stream.ReceiveNext();
+
+			currlookIKWeight = (float)stream.ReceiveNext();
+			currbodyWeight = (float)stream.ReceiveNext();
+			currtargetPosVec = (Vector3)stream.ReceiveNext();
 		}
 	}
 
