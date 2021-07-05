@@ -33,6 +33,10 @@ public class PlayerCs : MonoBehaviourPunCallbacks, IPunObservable
     public float bodyWeight = 1.5f;
     public GameObject a;
 
+    [Header("clear_time")]
+    public static string player_name;
+    public static float clear_time = 1.2f;
+
     [Tooltip("Health text")]
     public Text healthText;
     public Slider sliderHP;
@@ -125,6 +129,10 @@ public class PlayerCs : MonoBehaviourPunCallbacks, IPunObservable
 
     public Vector3 FirstLocationVector;
 
+    public GameObject Burned;
+
+    public static bool ClearC = false;
+
     // 돈 관련 코드
 
     public static int PlayerMoney;
@@ -133,7 +141,7 @@ public class PlayerCs : MonoBehaviourPunCallbacks, IPunObservable
 
     public static bool FireM = false;
     public static float FireTime = 0f;
-    float FireDamage = 0.05f;
+    float FireDamage = 0.1f;
 
 
     void CmdClientState(Vector3 targetPosVec, float newRunWeight, float run, float strafe)
@@ -208,17 +216,38 @@ public class PlayerCs : MonoBehaviourPunCallbacks, IPunObservable
                     isFireM();
                 }
 
-                // Debug.Log(MainCharHP);
-                //Health();
-                //UI();
-
                 Locomotion();
                 Fight();
                 Jump();
                 //photonView.RPC("Jump", RpcTarget.All);
                 roll();
 
+                if (ClearC == false)
+                {
+                    clear_time += Time.deltaTime; //시작 시 시간 측정
+                }
+
                 if (ShootSimple_Scr.WeaponNumber == 1)
+                {
+                    skill1_2();
+                    skill1_3SpeedBuff();
+                }
+                else if (ShootSimple_Scr.WeaponNumber == 2)
+                {
+                    skill2_3();
+                    skill2_4();
+                }
+                else if (ShootSimple_Scr.WeaponNumber == 3)
+                {
+                    skill3_2();
+                    skill3_3();
+                    skill3_4();
+                }
+                ManaRegen();//마나 초당 회복
+                MaxHp();// 체력 100이상 되면 100으로 고정
+                grounded = Physics.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Blocking"));
+
+                /*if (ShootSimple_Scr.WeaponNumber == 1)
                 {
                     skill1_2();
                     skill1_3SpeedBuff();
@@ -242,7 +271,7 @@ public class PlayerCs : MonoBehaviourPunCallbacks, IPunObservable
 
                 ManaRegen();//마나 초당 회복
                 MaxHp();// 체력 100이상 되면 100으로 고정
-                grounded = Physics.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Blocking"));
+                grounded = Physics.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Blocking"));*/
 
             }
         }
@@ -258,6 +287,7 @@ public class PlayerCs : MonoBehaviourPunCallbacks, IPunObservable
     void Locomotion()
     {
         targetPosVec = targetPos.position;
+       // currtargetPosVec = targetPosVec;
         //조작
         run = Input.GetAxis("Vertical");
         strafe = Input.GetAxis("Horizontal");
@@ -331,22 +361,18 @@ public class PlayerCs : MonoBehaviourPunCallbacks, IPunObservable
     }
     public float currlookIKWeight;
     public float currbodyWeight;
-    public Vector3 currtargetPosVec;
+    public static Vector3 currtargetPosVec;
     [PunRPC]
     void testAni()
     {
         //손 관절 
         anim.SetLookAtWeight(lookIKWeight, bodyWeight);
         anim.SetLookAtPosition(targetPosVec);
-
-        currlookIKWeight = lookIKWeight;
-        currbodyWeight = bodyWeight;
-        currtargetPosVec = targetPosVec;
     }
     void currtestAni()
     {
         //손 관절 
-        anim.SetLookAtWeight(currlookIKWeight, currbodyWeight);
+        anim.SetLookAtWeight(lookIKWeight, bodyWeight);
         anim.SetLookAtPosition(currtargetPosVec);
     }
     void OnAnimatorIK()
@@ -361,30 +387,10 @@ public class PlayerCs : MonoBehaviourPunCallbacks, IPunObservable
             }
             else
             {
-                currtestAni();
+                //currtestAni();
             }
         }
     }
-    /*[PunRPC]
-    void testAni()
-    {
-        //손 관절 
-        anim.SetLookAtWeight(lookIKWeight, bodyWeight);
-        anim.SetLookAtPosition(targetPosVec);
-    }
-    
-    void OnAnimatorIK()
-    {
-        if (Input.GetMouseButton(1) && isShop)
-        {
-            if (photonView.IsMine)
-            {
-                //손 관절 
-                //photonView.RPC("testAni", RpcTarget.All);
-                testAni();
-            }
-        }
-    }*/
 
     [PunRPC]
     void Jump()
@@ -505,7 +511,7 @@ public class PlayerCs : MonoBehaviourPunCallbacks, IPunObservable
     public void Death() //사망시 실행
     {
         //anim.SetBool("Die", true);  //사망 애니메이션
-        Destroy(gameObject);  //3초후 오브젝트 삭제
+        //Destroy(gameObject);  //3초후 오브젝트 삭제
         Instantiate(ragdoll, transform.position, transform.rotation);
         dead = true;
 
@@ -539,6 +545,7 @@ public class PlayerCs : MonoBehaviourPunCallbacks, IPunObservable
     }
     private Vector3 currPos;
     private Quaternion currRot; 
+    
     void IPunObservable.OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
         //로컬 플레이어의 위치 정보 송신
@@ -546,35 +553,13 @@ public class PlayerCs : MonoBehaviourPunCallbacks, IPunObservable
         {
             stream.SendNext(transform.position);
             stream.SendNext(transform.rotation);
-
-            stream.SendNext(lookIKWeight);
-            stream.SendNext(bodyWeight);
-            stream.SendNext(targetPosVec);
         }
         else
         {
             currPos = (Vector3)stream.ReceiveNext();
             currRot = (Quaternion)stream.ReceiveNext();
-
-            currlookIKWeight = (float)stream.ReceiveNext();
-            currbodyWeight = (float)stream.ReceiveNext();
-            currtargetPosVec = (Vector3)stream.ReceiveNext();
         }
     }
-    /*void IPunObservable.OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
-    {
-        //로컬 플레이어의 위치 정보 송신
-        if (stream.IsWriting)
-        {
-            stream.SendNext(transform.position);
-            stream.SendNext(transform.rotation);
-        }
-        else
-        {
-            currPos = (Vector3)stream.ReceiveNext();
-            currRot = (Quaternion)stream.ReceiveNext();
-        }
-    }*/
 
     void ManaRegen()
     {
@@ -602,7 +587,7 @@ public class PlayerCs : MonoBehaviourPunCallbacks, IPunObservable
 
     }
 
-    void w_change()
+    /*void w_change()
     {
 
         if (Input.GetKeyDown(KeyCode.Alpha5))
@@ -624,8 +609,22 @@ public class PlayerCs : MonoBehaviourPunCallbacks, IPunObservable
                 ShootSimple_Scr.WeaponNumber = 1;
             }
         }
+    }*/
+    void w_change() //스킬 체인지
+    {
+        if (SkillPanelMove.skill_mode == 1) //스킬 ui가 불속성으로 바뀌면 불속성 스킬 사용가능
+        {
+            ShootSimple_Scr.WeaponNumber = 2;
+        }
+        if (SkillPanelMove.skill_mode == 2) //스킬 ui가 전기속성으로 바뀌면 속성 스킬 사용가능
+        {
+            ShootSimple_Scr.WeaponNumber = 1;
+        }
+        if (SkillPanelMove.skill_mode == 3) //스킬 ui가 빛속성으로 바뀌면 빛속성 스킬 사용가능
+        {
+            ShootSimple_Scr.WeaponNumber = 3;
+        }
     }
-
 
     public void skill1_2()
     {
@@ -858,8 +857,6 @@ public class PlayerCs : MonoBehaviourPunCallbacks, IPunObservable
         roll_check = false;
     }
 
-
-
     private void OnTriggerStay(Collider other)
     {
         if (other.tag == "Damage")
@@ -879,7 +876,4 @@ public class PlayerCs : MonoBehaviourPunCallbacks, IPunObservable
             }
         }
     }
-
-
-
 }

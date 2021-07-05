@@ -10,120 +10,121 @@ public class Player_Scr : MonoBehaviourPunCallbacks, IPunObservable
     // 죽었을 때 스폰지역으로 다시 돌아가는 거 만드셈ㅇ ㅋ? 『순간이동』
 
 
-	private void Awake() //해상도 설정
-	{
-		Screen.sleepTimeout = SleepTimeout.NeverSleep;
-		Screen.SetResolution(1920, 1080, true);
-	}
+    private void Awake() //해상도 설정
+    {
+        Screen.sleepTimeout = SleepTimeout.NeverSleep;
+        Screen.SetResolution(1920, 1080, true);
+    }
 
-	public static Animator anim;
-	[Header("Player Health")]
-	public static float maxHP = 100;
-	public static float HP = 100;
+    public static Animator anim;
+    [Header("Player Health")]
+    public static float maxHP = 100;
+    public static float HP = 100;
     public static float maxMP = 100;
     public static float MP = 100; //구르기 게이지 ,구르면 20씩 줄어들게 만들어둠
 
-	public int Depense = 5; // 방어력
+    public int Depense = 5; // 방어력
 
-	public int HitD = 0; // 맞는 데미지
+    public int HitD = 0; // 맞는 데미지
 
-	public static float MainCharHP = 100f;
+    public static float MainCharHP = 100f;
 
-	public float lookIKWeight;
-	public float bodyWeight;
-	//public GameObject a;
+    public float lookIKWeight;
+    public float bodyWeight;
+    //public GameObject a;
 
-	[Header("clear_time")]
-	public static string player_name;
-	public static float clear_time =1.2f;
+    [Header("clear_time")]
+    public static string player_name;
+    public static float clear_time = 1.2f;
 
-	[Tooltip("Health text")]
-	public Text healthText;
-	public Slider sliderHP;
-	[Header("Money")]
-	public static int money = 5000;
+    [Tooltip("Health text")]
+    public Text healthText;
+    public Slider sliderHP;
+    [Header("Money")]
+    public static int money = 5000;
 
-	[Header("Character customization")]
-	public Transform targetPos;
-	public Transform targetPosOld;
-	public float angularSpeed;
-	bool isPlayerRot;
-	public float luft;
+    [Header("Character customization")]
+    public Transform targetPos;
+    public Transform targetPosOld;
+    public float angularSpeed;
+    bool isPlayerRot;
+    public float luft;
 
-	private Transform groundCheck;
-	public bool grounded = false;
+    private Transform groundCheck;
+    public bool grounded = false;
 
-	Rigidbody rigdbody;
-	bool isJumping = false;
-	public float jumpPower = 10.0f;
-	public float rollPower = 3.5f;
+    Rigidbody rigdbody;
+    bool isJumping = false;
+    public float jumpPower = 10.0f;
+    public float rollPower = 3.5f;
 
-	[Header("무기스킬1 제어")]
-	public bool isSkill2 = true;
-	public bool isSkill3 = true;
-	public GameObject skill2_Effect;
-	public GameObject skill3_Buff_Effect;
+    [Header("무기스킬1 제어")]
+    public bool isSkill2 = true;
+    public bool isSkill3 = true;
+    public GameObject skill2_Effect;
+    public GameObject skill3_Buff_Effect;
 
-	[Header("무기스킬2 제어")]
-	public bool isSkill2_3 = true;
-	public bool isSkill2_4 = true;
-	public GameObject skill2_fireFiled;
-	public GameObject skill2_meteo;
+    [Header("무기스킬2 제어")]
+    public bool isSkill2_3 = true;
+    public bool isSkill2_4 = true;
+    public GameObject skill2_fireFiled;
+    public GameObject skill2_meteo;
 
-	[Header("무기스킬2 제어")]
-	public bool isSkill3_2 = true;
-	public bool isSkill3_3 = true;
-	public bool isSkill3_4 = true;
-	public GameObject skill3_wall;
-	public GameObject skill3_buff;
-	public GameObject skill3_4_Effect;
+    [Header("무기스킬2 제어")]
+    public bool isSkill3_2 = true;
+    public bool isSkill3_3 = true;
+    public bool isSkill3_4 = true;
+    public GameObject skill3_wall;
+    public GameObject skill3_buff;
+    public GameObject skill3_4_Effect;
 
-	[Header("The fight")]
-	public int damage;
+    [Header("The fight")]
+    public int damage;
 
-	public GameObject weapon1;
-	public GameObject weapon2;
-	public GameObject weapon3;
+    public GameObject weapon1;
+    public GameObject weapon2;
+    public GameObject weapon3;
 
-	/*-----AKH 수정-----*/
-	GameObject crosshair;
-	public Transform tr;
+    public GameObject Chest;
 
-	public static bool isShop = true;
+    /*-----AKH 수정-----*/
+    GameObject crosshair;
+    public Transform tr;
 
-	public static bool isdead = false;
+    public static bool isShop = true;
 
-	/*-----AKH 수정-----*/
+    public static bool isdead = false;
 
-	[Header("Battle mode")]
-	[HideInInspector]
-	public bool isfight = false;
-	public bool isshoot = false;
-	public GameObject fightModUI;
+    /*-----AKH 수정-----*/
 
-	[Header("Ragdoll Player")]
-	public GameObject ragdoll;
-	public static bool dead = false;  //안씀 
-	//public bool die = false;
+    [Header("Battle mode")]
+    [HideInInspector]
+    public bool isfight = false;
+    public bool isshoot = false;
+    public GameObject fightModUI;
 
-	Vector3 targetPosVec;
-	float newRunWeight = 1f;
-	float run = 0f;
-	float strafe = 0f;
+    [Header("Ragdoll Player")]
+    public GameObject ragdoll;
+    public static bool dead = false;  //안씀 
+                                      //public bool die = false;
 
-	Player_Autotarget pa;
+    Vector3 targetPosVec;
+    float newRunWeight = 1f;
+    float run = 0f;
+    float strafe = 0f;
 
-	bool roll_check = false;
+    Player_Autotarget pa;
+
+    bool roll_check = false;
 
 
-	// 플레이어 따라오게 하는 코드
-	//public Transform clcl;
-	public static Vector3 CLC;
+    // 플레이어 따라오게 하는 코드
+    //public Transform clcl;
+    public static Vector3 CLC;
 
     // public Transform FirstLocation;
 
     public Vector3 FirstLocationVector;
-
 
     public GameObject Burned;
     public static bool FireM = false;
@@ -131,550 +132,332 @@ public class Player_Scr : MonoBehaviourPunCallbacks, IPunObservable
     float FireDamage = 0.1f;
 
     public static bool ClearC = false;
+     
 
-	private Vector3 currPos;
-	private Quaternion currRot;
+    void CmdClientState(Vector3 targetPosVec, float newRunWeight, float run, float strafe)
+    {
+        this.targetPosVec = targetPosVec;
+        this.newRunWeight = newRunWeight;
+        this.run = run;
+        this.strafe = strafe;
+    }
 
+    void Start()
+    {
+        if (photonView.IsMine)
+        {
+            ReStart();
+        }
 
-	public float currlookIKWeight;
-	public float currbodyWeight;
-	public Vector3 currtargetPosVec;
+    }
+    void ReStart()
+    {
+        if (photonView.IsMine)
+        {
+            FirstLocationVector = gameObject.transform.position;
+            /*-----AKH 수정-----*/
+            //DontDestroyOnLoad(gameObject);
+            targetPos = GameObject.Find("TargetLook").GetComponent<Transform>();
+            targetPosOld = GameObject.Find("TargetLookInFight").GetComponent<Transform>();
 
-	void CmdClientState(Vector3 targetPosVec, float newRunWeight, float run, float strafe)
-	{
-		this.targetPosVec = targetPosVec;
-		this.newRunWeight = newRunWeight;
-		this.run = run;
-		this.strafe = strafe;
-	}
+            crosshair = GameObject.FindGameObjectWithTag("Crosshair");
 
-	void Start()
-	{
-        FirstLocationVector = gameObject.transform.position;
-		/*-----AKH 수정-----*/
-		//DontDestroyOnLoad(gameObject);
+            tr = GetComponent<Transform>();
 
-		targetPos = GameObject.Find("TargetLook").GetComponent<Transform>();
-		targetPosOld = GameObject.Find("TargetLookInFight").GetComponent<Transform>();
+            /*-----AKH 수정-----*/
 
-		crosshair = GameObject.FindGameObjectWithTag("Crosshair");
+            dead = false;
+            anim = GetComponent<Animator>();
+            pa = GetComponent<Player_Autotarget>();
+            weapon1.SetActive(true);
+            weapon2.SetActive(false);
+            crosshair.SetActive(false);
 
-		tr = GetComponent<Transform>();
-		
-		/*-----AKH 수정-----*/
+            rigdbody = GetComponent<Rigidbody>();
+            groundCheck = transform.Find("GroundCheck");
 
-		dead = false;
-		anim = GetComponent<Animator>();
-		pa = GetComponent<Player_Autotarget>();
-		weapon1.SetActive(true);
-		weapon2.SetActive(false);
-		crosshair.SetActive(false);
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
+    }
+    void Update()
+    {
+        if (photonView.IsMine)
+        {
+            if (isShop)
+            {
+                if (dead == false)
+                {
+                    if (HP <= 0)
+                    {
+                        Dead();
+                    }
+                }
 
-		rigdbody = GetComponent<Rigidbody>();
-		groundCheck = transform.Find("GroundCheck");
+                CLC = gameObject.transform.position;
+                //Debug.Log("CLC : "+CLC);
+                // 돈 텍스트
 
-		Cursor.lockState = CursorLockMode.Locked;
-		Cursor.visible = false;
+                //  string PlayerMoneyT = "보유 금액 : " + PlayerMoney;
+                //  PlayerMoneyText.GetComponent<Text>().text = PlayerMoneyT;
+
+                if (FireM == true)
+                {
+                    isFireM();
+                }
+
+                Locomotion();
+                Fight();
+                Jump();
+                //photonView.RPC("Jump", RpcTarget.All);
+                roll();
+
+                if (ClearC == false)
+                {
+                    clear_time += Time.deltaTime; //시작 시 시간 측정
+                }
+
+                if (ShootSimple_Scr.WeaponNumber == 1)
+                {
+                    skill1_2();
+                    skill1_3SpeedBuff();
+                }
+                else if (ShootSimple_Scr.WeaponNumber == 2)
+                {
+                    skill2_3();
+                    skill2_4();
+                }
+                else if (ShootSimple_Scr.WeaponNumber == 3)
+                {
+                    skill3_2();
+                    skill3_3();
+                    skill3_4();
+                }
+                ManaRegen();//마나 초당 회복
+                MaxHp();// 체력 100이상 되면 100으로 고정
+                grounded = Physics.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Blocking"));
+
+                /*if (ShootSimple_Scr.WeaponNumber == 1)
+                {
+                    skill1_2();
+                    skill1_3SpeedBuff();
+                }
+
+                else if (ShootSimple_Scr.WeaponNumber == 2)
+                {
+                    skill2_3();
+                    skill2_4();
+                }
+
+                else if (ShootSimple_Scr.WeaponNumber == 3)
+                {
+                    skill3_2();
+                    skill3_3();
+                    skill3_4();
+                }
+                w_change(); //무기변경 코드
+                            //skill1();
+                            //땅체크
+
+                ManaRegen();//마나 초당 회복
+                MaxHp();// 체력 100이상 되면 100으로 고정
+                grounded = Physics.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Blocking"));*/
+
+            }
+        }
+        else
+        {
+            transform.position = Vector3.Lerp(transform.position, currPos, Time.deltaTime * 10.0f);
+            transform.rotation = Quaternion.Slerp(transform.rotation, currRot, Time.deltaTime * 10.0f);
+        }
 
     }
 
-	void Update()
-	{
-		if (photonView.IsMine)
-		{
-			if (isShop)
-			{
-				if (dead == false)
-				{
-					if (HP <= 0)
-					{
-						Dead();
-					}
-				}
-
-				CLC = gameObject.transform.position;
-
-				if (FireM == true)
-				{
-					isFireM();
-
-				}
-
-				Locomotion();
-				Fight();
-				Jump();
-				roll();
-				w_change();
-
-				if (ClearC == false)
-				{
-					clear_time += Time.deltaTime; //시작 시 시간 측정
-				}
-
-				if (ShootSimple_Scr.WeaponNumber == 1)
-				{
-					skill1_2();
-					skill1_3SpeedBuff();
-				}
-				else if (ShootSimple_Scr.WeaponNumber == 2)
-				{
-					skill2_3();
-					skill2_4();
-				}
-				else if (ShootSimple_Scr.WeaponNumber == 3)
-				{
-					skill3_2();
-					skill3_3();
-					skill3_4();
-				}
-				ManaRegen();//마나 초당 회복
-				MaxHp();// 체력 100이상 되면 100으로 고정
-				grounded = Physics.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Blocking"));
-			}
-        }
-		else
-		{
-			transform.position = Vector3.Lerp(transform.position, currPos, Time.deltaTime * 10.0f);
-			transform.rotation = Quaternion.Slerp(transform.rotation, currRot, Time.deltaTime * 10.0f);
-		}
-	}
-	
-	void ManaRegen()
-	{
-		if (MP != maxMP)
-		{
-			//마나는 초당 0.5씩 회복
-			MP += Time.deltaTime * 10f;
-
-			//마나를 회복했는데 최대 마나보다 크다면 현재마나를 최대마나량으로 변경
-			if (MP > maxMP)
-			{
-				MP = maxMP;
-			}
-			//회복된 마나량을 Mpbar슬라이더에 업데이트
-		}
-	}
-
-	void MaxHp()
-	{
-		if (HP > maxHP)
-		{
-			HP = maxHP;
-		}
-	}
-
-	void w_change() //스킬 체인지
-	{
-		if (SkillPanelMove.skill_mode == 1) //스킬 ui가 불속성으로 바뀌면 불속성 스킬 사용가능
-		{
-			ShootSimple_Scr.WeaponNumber = 2;
-		}
-		if (SkillPanelMove.skill_mode == 2) //스킬 ui가 전기속성으로 바뀌면 속성 스킬 사용가능
-		{
-			ShootSimple_Scr.WeaponNumber = 1;
-		}
-		if (SkillPanelMove.skill_mode == 3) //스킬 ui가 빛속성으로 바뀌면 빛속성 스킬 사용가능
-		{
-			ShootSimple_Scr.WeaponNumber = 3;
-		}
-	}
-
-	public void skill1_2()
-	{
-		if (Input.GetKeyDown(KeyCode.Alpha2) && isSkill2 == true && roll_check == false
-			&& grounded == true && ShootSimple_Scr.SkillMode == false) //에임 조준 안했을시 2번 누르면 실행
-		{
-			anim.SetBool("Skill_1_Magic", true);
-			isSkill2 = false;
-			isfight = true;
-			StartCoroutine("Skill1_2");
-		}
-	}
-
-	IEnumerator Skill1_2()
-	{ 
-		yield return new WaitForSeconds(2.0f);
-		anim.SetBool("Skill_1_Magic", false);
-		Instantiate(skill2_Effect, transform.position + this.transform.forward * 5, Quaternion.Euler(-90, 0, 0));
-		isfight = false;
-		isSkill2 = true;
-
-	}
-	public void skill1_3SpeedBuff()
-	{
-		if (Input.GetKeyDown(KeyCode.Alpha3) && isSkill3 == true)
-		{
-			isSkill3 = false;
-			skill3_Buff_Effect.SetActive(true); //버프 이펙트 나오게하기
-			Bullet.bulletDamage += 20; //캐릭터 방어력 5 상승
-			StartCoroutine("Skill1_3");
-		}
-	}
-
-	IEnumerator Skill1_3()
-	{
-		yield return new WaitForSeconds(5.0f);
-		Bullet.bulletDamage -= 20;
-		 //캐릭터 방어력 원상태로 돌리기
-		skill3_Buff_Effect.SetActive(false);
-		isSkill3 = true;
-	}
-	
-	public void skill2_3()
-	{
-		if (Input.GetKeyDown(KeyCode.Alpha3) && isSkill2_3 == true && roll_check == false
-			&& grounded == true && ShootSimple_Scr.SkillMode == false)
-		{
-			isSkill2_3 = false;
-			skill2_fireFiled.SetActive(true); //버프 이펙트 나오게하기			
-			StartCoroutine("Skill2_3");
-		}
-	}
-
-	IEnumerator Skill2_3()
-	{
-		yield return new WaitForSeconds(5.0f); //초후 버프 없애기
-		skill2_fireFiled.SetActive(false);
-		yield return new WaitForSeconds(8.0f); //스킬 쿨타임
-		isSkill2_3 = true;
-	}
-	public void skill2_4()
-	{
-		if (Input.GetKeyDown(KeyCode.Alpha4) && isSkill2_4 == true && roll_check == false
-			&& grounded == true && ShootSimple_Scr.SkillMode == false) //에임 조준 안했을시 2번 누르면 실행
-		{
-			anim.SetBool("Skill_1_Magic", true);
-			isSkill2_4 = false;
-			isfight = true;
-			StartCoroutine("Skill2_4");
-		}
-	}
-
-	IEnumerator Skill2_4()
-	{
-		yield return new WaitForSeconds(2.0f);
-		anim.SetBool("Skill_1_Magic", false);
-		Instantiate(skill2_meteo, transform.position + this.transform.forward * 10, Quaternion.Euler(-90, 0, 0));
-		isfight = false;
-		yield return new WaitForSeconds(10.0f);
-		isSkill2_4 = true;
-
-	}
-
-	public void skill3_2()
-	{
-		if (Input.GetKeyDown(KeyCode.Alpha2) && isSkill3_2 == true && roll_check == false
-			&& grounded == true && ShootSimple_Scr.SkillMode == false) //에임 조준 안했을시 2번 누르면 실행
-
-		{	
-			isSkill3_2 = false;
-			isfight = true;
-			StartCoroutine("Skill3_2");
-			Instantiate(skill3_wall, transform.position + this.transform.forward * 2 + this.transform.up * 1, Quaternion.Euler(-90, 0, 0));
-			isfight = false;
-		}
-	}
-
-	IEnumerator Skill3_2()
-	{
-		yield return new WaitForSeconds(5.0f); //스킬 쿨
-		//Destroy(skill3_wall);
-		isSkill3_2 = true;
-
-	}
-
-	public void skill3_3()
-	{
-		if (Input.GetKeyDown(KeyCode.Alpha3) && isSkill3_3 == true && roll_check == false
-			&& grounded == true && ShootSimple_Scr.SkillMode == false)
-		{
-
-			isSkill3_3 = false;
-			skill3_buff.SetActive(true); //버프 이펙트 나오게하기	
-			Depense += 50;
-			StartCoroutine("Skill3_3");
-		}
-	}
-	IEnumerator Skill3_3()
-	{
-
-		yield return new WaitForSeconds(5.0f); //초후 버프 없애기
-		skill3_buff.SetActive(false);
-		Depense -= 50;
-		yield return new WaitForSeconds(8.0f); //스킬 쿨타임
-		isSkill3_3 = true;
-	}
-	public void skill3_4()
-	{
-		if (Input.GetKeyDown(KeyCode.Alpha4) && isSkill3_4 == true && roll_check == false
-			&& grounded == true && ShootSimple_Scr.SkillMode == false)
-		{
-			isfight = true;
-			isSkill3_4 = false;
-			anim.SetBool("Skill_1_Magic", true);
-			 //버프 이펙트 나오게하기			
-			StartCoroutine("Skill3_4");
-		}
-	}
-
-	IEnumerator Skill3_4()
-	{
-		yield return new WaitForSeconds(2.0f);
-		skill3_4_Effect.SetActive(true);
-		anim.SetBool("Skill_1_Magic", false);
-		isfight = false;
-		yield return new WaitForSeconds(5.0f); //초후 버프 없애기
-		skill3_4_Effect.SetActive(false);
-		hill_buff.a = false; //초당 체력 재생 변수 끄기
-		yield return new WaitForSeconds(8.0f); //스킬 쿨타임
-		isSkill3_4 = true;
-
-	}
-
-	void Jump()
-    {		
-		if (Input.GetKey(KeyCode.Space))
-		{
-			Debug.Log("스페이스바");
-			if (grounded == true)
-			{
-				Debug.Log("aaaaa");
-				isJumping = true;
-				anim.SetBool("Jump", Input.GetKey(KeyCode.Space));
-			}
-
-		}
-	}
-
-	void FixedUpdate() // 리지드바디 이용할 경우 update 대신 FixedUpdate 사용
-	{
-		if (isJumping == true)
-		{
-			Debug.Log("bbbb");
-			
-			anim.SetBool("Jump", true);
-			rigdbody.AddForce(Vector3.up * jumpPower, ForceMode.Impulse);
-			isJumping = false;
-		}
-		if (isJumping == false) //점프 한번만 가능하게 공중에서 false줌
-		{
-			anim.SetBool("Jump", false);
-		}
-
-	}
-
-	void Locomotion()
-	{
-		targetPosVec = targetPos.position; 
-
-		run = Input.GetAxis("Vertical");
-		strafe = Input.GetAxis("Horizontal");
-
-		anim.SetFloat("Strafe", strafe); 
-		anim.SetFloat("Run", run);
-
-		if (roll_check == false)
-		{
-
-			//float forwardrun = 5 * Time.deltaTime;
-			if (run > 0)
-			{
-				transform.Translate(Vector3.forward * (5 * Time.deltaTime) * run);
-			}
-			else if (run < 0)
-			{
-				{
-					transform.Translate(Vector3.forward * (3 * Time.deltaTime) * run);
-				}
-			}
-
-			if (strafe > 0)
-			{
-				transform.Translate(Vector3.right * (3 * Time.deltaTime) * strafe);
-			}
-			else if (strafe < 0)
-			{
-				{
-					transform.Translate(Vector3.right * (3 * Time.deltaTime) * strafe);
-				}
-			}
-
-
-
-
-			if (run != 0 || isfight == true)
-			{
-				Vector3 rot = transform.eulerAngles;
-				transform.LookAt(targetPosVec);
-				float angleBetween = Mathf.DeltaAngle(transform.eulerAngles.y, rot.y);
-				if ((Mathf.Abs(angleBetween) > luft) || strafe != 0)
-				{
-					isPlayerRot = true;
-				}
-				if (isPlayerRot == true)
-				{
-					float bodyY = Mathf.LerpAngle(rot.y, transform.eulerAngles.y, Time.deltaTime * angularSpeed);
-					transform.eulerAngles = new Vector3(0, bodyY, 0);
-
-					if (strafe == 0)
-					{
-						anim.SetBool("Turn", false);
-					}
-					else
-					{
-						anim.SetBool("Turn", false);
-					}
-
-					if (Mathf.Abs(angleBetween) * Mathf.Deg2Rad <= Time.deltaTime * angularSpeed)
-					{
-						isPlayerRot = false;
-						anim.SetBool("Turn", false);
-					}
-				}
-				else
-				{
-					transform.eulerAngles = new Vector3(0f, rot.y, 0f);
-				}
-			}
-			transform.eulerAngles = new Vector3(0f, transform.eulerAngles.y, 0f);
-
-		}
-	}
-
-
-	void roll()
+    //로컬
+    void Locomotion()
     {
+        targetPosVec = targetPos.position;
+        // currtargetPosVec = targetPosVec;
+        //조작
+        run = Input.GetAxis("Vertical");
+        strafe = Input.GetAxis("Horizontal");
 
-		//roll 제어 코드
-		if (Input.GetKeyDown(KeyCode.LeftShift) && isfight == false && run >= 0 && grounded == true)
-		{
-			MP -= 20;
-			roll_check = true;
-			anim.SetFloat("forward_roll", 1.0f);
-			weapon1.SetActive(false);
-			StartCoroutine("forward_roll_colltime");
-			
-		}
+        anim.SetFloat("Run", run);
+        anim.SetFloat("Strafe", strafe);
 
-        else if(Input.GetKeyDown(KeyCode.LeftShift) && isfight == false && run < 0 && grounded == true)
-		{
-			MP -= 20;
-			roll_check = true;
-			
-			anim.SetFloat("back_roll", 1.0f);
-			weapon1.SetActive(false);
-			
-			StartCoroutine("back_roll_colltime");
-		}
-
-	}
-	IEnumerator forward_roll_colltime()
-    {
-		
-		yield return new WaitForSeconds(0.8f);
-		weapon1.SetActive(true);	
-		anim.SetFloat("forward_roll", 0.0f);
-		roll_check = false;
-	}
-	IEnumerator back_roll_colltime()
-    {
-		yield return new WaitForSeconds(0.6f);
-		weapon1.SetActive(true);	
-		anim.SetFloat("back_roll", 0.0f);
-		roll_check = false;
-	}
-
-	void Fight()
-	{
-		//AIMING
-		if (Input.GetMouseButton(1) && isfight == false && roll_check == false) 
-		{
-			ShootSimple_Scr.SkillMode = true; //에임 조준 시 스킬 사용 가능
-			isfight = true;
-			anim.SetBool ("isFight", true);
-			weapon2.SetActive(true);
-			//weapon1.SetActive(false);
-			crosshair.SetActive(true);
-			Debug.Log("조준 활성화");
-		} 
-		else if (Input.GetMouseButtonUp(1) && isfight == true && roll_check == false) 
-		{
-			Debug.Log("조준 끝");
-			ShootSimple_Scr.SkillMode = false;
-			 weapon3.SetActive(false);
-			//ShootSimple_Scr.SkillMode = false;
-			isfight = false;
-			anim.SetBool ("isFight", false);
-			//weapon1.SetActive(true);
-			weapon2.SetActive(false);
-			crosshair.SetActive(false);
-			isshoot = false;
-			anim.SetBool("isShoot", false);
-		}
-		//SHOOTING
-		if (Input.GetMouseButton(0) && isfight == true)
+        if (roll_check == false)
         {
-			isshoot = true;
-			anim.SetBool("isShoot", true);
-		}
-		else if (Input.GetMouseButtonUp(0) && isfight == true)
-		{
-			isshoot = false;
-			anim.SetBool("isShoot", false);
-		}
-	}
-	[PunRPC]
-	void testAni()
-	{
-		//손 관절 
-		anim.SetLookAtWeight(lookIKWeight, bodyWeight);
-		anim.SetLookAtPosition(targetPosVec);
-		currlookIKWeight = lookIKWeight;
-		currbodyWeight = bodyWeight;
-		currtargetPosVec = targetPosVec;
-	}
-	void currtestAni()
-	{
-		//손 관절 
-		anim.SetLookAtWeight(currlookIKWeight, currbodyWeight);
-		anim.SetLookAtPosition(currtargetPosVec);
-	}
-	void OnAnimatorIK()
-	{
-		if (Input.GetMouseButton(1) && isShop)
-		{
-			if (photonView.IsMine)
-			{
-				//손 관절 
-				//photonView.RPC("testAni", RpcTarget.All);
-				testAni();
+
+            //float forwardrun = 5 * Time.deltaTime;
+            if (run > 0)
+            {
+                transform.Translate(Vector3.forward * (5 * Time.deltaTime) * run);
+            }
+            else if (run < 0)
+            {
+                {
+                    transform.Translate(Vector3.forward * (3 * Time.deltaTime) * run);
+                }
+            }
+
+            if (strafe > 0)
+            {
+                transform.Translate(Vector3.right * (3 * Time.deltaTime) * strafe);
+            }
+            else if (strafe < 0)
+            {
+                {
+                    transform.Translate(Vector3.right * (3 * Time.deltaTime) * strafe);
+                }
+            }
+
+            if (run != 0 || isfight == true)
+            {
+                Vector3 rot = transform.eulerAngles;
+                transform.LookAt(targetPosVec);
+                float angleBetween = Mathf.DeltaAngle(transform.eulerAngles.y, rot.y);
+                if ((Mathf.Abs(angleBetween) > luft) || strafe != 0)
+                {
+                    isPlayerRot = true;
+                }
+                if (isPlayerRot == true)
+                {
+                    float bodyY = Mathf.LerpAngle(rot.y, transform.eulerAngles.y, Time.deltaTime * angularSpeed);
+                    transform.eulerAngles = new Vector3(0, bodyY, 0);
+
+                    if (strafe == 0)
+                    {
+                        anim.SetBool("Turn", false);
+                    }
+                    else
+                    {
+                        anim.SetBool("Turn", false);
+                    }
+
+                    if (Mathf.Abs(angleBetween) * Mathf.Deg2Rad <= Time.deltaTime * angularSpeed)
+                    {
+                        isPlayerRot = false;
+                        anim.SetBool("Turn", false);
+                    }
+                }
+                else
+                {
+                    transform.eulerAngles = new Vector3(0f, rot.y, 0f);
+                }
+            }
+            //transform.LookAt(new Vector3(targetPosVec.x, 0, targetPosVec.z));
+            transform.eulerAngles = new Vector3(0f, transform.eulerAngles.y, 0f);
+        }
+    }
+    public float currlookIKWeight;
+    public float currbodyWeight;
+    public static Vector3 currtargetPosVec;
+    [PunRPC]
+    void testAni()
+    {
+        //손 관절 
+        anim.SetLookAtWeight(lookIKWeight, bodyWeight);
+        anim.SetLookAtPosition(targetPosVec);
+    }
+    void currtestAni()
+    {
+        //손 관절 
+        anim.SetLookAtWeight(lookIKWeight, bodyWeight);
+        anim.SetLookAtPosition(currtargetPosVec);
+    }
+    void OnAnimatorIK()
+    {
+        if (Input.GetMouseButton(1) && isShop)
+        {
+            if (photonView.IsMine)
+            {
+                //손 관절 
+                //photonView.RPC("testAni", RpcTarget.All);
+                testAni();
             }
             else
             {
-				//currtestAni();
-			}
-		}
-	}
+                //currtestAni();
+            }
+        }
+    }
 
-	void Health()
-	{
-		sliderHP.maxValue = maxHP;
-		sliderHP.value = MainCharHP;
-		//healthText.text = "Health: " + MainCharHP.ToString ("0");
+    [PunRPC]
+    void Jump()
+    {
+        if (Input.GetKey(KeyCode.Space))
+        {
+            Debug.Log("스페이스바");
+            if (grounded == true)
+            {
+                Debug.Log("aaaaa");
+                isJumping = true;
+                anim.SetBool("Jump", Input.GetKey(KeyCode.Space));
+            }
 
-		if (MainCharHP <= 0)
-			Death();
+        }
+    }
+    void Fight()
+    {
+        //AIMING
+        if (Input.GetMouseButton(1) && isfight == false && roll_check == false)
+        {
+            ShootSimple_Scr.SkillMode = true; //에임 조준 시 스킬 사용 가능
+            isfight = true;
+            anim.SetBool("isFight", true);
+            weapon2.SetActive(true);
+            //weapon1.SetActive(false);
+            crosshair.SetActive(true);
+            Debug.Log("조준 활성화");
+        }
+        else if (Input.GetMouseButtonUp(1) && isfight == true && roll_check == false)
+        {
+            Debug.Log("조준 끝");
+            ShootSimple_Scr.SkillMode = false;
+            weapon3.SetActive(false);
+            //ShootSimple_Scr.SkillMode = false;
+            isfight = false;
+            anim.SetBool("isFight", false);
+            //weapon1.SetActive(true);
+            weapon2.SetActive(false);
+            crosshair.SetActive(false);
+            isshoot = false;
+            anim.SetBool("isShoot", false);
+        }
+        //SHOOTING
+        if (Input.GetMouseButton(0) && isfight == true)
+        {
+            isshoot = true;
+            anim.SetBool("isShoot", true);
+        }
+        else if (Input.GetMouseButtonUp(0) && isfight == true)
+        {
+            isshoot = false;
+            anim.SetBool("isShoot", false);
+        }
+    }
+
+
+
+    void Health()
+    {
+        sliderHP.maxValue = maxHP;
+        sliderHP.value = MainCharHP;
+        //healthText.text = "Health: " + MainCharHP.ToString ("0");
+
+        if (MainCharHP <= 0)
+            Death();
 
         //-----------HP recovery--------------//
 
-        if (HP < maxHP) 
-		{
-			HP += Time.deltaTime * 0.5f;
-		}
-		//------------------------------------------//
-	}
+        if (HP < maxHP)
+        {
+            HP += Time.deltaTime * 0.5f;
+        }
+        //------------------------------------------//
+    }
 
-	/*void UI()
+    /*void UI()
 	{
 		if (isfight)
 			fightModUI.SetActive (true);
@@ -686,68 +469,45 @@ public class Player_Scr : MonoBehaviourPunCallbacks, IPunObservable
     {
         Debug.Log(HP);
         Debug.Log(FireTime);
-        if(FireTime < 4.0f)
+        if (FireTime < 4.0f)
         {
             FireTime += Time.deltaTime;
             HP -= FireDamage;
-            Burned.SetActive(true);
         }
-        else if(FireTime >= 4.0f)
+        else if (FireTime >= 4.0f)
         {
             FireM = false;
-            Burned.SetActive(false);
         }
     }
-
-
-    private void OnTriggerStay(Collider other)
-	{
-		if (other.tag == "Damage")
-		{
-			{
-				HP -= Time.deltaTime * 20f;
-			}
-		}
-	}
-
-	private void OnTriggerEnter(Collider other)
+    public void Dead()
     {
-		if (other.tag == "DamageAI")
-		{
-			{
-				HP -= 50;
-			}
-		}
-	}
-	public void Dead()
+        anim.SetTrigger("Die2"); //죽는 애니메이션 실행
+        dead = true;
+        roll_check = true;  //구르기 상태로 만들어서 움직이는 기능 멈추기
+        StartCoroutine("die");
+        //Playerspawn.count = true;   //죽을때 텔포 한번만
+    }
+    IEnumerator die()
     {
-		anim.SetTrigger("Die2"); //죽는 애니메이션 실행
-		dead = true;
-		roll_check = true;  //구르기 상태로 만들어서 움직이는 기능 멈추기
-		StartCoroutine("die");
-		//Playerspawn.count = true;   //죽을때 텔포 한번만
-	}
-	IEnumerator die()
-	{
-		yield return new WaitForSeconds(1.5f); //캐릭터 삭제시 ~초후 실행
-		gameObject.transform.position = FirstLocationVector;
-		HP = 100;
-		anim.SetTrigger("Die1");
-		isdead = true;	//죽을때 텔포
-		dead = false;
-		roll_check = false;
-	}
+        yield return new WaitForSeconds(1.5f); //캐릭터 삭제시 ~초후 실행
+        gameObject.transform.position = FirstLocationVector;
+        HP = 100;
+        anim.SetTrigger("Die1");
+        isdead = true;  //죽을때 텔포
+        dead = false;
+        roll_check = false;
+    }
 
-	public void Death() //사망시 실행
-	{
-		//anim.SetBool("Die", true);  //사망 애니메이션
-		Destroy(gameObject);  //3초후 오브젝트 삭제
-		Instantiate(ragdoll, transform.position, transform.rotation);
-		dead = true;
+    public void Death() //사망시 실행
+    {
+        //anim.SetBool("Die", true);  //사망 애니메이션
+        //Destroy(gameObject);  //3초후 오브젝트 삭제
+        Instantiate(ragdoll, transform.position, transform.rotation);
+        dead = true;
 
-	}
+    }
 
-	public void PlayerD(float damage)
+    public void PlayerD(float damage)
     {
         //데미지만큼 체력 감소
         MainCharHP -= damage; // health = health - damage;
@@ -773,29 +533,337 @@ public class Player_Scr : MonoBehaviourPunCallbacks, IPunObservable
             Debug.Log(HitD);
         }
     }
-	void IPunObservable.OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
-	{
-		//로컬 플레이어의 위치 정보 송신
-		if (stream.IsWriting)
-		{
-			stream.SendNext(transform.position);
-			stream.SendNext(transform.rotation);
+    private Vector3 currPos;
+    private Quaternion currRot;
 
-			stream.SendNext(lookIKWeight);
-			stream.SendNext(bodyWeight);
-			stream.SendNext(targetPosVec);
-		}
-		else
-		{
-			currPos = (Vector3)stream.ReceiveNext();
-			currRot = (Quaternion)stream.ReceiveNext();
+    void IPunObservable.OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        //로컬 플레이어의 위치 정보 송신
+        if (stream.IsWriting)
+        {
+            stream.SendNext(transform.position);
+            stream.SendNext(transform.rotation);
+        }
+        else
+        {
+            currPos = (Vector3)stream.ReceiveNext();
+            currRot = (Quaternion)stream.ReceiveNext();
+        }
+    }
 
-			currlookIKWeight = (float)stream.ReceiveNext();
-			currbodyWeight = (float)stream.ReceiveNext();
-			currtargetPosVec = (Vector3)stream.ReceiveNext();
-		}
-	}
+    void ManaRegen()
+    {
+        if (MP != maxMP)
+        {
+            //마나는 초당 0.5씩 회복
+            MP += Time.deltaTime * 10f;
+
+            //마나를 회복했는데 최대 마나보다 크다면 현재마나를 최대마나량으로 변경
+            if (MP > maxMP)
+            {
+                MP = maxMP;
+            }
+            //회복된 마나량을 Mpbar슬라이더에 업데이트
+        }
+    }
+
+    void MaxHp()
+    {
+
+        if (HP > maxHP)
+        {
+            HP = maxHP;
+        }
+
+    }
+
+    /*void w_change()
+    {
+
+        if (Input.GetKeyDown(KeyCode.Alpha5))
+        {
+            Debug.Log("무기변경");
+            if (ShootSimple_Scr.WeaponNumber == 1)
+            {
+                Debug.Log("무기변경");
+                ShootSimple_Scr.WeaponNumber = 2;
+            }
+            else if (ShootSimple_Scr.WeaponNumber == 2)
+            {
+                Debug.Log("무기변경");
+                ShootSimple_Scr.WeaponNumber = 3;
+            }
+            else if (ShootSimple_Scr.WeaponNumber == 3)
+            {
+                Debug.Log("무기변경");
+                ShootSimple_Scr.WeaponNumber = 1;
+            }
+        }
+    }*/
+    void w_change() //스킬 체인지
+    {
+        if (SkillPanelMove.skill_mode == 1) //스킬 ui가 불속성으로 바뀌면 불속성 스킬 사용가능
+        {
+            ShootSimple_Scr.WeaponNumber = 2;
+        }
+        if (SkillPanelMove.skill_mode == 2) //스킬 ui가 전기속성으로 바뀌면 속성 스킬 사용가능
+        {
+            ShootSimple_Scr.WeaponNumber = 1;
+        }
+        if (SkillPanelMove.skill_mode == 3) //스킬 ui가 빛속성으로 바뀌면 빛속성 스킬 사용가능
+        {
+            ShootSimple_Scr.WeaponNumber = 3;
+        }
+    }
+
+    public void skill1_2()
+    {
+        if (Input.GetKeyDown(KeyCode.Alpha2) && isSkill2 == true && roll_check == false
+            && grounded == true && ShootSimple_Scr.SkillMode == false) //에임 조준 안했을시 2번 누르면 실행
+
+        {
+            anim.SetBool("Skill_1_Magic", true);
+            isSkill2 = false;
+            isfight = true;
+            StartCoroutine("Skill1_2");
+
+
+        }
+    }
+
+    IEnumerator Skill1_2()
+    {
+
+        yield return new WaitForSeconds(2.0f);
+        anim.SetBool("Skill_1_Magic", false);
+        Instantiate(skill2_Effect, transform.position + this.transform.forward * 5, Quaternion.Euler(-90, 0, 0));
+        isfight = false;
+        isSkill2 = true;
+
+    }
+    public void skill1_3SpeedBuff()
+    {
+        if (Input.GetKeyDown(KeyCode.Alpha3) && isSkill3 == true)
+        {
+
+            isSkill3 = false;
+            skill3_Buff_Effect.SetActive(true); //버프 이펙트 나오게하기
+            Bullet.bulletDamage += 20; //캐릭터 방어력 5 상승
+            StartCoroutine("Skill1_3");
+        }
+    }
+
+
+    IEnumerator Skill1_3()
+    {
+
+        yield return new WaitForSeconds(5.0f);
+        Bullet.bulletDamage -= 20;
+        //캐릭터 방어력 원상태로 돌리기
+        skill3_Buff_Effect.SetActive(false);
+        isSkill3 = true;
+
+    }
+
+    public void skill2_3()
+    {
+        if (Input.GetKeyDown(KeyCode.Alpha3) && isSkill2_3 == true && roll_check == false
+            && grounded == true && ShootSimple_Scr.SkillMode == false)
+        {
+
+            isSkill2_3 = false;
+            skill2_fireFiled.SetActive(true); //버프 이펙트 나오게하기			
+            StartCoroutine("Skill2_3");
+        }
+    }
+
+    IEnumerator Skill2_3()
+    {
+
+        yield return new WaitForSeconds(5.0f); //초후 버프 없애기
+        skill2_fireFiled.SetActive(false);
+        yield return new WaitForSeconds(8.0f); //스킬 쿨타임
+        isSkill2_3 = true;
+
+    }
+    public void skill2_4()
+    {
+        if (Input.GetKeyDown(KeyCode.Alpha4) && isSkill2_4 == true && roll_check == false
+            && grounded == true && ShootSimple_Scr.SkillMode == false) //에임 조준 안했을시 2번 누르면 실행
+
+        {
+            anim.SetBool("Skill_1_Magic", true);
+            isSkill2_4 = false;
+            isfight = true;
+            StartCoroutine("Skill2_4");
+
+
+        }
+    }
+
+    IEnumerator Skill2_4()
+    {
+
+        yield return new WaitForSeconds(2.0f);
+        anim.SetBool("Skill_1_Magic", false);
+        Instantiate(skill2_meteo, transform.position + this.transform.forward * 10, Quaternion.Euler(-90, 0, 0));
+        isfight = false;
+        yield return new WaitForSeconds(10.0f);
+        isSkill2_4 = true;
+
+    }
+
+    public void skill3_2()
+    {
+        if (Input.GetKeyDown(KeyCode.Alpha2) && isSkill3_2 == true && roll_check == false
+            && grounded == true && ShootSimple_Scr.SkillMode == false) //에임 조준 안했을시 2번 누르면 실행
+
+        {
+            isSkill3_2 = false;
+            isfight = true;
+            StartCoroutine("Skill3_2");
+            Instantiate(skill3_wall, transform.position + this.transform.forward * 2 + this.transform.up * 1, Quaternion.Euler(-90, 0, 0));
+            isfight = false;
+        }
+    }
+
+    IEnumerator Skill3_2()
+    {
+
+        yield return new WaitForSeconds(5.0f); //스킬 쿨
+                                               //Destroy(skill3_wall);
+        isSkill3_2 = true;
+
+    }
+
+    public void skill3_3()
+    {
+        if (Input.GetKeyDown(KeyCode.Alpha3) && isSkill3_3 == true && roll_check == false
+            && grounded == true && ShootSimple_Scr.SkillMode == false)
+        {
+
+            isSkill3_3 = false;
+            skill3_buff.SetActive(true); //버프 이펙트 나오게하기	
+            Depense += 50;
+            StartCoroutine("Skill3_3");
+        }
+    }
+    IEnumerator Skill3_3()
+    {
+
+        yield return new WaitForSeconds(5.0f); //초후 버프 없애기
+        skill3_buff.SetActive(false);
+        Depense -= 50;
+        yield return new WaitForSeconds(8.0f); //스킬 쿨타임
+        isSkill3_3 = true;
+    }
+    public void skill3_4()
+    {
+        if (Input.GetKeyDown(KeyCode.Alpha4) && isSkill3_4 == true && roll_check == false
+            && grounded == true && ShootSimple_Scr.SkillMode == false)
+        {
+            isfight = true;
+            isSkill3_4 = false;
+            anim.SetBool("Skill_1_Magic", true);
+            //버프 이펙트 나오게하기			
+            StartCoroutine("Skill3_4");
+        }
+    }
+
+    IEnumerator Skill3_4()
+    {
+        yield return new WaitForSeconds(2.0f);
+        skill3_4_Effect.SetActive(true);
+        anim.SetBool("Skill_1_Magic", false);
+        isfight = false;
+        yield return new WaitForSeconds(5.0f); //초후 버프 없애기
+        skill3_4_Effect.SetActive(false);
+        hill_buff.a = false; //초당 체력 재생 변수 끄기
+        yield return new WaitForSeconds(8.0f); //스킬 쿨타임
+        isSkill3_4 = true;
+
+    }
+
+    void FixedUpdate() // 리지드바디 이용할 경우 update 대신 FixedUpdate 사용
+    {
+        if (isJumping == true)
+        {
+            Debug.Log("bbbb");
+            rigdbody.AddForce(Vector3.up * jumpPower, ForceMode.Impulse);
+            anim.SetBool("Jump", true);
+            isJumping = false;
+
+        }
+        if (isJumping == false) //점프 한번만 가능하게 공중에서 false줌
+        {
+            anim.SetBool("Jump", false);
+        }
 
 
 
-} 
+    }
+
+
+
+    void roll()
+    {
+
+        //roll 제어 코드
+        if (Input.GetKeyDown(KeyCode.LeftShift) && isfight == false && run >= 0 && grounded == true)
+        {
+            MP -= 20;
+            roll_check = true;
+            anim.SetFloat("forward_roll", 1.0f);
+            weapon1.SetActive(false);
+            StartCoroutine("forward_roll_colltime");
+
+        }
+
+        else if (Input.GetKeyDown(KeyCode.LeftShift) && isfight == false && run < 0 && grounded == true)
+        {
+            MP -= 20;
+            roll_check = true;
+
+            anim.SetFloat("back_roll", 1.0f);
+            weapon1.SetActive(false);
+
+            StartCoroutine("back_roll_colltime");
+        }
+
+    }
+    IEnumerator forward_roll_colltime()
+    {
+
+        yield return new WaitForSeconds(0.8f);
+        weapon1.SetActive(true);
+        anim.SetFloat("forward_roll", 0.0f);
+        roll_check = false;
+    }
+    IEnumerator back_roll_colltime()
+    {
+        yield return new WaitForSeconds(0.6f);
+        weapon1.SetActive(true);
+        anim.SetFloat("back_roll", 0.0f);
+        roll_check = false;
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.tag == "Damage")
+        {
+            {
+                HP -= Time.deltaTime * 20f;
+            }
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "DamageAI")
+        {
+            {
+                HP -= 50;
+            }
+        }
+    }
+}
