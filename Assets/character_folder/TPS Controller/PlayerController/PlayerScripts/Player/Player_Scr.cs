@@ -29,8 +29,8 @@ public class Player_Scr : MonoBehaviourPunCallbacks, IPunObservable
 
     public static float MainCharHP = 100f;
 
-    public float lookIKWeight;
-    public float bodyWeight;
+    public static float lookIKWeight = 1.0f;
+    public static float bodyWeight = 1.5f;
     //public GameObject a;
 
     [Header("clear_time")]
@@ -54,7 +54,7 @@ public class Player_Scr : MonoBehaviourPunCallbacks, IPunObservable
     public bool grounded = false;
 
     Rigidbody rigdbody;
-    bool isJumping = false;
+    static bool isJumping = false;
     public float jumpPower = 10.0f;
     public float rollPower = 3.5f;
 
@@ -132,8 +132,8 @@ public class Player_Scr : MonoBehaviourPunCallbacks, IPunObservable
     float FireDamage = 0.1f;
 
     public static bool ClearC = false;
-     
 
+    PhotonView pv = null;
     void CmdClientState(Vector3 targetPosVec, float newRunWeight, float run, float strafe)
     {
         this.targetPosVec = targetPosVec;
@@ -144,15 +144,9 @@ public class Player_Scr : MonoBehaviourPunCallbacks, IPunObservable
 
     void Start()
     {
-        if (photonView.IsMine)
-        {
-            ReStart();
-        }
+        pv = GetComponent<PhotonView>();
 
-    }
-    void ReStart()
-    {
-        if (photonView.IsMine)
+        if (pv.IsMine)
         {
             FirstLocationVector = gameObject.transform.position;
             /*-----AKH 수정-----*/
@@ -163,6 +157,8 @@ public class Player_Scr : MonoBehaviourPunCallbacks, IPunObservable
             crosshair = GameObject.FindGameObjectWithTag("Crosshair");
 
             tr = GetComponent<Transform>();
+
+            pv = GetComponent<PhotonView>();
 
             /*-----AKH 수정-----*/
 
@@ -179,10 +175,11 @@ public class Player_Scr : MonoBehaviourPunCallbacks, IPunObservable
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
         }
+
     }
     void Update()
     {
-        if (photonView.IsMine)
+        if (pv.IsMine)
         {
             if (isShop)
             {
@@ -209,7 +206,7 @@ public class Player_Scr : MonoBehaviourPunCallbacks, IPunObservable
                 Locomotion();
                 Fight();
                 Jump();
-                //photonView.RPC("Jump", RpcTarget.All);
+                //pv.RPC("Jump", RpcTarget.All);
                 roll();
 
                 if (ClearC == false)
@@ -369,11 +366,11 @@ public class Player_Scr : MonoBehaviourPunCallbacks, IPunObservable
     {
         if (Input.GetMouseButton(1) && isShop)
         {
-            if (photonView.IsMine)
+            if (pv.IsMine)
             {
                 //손 관절 
-                //photonView.RPC("testAni", RpcTarget.All);
-                testAni();
+                pv.RPC("testAni", RpcTarget.All);
+                //testAni();
             }
             else
             {
@@ -437,8 +434,6 @@ public class Player_Scr : MonoBehaviourPunCallbacks, IPunObservable
         }
     }
 
-
-
     void Health()
     {
         sliderHP.maxValue = maxHP;
@@ -490,11 +485,11 @@ public class Player_Scr : MonoBehaviourPunCallbacks, IPunObservable
     IEnumerator die()
     {
         yield return new WaitForSeconds(1.5f); //캐릭터 삭제시 ~초후 실행
-        gameObject.transform.position = FirstLocationVector;
-        HP = 100;
+        //gameObject.transform.position = FirstLocationVector;
         anim.SetTrigger("Die1");
         isdead = true;  //죽을때 텔포
         dead = false;
+        HP = 100;
         roll_check = false;
     }
 
@@ -502,7 +497,7 @@ public class Player_Scr : MonoBehaviourPunCallbacks, IPunObservable
     {
         //anim.SetBool("Die", true);  //사망 애니메이션
         //Destroy(gameObject);  //3초후 오브젝트 삭제
-        Instantiate(ragdoll, transform.position, transform.rotation);
+        //Instantiate(ragdoll, transform.position, transform.rotation);
         dead = true;
 
     }
@@ -783,24 +778,40 @@ public class Player_Scr : MonoBehaviourPunCallbacks, IPunObservable
         isSkill3_4 = true;
 
     }
-
-    void FixedUpdate() // 리지드바디 이용할 경우 update 대신 FixedUpdate 사용
+    [PunRPC]
+    void JumpRpc()
     {
+        anim.SetBool("Jump", Input.GetKey(KeyCode.Space));
         if (isJumping == true)
         {
-            Debug.Log("bbbb");
+            Debug.Log("isJumping:" + isJumping);
             rigdbody.AddForce(Vector3.up * jumpPower, ForceMode.Impulse);
             anim.SetBool("Jump", true);
             isJumping = false;
-
         }
         if (isJumping == false) //점프 한번만 가능하게 공중에서 false줌
         {
             anim.SetBool("Jump", false);
         }
+    }
 
+    void FixedUpdate() // 리지드바디 이용할 경우 update 대신 FixedUpdate 사용
+    {
+        if (pv.IsMine)
+        {
+            if (isJumping == true)
+            {
+                Debug.Log("bbbb");
 
-
+                anim.SetBool("Jump", true);
+                rigdbody.AddForce(Vector3.up * jumpPower, ForceMode.Impulse);
+                isJumping = false;
+            }
+            if (isJumping == false) //점프 한번만 가능하게 공중에서 false줌
+            {
+                anim.SetBool("Jump", false);
+            }
+        }
     }
 
 
