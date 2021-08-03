@@ -192,6 +192,11 @@ public class Player_Scr : MonoBehaviourPunCallbacks, IPunObservable
                 }
 
                 CLC = gameObject.transform.position;
+                //Debug.Log("CLC : "+CLC);
+                // 돈 텍스트
+
+                //  string PlayerMoneyT = "보유 금액 : " + PlayerMoney;
+                //  PlayerMoneyText.GetComponent<Text>().text = PlayerMoneyT;
 
                 if (FireM == true)
                 {
@@ -200,14 +205,8 @@ public class Player_Scr : MonoBehaviourPunCallbacks, IPunObservable
 
                 Locomotion();
                 Fight();
-                //Jump();
-
-                pv.RPC("Jump", RpcTarget.All);
-                /*if (Input.GetKey(KeyCode.Space))
-                {
-                    pv.RPC("Jump_Net", RpcTarget.All);
-                }*/
-
+                Jump();
+                //pv.RPC("Jump", RpcTarget.All);
                 roll();
 
                 if (ClearC == false)
@@ -231,14 +230,35 @@ public class Player_Scr : MonoBehaviourPunCallbacks, IPunObservable
                     skill3_3();
                     skill3_4();
                 }
+                ManaRegen();//마나 초당 회복
+                MaxHp();// 체력 100이상 되면 100으로 고정
+                grounded = Physics.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Blocking"));
 
+                /*if (ShootSimple_Scr.WeaponNumber == 1)
+                {
+                    skill1_2();
+                    skill1_3SpeedBuff();
+                }
+
+                else if (ShootSimple_Scr.WeaponNumber == 2)
+                {
+                    skill2_3();
+                    skill2_4();
+                }
+
+                else if (ShootSimple_Scr.WeaponNumber == 3)
+                {
+                    skill3_2();
+                    skill3_3();
+                    skill3_4();
+                }
                 w_change(); //무기변경 코드
                             //skill1();
                             //땅체크
 
                 ManaRegen();//마나 초당 회복
                 MaxHp();// 체력 100이상 되면 100으로 고정
-                grounded = Physics.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Blocking"));
+                grounded = Physics.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Blocking"));*/
 
             }
         }
@@ -249,13 +269,7 @@ public class Player_Scr : MonoBehaviourPunCallbacks, IPunObservable
         }
 
     }
-    [PunRPC]
-    void Jump_Net()
-    {
-        Debug.Log("Jump_Net");
-        //rigdbody.AddForce(Vector3.up * jumpPower, ForceMode.Impulse);
-        //anim.SetTrigger("Jump_Net");
-    }
+
     //로컬
     void Locomotion()
     {
@@ -358,7 +372,10 @@ public class Player_Scr : MonoBehaviourPunCallbacks, IPunObservable
                 pv.RPC("testAni", RpcTarget.All);
                 //testAni();
             }
-            
+            else
+            {
+                //currtestAni();
+            }
         }
     }
 
@@ -374,6 +391,7 @@ public class Player_Scr : MonoBehaviourPunCallbacks, IPunObservable
                 isJumping = true;
                 anim.SetBool("Jump", Input.GetKey(KeyCode.Space));
             }
+
         }
     }
     void Fight()
@@ -554,6 +572,29 @@ public class Player_Scr : MonoBehaviourPunCallbacks, IPunObservable
 
     }
 
+    /*void w_change()
+    {
+
+        if (Input.GetKeyDown(KeyCode.Alpha5))
+        {
+            Debug.Log("무기변경");
+            if (ShootSimple_Scr.WeaponNumber == 1)
+            {
+                Debug.Log("무기변경");
+                ShootSimple_Scr.WeaponNumber = 2;
+            }
+            else if (ShootSimple_Scr.WeaponNumber == 2)
+            {
+                Debug.Log("무기변경");
+                ShootSimple_Scr.WeaponNumber = 3;
+            }
+            else if (ShootSimple_Scr.WeaponNumber == 3)
+            {
+                Debug.Log("무기변경");
+                ShootSimple_Scr.WeaponNumber = 1;
+            }
+        }
+    }*/
     void w_change() //스킬 체인지
     {
         if (SkillPanelMove.skill_mode == 1) //스킬 ui가 불속성으로 바뀌면 불속성 스킬 사용가능
@@ -761,6 +802,7 @@ public class Player_Scr : MonoBehaviourPunCallbacks, IPunObservable
             if (isJumping == true)
             {
                 Debug.Log("bbbb");
+
                 anim.SetBool("Jump", true);
                 rigdbody.AddForce(Vector3.up * jumpPower, ForceMode.Impulse);
                 isJumping = false;
