@@ -133,7 +133,8 @@ public class Player_Scr : MonoBehaviourPunCallbacks, IPunObservable
 
     public static bool ClearC = false;
 
-    PhotonView pv = null;
+    bool JSpace;
+    public PhotonView PV;
     void CmdClientState(Vector3 targetPosVec, float newRunWeight, float run, float strafe)
     {
         this.targetPosVec = targetPosVec;
@@ -144,9 +145,8 @@ public class Player_Scr : MonoBehaviourPunCallbacks, IPunObservable
 
     void Start()
     {
-        pv = GetComponent<PhotonView>();
-
-        if (pv.IsMine)
+        PV = GetComponent<PhotonView>();
+        if (PV.IsMine)
         {
             FirstLocationVector = gameObject.transform.position;
             /*-----AKH 수정-----*/
@@ -157,8 +157,6 @@ public class Player_Scr : MonoBehaviourPunCallbacks, IPunObservable
             crosshair = GameObject.FindGameObjectWithTag("Crosshair");
 
             tr = GetComponent<Transform>();
-
-            pv = GetComponent<PhotonView>();
 
             /*-----AKH 수정-----*/
 
@@ -179,7 +177,7 @@ public class Player_Scr : MonoBehaviourPunCallbacks, IPunObservable
     }
     void Update()
     {
-        if (pv.IsMine)
+        if (PV.IsMine)
         {
             if (isShop)
             {
@@ -190,6 +188,8 @@ public class Player_Scr : MonoBehaviourPunCallbacks, IPunObservable
                         Dead();
                     }
                 }
+
+                JSpace = Input.GetButtonDown("Jump");   //스페이스바
 
                 CLC = gameObject.transform.position;
                 //Debug.Log("CLC : "+CLC);
@@ -205,8 +205,8 @@ public class Player_Scr : MonoBehaviourPunCallbacks, IPunObservable
 
                 Locomotion();
                 Fight();
-                Jump();
-                //pv.RPC("Jump", RpcTarget.All);
+                //Jump();
+                PV.RPC("Jump", RpcTarget.All);
                 roll();
 
                 if (ClearC == false)
@@ -345,10 +345,18 @@ public class Player_Scr : MonoBehaviourPunCallbacks, IPunObservable
             //transform.LookAt(new Vector3(targetPosVec.x, 0, targetPosVec.z));
             transform.eulerAngles = new Vector3(0f, transform.eulerAngles.y, 0f);
         }
-    }
+    }/*
     public float currlookIKWeight;
     public float currbodyWeight;
     public static Vector3 currtargetPosVec;
+
+    void currtestAni()
+    {
+        //손 관절 
+        anim.SetLookAtWeight(lookIKWeight, bodyWeight);
+        anim.SetLookAtPosition(currtargetPosVec);
+    }*/
+
     [PunRPC]
     void testAni()
     {
@@ -356,20 +364,15 @@ public class Player_Scr : MonoBehaviourPunCallbacks, IPunObservable
         anim.SetLookAtWeight(lookIKWeight, bodyWeight);
         anim.SetLookAtPosition(targetPosVec);
     }
-    void currtestAni()
-    {
-        //손 관절 
-        anim.SetLookAtWeight(lookIKWeight, bodyWeight);
-        anim.SetLookAtPosition(currtargetPosVec);
-    }
+    
     void OnAnimatorIK()
     {
         if (Input.GetMouseButton(1) && isShop)
         {
-            if (pv.IsMine)
+            if (PV.IsMine)
             {
                 //손 관절 
-                pv.RPC("testAni", RpcTarget.All);
+                PV.RPC("testAni", RpcTarget.All);
                 //testAni();
             }
             else
@@ -382,7 +385,7 @@ public class Player_Scr : MonoBehaviourPunCallbacks, IPunObservable
     [PunRPC]
     void Jump()
     {
-        if (Input.GetKey(KeyCode.Space))
+        /*if (Input.GetKey(KeyCode.Space))
         {
             Debug.Log("스페이스바");
             if (grounded == true)
@@ -391,9 +394,41 @@ public class Player_Scr : MonoBehaviourPunCallbacks, IPunObservable
                 isJumping = true;
                 anim.SetBool("Jump", Input.GetKey(KeyCode.Space));
             }
-
+        }*/
+        //Debug.Log("grounded: "+ grounded);
+        if (JSpace && !isJumping)
+        {
+            //Debug.Log("Jump2");
+            anim.SetBool("Jump", true);    //Jump 애니메이션
+            rigdbody.AddForce(Vector3.up * jumpPower, ForceMode.Impulse);    //리지드바디를 위로 이동
+            isJumping = true;  //연속점프 방지
+        }
+        if (isJumping) //점프 한번만
+        {
+            //Debug.Log("groundCheck");
+            Invoke("Jumpdelay", 0.5f);
+            isJumping = false;
         }
     }
+    void Jumpdelay()
+    {
+        anim.SetBool("Jump", false);    //Jump 애니메이션
+    }
+    /*void FixedUpdate() // 리지드바디 이용할 경우 update 대신 FixedUpdate 사용
+    {
+        if (isJumping == true)
+        {
+            Debug.Log("bbbb");
+            rigdbody.AddForce(Vector3.up * jumpPower, ForceMode.Impulse);
+            anim.SetBool("Jump", true);
+            isJumping = false;
+
+        }
+        if (isJumping == false) //점프 한번만 가능하게 공중에서 false줌
+        {
+            anim.SetBool("Jump", false);
+        }
+    }*/
     void Fight()
     {
         //AIMING
@@ -794,27 +829,6 @@ public class Player_Scr : MonoBehaviourPunCallbacks, IPunObservable
             anim.SetBool("Jump", false);
         }
     }
-
-    void FixedUpdate() // 리지드바디 이용할 경우 update 대신 FixedUpdate 사용
-    {
-        if (pv.IsMine)
-        {
-            if (isJumping == true)
-            {
-                Debug.Log("bbbb");
-
-                anim.SetBool("Jump", true);
-                rigdbody.AddForce(Vector3.up * jumpPower, ForceMode.Impulse);
-                isJumping = false;
-            }
-            if (isJumping == false) //점프 한번만 가능하게 공중에서 false줌
-            {
-                anim.SetBool("Jump", false);
-            }
-        }
-    }
-
-
 
     void roll()
     {

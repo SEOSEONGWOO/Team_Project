@@ -23,6 +23,7 @@ TagManager:
   - Money
   - fire
   - Ice
+  - Floor
   layers:
   - Default
   - TransparentFX

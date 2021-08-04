@@ -10549,8 +10549,7 @@ MonoBehaviour:
   ragdoll: {fileID: 5431398466033780921, guid: fc94d387fc606fb4aae480cc5e37a14c, type: 3}
   FirstLocationVector: {x: 0, y: 0, z: 0}
   Burned: {fileID: 7981858405197202290}
-  currlookIKWeight: 0
-  currbodyWeight: 0
+  PV: {fileID: 0}
 --- !u!114 &-1308161118896512836
 MonoBehaviour:
   m_ObjectHideFlags: 0
