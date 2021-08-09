@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   turnSmooth: 0.2
   pivotSpeed: 1
-  Y_rot_speed: 4
-  X_rot_speed: 4
+  Y_rot_speed: 2
+  X_rot_speed: 2
   minAngle: -35
   maxAngle: 50
   normalZ: -1.3
