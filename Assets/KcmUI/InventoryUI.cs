@@ -12,6 +12,7 @@ public class InventoryUI : MonoBehaviour
     public AudioClip clip;
     public static bool isInven = false;
 
+    public GameObject shopPnl;
     void Start()
     {
         inventoryPanel.SetActive(activeInventory);
@@ -20,31 +21,33 @@ public class InventoryUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.I))
+        if (!ShopKey.isPnlOn || !shopPnl.activeSelf)
         {
-            if (Player_Scr.isShop)
+            if (Input.GetKeyDown(KeyCode.I))
             {
-                //인벤 활성화일때 Locomotion(), Fight(), Jump(), roll() 비활성화
-                isInven = true;
-                Player_Scr.isShop = false; 
-                //Cursor.lockState = CursorLockMode.None;
-                //Cursor.visible = true;
+                if (Player_Scr.isShop)
+                {
+                    //인벤 활성화일때 Locomotion(), Fight(), Jump(), roll() 비활성화
+                    isInven = true;
+                    Player_Scr.isShop = false;
+                    //Cursor.lockState = CursorLockMode.None;
+                    //Cursor.visible = true;
+                }
+                else if (!Player_Scr.isShop)
+                {
+                    //인벤 비활성화일때 Locomotion(), Fight(), Jump(), roll() 활성화
+                    isInven = false;
+                    Player_Scr.isShop = true;
+                    //Cursor.lockState = CursorLockMode.Locked;
+                    //Cursor.visible = false;
+                }
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
+                SoundManager.instance.SFXPlay("Inventory", clip);
+                activeInventory = !activeInventory;
+                inventoryPanel.SetActive(activeInventory);
             }
-            else if (!Player_Scr.isShop)
-            {
-                //인벤 비활성화일때 Locomotion(), Fight(), Jump(), roll() 활성화
-                isInven = false;
-                Player_Scr.isShop = true; 
-                //Cursor.lockState = CursorLockMode.Locked;
-                //Cursor.visible = false;
-            }
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
-            SoundManager.instance.SFXPlay("Inventory", clip);
-            activeInventory = !activeInventory;
-            inventoryPanel.SetActive(activeInventory);
         }
-
         if (inventoryPanel.activeSelf) { CameraCs2.cc = false; }
         
         else if (!inventoryPanel.activeSelf) { CameraCs2.cc = true; }
