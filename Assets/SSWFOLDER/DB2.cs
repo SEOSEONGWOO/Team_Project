@@ -157,8 +157,6 @@ public class DB2 : MonoBehaviourPunCallbacks
     public void Connect()
     {
         // 중복 접속 시도를 막기 위해, 접속 버튼 잠시 비활성화
-        //joinButton.interactable = false;
-
         //유저 닉 가져오기
         PhotonNetwork.LocalPlayer.NickName = NicknameInput.text;
 
@@ -173,14 +171,12 @@ public class DB2 : MonoBehaviourPunCallbacks
         auth.SignInWithEmailAndPasswordAsync(nicknameText, passowrdText).ContinueWith(task =>
         {
             if (task.IsCanceled) //취소 시
-            {
-                // Debug.LogError("SignInWithEmailAndPasswordAsync was canceled.");
+            {  
                 Title.text = "취소";
                 return;
             }
             if (task.IsFaulted)  //문제가 있을 시
             {
-                // Debug.LogError("SignInWithEmailAndPasswordAsync encountered an error: " + task.Exception);
                 Title.text = "아이디 없음";
                 return;
             }

@@ -54,17 +54,6 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    public void qqqq()
-    {
-        if(slot.item.itemName == "ATK_Book")
-        {
-            Debug.Log("스크롤획득");
-        }
-    }
-
-
-
-
     public void AcquireItem(Item _item, int _count) //아이템 획듯시 실행
     {
         if(Item.ItemType.Equipment != _item.itemType) //장비이 아닐 경우
@@ -92,6 +81,14 @@ public class Inventory : MonoBehaviour
                 slots[i].AddItem(_item, _count);
                 return;
             }
+        }
+    }
+
+    public void qqqq()
+    {
+        if (slot.item.itemName == "ATK_Book")
+        {
+            Debug.Log("스크롤획득");
         }
     }
 }
